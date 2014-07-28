@@ -1,0 +1,56 @@
+
+<RelativeLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+<android.support.v4.widget.DrawerLayout
+   
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   android:id="@+id/drawer_layout_competition">
+
+  <FrameLayout
+        android:id="@+id/competition_content_frame"
+       android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B1C382">
+        <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Competition"
+android:layout_gravity="center_vertical"   
+     android:textSize="30dp" />
+
+       
+        
+        </FrameLayout>
+
+         
+   <ListView
+        android:id="@+id/listview_drawer_competition"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#25000000"
+         android:listSelector="@android:color/transparent"
+        />
+
+
+   
+</android.support.v4.widget.DrawerLayout>
+
+
+
+ <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sidelinebar"
+            android:layout_alignParentRight="true" 
+            android:layout_alignParentTop="true"></ImageView>
+
+
+
+  </RelativeLayout>

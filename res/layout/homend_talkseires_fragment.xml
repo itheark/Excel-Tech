@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#8BDD97">
+
+  
+
+    <Button
+        android:id="@+id/dotissue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=".Issue!" />
+<Button
+        android:id="@+id/tedxMec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tedxmec" />
+<Button
+        android:id="@+id/exhibitions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exhibitions" />
+<Button
+        android:id="@+id/seminars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seminars" />
+<Button
+        android:id="@+id/workshops"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Workshops" />
+</LinearLayout>

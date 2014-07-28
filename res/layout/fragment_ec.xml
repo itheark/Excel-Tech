@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#464646">
+
+    <Button
+        android:id="@+id/extrinsicity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Extrinsicity" />
+ <Button
+        android:id="@+id/terrainmaster"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Terrain Master" />
+  <Button
+        android:id="@+id/robowars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Robo Wars" />
+   <Button
+        android:id="@+id/defuse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Defuse" />
+    <Button
+        android:id="@+id/wavecloning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wave Cloning" />
+</LinearLayout>

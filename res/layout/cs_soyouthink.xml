@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+     >
+    <ImageView
+        android:id="@+id/include"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/cs_soyouthink" />
+
+    <ImageView
+        android:id="@+id/event"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:layout_centerHorizontal="true"
+        android:src="@drawable/cs_eventformat"
+        android:layout_below="@+id/include" 
+        android:layout_marginTop="20dp"/>
+
+    <ImageView
+        android:id="@+id/intro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+          android:src="@drawable/cs_intro"
+          android:layout_below="@+id/include" 
+        android:layout_marginTop="20dp"
+        android:layout_toLeftOf="@+id/event" 
+        />
+
+    <ImageView
+        android:id="@+id/rules"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/event"
+        android:layout_toRightOf="@+id/event"
+        android:src="@drawable/cs_rules" />
+
+    
+    
+    
+       <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_below="@+id/intro"
+        android:layout_height="240dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="#90000000">
+    <TextView
+        android:id="@+id/txtinclude"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
+       android:gravity="center"
+       android:fontFamily="sans-serif"
+       
+        android:textColor="#99ffffff"
+     android:text="“ If You control the code,You control the world”\nAnybody can code, So can you! Or can you?For the first time at Excel, show off your coding skills at ‘So you think you can code’ with brand-new rules and surprises, this event will test you till you break or fight back!  Defying the usual norms, this event will challenge you, surprise you and test you till you break or fight back! Get –Set- code!\n\n"/>	
+ 
+    </ScrollView>
+ 
+</RelativeLayout>

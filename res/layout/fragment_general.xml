@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#464646" >
+
+    <Button
+        android:id="@+id/kryptos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="kryptos" />
+    <Button
+        android:id="@+id/dalalbull"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dalalbull" />
+    <Button
+        android:id="@+id/papyrusofani"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Papyrus Of Ani" />
+
+</LinearLayout>
