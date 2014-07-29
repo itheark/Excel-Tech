@@ -3,8 +3,6 @@ package com.greycodes.excel14;
 
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -12,20 +10,20 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.text.Html;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.greycodes.excel14.info.ContactsFragment;
+import com.greycodes.excel14.info.Developers;
 import com.greycodes.excel14.info.FloorMapFragment;
 import com.greycodes.excel14.info.HospitalityFragment;
 import com.greycodes.excel14.info.MapFragment;
 import com.greycodes.excel14.info.ScheduleViewPager;
+import com.greycodes.excel14.info.SponsorFragment;
 
 public class InfoNDActivity extends SherlockFragmentActivity {
 	DrawerLayout iDrawerLayout;
@@ -56,7 +54,7 @@ public class InfoNDActivity extends SherlockFragmentActivity {
  fragmentManager = getSupportFragmentManager();
 	 transaction=fragmentManager.beginTransaction();
 		
-		ioptions=new int[] {R.drawable.importantcontacts_nd,R.drawable.floormap_nd,R.drawable.schedule_nd,R.drawable.hospitality_nd,R.drawable.map_nd};
+		ioptions=new int[] {R.drawable.importantcontacts_nd,R.drawable.floormap_nd,R.drawable.schedule_nd,R.drawable.hospitality_nd,R.drawable.map_nd,R.drawable.developers,R.drawable.sponsor};
 		        
 		        iDrawerLayout =(DrawerLayout) findViewById(R.id.drawer_layout_info);
 		        iDrawerList = (ListView) findViewById(R.id.listview_drawer_info);
@@ -64,9 +62,7 @@ public class InfoNDActivity extends SherlockFragmentActivity {
 		        iMenuAdapter= new HomeMenuListAdapter(InfoNDActivity.this, ioptions);
 		        iDrawerList.setAdapter(iMenuAdapter);
 		        iDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-		        ActionBar bar = getSupportActionBar();
-		        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0e1215")));
-		        bar.setTitle(Html.fromHtml("<font color=\"#e6f3ea\">" + getString(R.string.app_name) + "</font>"));
+		        
 		        getSupportActionBar().setHomeButtonEnabled(true);
 		        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		        iDrawerToggle= new ActionBarDrawerToggle(this, iDrawerLayout, R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close)
@@ -163,6 +159,12 @@ public class InfoNDActivity extends SherlockFragmentActivity {
 				f= new MapFragment();
 				
 			break;
+			case 5:
+				f= new Developers();
+				break;
+			case 6:
+				f = new SponsorFragment();
+				break;
 		
 			}
 		

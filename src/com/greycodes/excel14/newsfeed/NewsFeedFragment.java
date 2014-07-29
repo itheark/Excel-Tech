@@ -61,6 +61,7 @@ NewsFeedArrayAdapter newsFeedArrayAdapter;
 		String results = null;
 		JSONArray jsonarray;
 	ExcelDataBase excelDataBase;
+	int newsfeed_flag;
 	 
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -256,7 +257,10 @@ NewsFeedArrayAdapter newsFeedArrayAdapter;
     	Toast.makeText(getActivity(), "news feed postexecute", Toast.LENGTH_LONG).show(); 
     	 newsFeedArrayAdapter = new NewsFeedArrayAdapter(getActivity(), subject, message, pcode);
 		
-		
+    	 SharedPreferences   sharedPreferences = getActivity().getSharedPreferences("flag", Context.MODE_PRIVATE);
+			SharedPreferences.Editor editor = sharedPreferences.edit();
+			editor.putInt("newsfeed", newsfeed_flag);
+			editor.commit();
 		 setListAdapter(newsFeedArrayAdapter);
     	mPullToRefreshLayout.setRefreshComplete();
 
@@ -274,7 +278,7 @@ NewsFeedArrayAdapter newsFeedArrayAdapter;
 	
 	  private class flagCheck extends AsyncTask<String, String, String>{
 		  String results;
-		  int newsfeed_flag;
+		  
 		  	@Override
 		  	protected String doInBackground(String... params) {			
 		  			// TODO Auto-generated method stub

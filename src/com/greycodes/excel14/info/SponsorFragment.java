@@ -24,6 +24,7 @@ import com.greycodes.excel14.database.ImageDownloader;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -48,7 +49,7 @@ public class SponsorFragment extends ListFragment implements OnRefreshListener {
 	int[] sid,pcode;
 	int n;
 	byte[][] imagebyte;
-	Context context;
+	 int sponsor_flag;
 	ExcelDataBase excelDataBase;
 	ImageDownloader imageDownloader;
 	@Override
@@ -104,7 +105,7 @@ public class SponsorFragment extends ListFragment implements OnRefreshListener {
 		           
 	                	   Toast.makeText(getActivity(), "Connection", Toast.LENGTH_LONG).show();
 	                	try {
-							Object object = new ParseSponsorImageInfo().execute("http://excelapi.net84.net/sponsor.json").get();
+							Object object = new flagCheck().execute("http://excelapi.net84.net/flag.json").get();
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -134,7 +135,7 @@ public class SponsorFragment extends ListFragment implements OnRefreshListener {
 			// TODO Auto-generated method stub
 			
 			DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-			HttpPost httppost = new HttpPost(url);
+			HttpPost httppost = new HttpPost("http://excelapi.net84.net/sponsor.json");
 			httppost.setHeader("Content-type","application/json");
 			InputStream inputstream = null;
 			try{
@@ -200,7 +201,7 @@ public class SponsorFragment extends ListFragment implements OnRefreshListener {
 				imagebyte[i] = imageDownloader.Download(imageurl[i]);
 			}
 			
-			excelDataBase = new ExcelDataBase(context);
+			excelDataBase = new ExcelDataBase(getActivity());
 			SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
 			ContentValues contentValues = new ContentValues();
 			//SID  ,PCODE INT NOT NULL, IMAGE ,URL VARCHAR(30)
@@ -212,9 +213,12 @@ public class SponsorFragment extends ListFragment implements OnRefreshListener {
 					contentValues.put("IMAGE", imagebyte[i]);
 					contentValues.put("URL", companyurl[i]);
 					sqLiteDatabase.insert("SPONSOR", null, contentValues);
-					Toast.makeText(context, "Sponsor Inserted", Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(), "Sponsor Inserted", Toast.LENGTH_LONG).show();
 				}
-			
+				SharedPreferences   sharedPreferences = getActivity().getSharedPreferences("flag", Context.MODE_PRIVATE);
+				SharedPreferences.Editor editor = sharedPreferences.edit();
+				editor.putInt("sponsor", sponsor_flag);
+				editor.commit();
 				mPullToRefreshLayout.setRefreshComplete();
 				sponsorList = new SponsorList(getActivity());
 				setListAdapter(sponsorList);
@@ -223,6 +227,78 @@ public class SponsorFragment extends ListFragment implements OnRefreshListener {
 		
 	}
 
+	
+	private class flagCheck extends AsyncTask<String, String, String>{
+		  String results;
+		 
+		  	@Override
+		  	protected String doInBackground(String... params) {			
+		  			// TODO Auto-generated method stub
+		  		
+		  		DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
+		  		HttpPost httppost = new HttpPost("http://excelapi.net84.net/flag.json");
+		  		httppost.setHeader("Content-type","application/json");
+		  		InputStream inputstream = null;
+		  		try{
+		  			org.apache.http.HttpResponse response = httpclient.execute(httppost);
+		  			HttpEntity entity =  response.getEntity();
+		  			inputstream = entity.getContent();
+		  			BufferedReader reader = new BufferedReader(new InputStreamReader(inputstream,"UTF-8"),8);
+		  			StringBuilder theStringBuilder = new StringBuilder();
+		  			String line = null;
+		  			while((line= reader.readLine())!=null){
+		  				theStringBuilder.append(line+ '\n');
+		  				
+		  			}
+		  			results = theStringBuilder.toString();
+		  			
+		  		}catch(Exception e){
+		  			e.printStackTrace();
+		  		}finally{
+		  			try{
+		  				if(inputstream!=null)
+		  					inputstream.close();
+		  			}catch(Exception e){
+		  				e.printStackTrace();
+		  			}
+		  		}
+		  		return null;
+		  	}
+
+		  	@Override
+		  	protected void onPostExecute(String result) {
+		  		// TODO Auto-generated method stub
+		  		super.onPostExecute(result);
+		  		try {
+		  			JSONObject jsonObject = new JSONObject(results);
+		  			sponsor_flag = jsonObject.getInt("sponsor");
+		  			
+		  			SharedPreferences   sharedPreferences = getActivity().getSharedPreferences("flag", Context.MODE_PRIVATE);
+		  			if(sponsor_flag==sharedPreferences.getInt("sponsor", 1)){
+		  				Toast.makeText(getActivity(), "No updates", Toast.LENGTH_LONG).show();
+		  				mPullToRefreshLayout.setRefreshComplete();
+		  			
+		  			}else{
+		  				
+		  				Object   nfeed = new ParseSponsorImageInfo().execute("http://excelapi.net84.net/sponsor.json").get();
+		  			
+		  			}
+		  		} catch (JSONException e) {
+		  			// TODO Auto-generated catch block
+		  			e.printStackTrace();
+		  		} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ExecutionException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		  		
+		  		
+		  		
+		  	}
+		  	  
+		    }
 
 
 	
