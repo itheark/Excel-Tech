@@ -9,10 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.greycodes.excel14.R;
+import com.greycodes.excel14.competition.ViewPagerParallax;
 
 public class ScheduleViewPager extends Fragment {
-	ViewPager view=null;
-
+	ViewPagerParallax pager;
+	public static int  tspagetoset=0;
+	//Button call;
+	private int num_pages = 5;
 	android.support.v4.app.FragmentManager fragmentmanager;
 	View rootView;
 		@Override
@@ -20,25 +23,32 @@ public class ScheduleViewPager extends Fragment {
 				Bundle savedInstanceState) {
 			// TODO Auto-generated method stub
 			rootView =	 inflater.inflate(R.layout.info_schedule_viewpager, container, false);
-			view = (ViewPager) rootView.findViewById(R.id.info_schedule_viewpager);
-			fragmentmanager=  getChildFragmentManager();
-			view.setAdapter(new ScheduleViewPageAdapter(fragmentmanager));
-			view.setCurrentItem(1);
+			  pager = (ViewPagerParallax) rootView.findViewById(R.id.schedulepager);
+			 fragmentmanager=  getChildFragmentManager();
+		        pager.set_max_pages(2);
+		        
+		        pager.setBackgroundAsset(R.raw.sanfran);
+		        pager.setAdapter(new ScheduleViewPageAdapter(fragmentmanager));
+		        pager.setCurrentItem(tspagetoset);
+		      
+		        if (savedInstanceState!=null) {
+		            num_pages = savedInstanceState.getInt("num_pages");
+		            pager.setCurrentItem(savedInstanceState.getInt("current_page"), false);
+		        }
+		        
+		        
+		        
+				return rootView;
 
-			return rootView;
-			
-		}
+		    }
 
-		@Override
-		public void onResume() {
-			// TODO Auto-generated method stub
-			super.onResume();
-			
-		}
-
-		
-		
-	}
+		    @Override
+			public void onSaveInstanceState(Bundle outState) {
+		        super.onSaveInstanceState(outState);
+		        outState.putInt("num_pages", num_pages);
+		        final ViewPagerParallax pager = (ViewPagerParallax) rootView.findViewById(R.id.schedulepager);
+		        outState.putInt("current_page", pager.getCurrentItem());
+		    }
 
 	class ScheduleViewPageAdapter extends FragmentStatePagerAdapter{
 
@@ -92,4 +102,5 @@ public class ScheduleViewPager extends Fragment {
 		}
 	
 
+}
 }

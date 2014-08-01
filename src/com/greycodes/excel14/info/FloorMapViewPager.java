@@ -22,7 +22,7 @@ public class FloorMapViewPager extends Fragment {
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			// TODO Auto-generated method stub
-			rootView =	 inflater.inflate(R.layout.talkseries_viewpager, container, false);
+			rootView =	 inflater.inflate(R.layout.info_floormap_viewpager, container, false);
 			  pager = (ViewPagerParallax) rootView.findViewById(R.id.floormappager);
 			 fragmentmanager=  getChildFragmentManager();
 		        pager.set_max_pages(5);

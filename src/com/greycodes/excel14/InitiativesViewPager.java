@@ -4,32 +4,55 @@ package com.greycodes.excel14;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.greycodes.excel14.competition.ViewPagerParallax;
 import com.greycodes.excel14.initiatives.DevconFragment;
 import com.greycodes.excel14.initiatives.IbetoFragment;
 import com.greycodes.excel14.initiatives.IbetoJrFragment;
 
 public class InitiativesViewPager extends Fragment {
-ViewPager view=null;
-	
+	ViewPagerParallax pager;
+	public static int  tspagetoset=0;
+	//Button call;
+	private int num_pages = 5;
 	android.support.v4.app.FragmentManager fragmentmanager;
 	View rootView;
-	
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			// TODO Auto-generated method stub
+			rootView =	 inflater.inflate(R.layout.initiatives_viewpager, container, false);
+			  pager = (ViewPagerParallax) rootView.findViewById(R.id.initiativespager);
+			 fragmentmanager=  getChildFragmentManager();
+		        pager.set_max_pages(3);
+		        
+		        pager.setBackgroundAsset(R.raw.sanfran);
+		        pager.setAdapter(new InitiativesViewPageAdapter(fragmentmanager));
+		        pager.setCurrentItem(tspagetoset);
+		      
+		        if (savedInstanceState!=null) {
+		            num_pages = savedInstanceState.getInt("num_pages");
+		            pager.setCurrentItem(savedInstanceState.getInt("current_page"), false);
+		        }
+		        
+		        
+		        
+				return rootView;
+
+		    }
+
+		    @Override
+			public void onSaveInstanceState(Bundle outState) {
+		        super.onSaveInstanceState(outState);
+		        outState.putInt("num_pages", num_pages);
+		        final ViewPagerParallax pager = (ViewPagerParallax) rootView.findViewById(R.id.initiativespager);
+		        outState.putInt("current_page", pager.getCurrentItem());
+		    }
+
 			
-		 View rootView = inflater.inflate(R.layout.initiatives_viewpager, container, false);
-		 view = (ViewPager) rootView.findViewById(R.id.initiatives_viewpager);
-			fragmentmanager=  getChildFragmentManager();
-			view.setAdapter(new InitiativesViewPageAdapter(fragmentmanager));
-			view.setCurrentItem(1);
-		return rootView;
-	}
 	
 	class InitiativesViewPageAdapter extends FragmentStatePagerAdapter{
 

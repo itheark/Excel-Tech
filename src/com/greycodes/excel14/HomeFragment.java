@@ -81,12 +81,17 @@ public class HomeFragment extends Fragment implements OnClickListener {
 		 if(v.equals(navigate))
 		{
 			//call map fragment here
-				Intent navigation = new Intent(Intent.ACTION_VIEW, Uri.parse("https://maps.google.co.in/maps?q=Model+Engineering+College+Thrikkakara,+Ernakulam,+Kerala&hl=en&ll=10.028558,76.328748&spn=0.006772,0.009645&sll=10.027935,76.328716&sspn=0.006772,0.009645&t=h&z=17&iwloc=A"));
+			 float mLat=(float) 10.028484;
+			 float mLong =(float) 76.328749;
+			 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("google.navigation:q=" +mLat+","+mLong));
+			 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			 startActivity(intent);
+			/*	Intent navigation = new Intent(Intent.ACTION_VIEW, Uri.parse("https://maps.google.co.in/maps?q=Model+Engineering+College+Thrikkakara,+Ernakulam,+Kerala&hl=en&ll=10.028558,76.328748&spn=0.006772,0.009645&sll=10.027935,76.328716&sspn=0.006772,0.009645&t=h&z=17&iwloc=A"));
 								
 				navigation.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
 				
 				startActivity(navigation);
-			 
+			 */
 			
 		}
 		 
