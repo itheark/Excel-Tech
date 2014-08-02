@@ -8,12 +8,15 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.greycodes.excel14.login.AccountActivity;
 import com.greycodes.excel14.login.LoginActivity;
 import com.greycodes.excel14.login.SigninActivity;
 
@@ -70,10 +73,17 @@ public class HomeFragment extends Fragment implements OnClickListener {
 		{
 			
 			if(sharedPreferences.getBoolean("registered", false)){
-				
-				Intent intent = new Intent(getActivity(),SigninActivity.class);
-				startActivity(intent);
-			}else{
+				Fragment f;
+				FragmentManager fragmentManager ;
+				FragmentTransaction transaction;
+				fragmentManager = getActivity().getSupportFragmentManager();
+				 transaction=fragmentManager.beginTransaction();
+				 f = new AccountActivity();
+				 transaction.replace(R.id.home_content_frame,f);
+					// Add this transaction to the back stack
+	               transaction.addToBackStack("detail");
+	               transaction.commit();
+				}else{
 				Intent intent = new Intent(getActivity(),LoginActivity.class);
 				startActivity(intent);
 			}

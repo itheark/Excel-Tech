@@ -21,11 +21,13 @@ import com.greycodes.excel14.csevents.FragmentHashInclude;
 import com.greycodes.excel14.csevents.FragmentLOC;
 import com.greycodes.excel14.csevents.FragmentWebBots;
 import com.greycodes.excel14.csevents.FragmentAlgorithms;
+import com.greycodes.excel14.database.ExcelDataBase;
+import com.greycodes.excel14.database.InsertParticipant;
 
 
 public class CSViewPager extends Fragment implements OnClickListener {
 ViewPager view=null;
-ImageView call;
+ImageView call,result,participate;
 
 ViewPagerParallax pager;
 public static int  pagetodisplay=0;
@@ -44,11 +46,15 @@ View rootView;
 	        pager.setBackgroundAsset(R.raw.sanfran);
 	        pager.setAdapter(new CSViewPageAdapter(fragmentmanager));
 	        call=(ImageView)rootView.findViewById(R.id.imageView4);
+	        result=(ImageView)rootView.findViewById(R.id.imageView2);
+	        participate=(ImageView)rootView.findViewById(R.id.imageView3);
 	        pager.setCurrentItem(pagetodisplay);
 	      
 	        
 	        
 	        call.setOnClickListener(this);
+	        result.setOnClickListener(this);
+	        participate.setOnClickListener(this);
 			return rootView;
 
 	    }
@@ -75,7 +81,116 @@ View rootView;
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		
-		
+		switch(v.getId()){
+		case R.id.imageView3:
+			InsertParticipant insertParticipant = new InsertParticipant(getActivity());
+			
+			switch(pager.getCurrentItem()){
+			case 0:
+				if(insertParticipant.insert(000, "#include")){
+					Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
+				}else{
+					Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+				}
+			break;
+			case 1:
+				if(insertParticipant.insert(001, "Web Bots")){
+					Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
+				}else{
+					Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+				}
+				break;
+			case 2:
+				if(insertParticipant.insert(002, "Lord of the Code")){
+					Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
+				}else{
+					Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+				}
+				break;
+			case 3:
+				if(insertParticipant.insert(003, "Hackmaster")){
+					Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
+				}else{
+					Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+				}
+				break;
+			case 4:
+				if(insertParticipant.insert(004, "4*120")){
+					Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
+				}else{
+					Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+				}
+				break;
+			case 5:
+				if(insertParticipant.insert(005, "Algorithms")){
+					Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
+				}else{
+					Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+				}
+				break;
+			case 6:
+				if(insertParticipant.insert(006, "SYTYC Code")){
+					Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
+				}else{
+					Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+				}
+				break;
+			
+			}
+			break;
+		case R.id.imageView2:
+			switch(pager.getCurrentItem()){
+			case 0:
+				
+			break;
+			case 1:
+				
+				break;
+			case 2:
+				
+				break;
+			case 3:
+				
+				break;
+			case 4:
+				
+				break;
+			case 5:
+				
+				break;
+			case 6:
+				
+				break;
+			
+			}
+			break;
+		case R.id.imageView4:
+			switch(pager.getCurrentItem()){
+			case 0:
+				
+			break;
+			case 1:
+				
+				break;
+			case 2:
+				
+				break;
+			case 3:
+				
+				break;
+			case 4:
+				
+				break;
+			case 5:
+				
+				break;
+			case 6:
+				
+				break;
+			
+			}
+			break;
+		}
 		if(v.equals(call))
 		
 		{

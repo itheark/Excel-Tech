@@ -1,54 +1,64 @@
 package com.greycodes.excel14.login;
 
-import android.app.Activity;
-import android.content.Intent;
+
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.ArrayAdapter;
 
-import com.dm.zbar.android.scanner.ZBarConstants;
-import com.dm.zbar.android.scanner.ZBarScannerActivity;
+import com.greycodes.excel14.HomeNDActivity;
 import com.greycodes.excel14.R;
+import com.greycodes.excel14.database.ExcelDataBase;
 
-public class AccountActivity extends Activity {
-	  private static final int ZBAR_SCANNER_REQUEST = 0;
-		private static final int ZBAR_QR_SCANNER_REQUEST = 1;
 
-		@Override
-		public void onActivityResult(int requestCode, int resultCode, Intent data)
-		{    
-		    if (resultCode == RESULT_OK) 
-		    {
-		        // Scan result is available by making a call to data.getStringExtra(ZBarConstants.SCAN_RESULT)
-		        // Type of the scan result is available by making a call to data.getStringExtra(ZBarConstants.SCAN_RESULT_TYPE)
-		        Toast.makeText(getApplicationContext(), "Scan Result = " + data.getStringExtra(ZBarConstants.SCAN_RESULT), Toast.LENGTH_SHORT).show();
-		        Toast.makeText(getApplicationContext(), "Scan Result Type = " + data.getIntExtra(ZBarConstants.SCAN_RESULT_TYPE, 0), Toast.LENGTH_SHORT).show();
-		        // The value of type indicates one of the symbols listed in Advanced Options below.
-		    } else if(resultCode == RESULT_CANCELED) {
-		        Toast.makeText(getApplicationContext(), "Camera unavailable", Toast.LENGTH_SHORT).show();
-		    }
-		}
-	
+public class AccountActivity extends ListFragment {
+	  String[] participating,columns;
+	  ExcelDataBase excelDataBase;
+	  SQLiteDatabase sqLiteDatabase;
+	  Cursor cursor;
+	  
 	@Override
-		protected void onCreate(Bundle savedInstanceState) {
-			// TODO Auto-generated method stub
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+			
+		 View rootView = inflater.inflate(R.layout.user_account_activity, container, false);
 		
-			super.onCreate(savedInstanceState);
-			setContentView(R.layout.user_account_activity);
-			Button qrCode =	 (Button) findViewById(R.id.qrcode);
-			qrCode.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					Intent intent = new Intent(getApplicationContext(), ZBarScannerActivity.class);
-					startActivityForResult(intent, ZBAR_SCANNER_REQUEST);
-				}
-			});
+		 columns = new String[]{"ENAME"};
+		 
+		 excelDataBase = new ExcelDataBase(getActivity());
+		 sqLiteDatabase=	  excelDataBase.getSQLiteDataBase();
+		 cursor=	sqLiteDatabase.query("PARTICIPATE", columns, null, null, null, null, null);
+		
+		cursor.moveToFirst();
+		if(cursor.getCount()==0){
+			participating = new String[1];
+			participating[0]="You havent added any";
 		}
+		participating = new String[cursor.getCount()];
+		for(int i =0;i<cursor.getCount();i++,cursor.moveToNext() )
+		{
+			participating[i]= cursor.getString(cursor.getColumnIndex("ENAME"));
+		}
+		
+		 
+		 ArrayAdapter<String> adapter= new ArrayAdapter<String>(inflater.getContext(), android.R.layout.simple_list_item_1, participating);
+		   setListAdapter(adapter);; 
+		 
+		 
+		 return rootView;
+	
+	}
 
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onActivityCreated(savedInstanceState);
+	}
+
+		
 
 }

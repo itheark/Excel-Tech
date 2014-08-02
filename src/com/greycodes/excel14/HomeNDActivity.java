@@ -40,6 +40,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.commonsware.cwac.merge.MergeAdapter;
 import com.greycodes.excel14.database.ExcelDataBase;
 import com.greycodes.excel14.excelgallery.GalleryListActivity;
+import com.greycodes.excel14.login.AccountActivity;
 import com.greycodes.excel14.login.LoginActivity;
 import com.greycodes.excel14.login.SigninActivity;
 import com.greycodes.excel14.newsfeed.NewsFeedFragment;
@@ -219,8 +220,7 @@ private void  selectItem(int position) {
 		
 
 		if(sharedPreferences.getBoolean("registered", false)){
-			Intent intent = new Intent(HomeNDActivity.this,SigninActivity.class);
-			startActivity(intent);
+		 f = new AccountActivity();
 		}else{
 			Intent intent = new Intent(HomeNDActivity.this,LoginActivity.class);
 			startActivity(intent);
