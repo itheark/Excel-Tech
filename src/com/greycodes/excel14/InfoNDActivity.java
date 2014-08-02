@@ -114,6 +114,7 @@ public class InfoNDActivity extends SherlockFragmentActivity {
 				}
 				if(item.getItemId()==R.id.action_home){
 					Intent home = new Intent(InfoNDActivity.this,HomeNDActivity.class);
+					home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 					startActivity(home);
 				}
 				return super.onOptionsItemSelected(item);
