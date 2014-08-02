@@ -31,6 +31,7 @@ public class Excel14Application extends Application {
 		defaultACL.setPublicReadAccess(true);
 
 		ParseACL.setDefaultACL(defaultACL, true);
+		PushService.subscribe(this, "excel", HomeNDActivity.class, R.drawable.ic_launcher);
 	}
 
 }

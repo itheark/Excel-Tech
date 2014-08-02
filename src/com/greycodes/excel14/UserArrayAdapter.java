@@ -1,6 +1,7 @@
 package com.greycodes.excel14;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,9 @@ import android.widget.TextView;
 
 public class UserArrayAdapter extends ArrayAdapter<String> {
 String[] name,username;
-int[] image;
+Bitmap image;
 Context context;
-	public UserArrayAdapter(Context context,String[] name,String[] username ,int[] image) {
+	public UserArrayAdapter(Context context,String[] name,String[] username ,Bitmap image) {
 		super(context,R.layout.user_details,R.id.user_name,username );
 		this.name = name;
 		this.username = username;
@@ -29,7 +30,7 @@ Context context;
 		TextView userName = (TextView) row.findViewById(R.id.user_name);
 		TextView userUserName = (TextView) row.findViewById(R.id.user_username);
 
-		userImage.setImageResource(image[position]);
+		userImage.setImageBitmap(image);
 		userName.setText(name[position]);
 		userUserName.setText(username[position]);
 

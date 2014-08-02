@@ -44,11 +44,8 @@ View rootView;
 	        pager.setBackgroundAsset(R.raw.sanfran);
 	        pager.setAdapter(new CSViewPageAdapter(fragmentmanager));
 	        call=(ImageView)rootView.findViewById(R.id.imageView4);
+	        pager.setCurrentItem(pagetodisplay);
 	      
-	        if (savedInstanceState!=null) {
-	            num_pages = savedInstanceState.getInt("num_pages");
-	            pager.setCurrentItem(savedInstanceState.getInt("current_page"), false);
-	        }
 	        
 	        
 	        call.setOnClickListener(this);

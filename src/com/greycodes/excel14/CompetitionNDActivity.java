@@ -117,6 +117,7 @@ public class CompetitionNDActivity extends SherlockFragmentActivity{
 				}
 				if(item.getItemId()==R.id.action_home){
 					Intent home = new Intent(CompetitionNDActivity.this,HomeNDActivity.class);
+					fragmentManager.popBackStack();
 					startActivity(home);
 				}
 				return super.onOptionsItemSelected(item);

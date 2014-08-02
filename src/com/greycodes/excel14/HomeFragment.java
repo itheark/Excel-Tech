@@ -2,9 +2,9 @@ package com.greycodes.excel14;
 
 
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.greycodes.excel14.login.LoginActivity;
+import com.greycodes.excel14.login.SigninActivity;
 
 
 public class HomeFragment extends Fragment implements OnClickListener {
@@ -22,14 +23,14 @@ public class HomeFragment extends Fragment implements OnClickListener {
 	ImageView login;
 	ImageView fbicon;
 	ImageView navigate;
-	ProgressDialog pd;
+	SharedPreferences sharedPreferences;
 	ImageView excelmecorg;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 			
 		 View rootView = inflater.inflate(R.layout.homend_home_fragment, container, false);
-		pd= new ProgressDialog(getActivity());
+		 sharedPreferences = getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
 		login = (ImageView) rootView.findViewById(R.id.register_icon);
 		navigate = (ImageView) rootView.findViewById(R.id.navigate_icon);
 		fbicon= (ImageView) rootView.findViewById(R.id.fb_icon);
@@ -57,8 +58,7 @@ public class HomeFragment extends Fragment implements OnClickListener {
 		public void onResume() {
 			// TODO Auto-generated method stub
 			super.onResume();
-			if (pd.isShowing())
-				pd.dismiss();
+			
 			
 			
 		}
@@ -69,11 +69,14 @@ public class HomeFragment extends Fragment implements OnClickListener {
 		if(v.equals(login))
 		{
 			
-			
-			pd.setMessage("Please Wait..");
-			pd.show();
-			Intent intent = new Intent(getActivity(),LoginActivity.class);
-			startActivity(intent);
+			if(sharedPreferences.getBoolean("registered", false)){
+				
+				Intent intent = new Intent(getActivity(),SigninActivity.class);
+				startActivity(intent);
+			}else{
+				Intent intent = new Intent(getActivity(),LoginActivity.class);
+				startActivity(intent);
+			}
 			
 			
 		}

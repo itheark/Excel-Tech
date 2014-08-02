@@ -8,8 +8,18 @@ import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -22,13 +32,16 @@ import android.text.Html;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.graphics.PorterDuff.Mode;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.commonsware.cwac.merge.MergeAdapter;
+import com.greycodes.excel14.database.ExcelDataBase;
 import com.greycodes.excel14.excelgallery.GalleryListActivity;
 import com.greycodes.excel14.login.LoginActivity;
+import com.greycodes.excel14.login.SigninActivity;
 import com.greycodes.excel14.newsfeed.NewsFeedFragment;
 import com.parse.ParseAnalytics;
 import com.parse.PushService;
@@ -51,12 +64,14 @@ Intent homeIntent;
 UserArrayAdapter userDetails;
 static String[] name = new String[1];
 static String[] username = new String[1];
-int[] image = {R.drawable.user_image};
+Bitmap image;
 Fragment f;
 FragmentManager fragmentManager ;
 FragmentTransaction transaction;
 ProgressDialog pd;
-
+SharedPreferences sharedPreferences;
+ExcelDataBase  excelDataBase;
+Cursor cursor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,8 +86,29 @@ ProgressDialog pd;
 		 transaction=fragmentManager.beginTransaction();
 		 
 		 pd= new ProgressDialog(HomeNDActivity.this);
-		 
+		 image = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.user_image);
+			
 		MergeAdapter mergeadapter = null;
+		
+			sharedPreferences = getSharedPreferences("login",
+					Context.MODE_PRIVATE);
+			if (sharedPreferences.getBoolean("registered", false)) {
+				String[] columns = { "NAME", "EMAIL", "PICTURE" };
+				excelDataBase = new ExcelDataBase(this);
+				SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
+				 cursor = sqLiteDatabase.query("USER", columns, null,null, null, null, null);
+				cursor.moveToFirst();
+				name[0] = cursor.getString(cursor.getColumnIndex("NAME"));
+				username[0] = cursor.getString(cursor.getColumnIndex("EMAIL"));
+
+				if (sharedPreferences.getBoolean("fb", false)) {
+					byte[] bs;
+					bs = cursor.getBlob(cursor.getColumnIndex("PICTURE"));
+					image = BitmapFactory.decodeByteArray(bs, 0, bs.length);
+					
+				}
+			}
+		
 userDetails = new UserArrayAdapter(getApplicationContext(), name, username, image);
 homeoptions=new int[] {R.drawable.home_nd,R.drawable.competition_nd,
         R.drawable.talkseries_nd,R.drawable.proshow_nd,R.drawable.initiatives_nd,
@@ -182,11 +218,13 @@ private void  selectItem(int position) {
 		
 		
 
-		pd.setMessage("Please Wait..");
-		pd.show();
-		
-		Intent intent = new Intent(HomeNDActivity.this,LoginActivity.class);
-		startActivity(intent);
+		if(sharedPreferences.getBoolean("registered", false)){
+			Intent intent = new Intent(HomeNDActivity.this,SigninActivity.class);
+			startActivity(intent);
+		}else{
+			Intent intent = new Intent(HomeNDActivity.this,LoginActivity.class);
+			startActivity(intent);
+		}
 			
 		
 		break;
@@ -277,6 +315,26 @@ protected void onResume() {
 	
 }
 
+public Bitmap getCroppedBitmap(Bitmap bitmap) {
+    Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
+            bitmap.getHeight(), Config.ARGB_8888);
+    Canvas canvas = new Canvas(output);
 
+    final int color = 0xff424242;
+    final Paint paint = new Paint();
+    final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+
+    paint.setAntiAlias(true);
+    canvas.drawARGB(0, 0, 0, 0);
+    paint.setColor(color);
+    // canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+    canvas.drawCircle(bitmap.getWidth() / 2, bitmap.getHeight() / 2,
+            bitmap.getWidth() / 2, paint);
+    paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
+    canvas.drawBitmap(bitmap, rect, rect, paint);
+    //Bitmap _bmp = Bitmap.createScaledBitmap(output, 60, 60, false);
+    //return _bmp;
+    return output;
+}
     
 }

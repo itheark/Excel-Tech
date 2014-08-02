@@ -1,32 +1,32 @@
 package com.greycodes.excel14.login;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff.Mode;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.provider.SyncStateContract.Constants;
-import android.text.Html;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -34,7 +34,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.facebook.android.DialogError;
 import com.facebook.android.Facebook;
 import com.facebook.android.Facebook.DialogListener;
@@ -42,37 +41,45 @@ import com.facebook.android.FacebookError;
 import com.facebook.android.Util;
 import com.greycodes.excel14.HomeNDActivity;
 import com.greycodes.excel14.R;
+import com.greycodes.excel14.database.ExcelDataBase;
+import com.parse.Parse;
+import com.parse.ParseUser;
+import com.parse.PushService;
 
 public class LoginActivity extends Activity implements OnClickListener  {
 	
 
 
 
-	SharedPreferences sp;
+	SharedPreferences sp,sharedPreferences;
 	Facebook fb;
 	TextView Registered;
-	
-	 EditText username;
-	 EditText useremail;
-	public   String name ="Hello";
-	public   String email= "Click Here to Begin";
+	String name,password,email,college,semester,phone;
+	 EditText etname;
+	 EditText etemail,etpassword,etcollege,etsemester,etphone;
+	 Bitmap bmp;
+	boolean flag =false;
 	CircularImageView pic ;
 	ImageView connectfb,signup;
+	SharedPreferences.Editor editor;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.user_login_activity);
-		android.app.ActionBar bar = getActionBar();
-        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0e1215")));
-        bar.setTitle(Html.fromHtml("<font color=\"#e6f3ea\">" + getString(R.string.app_name) + "</font>"));
 		connectfb= (ImageView)findViewById(R.id.fbconnect);
 		signup= (ImageView)findViewById(R.id.signup);
 		Registered = (TextView) findViewById(R.id.clickhere);
 		
-		username= (EditText) findViewById(R.id.name);
-		useremail= (EditText) findViewById(R.id.email);
+		etname= (EditText) findViewById(R.id.registration_name);
+		etemail= (EditText) findViewById(R.id.registration_email);
+		etpassword = (EditText) findViewById(R.id.registration_password);
+		etcollege = (EditText) findViewById(R.id.registration_college);
+		etsemester =(EditText) findViewById(R.id.registration_semester);
+		etphone = (EditText) findViewById(R.id.registration_phone);
 		pic =(CircularImageView)findViewById(R.id.propic);
+		sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+		 editor = sharedPreferences.edit();
 		Registered.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -157,15 +164,19 @@ public class LoginActivity extends Activity implements OnClickListener  {
 					name =obj.optString("name");
 					email =obj.optString("email");
 					
-					useremail.setText(email);
-					username.setText(name);
-									
-					img_url =new URL("https://graph.facebook.com/"+id+"/picture?type=normal");
-					Bitmap bmp =BitmapFactory.decodeStream(img_url.openConnection().getInputStream());
+					etemail.setText(email);
+					etname.setText(name);
 					
-					bmp= getCroppedBitmap(bmp);
+					img_url =new URL("https://graph.facebook.com/"+id+"/picture?type=normal");
+					 bmp =BitmapFactory.decodeStream(img_url.openConnection().getInputStream());
+					
+				//	bmp= getCroppedBitmap(bmp);
+					
 					pic.setImageBitmap(bmp);
 					
+					
+					editor.putBoolean("fb", true);
+					flag=true;
 					
 				} catch (FacebookError e) {
 					// TODO Auto-generated catch block
@@ -309,12 +320,80 @@ public class LoginActivity extends Activity implements OnClickListener  {
 	}
 		if(v.equals(signup))
 		{
+			name = etname.getText().toString();
+			password = etpassword.getText().toString();
+			email = etemail.getText().toString();
+			college = etcollege.getText().toString();
+			semester = etsemester.getText().toString();
+			phone= etphone.getText().toString();
+		//	!android.util.Patterns.EMAIL_ADDRESS.matcher(validEmail).matches()
 			
-		
+			if(name.length()<4){
+				alertshow("Plese enter a valid name");
+			}else if(password.length()<9){
+				alertshow("Password must contain minimum 8 characters");
+			}else if(email.length()==0){
+				alertshow("Please enter your email id");
+			}else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+				alertshow("Please enter a valid email id");
+			}else if(college.length()<1){
+				alertshow("Please enter your college name");
+			}else if(semester.length()==0){
+				alertshow("Semester Please!!");
+			}else if(phone.length()<10){
+				alertshow("Please enter a valid mobile number");
+			}else{
+				ExcelDataBase excelDataBase = new ExcelDataBase(LoginActivity.this);
+			SQLiteDatabase sqLiteDatabase=	excelDataBase.getSQLiteDataBase();
+			ContentValues contentValues = new ContentValues();
+			contentValues.put("PID", 1);
+			contentValues.put("NAME", name);
+			contentValues.put("PASSWORD", password);
+			contentValues.put("EMAIL", email);
+			contentValues.put("SEMESTER", semester);
+			contentValues.put("PHONE", phone);
+			if(flag){
+				ByteArrayOutputStream stream = new ByteArrayOutputStream();
+				bmp.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+				byte[] byteArray = stream.toByteArray();
+				contentValues.put("PICTURE",byteArray );
+			}
+		if(	sqLiteDatabase.insert("USER", null, contentValues)>=0){
+			Toast.makeText(getApplicationContext(), "User inserted", Toast.LENGTH_LONG).show();
+			editor.putBoolean("registered", true);
+			editor.commit();
+			String pid = "excel"+etphone.getText().toString();
+			//PushService.subscribe(getApplicationContext(), pid, HomeNDActivity.class);
+			PushService.subscribe(this, pid, HomeNDActivity.class, R.drawable.ic_launcher);
+		}
+			
+			Intent intent = new Intent(LoginActivity.this, HomeNDActivity.class);
+			startActivity(intent);
+			finish();
+			
+			}
 
 		}
 		}
-		
+	public void alertshow(String message){
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LoginActivity.this);	                	// Setting Dialog Title
+    	alertDialogBuilder.setTitle("Excel");
+
+    	// Setting Dialog Message
+    	alertDialogBuilder.setMessage(message);
+
+    	// Setting Icon to Dialog
+    	alertDialogBuilder.setIcon(R.drawable.alert);
+    	
+    	alertDialogBuilder.setNeutralButton("OK", null);
+    	
+    	AlertDialog alertDialog = alertDialogBuilder.create();
+    	alertDialog.show();
+	}
+	
+	
+	
+	
 		}
 		
 	

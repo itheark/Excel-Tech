@@ -22,7 +22,7 @@ public class ConnectionDetector {
 
   
  
-    @SuppressWarnings("deprecation")
+    
 	public void noNetworkAlert(){
     	AlertDialog alertDialog = new AlertDialog.Builder(
                 context).create();
@@ -37,6 +37,9 @@ alertDialog.setMessage("No data connection");
 alertDialog.setIcon(R.drawable.alert);
 
 // Setting OK Button
+
+
+
 alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
         public void onClick(final DialogInterface dialog, final int which) {
         // Write your code here to execute after dialog closed
