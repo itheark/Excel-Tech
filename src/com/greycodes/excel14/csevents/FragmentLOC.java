@@ -41,7 +41,7 @@ public class FragmentLOC extends SherlockFragment implements OnClickListener {
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("“Talk is cheap, show me the code ” – Linus Torvalds The ‘Lord of the Code’ is a prize that only the deserving receive. A title that only the mostbrilliant of those coders who use their knowledge and acumen are bestowed with. If you think that you are worthy of this honour, be ready to manipulate lines of code to outwit and outshine your opponents and rise as the one true Lord of the Code.\n\n" );
+			updateTextValue("“Talk is cheap, show me the code ” – Linus Torvalds\n Are you ready to manipulate lines of code to outwit and outshine your opponents and rise as the one true Lord of the Code?\n\n" );
 			
 		}
 		if (v.equals(rules))

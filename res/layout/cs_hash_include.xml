@@ -60,12 +60,13 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginTop="10dp"
+        
         android:textSize="15sp"
        android:gravity="center"
        android:fontFamily="sans-serif"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:textColor="#99ffffff"
+        android:textColor="#e3e3e3"
         android:text="The lines have been drawn, sides have been taken. The war is to begin soon. If you are think you have what it takes to prove your C programming mettle, join the war and fight for glory. Battle with other coders and emerge as the champion of C. All it takes is perseverance and grit\n\n"/>		
  
     </ScrollView>

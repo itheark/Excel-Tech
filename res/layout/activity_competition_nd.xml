@@ -41,16 +41,5 @@ android:layout_gravity="center_vertical"
    
 </android.support.v4.widget.DrawerLayout>
 
-
-
- <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/sidelinebar"
-            android:layout_alignParentRight="true" 
-            android:layout_alignParentTop="true"></ImageView>
-
-
-
+ 
   </RelativeLayout>

@@ -25,7 +25,7 @@ public class EEEViewPager extends Fragment {
 			 final ViewPagerParallax pager = (ViewPagerParallax) rootView.findViewById(R.id.eeepager);
 			 fragmentmanager=  getChildFragmentManager();
 			 pager.set_max_pages(2);
-		        pager.setBackgroundAsset(R.raw.sanfran);
+		        pager.setBackgroundAsset(R.raw.noweee);
 		        pager.setAdapter(new EEEViewPageAdapter(fragmentmanager));
 		        pager.setCurrentItem(0);
 

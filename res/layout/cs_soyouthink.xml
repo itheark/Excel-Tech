@@ -53,7 +53,7 @@
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="#90000000">
+        >
     <TextView
         android:id="@+id/txtinclude"
         android:layout_width="fill_parent"
@@ -64,8 +64,7 @@
         android:textSize="15sp"
        android:gravity="center"
        android:fontFamily="sans-serif"
-       
-        android:textColor="#99ffffff"
+       android:textColor="#e3e3e3"
      android:text="“ If You control the code,You control the world”\nAnybody can code, So can you! Or can you?For the first time at Excel, show off your coding skills at ‘So you think you can code’ with brand-new rules and surprises, this event will test you till you break or fight back!  Defying the usual norms, this event will challenge you, surprise you and test you till you break or fight back! Get –Set- code!\n\n"/>	
  
     </ScrollView>

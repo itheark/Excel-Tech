@@ -62,7 +62,7 @@ View rootView;
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("“The strength of the team is each individual member. The strength of each member is the team.” Four people and 120 seconds of synchronous understanding and unrivalled teamwork separate the winners from the others. Start from where your predecessor left off, and better his effort to win the title. Time is of the essence, and teams that are not in sync will fall short of the mark. \n\n" );
+			updateTextValue("4 people AND 120 seconds of synchronous understanding and unrivalled teamwork separate the winners from the others. Start from where your predecessor left off, and better his effort to win the title. Time is of the essence and so is the sync between the 4! \n\n" );
 			
 		}
 		if (v.equals(rules))

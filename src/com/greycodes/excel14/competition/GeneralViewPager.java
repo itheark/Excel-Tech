@@ -26,7 +26,7 @@ public class GeneralViewPager extends Fragment {
 			 final ViewPagerParallax pager = (ViewPagerParallax) rootView.findViewById(R.id.generalpager);
 			 fragmentmanager=  getChildFragmentManager();
 		        pager.set_max_pages(3);
-		        pager.setBackgroundAsset(R.raw.sanfran);
+		        pager.setBackgroundAsset(R.raw.nowgenral);
 		        pager.setAdapter(new GeneralViewPageAdapter(fragmentmanager));
 		        pager.setCurrentItem(1);
 

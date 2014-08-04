@@ -30,7 +30,7 @@ public class ECViewPager extends Fragment {
 			 final ViewPagerParallax pager = (ViewPagerParallax) rootView.findViewById(R.id.ecpager);
 			 fragmentmanager=  getChildFragmentManager();
 		        pager.set_max_pages(5);
-		        pager.setBackgroundAsset(R.raw.sanfran);
+		        pager.setBackgroundAsset(R.raw.nowec);
 		        pager.setAdapter(new ECViewPageAdapter(fragmentmanager));
 		        pager.setCurrentItem(pagetodisplay);
 

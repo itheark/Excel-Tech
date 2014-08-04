@@ -61,7 +61,7 @@ public class FragmentHackMaster extends SherlockFragment implements OnClickListe
 		
 		if (v.equals(format))
 		{
-			updateTextValue("Hackmaster will be an online event. There will be different levels of problem with varying difficulty levels. The problems will test the concepts of Cryptography and steganography related problems 2. Hackmaster is an online, individual event.\n3.Different levels will carry different weightage of points according to difficulty.\n\n");
+			updateTextValue("1. The problems will test the concepts of Cryptography and steganography.\n2. Professionals are NOT allowed to participate.\n3. Attacking or flooding the server will lead to disqualification.\n4. Multiple accounts from a participant are NOT allowed.\n5. Participants suspected of using unfair means WILL BE disqualified.\n6. Any misuse of the Hackmaster forum will lead to immediate disqualification.\n7. The decisions and judgement of the coordinators will be final.\n8. Rules are subject to change at any point in time.\n9. Different levels will carry different weightage of points according to difficulty.\n\n");
 			
 		}
 		

@@ -8,9 +8,9 @@ package com.dm.zbar.android.scanner;
 
 public final class R {
 	public static final class drawable {
-		public static final int ic_launcher = 0x7f0200c6;
+		public static final int ic_launcher = 0x7f0200c7;
 	}
 	public static final class string {
-		public static final int app_name = 0x7f0a0004;
+		public static final int app_name = 0x7f080019;
 	}
 }
