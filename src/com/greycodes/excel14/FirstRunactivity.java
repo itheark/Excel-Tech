@@ -1,22 +1,19 @@
 package com.greycodes.excel14;
 
-import com.greycodes.excel14.database.ExcelDataBase;
-import com.greycodes.excel14.database.ParseCompetition;
-import com.greycodes.excel14.database.ParseNewsFeed;
 
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.widget.Toast;
+
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+
+import com.greycodes.excel14.database.ParseCompetition;
+import com.greycodes.excel14.database.ParseNewsFeed;
 
 public class FirstRunactivity extends Activity {
 	ParseCompetition parseCompetition;
@@ -25,65 +22,38 @@ public class FirstRunactivity extends Activity {
 	Intent intent;
 	int flag;
 	Handler h ;
+	public boolean compflag,nfeedflag;
 	int insertedcompetition,insertednewsfeed;
 	String[] column;
+	ProgressDialog progressDialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_first_runactivity);
+		compflag=nfeedflag=false;
 		parseCompetition = new ParseCompetition(this);
 		parseNewsFeed= new ParseNewsFeed(this);
 		connectionDetector = new ConnectionDetector(this);
 		
-		parseCompetition.executeparse();
-        parseNewsFeed.executenewsfeedparse();
-    	ExcelDataBase ebs = new ExcelDataBase(getApplicationContext());
-    	SQLiteDatabase db = ebs.getSQLiteDataBase();
-    	column = new String[]{"EID"};
-    Cursor cursor = db.query("COMPETITION", column, null, null, null, null, null);
-insertedcompetition=   cursor.getCount();
-column = new String[]{"NID"};
-cursor = db.query("NEWSFEED", column, null, null, null, null, null);
-insertednewsfeed = cursor.getCount();
-    	Toast.makeText(getApplicationContext(), "First run activity called", Toast.LENGTH_LONG).show(); 
-    	dbcreated();
-    	if(insertedcompetition>0||insertednewsfeed>0){
-    	dbcreated();
-    }else{
-    	alertshow();
-    }
-		/*
 		 h = new Handler() {
 	            @Override
 	            public void handleMessage(Message msg) {
 
-	            	
-	            	 
-	                
 	                if (msg.what != 1) { // code if not connected
 	                
-	                	alertshow();
+	                	alertshow("No Internet Connection");
 	               
 	                	
 	                	
 	            				
 	                } else { // code if connected
-		                parseCompetition.executeparse();
-		                parseNewsFeed.executenewsfeedparse();
-	                	ExcelDataBase ebs = new ExcelDataBase(getApplicationContext());
-	                	SQLiteDatabase db = ebs.getSQLiteDataBase();
-	                	column = new String[]{"EID"};
-	                Cursor cursor = db.query("COMPETITION", column, null, null, null, null, null);
-	        insertedcompetition=   cursor.getCount();
-	        column = new String[]{"NID"};
-	        cursor = db.query("NEWSFEED", column, null, null, null, null, null);
-	        insertednewsfeed = cursor.getCount();
-	                	Toast.makeText(getApplicationContext(), "First run activity called", Toast.LENGTH_LONG).show(); 
-	                if(insertedcompetition>0||insertednewsfeed>0){
-	                	dbcreated();
-	                }else{
-	                	alertshow();
-	                }
+	                	progressDialog = ProgressDialog.show(FirstRunactivity.this, "Excel", "Loading Datas");
+		       
+					Object comp=   parseCompetition.executeparse();
+		           
+					
+		           
+	                	
 	                	
 	               	 
 	                }   
@@ -92,7 +62,7 @@ insertednewsfeed = cursor.getCount();
 	        
 	            
 	        ConnectionDetector.isNetworkAvailable(h,2000);
-	       */
+	       
 	        
 	       
 	     /*  else{
@@ -103,22 +73,29 @@ insertednewsfeed = cursor.getCount();
 		
 				*/
 	}
+	public void finishFirstrun(){
+		finish();
+	}
+public void setcompflag(){
+	compflag=true;
+}
+public void setnfeedflag(){
+	nfeedflag=true;
+}
 
-	private void dbcreated() {
-		SharedPreferences sharedPreferences = getSharedPreferences("app_config", Context.MODE_PRIVATE);
-		SharedPreferences.Editor editor = sharedPreferences.edit();
-		editor.putBoolean("DB_Created", true);
-			editor.commit();
-		intent = new Intent(this, HomeNDActivity.class);
+
+	public void dbcreated() {
+		
+		intent = new Intent(FirstRunactivity.this, HomeNDActivity.class);
 		startActivity(intent);
 		finish();
 	}
-	private void alertshow(){
+	public void alertshow(String message){
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(FirstRunactivity.this);	                	// Setting Dialog Title
     	alertDialogBuilder.setTitle("Excel");
 
     	// Setting Dialog Message
-    	alertDialogBuilder.setMessage("No data connection");
+    	alertDialogBuilder.setMessage(message);
 
     	// Setting Icon to Dialog
     	alertDialogBuilder.setIcon(R.drawable.alert);
@@ -127,7 +104,7 @@ insertednewsfeed = cursor.getCount();
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				// TODO Auto-generated method stub
-				 ConnectionDetector.isNetworkAvailable(h,2000);
+				 ConnectionDetector.isNetworkAvailable(h,5000);
 			}
 		});
     	
@@ -145,4 +122,3 @@ insertednewsfeed = cursor.getCount();
 	}
 
 }
-

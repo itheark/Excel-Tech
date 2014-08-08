@@ -13,8 +13,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.greycodes.excel14.FirstRunactivity;
+import com.greycodes.excel14.HomeNDActivity;
+
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.widget.Toast;
@@ -35,16 +43,17 @@ static  String url = "http://www.excelapi.net84.net/newsfeed.json";
 	ExcelDataBase excelDataBase;
 	Context context;
 	int n,i;
-	
-	public ParseNewsFeed(Context context) {
+		public ParseNewsFeed(Context context) {
+		
 		// TODO Auto-generated constructor stub
 		this.context = context;
 	}
 	
-	public int executenewsfeedparse() {
+	public Object executenewsfeedparse() {
+	Object nfeed = null;
 	try {
-		String nf=	new PNewsFeed().execute(url).get();
-		return nf.length();
+		nfeed = new PNewsFeed().execute(url).get();
+		return nfeed;
 	} catch (InterruptedException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -52,7 +61,7 @@ static  String url = "http://www.excelapi.net84.net/newsfeed.json";
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	return 0;
+	return nfeed;
 	}
 	
 	private class PNewsFeed extends AsyncTask<String, String, String>{
@@ -133,6 +142,37 @@ static  String url = "http://www.excelapi.net84.net/newsfeed.json";
 			Toast.makeText(context, "Newsfeed Inserted", Toast.LENGTH_LONG).show();
 		}
 		
+		
+		ExcelDataBase ebs = new ExcelDataBase(context);
+    	SQLiteDatabase db = ebs.getSQLiteDataBase();
+    String[]	column = new String[]{"EID"};
+    Cursor cursor = db.query("COMPETITION", column, null, null, null, null, null);
+int insertedcompetition=   cursor.getCount();
+column = new String[]{"NID"};
+cursor = db.query("NEWSFEED", column, null, null, null, null, null);
+int insertednewsfeed = cursor.getCount();
+column = new String[]{"SID"};
+ cursor = db.query("SPONSOR", column, null, null, null, null, null);
+
+int insertedsponsor = cursor.getCount();
+    	Toast.makeText(context, "news feed postexecute", Toast.LENGTH_LONG).show(); 
+    
+    if(insertedcompetition>0&&insertednewsfeed>0&&insertedsponsor>0){
+   
+		
+    	SharedPreferences sharedPreferences = context.getSharedPreferences("app_config", Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = sharedPreferences.edit();
+		editor.putBoolean("DB_Created", true);
+			editor.commit();
+			Intent intent = new Intent(context, HomeNDActivity.class);
+			context.startActivity(intent);
+			((Activity)context).finish();
+			//firstRunactivity.dbcreated();
+	
+    }else{
+    	FirstRunactivity firstRunactivity = new FirstRunactivity();
+    	firstRunactivity.alertshow("Check your Internet Connectivity");
+    }
 
 		}
 
@@ -140,6 +180,7 @@ static  String url = "http://www.excelapi.net84.net/newsfeed.json";
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
+			
 		}
 		
 	}

@@ -36,7 +36,7 @@ public class NonTechViewPager extends Fragment {
 
 			 final ViewPagerParallax pager = (ViewPagerParallax) rootView.findViewById(R.id.nontech_pager);
 			 fragmentmanager=  getChildFragmentManager();
-		        pager.set_max_pages(13);
+		        pager.set_max_pages(5);
 		        pager.setBackgroundAsset(R.raw.sanfran);
 		        pager.setAdapter(new NonTechnicalViewPageAdapter(fragmentmanager));
 		        pager.setCurrentItem(pagetodisplay);
@@ -48,7 +48,7 @@ public class NonTechViewPager extends Fragment {
 		@Override
 		public void onSaveInstanceState(Bundle outState) {
 	        super.onSaveInstanceState(outState);
-	        outState.putInt("num_pages", 13);
+	        outState.putInt("num_pages", 5);
 	        final ViewPagerParallax pager = (ViewPagerParallax) rootView.findViewById(R.id.nontech_pager);
 	        outState.putInt("current_page", pager.getCurrentItem());
 	    }
@@ -96,27 +96,7 @@ public class NonTechViewPager extends Fragment {
 			case 5:
 				fragment = new FragmentFunZone();
 				break;
-			case 6:
-				fragment = new FragmentDigitalDaVinci();
-				break;
-			case 7:
-				fragment = new FragmentCSI();
-				break;
-			case 8:
-				fragment = new FragmentBestManager();
-				break;
-			case 9:
-				fragment = new FragmentShortFilm();
-				break;
-			case 10:
-				fragment = new FragmentTreasureHunt();
-				break;
-			case 11:
-				fragment = new FragmentKluge();
-				break;
-			case 12:
-				fragment = new FragmentTikiTaka();
-				break;
+			
 				
 			}
 			return fragment;
@@ -126,47 +106,26 @@ public class NonTechViewPager extends Fragment {
 			// TODO Auto-generated method stub
 			switch(position){
 			case 0:
-				return "General Quiz";
+				return "Best Manager";
 				
 			case 1:
-				return "Online Photography";
-			
-			case 2:
-				return "Instant Photography";
-			
-			case 3:
-				return "Game Zone";
-		
-			case 4:
-				return "Spider Web";
-			case 5:
-				return "Fun Zone";
-				
-			case 6:
-				return "Digital Da Vinci";
-			
-			case 7:
 				return "CSI";
 			
-			case 8:
-				return "Best Manager";
-		
-			case 9:
-				return "Short Film";
-			case 10:
-				return "Treasure Hunt";
+			case 2:
+				return "Game Zone";
 			
-			case 11:
-				return "Kludge";
+			case 3:
+				return "Spider Web";
 		
-			case 12:
-				return "TikiTaka";
+			case 4:
+				return "Instant Photography";
+			
 			}
 			return null;
 		}
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return 13;
+			return 5;
 		}
 }
