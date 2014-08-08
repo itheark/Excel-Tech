@@ -35,6 +35,7 @@ public static int  pagetodisplay=0;
 private int num_pages = 7;
 android.support.v4.app.FragmentManager fragmentmanager;
 View rootView;
+ExcelDataBase excelDataBase;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ View rootView;
 	        participate=(ImageView)rootView.findViewById(R.id.imageView3);
 	        pager.setCurrentItem(pagetodisplay);
 	      
-	        
+	        excelDataBase = new ExcelDataBase(getActivity());
 	        
 	        call.setOnClickListener(this);
 	        result.setOnClickListener(this);
@@ -87,11 +88,14 @@ View rootView;
 			
 			switch(pager.getCurrentItem()){
 			case 0:
-				if(insertParticipant.insert(000, "#include")){
-					Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-				}else{
-					Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+				if(excelDataBase.Isregistered(1)){
+					Toast.makeText(getActivity(), "Registered", Toast.LENGTH_LONG).show();
 				}
+				//if(insertParticipant.insert(000, "#include")){
+				////	Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
+			//	}else{
+				//	Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+			//	}
 			break;
 			case 1:
 				if(insertParticipant.insert(001, "Web Bots")){

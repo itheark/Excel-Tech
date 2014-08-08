@@ -75,7 +75,7 @@ public static void isNetworkAvailable(final Handler handler, final int timeout) 
 
                 try {
                     int waited = 0;
-                    while(!responded && (waited < 5000)) {
+                    while(!responded && (waited < timeout)) {
                         sleep(100);
                         if(!responded ) { 
                             waited += 100;

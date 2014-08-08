@@ -1,17 +1,30 @@
 package com.greycodes.excel14.database;
 
+import com.greycodes.excel14.CompetitionNDActivity;
+import com.greycodes.excel14.HomeNDActivity;
+import com.greycodes.excel14.InfoNDActivity;
+import com.greycodes.excel14.R;
+import com.greycodes.excel14.login.AccountFragment;
+import com.greycodes.excel14.login.LoginActivity;
+
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.widget.Toast;
 
 public class ExcelDataBase {
 Context context;
 ExcelDatabaseHelper helper;
 SQLiteDatabase db;
+SharedPreferences sharedPreferences;
 	public ExcelDataBase(Context context) {
 		// TODO Auto-generated constructor stub
 		this.context = context;
@@ -105,4 +118,60 @@ return flag;
 		}
 		
 	}
+	
+	public boolean Isregistered(int activity) {
+		
+		sharedPreferences = context.getSharedPreferences("login", Context.MODE_PRIVATE);
+		if(sharedPreferences.getBoolean("registered",false)){
+			
+	
+			if(sharedPreferences.getBoolean("active",false)){
+				return true;
+			}else{
+				
+				Fragment f;
+				FragmentManager fragmentManager ;
+				FragmentTransaction transaction;
+
+				switch(activity){
+				case 0:
+					fragmentManager = ((HomeNDActivity) context).getSupportFragmentManager();
+					 transaction=fragmentManager.beginTransaction();
+					 f = new AccountFragment();
+					 transaction.replace(R.id.home_content_frame,f);
+						// Add this transaction to the back stack
+		               transaction.addToBackStack("detail");
+		               transaction.commit();
+				case 1:
+					fragmentManager = ((CompetitionNDActivity) context).getSupportFragmentManager();
+					 transaction=fragmentManager.beginTransaction();
+					 f = new AccountFragment();
+					 transaction.replace(R.id.competition_content_frame,f);
+						// Add this transaction to the back stack
+		               transaction.addToBackStack("detail");
+		               transaction.commit();
+					break;
+				case 2:
+					fragmentManager = ((InfoNDActivity) context).getSupportFragmentManager();
+					 transaction=fragmentManager.beginTransaction();
+					 f = new AccountFragment();
+					 transaction.replace(R.id.info_content_frame,f);
+						// Add this transaction to the back stack
+		               transaction.addToBackStack("detail");
+		               transaction.commit();
+					break;
+				}
+				
+			}
+			}else{
+				Toast.makeText(context, "Please Register To Participate", Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(context, LoginActivity.class);
+				context.startActivity(intent);
+				
+			}
+		
+		return false;
+		
+	}
+	
 }

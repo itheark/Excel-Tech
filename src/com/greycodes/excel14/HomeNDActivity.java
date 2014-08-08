@@ -38,12 +38,14 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.commonsware.cwac.merge.MergeAdapter;
+import com.greycodes.excel14.conference.ConferenceViewPager;
 import com.greycodes.excel14.database.ExcelDataBase;
 import com.greycodes.excel14.excelgallery.GalleryListActivity;
-import com.greycodes.excel14.login.AccountActivity;
+import com.greycodes.excel14.login.AccountFragment;
 import com.greycodes.excel14.login.LoginActivity;
-import com.greycodes.excel14.login.SigninActivity;
+import com.greycodes.excel14.login.SigninFragment;
 import com.greycodes.excel14.newsfeed.NewsFeedFragment;
+import com.greycodes.excel14.talkseries.TalkSeriesViewPager;
 import com.parse.ParseAnalytics;
 import com.parse.PushService;
 
@@ -112,7 +114,7 @@ Cursor cursor;
 		
 userDetails = new UserArrayAdapter(getApplicationContext(), name, username, image);
 homeoptions=new int[] {R.drawable.home_nd,R.drawable.competition_nd,
-        R.drawable.talkseries_nd,R.drawable.proshow_nd,R.drawable.initiatives_nd,
+        R.drawable.talkseries_nd,R.drawable.conference,R.drawable.proshow_nd,R.drawable.initiatives_nd,
         R.drawable.excelpro_nd,R.drawable.live_excel_gallery_nd,R.drawable.info_nd,R.drawable.newsfeeds};
         
         hDrawerLayout =(DrawerLayout) findViewById(R.id.drawer_layout_home);
@@ -220,7 +222,7 @@ private void  selectItem(int position) {
 		
 
 		if(sharedPreferences.getBoolean("registered", false)){
-		 f = new AccountActivity();
+		 f = new AccountFragment();
 		}else{
 			Intent intent = new Intent(HomeNDActivity.this,LoginActivity.class);
 			startActivity(intent);
@@ -237,19 +239,22 @@ private void  selectItem(int position) {
 		overridePendingTransition(R.anim.fadeinright,R.anim.fadeoutleft);		
 	break;
 	case 3:
-		f= new TalkSeriesFragment();
+		f= new TalkSeriesViewPager();
 	break;
 	case 4:
+		f= new ConferenceViewPager();
+	break;
+	case 5:
 		f= new ProShowFragment();
 		break;
-	case 5:
+	case 6:
 		f= new InitiativesViewPager();
 	break;
-	case 6:
+	case 7:
 		f= new ExcelProViewPager();
 		break;
 		
-	case 7:
+	case 8:
 		 homeIntent = new Intent(HomeNDActivity.this,GalleryListActivity.class);
 			hDrawerLayout.closeDrawer(hDrawerList);
 			startActivity(homeIntent);
@@ -258,7 +263,7 @@ private void  selectItem(int position) {
 		
 		
 		break;
-	case 8:
+	case 9:
 		 homeIntent = new Intent(HomeNDActivity.this,InfoNDActivity.class);
 		hDrawerLayout.closeDrawer(hDrawerList);
 		
@@ -268,7 +273,7 @@ private void  selectItem(int position) {
 		
 		overridePendingTransition(R.anim.fadeinright,R.anim.fadeoutleft);
 		break;
-	case 9:
+	case 10:
 		f= new NewsFeedFragment();
 		break;
 	}

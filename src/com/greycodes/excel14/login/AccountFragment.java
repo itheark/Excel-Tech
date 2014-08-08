@@ -15,7 +15,7 @@ import com.greycodes.excel14.R;
 import com.greycodes.excel14.database.ExcelDataBase;
 
 
-public class AccountActivity extends ListFragment {
+public class AccountFragment extends ListFragment {
 	  String[] participating,columns;
 	  ExcelDataBase excelDataBase;
 	  SQLiteDatabase sqLiteDatabase;
