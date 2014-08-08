@@ -1,44 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/lc_camerabg">
 
  
    
  <com.parse.ParseImageView
         android:id="@+id/meal_preview_image"
         android:layout_width="wrap_content"
-        android:layout_height="200dp" />
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true" />
 
  <EditText
      android:id="@+id/excelgallery_gettitle"
-     android:layout_width="match_parent"
+     android:layout_width="253dp"
      android:layout_height="wrap_content"
      android:inputType="textMultiLine"
-     android:hint="Enter your comment" >
+     android:hint="Enter your comment"
+     android:layout_centerHorizontal="true"
+     android:layout_below="@+id/meal_preview_image"
+      >
 
      <requestFocus />
  </EditText>
 
-    <ImageButton
+    <ImageView
         android:id="@+id/photo_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_action_photo" />
+        android:src="@drawable/lc_capture"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/excelgallery_gettitle" />
 
-    <Button
+    <ImageView
         android:id="@+id/save_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/save_button_text" />
+        android:layout_marginTop="8dp"
+        android:src="@drawable/lc_upload"
+        android:layout_below="@+id/photo_button"
+        android:layout_centerHorizontal="true"/>
+        
 
-    <Button
+    <ImageView
+        
         android:id="@+id/cancel_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/cancel_button_text" />
+        android:layout_marginTop="8dp"
+        android:src="@drawable/lc_cancel" 
+        android:layout_below="@+id/save_button"
+        android:layout_centerHorizontal="true"/>
 
    
 
-</LinearLayout>
+</RelativeLayout>

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,9 +32,9 @@ import com.parse.SaveCallback;
  */
 public class NewImageFragment extends android.support.v4.app.Fragment {
 
-	private ImageButton photoButton;
-	private Button saveButton;
-	private Button cancelButton;
+	private ImageView photoButton;
+	private ImageView saveButton;
+	private ImageView cancelButton;
 	private ParseImageView mealPreview;
 	private EditText title ;
 
@@ -56,7 +57,7 @@ public class NewImageFragment extends android.support.v4.app.Fragment {
 			 title = ((EditText) v.findViewById(R.id.excelgallery_gettitle));
 			
 		
-		photoButton = ((ImageButton) v.findViewById(R.id.photo_button));
+		photoButton = ((ImageView) v.findViewById(R.id.photo_button));
 		photoButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -66,7 +67,7 @@ public class NewImageFragment extends android.support.v4.app.Fragment {
 			}
 		});
 
-		saveButton = ((Button) v.findViewById(R.id.save_button));
+		saveButton = ((ImageView) v.findViewById(R.id.save_button));
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -108,7 +109,7 @@ public class NewImageFragment extends android.support.v4.app.Fragment {
 			}
 		});
 
-		cancelButton = ((Button) v.findViewById(R.id.cancel_button));
+		cancelButton = ((ImageView) v.findViewById(R.id.cancel_button));
 		cancelButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
