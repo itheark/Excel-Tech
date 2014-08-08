@@ -40,14 +40,13 @@ public class FirstRunactivity extends Activity {
 	            public void handleMessage(Message msg) {
 
 	                if (msg.what != 1) { // code if not connected
-	                
+	                progressDialog.cancel();
 	                	alertshow("No Internet Connection");
 	               
 	                	
 	                	
 	            				
 	                } else { // code if connected
-	                	progressDialog = ProgressDialog.show(FirstRunactivity.this, "Excel", "Loading Datas");
 		       
 					Object comp=   parseCompetition.executeparse();
 		           
@@ -60,8 +59,8 @@ public class FirstRunactivity extends Activity {
 	            }
 	        };
 	        
-	            
-	        ConnectionDetector.isNetworkAvailable(h,2000);
+	        progressDialog = ProgressDialog.show(FirstRunactivity.this, "Excel", "Please Wait...");
+	        ConnectionDetector.isNetworkAvailable(h,5000);
 	       
 	        
 	       

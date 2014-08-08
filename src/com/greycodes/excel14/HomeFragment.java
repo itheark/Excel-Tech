@@ -16,9 +16,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.greycodes.excel14.login.AccountActivity;
+import com.greycodes.excel14.login.AccountFragment;
 import com.greycodes.excel14.login.LoginActivity;
-import com.greycodes.excel14.login.SigninActivity;
+import com.greycodes.excel14.login.SigninFragment;
 
 
 public class HomeFragment extends Fragment implements OnClickListener {
@@ -78,7 +78,7 @@ public class HomeFragment extends Fragment implements OnClickListener {
 				FragmentTransaction transaction;
 				fragmentManager = getActivity().getSupportFragmentManager();
 				 transaction=fragmentManager.beginTransaction();
-				 f = new AccountActivity();
+				 f = new AccountFragment();
 				 transaction.replace(R.id.home_content_frame,f);
 					// Add this transaction to the back stack
 	               transaction.addToBackStack("detail");

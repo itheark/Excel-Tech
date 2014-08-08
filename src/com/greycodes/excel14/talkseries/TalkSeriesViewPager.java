@@ -14,7 +14,7 @@ public class TalkSeriesViewPager extends Fragment {
 	ViewPagerParallax pager;
 	public static int  tspagetoset=0;
 	//Button call;
-	private int num_pages = 5;
+	private int num_pages = 2;
 	android.support.v4.app.FragmentManager fragmentmanager;
 	View rootView;
 		@Override
@@ -24,7 +24,7 @@ public class TalkSeriesViewPager extends Fragment {
 			rootView =	 inflater.inflate(R.layout.talkseries_viewpager, container, false);
 			  pager = (ViewPagerParallax) rootView.findViewById(R.id.talkseriespager);
 			 fragmentmanager=  getChildFragmentManager();
-		        pager.set_max_pages(5);
+		        pager.set_max_pages(2);
 		        
 		        pager.setBackgroundAsset(R.raw.sanfran);
 		        pager.setAdapter(new TalkSeriesViewPageAdapter(fragmentmanager));
@@ -70,15 +70,7 @@ public class TalkSeriesViewPager extends Fragment {
 			case 1:
 				fragment = new TedXMecFragment();
 				break;
-			case 2:
-				fragment = new ExhibitionFragment();
-				break;
-			case 3:
-				fragment = new SeminarFragment();
-				break;
-			case 4:
-				fragment = new WorkshopFragment();
-				break;
+			
 				
 			}
 			return fragment;
@@ -93,14 +85,7 @@ public class TalkSeriesViewPager extends Fragment {
 			case 1:
 				return "TedxMEC";
 			
-			case 2:
-				return "Exhibitions";
 			
-			case 3:
-				return "Seminars";
-		
-			case 4:
-				return "Workshop";
 		
 			}
 			return null;
@@ -108,7 +93,7 @@ public class TalkSeriesViewPager extends Fragment {
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return 5;
+			return 2;
 		}
 	}
 }
