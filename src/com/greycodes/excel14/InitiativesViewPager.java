@@ -29,7 +29,7 @@ public class InitiativesViewPager extends Fragment {
 			 fragmentmanager=  getChildFragmentManager();
 		        pager.set_max_pages(3);
 		        
-		        pager.setBackgroundAsset(R.raw.sanfran);
+		        pager.setBackgroundAsset(R.raw.initiativesbg);
 		        pager.setAdapter(new InitiativesViewPageAdapter(fragmentmanager));
 		        pager.setCurrentItem(tspagetoset);
 		      
