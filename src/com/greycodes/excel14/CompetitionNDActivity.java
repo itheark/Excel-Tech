@@ -24,9 +24,11 @@ import com.actionbarsherlock.view.MenuItem;
 import com.greycodes.excel14.biomedevents.FragmentLifeLine;
 import com.greycodes.excel14.competition.CSFragment;
 import com.greycodes.excel14.competition.ECFragment;
+import com.greycodes.excel14.competition.ECViewPager;
 import com.greycodes.excel14.competition.EEEViewPager;
 import com.greycodes.excel14.competition.GeneralViewPager;
 import com.greycodes.excel14.competition.NonTechFragment;
+import com.greycodes.excel14.competition.RBViewPager;
 
 
 public class CompetitionNDActivity extends SherlockFragmentActivity{
@@ -45,7 +47,7 @@ public class CompetitionNDActivity extends SherlockFragmentActivity{
 		setContentView(R.layout.activity_competition_nd);
 		 FragmentManager fragmentManager = getSupportFragmentManager();
 		 FragmentTransaction transaction=fragmentManager.beginTransaction();
-		coptions=new int[] {R.drawable.computer_nd,R.drawable.electronics_nd,R.drawable.electrical_nd,R.drawable.biomedical_nd,R.drawable.general_nd,R.drawable.non_technical_nd};
+		coptions=new int[] {R.drawable.computer_nd,R.drawable.electronics_nd,R.drawable.electrical_nd,R.drawable.robotics,R.drawable.biomedical_nd,R.drawable.general_nd,R.drawable.non_technical_nd};
 		        
 		        cDrawerLayout =(DrawerLayout) findViewById(R.id.drawer_layout_competition);
 		        cDrawerList = (ListView) findViewById(R.id.listview_drawer_competition);
@@ -144,19 +146,24 @@ public class CompetitionNDActivity extends SherlockFragmentActivity{
 			case 0: f = new CSFragment();
 					break;
 			case 1:
-				f= new ECFragment();		
+				f= new ECViewPager();		
 			break;
 			case 2:
 				f= new EEEViewPager();
 				break;
 			case 3:
-				f= new FragmentLifeLine();
+				f= new RBViewPager();
+				
 				break;
 			case 4:
-				f= new GeneralViewPager();
+				f= new FragmentLifeLine();
+				;
 			break;
 			case 5:
 				f= new NonTechFragment();
+				break;
+			case 6:
+				f= new GeneralViewPager();
 				break;
 			}
 			

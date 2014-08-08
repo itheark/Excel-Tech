@@ -268,7 +268,7 @@ class CSViewPageAdapter extends FragmentStatePagerAdapter{
 			return "#Include";
 			
 		case 1:
-			return "App Genius";
+			return "SYTYCC";
 		
 		case 2:
 			return "4*120";
@@ -281,7 +281,7 @@ class CSViewPageAdapter extends FragmentStatePagerAdapter{
 		case 5:
 			return "LOC";
 		case 6:
-			return "Web Mandrake";
+			return "Algorithms";
 		}
 		return null;
 	}

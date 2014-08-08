@@ -14,7 +14,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -242,7 +241,8 @@ long[] mob = new long[]{9020,2040,3040};
 
 			}
 			
-			
+			ParseSponsor parseSposor = new ParseSponsor(context);
+			Object sponsor=    parseSposor.parseSponsorImage();
 		}
 		
 		

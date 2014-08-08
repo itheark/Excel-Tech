@@ -9,41 +9,39 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.greycodes.excel14.R;
-import com.greycodes.excel14.ecevents.FragmentDefuse;
-import com.greycodes.excel14.ecevents.FragmentExtrinsicity;
+import com.greycodes.excel14.eeeevents.FragmentExtundoprodigo;
+import com.greycodes.excel14.eeeevents.FragmentLumiere;
+import com.greycodes.excel14.robotics.FragmentRobowars;
+import com.greycodes.excel14.robotics.FragmentTerrainMaster;
 
-import com.greycodes.excel14.ecevents.FragmentCircuim;
-
-public class ECViewPager extends Fragment {
+public class RBViewPager extends Fragment {
 	ViewPager view=null;
-	public static int  pagetodisplay=0;
 	android.support.v4.app.FragmentManager fragmentmanager;
-	private int num_pages = 3;
 	View rootView;
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			// TODO Auto-generated method stub
-			rootView =	 inflater.inflate(R.layout.fragment_ec_viewpager, container, false);
-			
-			 final ViewPagerParallax pager = (ViewPagerParallax) rootView.findViewById(R.id.ecpager);
+			rootView =	 inflater.inflate(R.layout.fragment_eee_viewpager, container, false);
+
+			 final ViewPagerParallax pager = (ViewPagerParallax) rootView.findViewById(R.id.eeepager);
 			 fragmentmanager=  getChildFragmentManager();
-		        pager.set_max_pages(3);
-		        pager.setBackgroundAsset(R.raw.nowec);
-		        pager.setAdapter(new ECViewPageAdapter(fragmentmanager));
-		        pager.setCurrentItem(pagetodisplay);
+			 pager.set_max_pages(2);
+		        pager.setBackgroundAsset(R.raw.noweee);
+		        pager.setAdapter(new RBViewPageAdapter(fragmentmanager));
+		        pager.setCurrentItem(0);
 
 			return rootView;
 			
 		}
-
 		@Override
 		public void onSaveInstanceState(Bundle outState) {
 	        super.onSaveInstanceState(outState);
-	        outState.putInt("num_pages", num_pages);
-	        final ViewPagerParallax pager = (ViewPagerParallax) rootView.findViewById(R.id.ecpager);
+	        outState.putInt("num_pages", 2);
+	        final ViewPagerParallax pager = (ViewPagerParallax) rootView.findViewById(R.id.eeepager);
 	        outState.putInt("current_page", pager.getCurrentItem());
 	    }
+		
 		
 		@Override
 		public void onResume() {
@@ -56,9 +54,9 @@ public class ECViewPager extends Fragment {
 		
 	}
 
-	class ECViewPageAdapter extends FragmentStatePagerAdapter{
+	class RBViewPageAdapter extends FragmentStatePagerAdapter{
 
-		public ECViewPageAdapter(android.support.v4.app.FragmentManager fm) {
+		public RBViewPageAdapter(android.support.v4.app.FragmentManager fm) {
 			super(fm);
 			// TODO Auto-generated constructor stub
 		}
@@ -70,15 +68,13 @@ public class ECViewPager extends Fragment {
 			switch(position){
 			
 			case 0:
-				fragment = new FragmentExtrinsicity();
+				fragment = new FragmentRobowars();
 				break;
 			case 1:
-				fragment = new FragmentDefuse();
+				fragment = new FragmentTerrainMaster();
+				
 				break;
-			case 2:
-				fragment = new FragmentCircuim();
-				break;
-			
+						
 				
 			}
 			return fragment;
@@ -88,15 +84,11 @@ public class ECViewPager extends Fragment {
 			// TODO Auto-generated method stub
 			switch(position){
 			case 0:
-				return "Extrinsicity";
+				return "Robowars";
 				
 			case 1:
-				return "Defuse";
+				return "TerrainMaster";
 			
-			case 2:
-				return "Circuimstance";
-			
-		
 		
 			}
 			return null;
@@ -104,6 +96,6 @@ public class ECViewPager extends Fragment {
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return 3;
+			return 2;
 		}
 }
