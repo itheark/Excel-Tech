@@ -3,26 +3,65 @@
     android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-
+    android:orientation="vertical"
+    android:background="@drawable/profilepage" >
+    
+      <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:textColor="#ffffff"
+        android:fontFamily="sans-serif"
+        android:text="Profile"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+      
+ <com.greycodes.excel14.login.CircularImageView
+        android:id="@+id/propic"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textView3"
+         android:layout_marginTop="10dp"
+         />
+   
+ <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/propic"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffff"
+        android:textSize="30dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif"
+        android:text="Name" />
+ 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="174dp"
+       android:layout_below="@+id/textView2"
+       android:layout_marginTop="50dp"
+        android:layout_marginLeft="25dp"
+        android:textColor="#ffffff"
+        android:fontFamily="sans-serif"
         android:text="Participating Events"
-        android:textSize="30dp" />
+        android:textSize="20dp" />
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        
         android:layout_below="@+id/textView1"
-        
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="25dp" 
+        android:layout_marginRight="25dp"
+           
         >
     </ListView>
 
+  
+    
 </RelativeLayout>

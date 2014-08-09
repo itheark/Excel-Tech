@@ -19,6 +19,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.greycodes.excel14.R;
@@ -33,14 +34,14 @@ public class CameraFragment extends android.support.v4.app.Fragment {
 	private Camera camera;
 	private SurfaceView surfaceView;
 	private ParseFile photoFile;
-	private ImageButton photoButton;
+	private ImageView photoButton;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.gallery_fragment_camera, parent, false);
 
-		photoButton = (ImageButton) v.findViewById(R.id.camera_photo_button);
+		photoButton = (ImageView) v.findViewById(R.id.camera_photo_button);
 
 		if (camera == null) {
 			try {
@@ -118,7 +119,7 @@ public class CameraFragment extends android.support.v4.app.Fragment {
 
 		// Resize photo from camera byte array
 		Bitmap mealImage = BitmapFactory.decodeByteArray(data, 0, data.length);
-		Bitmap mealImageScaled = Bitmap.createScaledBitmap(mealImage, 768, 768
+		Bitmap mealImageScaled = Bitmap.createScaledBitmap(mealImage, 480,480
 				* mealImage.getHeight() / mealImage.getWidth(), false);
 
 		// Override Android default landscape orientation and save portrait
