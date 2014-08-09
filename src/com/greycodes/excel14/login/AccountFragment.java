@@ -45,7 +45,7 @@ public class AccountFragment extends ListFragment {
 		}
 		
 		 
-		 ArrayAdapter<String> adapter= new ArrayAdapter<String>(inflater.getContext(), android.R.layout.simple_list_item_1, participating);
+		 ArrayAdapter<String> adapter= new ArrayAdapter<String>(inflater.getContext(), R.layout.participate_listitem, participating);
 		   setListAdapter(adapter);; 
 		 
 		 
