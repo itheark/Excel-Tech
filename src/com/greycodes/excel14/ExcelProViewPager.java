@@ -29,7 +29,7 @@ public class ExcelProViewPager extends Fragment {
 			 fragmentmanager=  getChildFragmentManager();
 		        pager.set_max_pages(2);
 		        
-		        pager.setBackgroundAsset(R.raw.sanfran);
+		        pager.setBackgroundAsset(R.raw.noweee);
 		        pager.setAdapter(new ExcelProViewPageAdapter(fragmentmanager));
 		        pager.setCurrentItem(tspagetoset);
 		      
