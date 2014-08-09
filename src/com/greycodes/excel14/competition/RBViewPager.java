@@ -88,7 +88,7 @@ public class RBViewPager extends Fragment implements OnClickListener,OnLongClick
 				
 				switch(pager.getCurrentItem()){
 				case 0:
-					if(excelDataBase.Isregistered(1)){
+					if(excelDataBase.Isregistered()){
 						if(insertParticipant.insert(020, "Robowar")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{
@@ -98,7 +98,7 @@ public class RBViewPager extends Fragment implements OnClickListener,OnLongClick
 					
 				break;
 				case 1:
-					if(excelDataBase.Isregistered(1)){
+					if(excelDataBase.Isregistered()){
 						if(insertParticipant.insert(021, "TerrainMaster")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{

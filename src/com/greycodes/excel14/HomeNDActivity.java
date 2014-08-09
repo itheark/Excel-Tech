@@ -43,7 +43,6 @@ import com.greycodes.excel14.database.ExcelDataBase;
 import com.greycodes.excel14.excelgallery.GalleryListActivity;
 import com.greycodes.excel14.login.AccountFragment;
 import com.greycodes.excel14.login.LoginActivity;
-import com.greycodes.excel14.login.SigninFragment;
 import com.greycodes.excel14.newsfeed.NewsFeedFragment;
 import com.greycodes.excel14.talkseries.TalkSeriesViewPager;
 import com.parse.ParseAnalytics;
@@ -97,7 +96,7 @@ Cursor cursor;
 					Context.MODE_PRIVATE);
 			if (sharedPreferences.getBoolean("registered", false)) {
 				String[] columns = { "NAME", "EMAIL", "PICTURE" };
-				excelDataBase = new ExcelDataBase(this);
+				excelDataBase = new ExcelDataBase(getApplicationContext());
 				SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
 				 cursor = sqLiteDatabase.query("USER", columns, null,null, null, null, null);
 				cursor.moveToFirst();
@@ -218,11 +217,18 @@ private void  selectItem(int position) {
 	switch(position)
 	{
 	case 0:
-		
-		
 
-		if(sharedPreferences.getBoolean("registered", false)){
-		 f = new AccountFragment();
+		sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+		if(sharedPreferences.getBoolean("registered",false)){
+				
+			if(sharedPreferences.getBoolean("active",false)){
+				 f = new AccountFragment();
+			}else{
+				
+			}
+
+		
+		
 		}else{
 			Intent intent = new Intent(HomeNDActivity.this,LoginActivity.class);
 			startActivity(intent);

@@ -123,7 +123,7 @@ return flag;
 		
 	}
 	
-	public boolean Isregistered(int activity) {
+	public boolean Isregistered() {
 		
 		sharedPreferences = context.getSharedPreferences("login", Context.MODE_PRIVATE);
 		if(sharedPreferences.getBoolean("registered",false)){

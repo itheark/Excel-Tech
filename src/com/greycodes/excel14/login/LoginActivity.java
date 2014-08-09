@@ -86,7 +86,7 @@ public class LoginActivity extends Activity implements OnClickListener  {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 			
-				Intent intent=  new Intent(LoginActivity.this,SigninFragment.class);
+				Intent intent=  new Intent(LoginActivity.this,SigninActivity.class);
 				startActivity(intent);
 			
 			}
