@@ -108,7 +108,7 @@ public class ECViewPager extends Fragment implements OnClickListener,OnLongClick
 				
 				switch(pager.getCurrentItem()){
 				case 0:
-					if(excelDataBase.Isregistered(1)){
+					if(excelDataBase.Isregistered()){
 						if(insertParticipant.insert(010, "Extrinsicity")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{
@@ -118,7 +118,7 @@ public class ECViewPager extends Fragment implements OnClickListener,OnLongClick
 					
 				break;
 				case 1:
-					if(excelDataBase.Isregistered(1)){
+					if(excelDataBase.Isregistered()){
 						if(insertParticipant.insert(011, "Defuse")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{
@@ -127,7 +127,7 @@ public class ECViewPager extends Fragment implements OnClickListener,OnLongClick
 					}
 					break;
 				case 2:
-					if(excelDataBase.Isregistered(1)){
+					if(excelDataBase.Isregistered()){
 						if(insertParticipant.insert(012, "Circuimstance")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{

@@ -89,7 +89,7 @@ public class EEEViewPager extends Fragment implements OnClickListener,OnLongClic
 				
 				switch(pager.getCurrentItem()){
 				case 0:
-					if(excelDataBase.Isregistered(1)){
+					if(excelDataBase.Isregistered()){
 						if(insertParticipant.insert(020, "Lumiere")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{
@@ -99,7 +99,7 @@ public class EEEViewPager extends Fragment implements OnClickListener,OnLongClic
 					
 				break;
 				case 1:
-					if(excelDataBase.Isregistered(1)){
+					if(excelDataBase.Isregistered()){
 						if(insertParticipant.insert(021, "Extundo Prodigo")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{

@@ -16,9 +16,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.greycodes.excel14.database.ExcelDataBase;
 import com.greycodes.excel14.login.AccountFragment;
 import com.greycodes.excel14.login.LoginActivity;
-import com.greycodes.excel14.login.SigninFragment;
 
 
 public class HomeFragment extends Fragment implements OnClickListener {
@@ -28,6 +28,7 @@ public class HomeFragment extends Fragment implements OnClickListener {
 	ImageView navigate;
 	SharedPreferences sharedPreferences;
 	ImageView excelmecorg;
+	ExcelDataBase excelDataBase;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class HomeFragment extends Fragment implements OnClickListener {
 		 navigate.setOnClickListener(this);
 		 fbicon.setOnClickListener(this);
 		 excelmecorg.setOnClickListener(this);
-		 	 
+		 	 excelDataBase = new ExcelDataBase(getActivity());
 		 return rootView;
 	}
 	//228354903862639
@@ -72,7 +73,7 @@ public class HomeFragment extends Fragment implements OnClickListener {
 		if(v.equals(login))
 		{
 			
-			if(sharedPreferences.getBoolean("registered", false)){
+			if(excelDataBase.Isregistered()){
 				Fragment f;
 				FragmentManager fragmentManager ;
 				FragmentTransaction transaction;

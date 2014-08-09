@@ -94,7 +94,7 @@ public class GeneralViewPager extends Fragment implements OnClickListener,OnLong
 				
 				switch(pager.getCurrentItem()){
 				case 0:
-					if(excelDataBase.Isregistered(1)){
+					if(excelDataBase.Isregistered()){
 						if(insertParticipant.insert(050, "Kryptos")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{
@@ -104,7 +104,7 @@ public class GeneralViewPager extends Fragment implements OnClickListener,OnLong
 					
 				break;
 				case 1:
-					if(excelDataBase.Isregistered(1)){
+					if(excelDataBase.Isregistered()){
 						if(insertParticipant.insert(051, "DalalBull")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{
@@ -113,7 +113,7 @@ public class GeneralViewPager extends Fragment implements OnClickListener,OnLong
 					}
 					break;
 				case 2:
-					if(excelDataBase.Isregistered(1)){
+					if(excelDataBase.Isregistered()){
 						if(insertParticipant.insert(052, "Papyrus Of Ani")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{

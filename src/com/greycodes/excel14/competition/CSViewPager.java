@@ -105,7 +105,7 @@ ProgressDialog progressDialog;
 			
 			switch(pager.getCurrentItem()){
 			case 0:
-				if(excelDataBase.Isregistered(1)){
+				if(excelDataBase.Isregistered()){
 					if(insertParticipant.insert(000, "#include")){
 						Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 		}else{
@@ -115,7 +115,7 @@ ProgressDialog progressDialog;
 				
 			break;
 			case 1:
-				if(excelDataBase.Isregistered(1)){
+				if(excelDataBase.Isregistered()){
 					if(insertParticipant.insert(001, "Web Bots")){
 						Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 		}else{
@@ -124,7 +124,7 @@ ProgressDialog progressDialog;
 				}
 				break;
 			case 2:
-				if(excelDataBase.Isregistered(1)){
+				if(excelDataBase.Isregistered()){
 					if(insertParticipant.insert(002, "Lord of the Code")){
 						Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 		}else{
@@ -133,7 +133,7 @@ ProgressDialog progressDialog;
 				}
 				break;
 			case 3:
-				if(excelDataBase.Isregistered(1)){
+				if(excelDataBase.Isregistered()){
 					if(insertParticipant.insert(003, "Hackmaster")){
 						Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 		}else{
@@ -142,7 +142,7 @@ ProgressDialog progressDialog;
 				}
 				break;
 			case 4:
-				if(excelDataBase.Isregistered(1)){
+				if(excelDataBase.Isregistered()){
 					if(insertParticipant.insert(004, "4*120")){
 						Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 		}else{
@@ -151,7 +151,7 @@ ProgressDialog progressDialog;
 				}
 				break;
 			case 5:
-				if(excelDataBase.Isregistered(1)){
+				if(excelDataBase.Isregistered()){
 					if(insertParticipant.insert(005, "Algorithms")){
 						Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 		}else{
@@ -160,7 +160,7 @@ ProgressDialog progressDialog;
 				}
 				break;
 			case 6:
-				if(excelDataBase.Isregistered(1)){
+				if(excelDataBase.Isregistered()){
 					if(insertParticipant.insert(006, "SYTYCC")){
 						Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 		}else{

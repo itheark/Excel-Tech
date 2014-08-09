@@ -107,7 +107,7 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 				
 				switch(pager.getCurrentItem()){
 				case 0:
-					if(excelDataBase.Isregistered(1)){
+					if(excelDataBase.Isregistered()){
 						if(insertParticipant.insert(060, "Best Manager")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{
@@ -117,7 +117,7 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 					
 				break;
 				case 1:
-					if(excelDataBase.Isregistered(1)){
+					if(excelDataBase.Isregistered()){
 						if(insertParticipant.insert(061, "CSI")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{
@@ -126,7 +126,7 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 					}
 					break;
 				case 2:
-					if(excelDataBase.Isregistered(1)){
+					if(excelDataBase.Isregistered()){
 						if(insertParticipant.insert(062, "Game Zone")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{
@@ -135,7 +135,7 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 					}
 					break;
 				case 3:
-					if(excelDataBase.Isregistered(1)){
+					if(excelDataBase.Isregistered()){
 						if(insertParticipant.insert(063, "Spider Web")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{
@@ -144,7 +144,7 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 					}
 					break;
 				case 4:
-					if(excelDataBase.Isregistered(1)){
+					if(excelDataBase.Isregistered()){
 						if(insertParticipant.insert(064, "Instant Photography")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{
