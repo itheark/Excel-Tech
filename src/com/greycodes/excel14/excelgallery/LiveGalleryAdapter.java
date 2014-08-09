@@ -1,4 +1,4 @@
-package com.greycodes.excel14.info;
+package com.greycodes.excel14.excelgallery;
 
 import com.greycodes.excel14.R;
 import com.greycodes.excel14.database.ExcelDataBase;
@@ -13,23 +13,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-public class SponsorList extends BaseAdapter {
-Context context;
-byte[][] bs;
-LayoutInflater sponsorInflator;
+public class LiveGalleryAdapter extends  BaseAdapter{
+	String[] desc;
+	byte[][] bs;
+	Context context;
+	LayoutInflater liveGalleryInflator;
+	
+	
 
-	public SponsorList(Context context,byte[][] bs) {
-		// TODO Auto-generated constructor stub
+	public LiveGalleryAdapter(Context context,String[] desc,byte[][] bs){
 		this.context = context;
-		
+		this.desc=desc;
 		this.bs= bs;
+		
+		
 	}
-
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return bs.length;
+		return desc.length;
+	//	return cursor.getCount();
 	}
 
 	@Override
@@ -47,16 +52,17 @@ LayoutInflater sponsorInflator;
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
-		ImageView sponsorImage;
-		sponsorInflator=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View itemView = sponsorInflator.inflate(R.layout.sponsor_listview_items, parent, false);
-		sponsorImage=(ImageView) itemView.findViewById(R.id.sponsor_image);
-		
-		
+		ImageView imgIcon;
+		TextView tvdesc;
+		liveGalleryInflator =(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View itemView = liveGalleryInflator.inflate(R.layout.livegallery_listitem, parent, false);
+		imgIcon=(ImageView) itemView.findViewById(R.id.livegallery_image);
+		tvdesc = (TextView) itemView.findViewById(R.id.livegallery_desc);
+	
 		Bitmap bitmap = BitmapFactory.decodeByteArray(bs[position], 0,
 		bs[position].length);
-		sponsorImage.setImageBitmap(bitmap);
-		
+		imgIcon.setImageBitmap(bitmap);
+		tvdesc.setText(desc[position]);
 		
 		return itemView;
 	}
