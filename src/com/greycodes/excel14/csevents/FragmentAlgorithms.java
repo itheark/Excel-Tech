@@ -42,7 +42,7 @@ public class FragmentAlgorithms extends SherlockFragment implements OnClickListe
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("Even the hardest problems in this world are solved with the most simplest of logic. If complex algorithms are just a childï¿½s play for you, then get ready to prove yourself at Excel ï¿½Algorithmsï¿½. Amaze us with your efficient plans and you might be the one to land your hands on that handsome cash prize.\n\n" );
+			updateTextValue("Even the hardest problems in this world are solved with the most simplest of logic. If complex algorithms are just a child’s play for you, then get ready to prove yourself at Excel ‘Algorithms’. Amaze us with your efficient plans and you might be the one to land your hands on that handsome cash prize.\n\n" );
 			
 		}
 		if (v.equals(rules))

@@ -44,7 +44,7 @@ public class FragmentExtundoprodigo extends SherlockFragment implements OnClickL
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("ï¿½Creativity is seeing what everybody has seen and thinking what nobody has thought.ï¿½\nThe moment has come to give wings to your imagination. Use your expert electrical and mechanical skills as a weapon to crown yourself as the master creator; give birth to your own gadget, crack the problem and dare your opponents. The crowd awaits the gadget of the day!\n\n" );
+			updateTextValue("“Creativity is seeing what everybody has seen and thinking what nobody has thought.”\nThe moment has come to give wings to your imagination. Use your expert electrical and mechanical skills as a weapon to crown yourself as the master creator; give birth to your own gadget, crack the problem and dare your opponents. The crowd awaits the gadget of the day!\n\n" );
 			
 		}
 		if (v.equals(rules))

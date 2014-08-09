@@ -45,7 +45,7 @@ public class FragmentLumiere extends SherlockFragment implements OnClickListener
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("�Wire your way to light the bulb of victory!�\nEver wanted an opportunity to be able to apply basic wiring skills in a practical situation? Then...... Lumiere is the platform just for you! The challenge here is to come up with efficient solutions for a given wiring problem and all this .....while the 'clock is ticking'!!\n\n" );
+			updateTextValue("Wire your way to light the bulb of victory!\nEver wanted an opportunity to be able to apply basic wiring skills in a practical situation? Then...... Lumiere is the platform just for you! The challenge here is to come up with efficient solutions for a given wiring problem and all this .....while the 'clock is ticking'!!\n\n" );
 			
 		}
 		if (v.equals(rules))

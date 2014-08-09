@@ -40,7 +40,7 @@ public class FragmentLOC extends SherlockFragment implements OnClickListener {
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("�Talk is cheap, show me the code � � Linus Torvalds\n Are you ready to manipulate lines of code to outwit and outshine your opponents and rise as the one true Lord of the Code?\n\n" );
+			updateTextValue(getString(R.string.loc_intro));
 			
 		}
 		if (v.equals(rules))

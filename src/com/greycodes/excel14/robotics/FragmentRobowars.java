@@ -44,7 +44,7 @@ public class FragmentRobowars extends SherlockFragment implements OnClickListene
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("ï¿½The moment has come to attack, endure, withstand and sustain! Its time to face some spine chilling action! Plunge yourselves in the sounds of metal bashing and chainsaws ripping! Witness the epic battle of machines, the ultimate combat, to crown the ultimate survivor!  Come.compete.conquer!\n\n" );
+			updateTextValue("“The moment has come to attack, endure, withstand and sustain! Its time to face some spine chilling action! Plunge yourselves in the sounds of metal bashing and chainsaws ripping! Witness the epic battle of machines, the ultimate combat, to crown the ultimate survivor!  Come.compete.conquer!\n\n");
 			
 		}
 		if (v.equals(rules))
