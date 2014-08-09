@@ -10,47 +10,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/i_ibetojr" />
 
-    <ImageView
-        android:id="@+id/event"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-         android:layout_centerHorizontal="true"
-        android:src="@drawable/cs_eventformat"
-        android:layout_below="@+id/include" 
-        android:layout_marginTop="20dp"/>
-
-    <ImageView
-        android:id="@+id/intro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-          android:src="@drawable/cs_intro"
-          android:layout_below="@+id/include" 
-        android:layout_marginTop="20dp"
-        android:layout_toLeftOf="@+id/event" 
-        />
-
-    <ImageView
-        android:id="@+id/rules"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/event"
-        android:layout_toRightOf="@+id/event"
-        android:src="@drawable/cs_rules" />
-
+   
     
     
     
        <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
-        android:layout_below="@+id/intro"
+        android:layout_below="@+id/include"
         android:layout_height="240dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="40dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         >

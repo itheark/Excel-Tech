@@ -26,7 +26,7 @@ public class TalkSeriesViewPager extends Fragment {
 			 fragmentmanager=  getChildFragmentManager();
 		        pager.set_max_pages(2);
 		        
-		        pager.setBackgroundAsset(R.raw.sanfran);
+		        pager.setBackgroundAsset(R.raw.initiativesbg);
 		        pager.setAdapter(new TalkSeriesViewPageAdapter(fragmentmanager));
 		        pager.setCurrentItem(tspagetoset);
 		      

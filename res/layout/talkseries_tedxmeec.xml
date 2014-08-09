@@ -10,50 +10,22 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/cs_algorithms" />
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ted" />
 
-    <ImageView
-        android:id="@+id/event"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-         android:layout_centerHorizontal="true"
-        android:src="@drawable/cs_eventformat"
-        android:layout_below="@+id/include" 
-        android:layout_marginTop="20dp"/>
-
-    <ImageView
-        android:id="@+id/intro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-          android:src="@drawable/cs_intro"
-          android:layout_below="@+id/include" 
-        android:layout_marginTop="20dp"
-        android:layout_toLeftOf="@+id/event" 
-        />
-
-    <ImageView
-        android:id="@+id/rules"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/event"
-        android:layout_toRightOf="@+id/event"
-        android:src="@drawable/cs_rules" />
-
-    
     
     
        <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
-        android:layout_below="@+id/intro"
+        android:layout_below="@+id/include"
         android:layout_height="240dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="40dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="#90000000">
+        >
     <TextView
         android:id="@+id/txtinclude"
         android:layout_width="fill_parent"
@@ -66,7 +38,8 @@
        android:fontFamily="sans-serif"
        
         android:textColor="#99ffffff"
-     android:text="Even the hardest problems in this world are solved with the most simplest of logic. If complex algorithms are just a child’s play for you, then get ready to prove yourself at Excel ‘Algorithms’. Amaze us with your efficient plans and you might be the one to land your hands on that handsome cash prize.\n\n"	/>	
+         android:text= "TEDxMEC is an independently organised TED event which seeks to establish the internationally renowned TED experience at Govt. Model Engineering College, Kochi. At TEDxMEC, TED Talks videos and live speakers combine to spark deep discussion and connection in a small group. We present a platform where people bring about changes in one of the oldest languages known to man - stories! The world around us is less curious about people and more curious about ideas. TEDxMEC is here to inspire, to celebrate ideas. This year TEDxMEC is scheduled to be held on 25th September 2014 from 5pm to 9pm in the college amphitheatre at Thrikkakara, Kochi.\n\n"
+     	/>	
  
     </ScrollView>
  

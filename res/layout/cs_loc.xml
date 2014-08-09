@@ -65,7 +65,7 @@
        android:gravity="center"
        android:fontFamily="sans-serif"
        android:textColor="#e3e3e3"
-            android:text="“Talk is cheap, show me the code ” – Linus Torvalds The ‘Lord of the Code’ is a prize that only the deserving receive. A title that only the mostbrilliant of those coders who use their knowledge and acumen are bestowed with. If you think that you are worthy of this honour, be ready to manipulate lines of code to outwit and outshine your opponents and rise as the one true Lord of the Code.                           " />
+            android:text="“Talk is cheap, show me the code ” – Linus Torvalds\n Are you ready to manipulate lines of code to outwit and outshine your opponents and rise as the one true Lord of the Code?\n\n" />
     	
  
     </ScrollView>

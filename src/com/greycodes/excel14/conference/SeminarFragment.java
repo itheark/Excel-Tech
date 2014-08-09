@@ -11,7 +11,7 @@ public class SeminarFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 			
-		 View rootView = inflater.inflate(R.layout.talkseries_seminars, container, false);
+		 View rootView = inflater.inflate(R.layout.conference_seminars, container, false);
 		return rootView;
 	}
 }
