@@ -7,8 +7,10 @@ import com.greycodes.excel14.R;
 import com.greycodes.excel14.login.AccountFragment;
 import com.greycodes.excel14.login.LoginActivity;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -83,6 +85,7 @@ return flag;
 		static final String Create_tedxmec = "CREATE TABLE TEDXMEC (TSID INT PRIMARY KEY NOT NULL,INTRO VARCHAR NOT NULL,EVENTDETAILS VARCHAR NOT NULL,S1NAME VARCHAR NOT NULL,S1DESC VARCHAR NOT NULL,S1IMAGE BLOB NOT NULL,S2NAME VARCHAR NOT NULL,S2DESC VARCHAR NOT NULL,S2IMAGE BLOB NOT NULL,S3NAME VARCHAR NOT NULL,S3DESC VARCAHR NOT NULL,S3IMAGE BLOB  NOT NULL,S4NAME VARCAHR NOT NULL,S4DESC VARCHAR NOT NULL,S4IMAGE BLOB NOT NULL,S5NAME VARCHAR NOT NULL,S5DESC VARCHAR NOT NULL,S5IMAGE BLOB NOT NULL,DATE VARCHAR NOT NULL,CORDINATOR VARCHAR NOT NULL,MOB VARCHAR NOT NULL);";
 		static final String Create_userdetails = "CREATE TABLE USER (PID INT PRIMARY KEY NOT NULL,NAME VARCHAR NOT NULL,PASSWORD VARCHAR NOT NULL,EMAIL VARCHAR NOT NULL,SEMESTER VARCHAR NOT NULL,PHONE VARCHAR NOT NULL,PICTURE BLOB);";
 		static final String Create_sponsor = "CREATE TABLE SPONSOR (SID INT PRIMARY KEY NOT NULL,PCODE INT NOT NULL,IMAGE BLOB NOT NULL,URL VARCHAR(30) NOT NULL);";
+		static final String Create_LiveGallery = "CREATE TABLE GALLERY (GID INT PRIMARY KEY NOT NULL,DESC VARCHAR(200) NOT NULL,IMAGE BLOB NOT NULL,AUTHOR VARCHAR(50) NOT NULL);";
 		static final String Create_participate = "CREATE TABLE PARTICIPATE (EID INT PRIMARY KEY NOT NULL,ENAME VARCHAR NOT NULL);";
 		public ExcelDatabaseHelper() {
 			super(context, Database_name, null, Database_version);
@@ -102,6 +105,7 @@ return flag;
 				db.execSQL(Create_userdetails);
 				db.execSQL(Create_sponsor);
 				db.execSQL(Create_participate);
+				db.execSQL(Create_LiveGallery);
 				Toast.makeText(context, " db created", Toast.LENGTH_LONG).show();
 
 			} catch (SQLException e) {
@@ -129,38 +133,21 @@ return flag;
 				return true;
 			}else{
 				
-				Fragment f;
-				FragmentManager fragmentManager ;
-				FragmentTransaction transaction;
-
-				switch(activity){
-				case 0:
-					fragmentManager = ((HomeNDActivity) context).getSupportFragmentManager();
-					 transaction=fragmentManager.beginTransaction();
-					 f = new AccountFragment();
-					 transaction.replace(R.id.home_content_frame,f);
-						// Add this transaction to the back stack
-		               transaction.addToBackStack("detail");
-		               transaction.commit();
-				case 1:
-					fragmentManager = ((CompetitionNDActivity) context).getSupportFragmentManager();
-					 transaction=fragmentManager.beginTransaction();
-					 f = new AccountFragment();
-					 transaction.replace(R.id.competition_content_frame,f);
-						// Add this transaction to the back stack
-		               transaction.addToBackStack("detail");
-		               transaction.commit();
-					break;
-				case 2:
-					fragmentManager = ((InfoNDActivity) context).getSupportFragmentManager();
-					 transaction=fragmentManager.beginTransaction();
-					 f = new AccountFragment();
-					 transaction.replace(R.id.info_content_frame,f);
-						// Add this transaction to the back stack
-		               transaction.addToBackStack("detail");
-		               transaction.commit();
-					break;
-				}
+				new AlertDialog.Builder(context)
+			    .setTitle("Delete entry")
+			    .setMessage("It seems like you havent activated your account.Check your mail to activate.")
+			    .setPositiveButton("Check Again", new DialogInterface.OnClickListener() {
+			        public void onClick(DialogInterface dialog, int which) { 
+			            // continue with delete
+			        }
+			     })
+			    .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+			        public void onClick(DialogInterface dialog, int which) { 
+			            // do nothing
+			        }
+			     })
+			    .setIcon(android.R.drawable.ic_dialog_alert)
+			     .show();
 				
 			}
 			}else{
