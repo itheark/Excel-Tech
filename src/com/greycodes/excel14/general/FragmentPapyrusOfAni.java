@@ -15,7 +15,7 @@ import com.greycodes.excel14.R;
 public class FragmentPapyrusOfAni extends SherlockFragment implements OnClickListener {
 	ImageView intro,rules,format;
 	 
-	  static TextView tv;
+	public  static TextView tv;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class FragmentPapyrusOfAni extends SherlockFragment implements OnClickLis
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("“Vision without action is merely a dream”\nIt is time to titillate your grey cells, bring out innovative and ingenious ideas and unleash it to the world, ’cos it awaits a change! Papyrus of ani provides you the right platform to impact the scientific world with your brilliant thoughts and win exciting cash prizes! \n\n" );
+			updateTextValue("ï¿½Vision without action is merely a dreamï¿½\nIt is time to titillate your grey cells, bring out innovative and ingenious ideas and unleash it to the world, ï¿½cos it awaits a change! Papyrus of ani provides you the right platform to impact the scientific world with your brilliant thoughts and win exciting cash prizes! \n\n" );
 			
 		}
 		if (v.equals(rules))

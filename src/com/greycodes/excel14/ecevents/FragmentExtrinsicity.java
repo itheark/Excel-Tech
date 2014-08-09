@@ -15,7 +15,7 @@ import com.greycodes.excel14.R;
 public class FragmentExtrinsicity extends SherlockFragment implements OnClickListener {
 	ImageView intro,rules,format;
 	 
-	  static TextView tv;
+	public  static TextView tv;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class FragmentExtrinsicity extends SherlockFragment implements OnClickLis
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("Are you an electronic wiz? Does the world of electronics and circuits excite you? Then buckle up to face the ultimatum in the arena of electronics at excel 2k14. Challenge your intellect and analytical competence at the battle ground of “Extrinsicity”.  The traps are set, Are u?\n\n" );
+			updateTextValue("Are you an electronic wiz? Does the world of electronics and circuits excite you? Then buckle up to face the ultimatum in the arena of electronics at excel 2k14. Challenge your intellect and analytical competence at the battle ground of ï¿½Extrinsicityï¿½.  The traps are set, Are u?\n\n" );
 			
 		}
 		if (v.equals(rules))
@@ -55,7 +55,7 @@ public class FragmentExtrinsicity extends SherlockFragment implements OnClickLis
 		
 		if (v.equals(format))
 		{
-			updateTextValue("The event consists of 3 rounds. This will be a classic circuit based event. Circuit analysis and synthesis are the aspects being stressed on and the contestant’s designing, wiring and analysing ability on electronic circuits is tested. The team coming in the last position of each stage will eliminated.\nOnline Teaser Round-\nThis online round will involve circuit designing and/or debugging. 2 weeks prior to Excel\n2014, a series of questions will be given. The top 5 teams from that round will be provided with a problem statement to solve and the team which brings out the best solution will be awarded with cash prize.\nRound 1: PRELIMS\nDuration: 30 minsdfcrowd.com\nContestants will be tested on the field of basic electronic circuits.\nThe one team which gets through the different stages will be lauded with laurels.\n8 Teams will be selected.\nRound 2 : CIRCUIT MARATHON\nDuration : 1.5 hrs\nThe top 8 teams chosen from the screening stage will take part in this round. Through 3 stages, 5 teams will be eliminated successively. In these stages, designing and wiring skills of the participants will be tested.\nRound 3 : DEBUGGING ROUND\nDuration :1.5 hrs\nThe top 3 teams of round two & 1 team from Online teaser contest in the final round. \nThe contestants will be required to debug an Analog/Digital circuit within the stipulated time. The team which debugs the circuit first will be declared as the winner. In case of tie or no output performance of teams in the second round is analysed, on the basis of which the final decision will be made.\n\n");
+			updateTextValue("The event consists of 3 rounds. This will be a classic circuit based event. Circuit analysis and synthesis are the aspects being stressed on and the contestantï¿½s designing, wiring and analysing ability on electronic circuits is tested. The team coming in the last position of each stage will eliminated.\nOnline Teaser Round-\nThis online round will involve circuit designing and/or debugging. 2 weeks prior to Excel\n2014, a series of questions will be given. The top 5 teams from that round will be provided with a problem statement to solve and the team which brings out the best solution will be awarded with cash prize.\nRound 1: PRELIMS\nDuration: 30 minsdfcrowd.com\nContestants will be tested on the field of basic electronic circuits.\nThe one team which gets through the different stages will be lauded with laurels.\n8 Teams will be selected.\nRound 2 : CIRCUIT MARATHON\nDuration : 1.5 hrs\nThe top 8 teams chosen from the screening stage will take part in this round. Through 3 stages, 5 teams will be eliminated successively. In these stages, designing and wiring skills of the participants will be tested.\nRound 3 : DEBUGGING ROUND\nDuration :1.5 hrs\nThe top 3 teams of round two & 1 team from Online teaser contest in the final round. \nThe contestants will be required to debug an Analog/Digital circuit within the stipulated time. The team which debugs the circuit first will be declared as the winner. In case of tie or no output performance of teams in the second round is analysed, on the basis of which the final decision will be made.\n\n");
 			
 		}
 		

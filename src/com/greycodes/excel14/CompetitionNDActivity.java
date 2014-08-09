@@ -160,10 +160,11 @@ public class CompetitionNDActivity extends SherlockFragmentActivity{
 				;
 			break;
 			case 5:
-				f= new NonTechFragment();
+				f= new GeneralViewPager();
 				break;
 			case 6:
-				f= new GeneralViewPager();
+				f= new NonTechFragment();
+				
 				break;
 			}
 			

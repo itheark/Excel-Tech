@@ -15,7 +15,7 @@ import com.greycodes.excel14.R;
 public class FragmentDefuse extends SherlockFragment implements OnClickListener {
 	ImageView intro,rules,format;
 	 
-	  static TextView tv;
+	public  static TextView tv;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class FragmentDefuse extends SherlockFragment implements OnClickListener 
 		
 		if (v.equals(format))
 		{
-			updateTextValue("The event consists of 3 rounds.\nPreliminary Round\n1.	This round consists of a 30 minute MCQ test.\n2.	Questions will test the participants’ knowledge in basic digital electronics.\n3.	Six teams selected from this round will proceed to the next round.\nRound 1 (Circuit Analysis):\n1.	This round is based on circuit analysis where the participants are expected to identify a pattern to start ‘defusing’ the bomb.\n2.	The participants will be given a diagram of the circuit from where they’ll have to figure out the pattern within 30 minutes.\n3.	Once the pattern is identified, they may use it to initiate the timer on the bomb and start defusing.\n4.	First 4 teams who figure out the right pattern will advance to the next round.\nRound 2 (Bomb Defusal):\n1.	Participants will be provided with the bomb’s circuit diagram.\n2.	The time allotted is 60 minutes.\n3.	The first team to successfully defuse the bomb will be declared winners.\n4.	If no team is able to defuse the bomb at the end of all the rounds, winners will be decided based on a viva voce.\n\n");
+			updateTextValue("The event consists of 3 rounds.\nPreliminary Round\n1.	This round consists of a 30 minute MCQ test.\n2.	Questions will test the participantsï¿½ knowledge in basic digital electronics.\n3.	Six teams selected from this round will proceed to the next round.\nRound 1 (Circuit Analysis):\n1.	This round is based on circuit analysis where the participants are expected to identify a pattern to start ï¿½defusingï¿½ the bomb.\n2.	The participants will be given a diagram of the circuit from where theyï¿½ll have to figure out the pattern within 30 minutes.\n3.	Once the pattern is identified, they may use it to initiate the timer on the bomb and start defusing.\n4.	First 4 teams who figure out the right pattern will advance to the next round.\nRound 2 (Bomb Defusal):\n1.	Participants will be provided with the bombï¿½s circuit diagram.\n2.	The time allotted is 60 minutes.\n3.	The first team to successfully defuse the bomb will be declared winners.\n4.	If no team is able to defuse the bomb at the end of all the rounds, winners will be decided based on a viva voce.\n\n");
 			
 		}
 		

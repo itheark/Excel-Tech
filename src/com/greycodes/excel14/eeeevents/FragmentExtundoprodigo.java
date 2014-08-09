@@ -15,7 +15,7 @@ import com.greycodes.excel14.R;
 public class FragmentExtundoprodigo extends SherlockFragment implements OnClickListener {
 	 ImageView intro,rules,format;
 	 
-	  static TextView tv;
+	public  static TextView tv;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class FragmentExtundoprodigo extends SherlockFragment implements OnClickL
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("“Creativity is seeing what everybody has seen and thinking what nobody has thought.”\nThe moment has come to give wings to your imagination. Use your expert electrical and mechanical skills as a weapon to crown yourself as the master creator; give birth to your own gadget, crack the problem and dare your opponents. The crowd awaits the gadget of the day!\n\n" );
+			updateTextValue("ï¿½Creativity is seeing what everybody has seen and thinking what nobody has thought.ï¿½\nThe moment has come to give wings to your imagination. Use your expert electrical and mechanical skills as a weapon to crown yourself as the master creator; give birth to your own gadget, crack the problem and dare your opponents. The crowd awaits the gadget of the day!\n\n" );
 			
 		}
 		if (v.equals(rules))

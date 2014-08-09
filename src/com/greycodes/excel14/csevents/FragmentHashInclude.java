@@ -31,8 +31,7 @@ Cursor cursor;*/
 	
 	 ImageView intro,rules,format;
 	 
-	  static TextView tv;
-      
+	 public static TextView tv;      
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -132,7 +131,7 @@ public void onClick(View v) {
 	}
 	if (v.equals(rules))
 	{
-		updateTextValue("• This is strictly an individual online event.• The duration of the event is 5 days (7200 minutes)\n• Registration is required for participation and there should be no duplicate accounts.\n• Coding should be in C. No other language will be accepted.\n• There will be a total of 30 questions.\n• Questions will be of three types and scoring pattern is as follows:\n1. Easy - 5 points    2. Medium - 7 points    3. Hard - 10 points\n• The program submitted by the participant will be considered correct if it gives the expected output for all the test cases.\n• Participants can compile and test the code before submitting. If it shows “All sample test cases passed” during testing and still shows “Wrong Answer” after submission, it is a presentation error. It can be avoided by properly formatting the output.\n• The ranking is done as follows:\no The one with the highest score is ranked first.\no In case if 2 or more persons have the same score, then they are ranked by the least total time taken to solve all the problems.\no The total time is the sum of the time consumed for each problem solved. The time consumed for a solved problem is the time elapsed from the beginning of the contest to the submittal of the accepted run plus 20 minutes for each rejected run. There is no time consumed for a problem that is not solved.\n• A live points table will be maintained so that the participant can check his/her ranking.\n• If any malicious activity like submitting the duplicate code is detected the user account will be deleted without prior notice.\n• Rules are subject to change at any point in time.\n\n");
+		updateTextValue("ï¿½ This is strictly an individual online event.ï¿½ The duration of the event is 5 days (7200 minutes)\nï¿½ Registration is required for participation and there should be no duplicate accounts.\nï¿½ Coding should be in C. No other language will be accepted.\nï¿½ There will be a total of 30 questions.\nï¿½ Questions will be of three types and scoring pattern is as follows:\n1. Easy - 5 points    2. Medium - 7 points    3. Hard - 10 points\nï¿½ The program submitted by the participant will be considered correct if it gives the expected output for all the test cases.\nï¿½ Participants can compile and test the code before submitting. If it shows ï¿½All sample test cases passedï¿½ during testing and still shows ï¿½Wrong Answerï¿½ after submission, it is a presentation error. It can be avoided by properly formatting the output.\nï¿½ The ranking is done as follows:\no The one with the highest score is ranked first.\no In case if 2 or more persons have the same score, then they are ranked by the least total time taken to solve all the problems.\no The total time is the sum of the time consumed for each problem solved. The time consumed for a solved problem is the time elapsed from the beginning of the contest to the submittal of the accepted run plus 20 minutes for each rejected run. There is no time consumed for a problem that is not solved.\nï¿½ A live points table will be maintained so that the participant can check his/her ranking.\nï¿½ If any malicious activity like submitting the duplicate code is detected the user account will be deleted without prior notice.\nï¿½ Rules are subject to change at any point in time.\n\n");
 		
 	}
 	

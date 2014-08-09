@@ -17,8 +17,7 @@ public class FragmentWebBots extends SherlockFragment implements OnClickListener
 
 	 ImageView intro,rules,format;
 	 
-	  static TextView tv;
-	
+	 public static TextView tv;	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
