@@ -64,7 +64,7 @@
        android:gravity="center"
        android:fontFamily="sans-serif"
        android:textColor="#e3e3e3"
-     android:text="“We’ve all played the game ‘Snake’. Haven’t we? We were all addicted to “Snake” at some point of our lives. Guiding a snake to eat as much food it can without hitting the walls and its own ever growing length was always exciting.\n\n"	/>	
+     android:text="“We’ve all played the game ‘Snake’. Haven’t we? We were all addicted to “Snake” at some point of our lives. Guiding a snake to eat as much food it can without hitting the walls and its own ever growing length was always exciting.\n\n"/>	
  
     </ScrollView>
  

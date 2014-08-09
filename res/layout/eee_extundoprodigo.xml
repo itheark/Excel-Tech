@@ -65,7 +65,7 @@
        android:gravity="center"
        android:fontFamily="sans-serif"
        android:textColor="#e3e3e3"
-     android:text="Even the hardest problems in this world are solved with the most simplest of logic. If complex algorithms are just a child’s play for you, then get ready to prove yourself at Excel ‘Algorithms’. Amaze us with your efficient plans and you might be the one to land your hands on that handsome cash prize.\n\n"	/>	
+     android:text="“Creativity is seeing what everybody has seen and thinking what nobody has thought.”\nThe moment has come to give wings to your imagination. Use your expert electrical and mechanical skills as a weapon to crown yourself as the master creator; give birth to your own gadget, crack the problem and dare your opponents. The crowd awaits the gadget of the day!\n\n"	/>	
  
     </ScrollView>
  

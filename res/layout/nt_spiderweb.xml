@@ -53,7 +53,7 @@
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="#90000000">
+        >
     <TextView
         android:id="@+id/txtinclude"
         android:layout_width="fill_parent"
@@ -66,7 +66,7 @@
        android:fontFamily="sans-serif"
        
         android:textColor="#99ffffff"
-     android:text="Even the hardest problems in this world are solved with the most simplest of logic. If complex algorithms are just a child’s play for you, then get ready to prove yourself at Excel ‘Algorithms’. Amaze us with your efficient plans and you might be the one to land your hands on that handsome cash prize.\n\n"	/>	
+     android:text="One challenge leading into another. 10 unforgettable, extraordinary levels...\nYour mettle shall be tested. Your fortitude shall be stretched to the limit. Your endurance will lead you to victory. No theme, No objective. A series of dares that will turn your day into the wildest nightmare, pushing you to your extremes in order to discover the lengths that you’ll be willing to go to not become a hapless bug caught in the spider’s web!\n"	/>	
  
     </ScrollView>
  

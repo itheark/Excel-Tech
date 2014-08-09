@@ -65,7 +65,7 @@
        android:gravity="center"
        android:fontFamily="sans-serif"
       android:textColor="#e3e3e3"
-     android:text="Even the hardest problems in this world are solved with the most simplest of logic. If complex algorithms are just a child’s play for you, then get ready to prove yourself at Excel ‘Algorithms’. Amaze us with your efficient plans and you might be the one to land your hands on that handsome cash prize.\n\n"	/>	
+     android:text="Have you ever imagined accomplishing the dangerous feat of defusing a bomb? DEFUSE gives you the once-in-a-lifetime opportunity to fulfil that dream! A time bound event, where your perseverance and teamwork will be put to test. Analyse, crack and defuse the bomb before it blows. Watch out! The clock is ticking...\n\n"/>	
  
     </ScrollView>
  

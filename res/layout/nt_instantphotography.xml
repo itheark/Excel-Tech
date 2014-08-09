@@ -53,7 +53,7 @@
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="#90000000">
+        >
     <TextView
         android:id="@+id/txtinclude"
         android:layout_width="fill_parent"
@@ -66,7 +66,7 @@
        android:fontFamily="sans-serif"
        
         android:textColor="#99ffffff"
-     android:text="Even the hardest problems in this world are solved with the most simplest of logic. If complex algorithms are just a child’s play for you, then get ready to prove yourself at Excel ‘Algorithms’. Amaze us with your efficient plans and you might be the one to land your hands on that handsome cash prize.\n\n"	/>	
+     android:text="Photography is something that cuts across all boundaries, it transcends the constraints of language and culture. Are you an artist with a camera who has his own story to tell? Then show us your the photographs, not pictures just taken, but works of art that are painstakingly fashioned. For all those shutterbugs who believe their favourite personal photograph is the one.....\n"	/>	
  
     </ScrollView>
  

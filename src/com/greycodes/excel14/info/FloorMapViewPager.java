@@ -27,7 +27,7 @@ public class FloorMapViewPager extends Fragment {
 			 fragmentmanager=  getChildFragmentManager();
 		        pager.set_max_pages(5);
 		        
-		        pager.setBackgroundAsset(R.raw.sanfran);
+		        pager.setBackgroundAsset(R.raw.nowcs);
 		        pager.setAdapter(new FMViewPageAdapter(fragmentmanager));
 		        pager.setCurrentItem(fmpagetodisplay);
 		      

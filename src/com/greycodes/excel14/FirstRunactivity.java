@@ -8,10 +8,14 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Html;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.greycodes.excel14.database.ParseCompetition;
 import com.greycodes.excel14.database.ParseNewsFeed;
 
@@ -30,6 +34,9 @@ public class FirstRunactivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_first_runactivity);
+		 android.app.ActionBar bar = getActionBar();
+	        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0e1215")));
+	        bar.setTitle(Html.fromHtml("<font color=\"#e6f3ea\">" + getString(R.string.app_name) + "</font>"));
 		compflag=nfeedflag=false;
 		parseCompetition = new ParseCompetition(this);
 		parseNewsFeed= new ParseNewsFeed(this);

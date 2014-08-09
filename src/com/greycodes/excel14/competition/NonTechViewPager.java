@@ -25,17 +25,9 @@ import com.greycodes.excel14.database.ExcelDataBase;
 import com.greycodes.excel14.database.InsertParticipant;
 import com.greycodes.excel14.nontechnical.FragmentBestManager;
 import com.greycodes.excel14.nontechnical.FragmentCSI;
-import com.greycodes.excel14.nontechnical.FragmentDigitalDaVinci;
-import com.greycodes.excel14.nontechnical.FragmentFunZone;
 import com.greycodes.excel14.nontechnical.FragmentGameZone;
-import com.greycodes.excel14.nontechnical.FragmentGeneralQuiz;
 import com.greycodes.excel14.nontechnical.FragmentInstantPhotography;
-import com.greycodes.excel14.nontechnical.FragmentKluge;
-import com.greycodes.excel14.nontechnical.FragmentOnlinePhotography;
-import com.greycodes.excel14.nontechnical.FragmentShortFilm;
 import com.greycodes.excel14.nontechnical.FragmentSpiderWeb;
-import com.greycodes.excel14.nontechnical.FragmentTikiTaka;
-import com.greycodes.excel14.nontechnical.FragmentTreasureHunt;
 
 public class NonTechViewPager extends Fragment implements OnClickListener,OnLongClickListener {
 	ViewPager view=null;
@@ -55,7 +47,7 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 			 final ViewPagerParallax pager = (ViewPagerParallax) rootView.findViewById(R.id.nontech_pager);
 			 fragmentmanager=  getChildFragmentManager();
 		        pager.set_max_pages(5);
-		        pager.setBackgroundAsset(R.raw.sanfran);
+		        pager.setBackgroundAsset(R.raw.nowcs);
 		        pager.setAdapter(new NonTechnicalViewPageAdapter(fragmentmanager));
 		        pager.setCurrentItem(pagetodisplay);
 		        excelDataBase = new ExcelDataBase(getActivity());
@@ -232,24 +224,22 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 			switch(position){
 			
 			case 0:
-				fragment = new FragmentGeneralQuiz();
+				fragment = new FragmentBestManager();
 				break;
 			case 1:
-				fragment = new FragmentOnlinePhotography();
+				fragment = new FragmentCSI();
 				
 				break;
 			case 2:
-				fragment = new FragmentInstantPhotography();
-				break;
-			case 3:
 				fragment = new FragmentGameZone();
 				break;
-			case 4:
+			case 3:
 				fragment = new FragmentSpiderWeb();
 				break;
-			case 5:
-				fragment = new FragmentFunZone();
+			case 4:
+				fragment = new FragmentInstantPhotography();
 				break;
+			
 			
 				
 			}

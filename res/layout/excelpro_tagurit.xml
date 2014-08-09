@@ -64,7 +64,7 @@
        android:gravity="center"
        android:fontFamily="sans-serif"
        android:textColor="#e3e3e3"
-     android:text="“We’ve all played the game ‘Snake’. Haven’t we? We were all addicted to “Snake” at some point of our lives. Guiding a snake to eat as much food it can without hitting the walls and its own ever growing length was always exciting.\n\n"	/>	
+     android:text="Are you one of those people whose taglines under photos and status updates gain double-digit or even triple-digit ‘likes’? Do you produce witty comments and cool taglines at the drop of a hat?\nWell, even if you don’t,’ TAG! You’re IT’ will offer you hours of amusement. Come up with witty and relevant taglines for the images provided, that too from the comfort of your homes (or offices) and you could win some serious cash here.\n\n" />	
  
     </ScrollView>
  

@@ -54,9 +54,9 @@ public class LoginActivity extends Activity implements OnClickListener  {
 	SharedPreferences sp,sharedPreferences;
 	Facebook fb;
 	TextView Registered;
-	String name,password,email,college,semester,phone;
-	 EditText etname;
-	 EditText etemail,etpassword,etcollege,etsemester,etphone;
+	String name,password,email,college,semester,phone,lastname;
+	 EditText etname,etlastname;
+	 EditText etemail,etpassword,etcollege,etsemester,etphone,etid;
 	 Bitmap bmp;
 	boolean flag =false;
 	CircularImageView pic ;
@@ -70,8 +70,9 @@ public class LoginActivity extends Activity implements OnClickListener  {
 		connectfb= (ImageView)findViewById(R.id.fbconnect);
 		signup= (ImageView)findViewById(R.id.signup);
 		Registered = (TextView) findViewById(R.id.clickhere);
-		
+		etid= (EditText) findViewById(R.id.registration_username);
 		etname= (EditText) findViewById(R.id.registration_name);
+		etlastname= (EditText) findViewById(R.id.registration_lastname);
 		etemail= (EditText) findViewById(R.id.registration_email);
 		etpassword = (EditText) findViewById(R.id.registration_password);
 		etcollege = (EditText) findViewById(R.id.registration_college);
@@ -161,12 +162,13 @@ public class LoginActivity extends Activity implements OnClickListener  {
 					String jsonUser =fb.request("me");
 					obj = Util.parseJson(jsonUser);
 					String id =obj.optString("id");
-					name =obj.optString("name");
+					name =obj.optString("first_name");
 					email =obj.optString("email");
-					
+					lastname =obj.optString("last_name");
 					etemail.setText(email);
 					etname.setText(name);
-					
+					etlastname.setText(lastname);
+					etid.setText(id);
 					img_url =new URL("https://graph.facebook.com/"+id+"/picture?type=normal");
 					 bmp =BitmapFactory.decodeStream(img_url.openConnection().getInputStream());
 					
