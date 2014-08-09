@@ -17,8 +17,7 @@ public class FragmentHackMaster extends SherlockFragment implements OnClickListe
 	
 	 ImageView intro,rules,format;
 	 
-	  static TextView tv;
-     
+	 public static TextView tv;     
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +49,7 @@ public class FragmentHackMaster extends SherlockFragment implements OnClickListe
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("“Most hackers are young because young people tend to be adaptable. As long as you remain adaptable”\nwhat’s life without a certain scandal? What’s power without some mischief? Living at the edge of the law? Be the vigilante that controls the code.\n\n" );
+			updateTextValue("ï¿½Most hackers are young because young people tend to be adaptable. As long as you remain adaptableï¿½\nwhatï¿½s life without a certain scandal? Whatï¿½s power without some mischief? Living at the edge of the law? Be the vigilante that controls the code.\n\n" );
 			
 		}
 		if (v.equals(rules))

@@ -31,8 +31,7 @@ public class FragmentFourOneTwenty extends SherlockFragment implements OnClickLi
 	String url= "http://greycodes.com/json/data_new3.json";
 	 ImageView intro,rules,format;
 	 
-	  static TextView tv;
-    
+	 public static TextView tv;    
 View rootView;
 
 	@Override

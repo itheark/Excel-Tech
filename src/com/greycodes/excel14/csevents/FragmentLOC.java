@@ -16,8 +16,7 @@ public class FragmentLOC extends SherlockFragment implements OnClickListener {
 	
 	 ImageView intro,rules,format;
 	 
-	  static TextView tv;
-    
+	 public static TextView tv;    
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -41,7 +40,7 @@ public class FragmentLOC extends SherlockFragment implements OnClickListener {
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("“Talk is cheap, show me the code ” – Linus Torvalds\n Are you ready to manipulate lines of code to outwit and outshine your opponents and rise as the one true Lord of the Code?\n\n" );
+			updateTextValue("ï¿½Talk is cheap, show me the code ï¿½ ï¿½ Linus Torvalds\n Are you ready to manipulate lines of code to outwit and outshine your opponents and rise as the one true Lord of the Code?\n\n" );
 			
 		}
 		if (v.equals(rules))

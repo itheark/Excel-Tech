@@ -1,18 +1,25 @@
 package com.greycodes.excel14.competition;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.greycodes.excel14.ConnectionDetector;
+import com.greycodes.excel14.FirstRunactivity;
+import com.greycodes.excel14.Misc;
 import com.greycodes.excel14.R;
 import com.greycodes.excel14.csevents.FragmentSoYouThink;
 import com.greycodes.excel14.csevents.FragmentFourOneTwenty;
@@ -23,19 +30,26 @@ import com.greycodes.excel14.csevents.FragmentWebBots;
 import com.greycodes.excel14.csevents.FragmentAlgorithms;
 import com.greycodes.excel14.database.ExcelDataBase;
 import com.greycodes.excel14.database.InsertParticipant;
+import com.greycodes.excel14.database.ParseResult;
 
 
-public class CSViewPager extends Fragment implements OnClickListener {
+public class CSViewPager extends Fragment implements OnClickListener,OnLongClickListener {
 ViewPager view=null;
 ImageView call,result,participate;
 
 ViewPagerParallax pager;
 public static int  pagetodisplay=0;
+int eid=100;
 //Button call;
 private int num_pages = 7;
 android.support.v4.app.FragmentManager fragmentmanager;
 View rootView;
+Misc  misc;
+ConnectionDetector connectionDetector;
+Handler h ;
 ExcelDataBase excelDataBase;
+ParseResult parseResult;
+ProgressDialog progressDialog;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -52,10 +66,13 @@ ExcelDataBase excelDataBase;
 	        pager.setCurrentItem(pagetodisplay);
 	      
 	        excelDataBase = new ExcelDataBase(getActivity());
-	        
+	         misc = new Misc(getActivity());
+	         connectionDetector = new ConnectionDetector(getActivity());
+	         parseResult = new ParseResult(getActivity());
 	        call.setOnClickListener(this);
 	        result.setOnClickListener(this);
 	        participate.setOnClickListener(this);
+	        call.setOnLongClickListener(this);
 			return rootView;
 
 	    }
@@ -89,54 +106,66 @@ ExcelDataBase excelDataBase;
 			switch(pager.getCurrentItem()){
 			case 0:
 				if(excelDataBase.Isregistered(1)){
-					Toast.makeText(getActivity(), "Registered", Toast.LENGTH_LONG).show();
+					if(insertParticipant.insert(000, "#include")){
+						Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
+		}else{
+						Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
+					}
 				}
-				//if(insertParticipant.insert(000, "#include")){
-				////	Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-			//	}else{
-				//	Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
-			//	}
+				
 			break;
 			case 1:
-				if(insertParticipant.insert(001, "Web Bots")){
-					Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-				}else{
-					Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+				if(excelDataBase.Isregistered(1)){
+					if(insertParticipant.insert(001, "Web Bots")){
+						Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
+		}else{
+						Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
+					}
 				}
 				break;
 			case 2:
-				if(insertParticipant.insert(002, "Lord of the Code")){
-					Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-				}else{
-					Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+				if(excelDataBase.Isregistered(1)){
+					if(insertParticipant.insert(002, "Lord of the Code")){
+						Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
+		}else{
+						Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
+					}
 				}
 				break;
 			case 3:
-				if(insertParticipant.insert(003, "Hackmaster")){
-					Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-				}else{
-					Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+				if(excelDataBase.Isregistered(1)){
+					if(insertParticipant.insert(003, "Hackmaster")){
+						Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
+		}else{
+						Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
+					}
 				}
 				break;
 			case 4:
-				if(insertParticipant.insert(004, "4*120")){
-					Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-				}else{
-					Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+				if(excelDataBase.Isregistered(1)){
+					if(insertParticipant.insert(004, "4*120")){
+						Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
+		}else{
+						Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
+					}
 				}
 				break;
 			case 5:
-				if(insertParticipant.insert(005, "Algorithms")){
-					Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-				}else{
-					Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+				if(excelDataBase.Isregistered(1)){
+					if(insertParticipant.insert(005, "Algorithms")){
+						Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
+		}else{
+						Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
+					}
 				}
 				break;
 			case 6:
-				if(insertParticipant.insert(006, "SYTYC Code")){
-					Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-				}else{
-					Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+				if(excelDataBase.Isregistered(1)){
+					if(insertParticipant.insert(006, "SYTYCC")){
+						Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
+		}else{
+						Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
+					}
 				}
 				break;
 			
@@ -145,10 +174,12 @@ ExcelDataBase excelDataBase;
 		case R.id.imageView2:
 			switch(pager.getCurrentItem()){
 			case 0:
-				
+				Toast.makeText(getActivity(), "result", Toast.LENGTH_SHORT).show();
+		       eid=100;
 			break;
 			case 1:
-				
+				Toast.makeText(getActivity(), "result", Toast.LENGTH_SHORT).show();
+
 				break;
 			case 2:
 				
@@ -167,58 +198,94 @@ ExcelDataBase excelDataBase;
 				break;
 			
 			}
+			
+			h = new Handler() {
+	            @Override
+	            public void handleMessage(Message msg) {
+
+	                if (msg.what != 1) { // code if not connected
+	                progressDialog.cancel();
+	                	connectionDetector.noNetworkAlert();;
+	               
+	                	
+	                	
+	            				
+	                } else { // code if connected
+		       
+					
+		           parseResult.result(eid);
+	                	 progressDialog.dismiss();          	
+	               	 
+	                }   
+	            }
+	        };
+	        
+	        progressDialog = ProgressDialog.show(getActivity(), "Excel", "Please Wait...");
+	        connectionDetector.isNetworkAvailable(h,5000);
 			break;
 		case R.id.imageView4:
 			switch(pager.getCurrentItem()){
 			case 0:
-				
+				FragmentHashInclude.tv.setText("Cordinator");
 			break;
 			case 1:
-				
+				FragmentWebBots.tv.setText("Cordinator");
 				break;
 			case 2:
-				
+				FragmentLOC.tv.setText("Cordinator");
 				break;
 			case 3:
-				
+				FragmentHackMaster.tv.setText("Cordinator");
 				break;
 			case 4:
-				
+				FragmentFourOneTwenty.tv.setText("Cordinator");
 				break;
 			case 5:
-				
+				FragmentAlgorithms.tv.setText("Cordinator");
 				break;
 			case 6:
-				
+				FragmentSoYouThink.tv.setText("Cordinator");
 				break;
 			
 			}
 			break;
 		}
-		if(v.equals(call))
 		
-		{
-			switch(pager.getCurrentItem())
-			{
-			case 0 :  Toast.makeText(getActivity(), "Calling PAge 0",
-					   Toast.LENGTH_LONG).show();
-			FragmentHashInclude.updateTextValue("Calling hasinclude");
-					break;
-			case 1 :  Toast.makeText(getActivity(), "Calling PAge 1",
-					   Toast.LENGTH_LONG).show();break;
-			case 2 :  Toast.makeText(getActivity(), "Calling PAge 2",
-					   Toast.LENGTH_LONG).show();break;
-			case 3 :  Toast.makeText(getActivity(), "Calling PAge 3",
-					   Toast.LENGTH_LONG).show();break;
-			default:Toast.makeText(getActivity(), "Calling PAge other",
-					   Toast.LENGTH_LONG).show();
-			//search for the page
-			}
-		}
 		
 	
 		
 		
+	}
+
+	@Override
+	public boolean onLongClick(View arg0) {
+		// TODO Auto-generated method stub
+		switch(pager.getCurrentItem()){
+		case 0:
+			misc.call("09020404022");		
+			break;
+		case 1:
+			misc.call("09020404022");		
+			
+			break;
+		case 2:
+			misc.call("09020404022");
+			break;
+		case 3:
+			misc.call("09020404022");
+			break;
+		case 4:
+			misc.call("09020404022");
+			break;
+		case 5:
+			misc.call("09020404022");
+			break;
+		case 6:
+			misc.call("09020404022");
+			break;
+		
+		}
+		return true;
 	}
 
 	
@@ -242,22 +309,22 @@ class CSViewPageAdapter extends FragmentStatePagerAdapter{
 			fragment = new FragmentHashInclude();
 			break;
 		case 1:
-			fragment = new FragmentSoYouThink();
-			break;
-		case 2:
-			fragment = new FragmentFourOneTwenty();
-			break;
-		case 3:
 			fragment = new FragmentWebBots();
 			break;
-		case 4:
-			fragment = new FragmentHackMaster();
-			break;
-		case 5:
+		case 2:
 			fragment = new FragmentLOC();
 			break;
-		case 6:
+		case 3:
+			fragment = new FragmentHackMaster();
+			break;
+		case 4:
+			fragment = new FragmentFourOneTwenty();
+			break;
+		case 5:
 			fragment = new FragmentAlgorithms();
+			break;
+		case 6:
+			fragment = new FragmentSoYouThink();
 			break;
 			
 		}
@@ -272,20 +339,20 @@ class CSViewPageAdapter extends FragmentStatePagerAdapter{
 			return "#Include";
 			
 		case 1:
-			return "SYTYCC";
+			return "Web Bots";
 		
 		case 2:
-			return "4*120";
+			return "Lord Of Code";
 		
 		case 3:
-			return "Web Bots";
+			return "Hackmaster";
 	
 		case 4:
-			return "Hack Master";
+			return "4*120";
 		case 5:
-			return "LOC";
-		case 6:
 			return "Algorithms";
+		case 6:
+			return "SYTYCC";
 		}
 		return null;
 	}

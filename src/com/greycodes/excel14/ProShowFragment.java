@@ -1,23 +1,21 @@
 package com.greycodes.excel14;
  
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
 
-import android.app.ProgressDialog;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
+import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
  
-public class ProShowFragment extends Fragment {
+public class ProShowFragment extends Fragment implements OnClickListener{
+ ImageView thai,naresh,avial;
+ Intent intent;
  
     //public static final String URL = "http://www.excelmec.org/excel2013/images/proshow.jpg";
    // ImageView imageView;
@@ -31,6 +29,14 @@ public class ProShowFragment extends Fragment {
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
     	 View rootView = inflater.inflate(R.layout.homend_proshow_fragment, container, false);
+    	 
+    	 thai = (ImageView) rootView.findViewById(R.id.thai);
+    	 naresh = (ImageView) rootView.findViewById(R.id.naresh);
+    	 avial = (ImageView) rootView.findViewById(R.id.avial);
+    	 
+    	 thai.setOnClickListener(this);
+    	 naresh.setOnClickListener(this);
+    	 avial.setOnClickListener(this);
     	 /*imageView = (ImageView) rootView.findViewById(R.id.proshow_imageview);
     	 
          // Create an object for subclass of AsyncTask
@@ -40,69 +46,35 @@ public class ProShowFragment extends Fragment {
     return rootView;
     }
 
-	/*private class GetXMLTask extends AsyncTask<String, Void, Bitmap> {
-      
-		@Override
-		protected void onPreExecute() {
-			// TODO Auto-generated method stub
-			super.onPreExecute();
-			 progDialog = ProgressDialog.show(getActivity(), "Excel", "Image Loading");
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.thai:
+			watchYoutubeVideo("nZsMJgWXb6M");
+			break;
+case R.id.naresh:
+	watchYoutubeVideo("uHrzGR7m5oI");
+			break;
+case R.id.avial:
+	watchYoutubeVideo("ODhlx4XkJcM");
+	
+	break;
+
+		
 		}
 		
-		
-		@Override
-        protected Bitmap doInBackground(String... urls) {
-            Bitmap map = null;
-            for (String url : urls) {
-                map = downloadImage(url);
-            }
-            return map;
-        }
- 
-        // Sets the Bitmap returned by doInBackground
-        @Override
-        protected void onPostExecute(Bitmap result) {
-           progDialog.dismiss();
-        	imageView.setImageBitmap(result);
-        }
- 
-        // Creates Bitmap from InputStream and returns it
-        private Bitmap downloadImage(String url) {
-            Bitmap bitmap = null;
-            InputStream stream = null;
-            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-            bmOptions.inSampleSize = 1;
- 
-            try {
-                stream = getHttpConnection(url);
-                bitmap = BitmapFactory.
-                        decodeStream(stream, null, bmOptions);
-                stream.close();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            return bitmap;
-        }
- 
-        // Makes HttpURLConnection and returns InputStream
-        private InputStream getHttpConnection(String urlString)
-                throws IOException {
-            InputStream stream = null;
-            URL url = new URL(urlString);
-            URLConnection connection = url.openConnection();
- 
-            try {
-                HttpURLConnection httpConnection = (HttpURLConnection) connection;
-                httpConnection.setRequestMethod("GET");
-                httpConnection.connect();
- 
-                if (httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                    stream = httpConnection.getInputStream();
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-            return stream;
-        }
-    }*/
+	}
+
+	public  void watchYoutubeVideo(String id){
+	    try{
+	         intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
+	         startActivity(intent);                 
+	         }catch (ActivityNotFoundException ex){
+	             Intent intent=new Intent(Intent.ACTION_VIEW, 
+	             Uri.parse("http://www.youtube.com/watch?v="+id));
+	             startActivity(intent);
+	         }
+	}
+
 }
