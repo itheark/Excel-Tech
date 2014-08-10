@@ -22,6 +22,8 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -32,6 +34,7 @@ import android.text.Html;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.graphics.PorterDuff.Mode;
 
 import com.actionbarsherlock.app.ActionBar;
@@ -40,6 +43,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.commonsware.cwac.merge.MergeAdapter;
 import com.greycodes.excel14.conference.ConferenceViewPager;
 import com.greycodes.excel14.database.ExcelDataBase;
+import com.greycodes.excel14.database.ParseQuickOpen;
 import com.greycodes.excel14.excelgallery.GalleryListActivity;
 import com.greycodes.excel14.login.AccountFragment;
 import com.greycodes.excel14.login.LoginActivity;
@@ -54,7 +58,7 @@ public class HomeNDActivity extends SherlockFragmentActivity {
 //variable declaration
 	
 
-	
+static public QuickOpenAdapter adapter;
 	
   
 	DrawerLayout hDrawerLayout;
@@ -74,6 +78,8 @@ ProgressDialog pd;
 SharedPreferences sharedPreferences;
 ExcelDataBase  excelDataBase;
 Cursor cursor;
+ConnectionDetector connectionDetector;
+Handler h;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,7 +120,7 @@ Cursor cursor;
 userDetails = new UserArrayAdapter(getApplicationContext(), name, username, image);
 homeoptions=new int[] {R.drawable.home_nd,R.drawable.competition_nd,
         R.drawable.talkseries_nd,R.drawable.conference,R.drawable.proshow_nd,R.drawable.initiatives_nd,
-        R.drawable.excelpro_nd,R.drawable.live_excel_gallery_nd,R.drawable.info_nd,R.drawable.newsfeeds};
+        R.drawable.excelpro_nd,R.drawable.quickopen,R.drawable.live_excel_gallery_nd,R.drawable.info_nd,R.drawable.newsfeeds};
         
         hDrawerLayout =(DrawerLayout) findViewById(R.id.drawer_layout_home);
         hDrawerList = (ListView) findViewById(R.id.listview_drawer_home);
@@ -259,8 +265,32 @@ private void  selectItem(int position) {
 	case 7:
 		f= new ExcelProViewPager();
 		break;
-		
 	case 8:
+		Toast.makeText(getApplicationContext(), "Please wait..Checking for update", Toast.LENGTH_LONG).show();
+		h = new Handler() {
+	            @Override
+	            public void handleMessage(Message msg) {
+
+	                if (msg.what != 1) { // code if not connected
+	                
+	                Toast.makeText(getApplicationContext(), "No Connection", Toast.LENGTH_LONG).show();
+	              
+	                	
+	                	
+	            				
+	                } else { // code if connected
+	                		       Toast.makeText(getApplicationContext(), "opening", Toast.LENGTH_SHORT).show();                
+	                        ParseQuickOpen quickOpen = new ParseQuickOpen(HomeNDActivity.this);
+	                        quickOpen.parseQO();
+	               	 
+	                }   
+	            }
+	        };
+	        
+	            
+	        ConnectionDetector.isNetworkAvailable(h,2000);
+		break;
+	case 9:
 		 homeIntent = new Intent(HomeNDActivity.this,GalleryListActivity.class);
 			hDrawerLayout.closeDrawer(hDrawerList);
 			startActivity(homeIntent);
@@ -269,7 +299,7 @@ private void  selectItem(int position) {
 		
 		
 		break;
-	case 9:
+	case 10:
 		 homeIntent = new Intent(HomeNDActivity.this,InfoNDActivity.class);
 		hDrawerLayout.closeDrawer(hDrawerList);
 		
@@ -279,7 +309,7 @@ private void  selectItem(int position) {
 		
 		overridePendingTransition(R.anim.fadeinright,R.anim.fadeoutleft);
 		break;
-	case 10:
+	case 11:
 		f= new NewsFeedFragment();
 		break;
 	}

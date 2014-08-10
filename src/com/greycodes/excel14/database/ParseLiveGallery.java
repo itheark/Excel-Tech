@@ -41,6 +41,7 @@ SharedPreferences sharedPreferences;
 	public Object parseImage(){
 		url = "http://excelapi.net84.net/sponsor.json";
 		try {
+			Toast.makeText(context, "live gallery parse", Toast.LENGTH_SHORT).show();
 			return new ParseImage().execute("http://excelapi.net84.net/livegallery.json").get();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -123,11 +124,11 @@ SharedPreferences sharedPreferences;
 			
 			imageDownloader = new ImageDownloader();
 			for(i=0;i<n;i++){
-				
-					imagebyte[i] = imageDownloader.Download(imageurl[i]);
-				
-				
-			}
+				if(sharedPreferences.getInt("gid", 99)<gid[i]){
+					Toast.makeText(context, "livegallery condition ok", Toast.LENGTH_SHORT).show();
+				imagebyte[i] = imageDownloader.Download(imageurl[i]);
+				}
+				}
 			
 			excelDataBase = new ExcelDataBase(context);
 			SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
@@ -135,18 +136,18 @@ SharedPreferences sharedPreferences;
 			//SID  ,PCODE INT NOT NULL, IMAGE ,URL VARCHAR(30)
 			
 				
-				for( i=0;i<n;i++){
-					
-					contentValues.put("GID", gid[i]);
-					contentValues.put("DESC", desc[i]);
-					contentValues.put("IMAGE", imagebyte[i]);
-					contentValues.put("AUTHOR", author[i]);
-					sqLiteDatabase.insert("GALLERY", null, contentValues);
-					Toast.makeText(context, "Sponsor Inserted", Toast.LENGTH_LONG).show();
-				
-					}
+			for( i=0;i<n;i++){
+				if(sharedPreferences.getInt("gid", 99)<gid[i]){
+				contentValues.put("GID", gid[i]);
+				contentValues.put("DESC", desc[i]);
+				contentValues.put("IMAGE", imagebyte[i]);
+				contentValues.put("AUTHOR", author[i]);
+				sqLiteDatabase.insert("GALLERY", null, contentValues);
+				Toast.makeText(context, "Sponsor Inserted", Toast.LENGTH_LONG).show();
+				}
+				}
 				Editor editor = sharedPreferences.edit();
-				editor.putInt("gid", gid[i-1]);
+				editor.putInt("gid", gid[n-1]);
 				editor.commit();
 				
 				ParseNewsFeed parseNewsFeed = new ParseNewsFeed(context);

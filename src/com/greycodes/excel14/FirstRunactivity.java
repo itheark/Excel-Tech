@@ -16,10 +16,11 @@ import android.os.Message;
 import android.text.Html;
 
 import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
 import com.greycodes.excel14.database.ParseCompetition;
 import com.greycodes.excel14.database.ParseNewsFeed;
 
-public class FirstRunactivity extends Activity {
+public class FirstRunactivity extends SherlockActivity {
 	ParseCompetition parseCompetition;
 	ParseNewsFeed parseNewsFeed;
 	ConnectionDetector connectionDetector;
@@ -34,7 +35,7 @@ public class FirstRunactivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_first_runactivity);
-		 android.app.ActionBar bar = getActionBar();
+		 ActionBar bar = getSupportActionBar();
 	        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0e1215")));
 	        bar.setTitle(Html.fromHtml("<font color=\"#e6f3ea\">" + getString(R.string.app_name) + "</font>"));
 		compflag=nfeedflag=false;
@@ -110,7 +111,9 @@ public void setnfeedflag(){
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				// TODO Auto-generated method stub
-				 ConnectionDetector.isNetworkAvailable(h,5000);
+		        progressDialog = ProgressDialog.show(FirstRunactivity.this, "Excel", "Please Wait...");
+
+				 ConnectionDetector.isNetworkAvailable(h,4000);
 			}
 		});
     	

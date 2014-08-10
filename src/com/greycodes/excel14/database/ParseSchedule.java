@@ -13,20 +13,34 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.greycodes.excel14.InfoNDActivity;
+import com.greycodes.excel14.R;
+import com.greycodes.excel14.info.ScheduleViewPager;
 
+import android.content.ContentValues;
 import android.content.Context;
-
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.text.Editable;
+import android.widget.Toast;
 
 
 public class ParseSchedule {
 String url,results;
 JSONArray jsonarray;
-String[] ename,cat,stime,duration,venue;
+String[] ename,cat,stime,duration,venue,time;
 int[] eid,sid,level,day;
 int count,i;
-
+int schedule_flag;
 Context context;
+ExcelDataBase excelDataBase;
 
 	public ParseSchedule(Context context) {
 		// TODO Auto-generated constructor stub
@@ -36,7 +50,8 @@ Context context;
 	public Object parseSchedule(){
 		url = "http://excelapi.net84.net/schedule.json";
 		try {
-			return new parseschedule().execute("http://excelapi.net84.net/schedule.json").get();
+			Object object = new flagCheck().execute("http://excelapi.net84.net/flag.json").get();
+			//return new parseschedule().execute("http://excelapi.net84.net/schedule.json").get();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,22 +105,25 @@ Context context;
 					stime = new String[count];
 					duration = new String[count];
 					venue = new String[count];
-
+					time = new String[count];
+					
 					eid = new int[count];
 					sid = new int[count];
 					level = new int[count];
 					day = new int[count];
+					
 				 for(i=0;i<count;i++){
-					 eid[i] = jsonarray.getJSONObject(i).getInt("eid");
-					 eid[i] = jsonarray.getJSONObject(i).getInt("sid");
-					 ename[i] = jsonarray.getJSONObject(i).getString("name");
-					 cat[i] = jsonarray.getJSONObject(i).getString("cat");
-					 day[i] = jsonarray.getJSONObject(i).getInt("day");
-					 level[i] = jsonarray.getJSONObject(i).getInt("level");
-					 venue[i] = jsonarray.getJSONObject(i).getString("venue");
-					 stime[i] = jsonarray.getJSONObject(i).getString("starttime");
-					 duration[i] = jsonarray.getJSONObject(i).getString("durations");
 					 
+					 sid[i] = jsonarray.getJSONObject(i).getInt("sid");
+					 eid[i] = jsonarray.getJSONObject(i).getInt("eid");
+					 ename[i] = jsonarray.getJSONObject(i).getString("name");
+					 level[i] = jsonarray.getJSONObject(i).getInt("level");
+					 day[i] = jsonarray.getJSONObject(i).getInt("day");
+					 cat[i] = jsonarray.getJSONObject(i).getString("cat");
+					 venue[i] = jsonarray.getJSONObject(i).getString("venue");
+					 stime[i] = jsonarray.getJSONObject(i).getString("stime");
+					 duration[i] = jsonarray.getJSONObject(i).getString("duration");
+					 time[i] = jsonarray.getJSONObject(i).getString("time");
 				 }
 					
 					 
@@ -123,11 +141,134 @@ Context context;
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			
+			excelDataBase = new ExcelDataBase(context);
+			SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
+			ContentValues contentValues = new ContentValues();
+			try {
+				for(i=0;i<count;i++){
+					contentValues.put("SID", sid[i]);
+					contentValues.put("EID", eid[i]);
+					contentValues.put("ENAME", ename[i]);
+					contentValues.put("LEVEL", level[i]);
+					contentValues.put("DAY", day[i]);
+					contentValues.put("CAT", cat[i]);
+					contentValues.put("VENUE", venue[i]);
+					contentValues.put("STIME", stime[i]);
+					contentValues.put("DURATION", duration[i]);
+					contentValues.put("TIME", time[i]);
+					sqLiteDatabase.insert("SCHEDULE", null, contentValues);
+					Toast.makeText(context, "schedule Inserted", Toast.LENGTH_LONG).show();
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		String[]	columns = new String[]{"SID"};
+		 
+		Cursor cursor=	sqLiteDatabase.query("SCHEDULE", columns, null, null, null, null, null);
+		
+		cursor.moveToFirst();
+		 		
+			if(cursor.getCount()>0){
+				Toast.makeText(context, "flag=2", Toast.LENGTH_SHORT).show();
+				SharedPreferences   sharedPreferences = context.getSharedPreferences("flag", Context.MODE_PRIVATE);
+				Editor editor = sharedPreferences.edit();
+				editor.putInt("schedule",2);
+				editor.commit();
 				
+			}
+			InfoNDActivity activity = new InfoNDActivity();
+			try {
+				activity.progressDialog.dismiss();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Fragment f;
+			FragmentManager fragmentManager ;
+			 FragmentTransaction transaction;
+			 fragmentManager = ((InfoNDActivity) context).getSupportFragmentManager();
+			 transaction=fragmentManager.beginTransaction();
+		 f =new ScheduleViewPager();
+			transaction.setCustomAnimations(R.anim.fadeinright, R.anim.fadeoutleft, R.anim.fadeinleft, R.anim.fadeoutright);
+			transaction.replace(R.id.info_content_frame,f);
+			// Add this transaction to the back stack
+           transaction.addToBackStack("infoND");
+           transaction.commit();
 		}
 
 		
 	}
+	
+	
+	private class flagCheck extends AsyncTask<String, String, String>{
+		  String results;
+		  
+		  	@Override
+		  	protected String doInBackground(String... params) {			
+		  			// TODO Auto-generated method stub
+		  		
+		  		DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
+		  		HttpPost httppost = new HttpPost("http://excelapi.net84.net/flag.json");
+		  		httppost.setHeader("Content-type","application/json");
+		  		InputStream inputstream = null;
+		  		try{
+		  			org.apache.http.HttpResponse response = httpclient.execute(httppost);
+		  			HttpEntity entity =  response.getEntity();
+		  			inputstream = entity.getContent();
+		  			BufferedReader reader = new BufferedReader(new InputStreamReader(inputstream,"UTF-8"),8);
+		  			StringBuilder theStringBuilder = new StringBuilder();
+		  			String line = null;
+		  			while((line= reader.readLine())!=null){
+		  				theStringBuilder.append(line+ '\n');
+		  				
+		  			}
+		  			results = theStringBuilder.toString();
+		  			
+		  		}catch(Exception e){
+		  			e.printStackTrace();
+		  		}finally{
+		  			try{
+		  				if(inputstream!=null)
+		  					inputstream.close();
+		  			}catch(Exception e){
+		  				e.printStackTrace();
+		  			}
+		  		}
+		  		return null;
+		  	}
+
+		  	@Override
+		  	protected void onPostExecute(String result) {
+		  		// TODO Auto-generated method stub
+		  		super.onPostExecute(result);
+		  		try {
+		  			JSONObject jsonObject = new JSONObject(results);
+		  			schedule_flag = jsonObject.getInt("schedule");
+		  			
+		  			//SharedPreferences   sharedPreferences = getActivity().getSharedPreferences("flag", Context.MODE_PRIVATE);
+		  			if(schedule_flag==1){
+		  				Toast.makeText(context, "Schedule not released", Toast.LENGTH_LONG).show();
+		  				
+		  			
+		  			}else{
+		  				Object   nfeed = new parseschedule().execute("http://excelapi.net84.net/schedule.json").get();
+		  			}
+		  		} catch (JSONException e) {
+		  			// TODO Auto-generated catch block
+		  			e.printStackTrace();
+		  		} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ExecutionException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		  		
+		  		
+		  		
+		  	}
+		  	  
+		    }
 
 }
