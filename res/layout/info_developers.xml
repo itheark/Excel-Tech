@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#0c5e79" >
+    android:background="@drawable/developersbg" >
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/developersinfo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/developername"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
        ></ImageView>
