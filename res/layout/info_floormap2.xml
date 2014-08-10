@@ -3,13 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#ffffff"
      >
 
-    <TextView
-        android:id="@+id/textView1"
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true" >
+
+     
+      
+
+    <ImageView
+        android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Floor Map 2" 
-        android:textSize="40dp"/>
+        android:src="@drawable/floor2"
+        android:layout_gravity="center"
+         />
+    
+      </HorizontalScrollView>
+
+
+
 
 </LinearLayout>

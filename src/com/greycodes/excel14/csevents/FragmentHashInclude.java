@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.AnimationUtils;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -150,8 +151,9 @@ public void onClick(View v) {
 	
 	
 
-public static void updateTextValue(CharSequence newText) {
+public void updateTextValue(CharSequence newText) {
     tv.setText(newText);
+    tv.setAnimation(AnimationUtils.loadAnimation(getActivity(),android.R.anim.fade_in));
 	}
 }
 
