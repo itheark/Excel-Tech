@@ -44,7 +44,7 @@ public class FragmentExtrinsicity extends SherlockFragment implements OnClickLis
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("Are you an electronic wiz? Does the world of electronics and circuits excite you? Then buckle up to face the ultimatum in the arena of electronics at excel 2k14. Challenge your intellect and analytical competence at the battle ground of 'Extrinsicity'.  The traps are set, Are u?\n\n" );
+			updateTextValue("Are you an electronic wiz? Does the world of electronics and circuits excite you? Then buckle up to face the ultimatum in the arena of electronics at excel 2k14. Challenge your intellect and analytical competence at the battle ground of “Extrinsicity”.  The traps are set, Are u?\n\n" );
 			
 		}
 		if (v.equals(rules))
