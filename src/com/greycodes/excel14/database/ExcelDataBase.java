@@ -87,6 +87,7 @@ return flag;
 		static final String Create_sponsor = "CREATE TABLE SPONSOR (SID INT PRIMARY KEY NOT NULL,PCODE INT NOT NULL,IMAGE BLOB NOT NULL,URL VARCHAR(30) NOT NULL);";
 		static final String Create_LiveGallery = "CREATE TABLE GALLERY (GID INT PRIMARY KEY NOT NULL,DESC VARCHAR(200) NOT NULL,IMAGE BLOB NOT NULL,AUTHOR VARCHAR(50) NOT NULL);";
 		static final String Create_participate = "CREATE TABLE PARTICIPATE (EID INT PRIMARY KEY NOT NULL,ENAME VARCHAR NOT NULL);";
+		static final String Create_schedule = "CREATE TABLE SCHEDULE (SID INT PRIMARY KEY NOT NULL,EID INT NOT NULL,ENAME VARCHAR NOT NULL,LEVEL INT NOT NULL,DAY INT NOT NULL,CAT VARCHAR(20) NOT NULL,VENUE VARCHAR(30) NOT NULL,STIME VARCHAR(25) NOT NULL,DURATION VARCHAR(15) NOT NULL,TIME VARCHAR(15) NOT NULL);";
 		public ExcelDatabaseHelper() {
 			super(context, Database_name, null, Database_version);
 			Toast.makeText(context, "ExcelDatabaseHelper constructor", Toast.LENGTH_SHORT).show();
@@ -106,6 +107,7 @@ return flag;
 				db.execSQL(Create_sponsor);
 				db.execSQL(Create_participate);
 				db.execSQL(Create_LiveGallery);
+				db.execSQL(Create_schedule);
 				Toast.makeText(context, " db created", Toast.LENGTH_LONG).show();
 
 			} catch (SQLException e) {

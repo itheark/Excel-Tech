@@ -1,11 +1,18 @@
 package com.greycodes.excel14;
 
 
+import java.util.concurrent.ExecutionException;
+
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,11 +23,13 @@ import android.text.Html;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.greycodes.excel14.database.ParseSchedule;
 import com.greycodes.excel14.info.ContactsFragment;
 import com.greycodes.excel14.info.Developers;
 import com.greycodes.excel14.info.FloorMapFragment;
@@ -36,9 +45,13 @@ public class InfoNDActivity extends SherlockFragmentActivity {
 	HomeMenuListAdapter iMenuAdapter;
 	int[] ioptions;
 	Fragment f;
+	ParseSchedule ParseS;
 	FragmentManager fragmentManager ;
 	 FragmentTransaction transaction;
-	
+	 SharedPreferences sharedPreferences;
+	public ProgressDialog progressDialog;
+	ConnectionDetector connectionDetector;
+	Handler h;
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// TODO Auto-generated method stub
@@ -57,7 +70,7 @@ public class InfoNDActivity extends SherlockFragmentActivity {
 		 ActionBar bar = getSupportActionBar();
 	        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0e1215")));
 	        bar.setTitle(Html.fromHtml("<font color=\"#e6f3ea\">" + getString(R.string.app_name) + "</font>"));
-		
+		connectionDetector = new ConnectionDetector(this);
  fragmentManager = getSupportFragmentManager();
 	 transaction=fragmentManager.beginTransaction();
 		
@@ -69,7 +82,7 @@ public class InfoNDActivity extends SherlockFragmentActivity {
 		        iMenuAdapter= new HomeMenuListAdapter(InfoNDActivity.this, ioptions);
 		        iDrawerList.setAdapter(iMenuAdapter);
 		        iDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-		        
+		      ParseS = new ParseSchedule(this);
 		        getSupportActionBar().setHomeButtonEnabled(true);
 		        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		        iDrawerToggle= new ActionBarDrawerToggle(this, iDrawerLayout, R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close)
@@ -158,7 +171,42 @@ public class InfoNDActivity extends SherlockFragmentActivity {
 					f= new FloorMapFragment();
 			break;
 			case 2:
-				f= new ScheduleViewPager();
+				sharedPreferences = getSharedPreferences("flag", Context.MODE_PRIVATE);
+				if(sharedPreferences.getInt("schedule", 1)==2){
+					f= new ScheduleViewPager();
+				}
+				else{
+					Toast.makeText(getApplicationContext(), "Please wait..Checking for update", Toast.LENGTH_LONG).show();
+					 h = new Handler() {
+				            @Override
+				            public void handleMessage(Message msg) {
+
+				                if (msg.what != 1) { // code if not connected
+				                
+				                Toast.makeText(getApplicationContext(), "No Connection", Toast.LENGTH_LONG).show();
+				              
+				                	
+				                	
+				            				
+				                } else { // code if connected
+				                
+					           
+					                Toast.makeText(getApplicationContext(), " Connection", Toast.LENGTH_LONG).show();
+					              ParseS.parseSchedule();
+					           
+				                	
+				                	
+				               	 
+				                }   
+				            }
+				        };
+				        
+				            
+				        ConnectionDetector.isNetworkAvailable(h,2000);
+					
+					//	ParseSchedule ParseS = new ParseSchedule(getApplicationContext());
+					//ParseS.parseSchedule();
+				}
 			break;
 			case 3:
 				f= new HospitalityFragment();

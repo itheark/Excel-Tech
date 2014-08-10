@@ -1,10 +1,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-       
+
+  
+    <item
+        android:id="@+id/action_refresh"
+        android:icon="@drawable/ic_action_refresh"
+        android:showAsAction="always"
+        android:title="@string/action_refresh"/>
+  
+    
     <item
         android:id="@+id/action_new"
         android:icon="@drawable/ic_action_photo"
-        android:showAsAction="ifRoom"
+        android:showAsAction="always"
         android:title="@string/action_new">
     </item>
+      <item
+        android:id="@+id/action_home"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:icon="@drawable/home_button"
+        android:title="Home"/>
 
 </menu>
