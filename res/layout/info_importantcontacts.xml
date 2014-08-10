@@ -1,9 +1,89 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/ibg"
     android:orientation="vertical"
-    android:background="@drawable/impcontact_back" >
-
+    android:gravity="center_horizontal" >
+ 
+ 
+ 
+ <ScrollView 
+        android:id="@+id/scrollView1"
+       android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
     
-</LinearLayout>
+     >
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    
+    android:orientation="vertical"
+    android:gravity="center_horizontal" >
+   
+    <ImageView
+        android:id="@+id/include"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/i1" /> 
+
+      <ImageView
+        android:id="@+id/webots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/i2" 
+        android:layout_below="@+id/include"/>
+        <ImageView
+        android:id="@+id/loc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/i3"
+        android:layout_below="@+id/webots" 
+        />
+          <ImageView
+        android:id="@+id/hackmaster"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/i4"
+        android:layout_below="@+id/loc"  />
+            <ImageView
+        android:id="@+id/four120"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/i5" 
+        android:layout_below="@+id/hackmaster" />
+              <ImageView
+        android:id="@+id/algorithm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/i6" 
+        android:layout_below="@+id/four120" />
+                <ImageView
+        android:id="@+id/soyouthink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/i7" 
+        android:layout_below="@+id/algorithm" />
+                 <ImageView
+        android:id="@+id/i8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/i8" 
+        android:layout_below="@+id/soyouthink" />
+                  <ImageView
+        android:id="@+id/i9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/i9" 
+        android:layout_below="@+id/i8" />
+                   <ImageView
+        android:id="@+id/i10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/i10" 
+        android:layout_below="@+id/i9" />
+    
+</RelativeLayout>
+ </ScrollView>
+ </LinearLayout>
