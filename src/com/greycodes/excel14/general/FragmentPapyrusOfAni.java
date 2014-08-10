@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.AnimationUtils;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -44,7 +45,7 @@ public class FragmentPapyrusOfAni extends SherlockFragment implements OnClickLis
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("Even the hardest problems in this world are solved with the most simplest of logic. If complex algorithms are just a child’s play for you, then get ready to prove yourself at Excel ‘Algorithms’. Amaze us with your efficient plans and you might be the one to land your hands on that handsome cash prize.\n\n"	);
+			updateTextValue("“Vision without action is merely a dream”\nIt is time to titillate your grey cells, bring out innovative and ingenious ideas and unleash it to the world, ’cos it awaits a change! Papyrus of ani provides you the right platform to impact the scientific world with your brilliant thoughts and win exciting cash prizes! \n\n"	);
 			
 		}
 		if (v.equals(rules))
@@ -68,8 +69,9 @@ public class FragmentPapyrusOfAni extends SherlockFragment implements OnClickLis
 		
 		
 
-	public static void updateTextValue(CharSequence newText) {
+	public   void updateTextValue(CharSequence newText) {
 	    tv.setText(newText);
+	    tv.setAnimation(AnimationUtils.loadAnimation(getActivity(),android.R.anim.fade_in));
 		}
 	
 

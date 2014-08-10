@@ -25,5 +25,6 @@ Context context;
 			FragmentHashInclude.tv.setText(text);
 			break;
 		}
+		
 	}
 }
