@@ -283,7 +283,7 @@ public class GalleryListActivity extends ListActivity  {
 				}
 				}
 			
-			excelDataBase = new ExcelDataBase(getApplicationContext());
+			excelDataBase = new ExcelDataBase(GalleryListActivity.this);
 			SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
 			ContentValues contentValues = new ContentValues();
 			
@@ -296,7 +296,6 @@ public class GalleryListActivity extends ListActivity  {
 				contentValues.put("IMAGE", imagebyte[i]);
 				contentValues.put("AUTHOR", author[i]);
 				sqLiteDatabase.insert("GALLERY", null, contentValues);
-				Toast.makeText(getApplicationContext(), "Sponsor Inserted", Toast.LENGTH_LONG).show();
 				}
 				}
 			SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -304,7 +303,24 @@ public class GalleryListActivity extends ListActivity  {
 			editor.putInt("gid", a);
 			editor.commit();
 				
-				 author = new String[cursor.getCount()];
+		
+	    	 try {
+				cursor=	sqLiteDatabase.query("GALLERY", columns, null, null, null, null, "GID DESC");
+				 cursor.moveToFirst();
+				 
+   author = new String[cursor.getCount()];
+   desc = new String[cursor.getCount()];
+   bs = new byte[cursor.getCount()][];
+   for(int i=0;i<cursor.getCount();i++,cursor.moveToNext()){
+				desc[i]= cursor.getString(cursor.getColumnIndex("AUTHOR"));
+				desc[i]= desc[i]+" : "+ cursor.getString(cursor.getColumnIndex("DESC"));
+				bs[i]=cursor.getBlob(cursor.getColumnIndex("IMAGE"));
+   }
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			/*	 author = new String[cursor.getCount()];
 				    desc = new String[cursor.getCount()];
 				    bs = new byte[cursor.getCount()][];
 				    for(int i=0;i<cursor.getCount();i++,cursor.moveToNext()){
@@ -312,9 +328,10 @@ public class GalleryListActivity extends ListActivity  {
 				    	desc[i]= desc[i]+" : "+ cursor.getString(cursor.getColumnIndex("DESC"));
 				    	bs[i]=cursor.getBlob(cursor.getColumnIndex("IMAGE"));
 				    }
+				    	*/
+				    	adapter = new LiveGalleryAdapter(getApplicationContext(),desc,bs);
+				    	setListAdapter(adapter);
 				    	
-				    //	adapter = new LiveGalleryAdapter(getApplicationContext(),desc,bs);
-				    //	setListAdapter(adapter);
 				
 		}
 

@@ -8,25 +8,31 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.greycodes.excel14.R;
 import com.greycodes.excel14.database.ExcelDataBase;
 
-public class ScheduleDay1Fragment extends ListFragment {
+public class ScheduleDay1Fragment extends Fragment implements OnScrollListener {
 	ExcelDataBase excelDataBase;
 	String[] columns,selection;
 	int count;
 	String[] ename,cat,venue,stime,duration,time;
 	int[] level;
 	ScheduleAdapter adapter;
+	ListView listView;
+	TextView tvtime;
 	@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 			
 		 View rootView = inflater.inflate(R.layout.schedule_dayone, container, false);
-		
+		listView = (ListView) rootView.findViewById(R.id.schedule_listview);
+		tvtime = (TextView) rootView.findViewById(R.id.schedule_time);
 		   excelDataBase = new ExcelDataBase(getActivity());
 	SQLiteDatabase sqLiteDatabase=	  excelDataBase.getSQLiteDataBase();
 	columns = new String[]{"EID","ENAME","LEVEL","CAT","VENUE","STIME","DURATION","TIME"};
@@ -65,8 +71,22 @@ public class ScheduleDay1Fragment extends ListFragment {
 	level = new int[]{1};
 */
 	adapter = new ScheduleAdapter(getActivity(), ename, level, cat, venue, stime, duration, stime);
-		 setListAdapter(adapter);
+		 listView.setAdapter(adapter);
+	
+	listView.setOnScrollListener(this);
 		 
 		 return rootView;
+	}
+	@Override
+	public void onScroll(AbsListView view, int firstVisibleItem,
+			int visibleItemCount, int totalItemCount) {
+		// TODO Auto-generated method stub
+	int a=listView.getFirstVisiblePosition()+visibleItemCount/2;
+	tvtime.setText(time[a]);
+	}
+	@Override
+	public void onScrollStateChanged(AbsListView view, int scrollState) {
+		// TODO Auto-generated method stub
+		
 	}
 }
