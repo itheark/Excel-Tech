@@ -58,7 +58,7 @@ public class HomeNDActivity extends SherlockFragmentActivity {
 //variable declaration
 	
 
-	
+static public QuickOpenAdapter adapter;
 	
   
 	DrawerLayout hDrawerLayout;
@@ -279,8 +279,8 @@ private void  selectItem(int position) {
 	                	
 	            				
 	                } else { // code if connected
-	                		                       
-	                        ParseQuickOpen quickOpen = new ParseQuickOpen(getApplicationContext());
+	                		       Toast.makeText(getApplicationContext(), "opening", Toast.LENGTH_SHORT).show();                
+	                        ParseQuickOpen quickOpen = new ParseQuickOpen(HomeNDActivity.this);
 	                        quickOpen.parseQO();
 	               	 
 	                }   

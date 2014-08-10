@@ -13,10 +13,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.greycodes.excel14.HomeNDActivity;
+import com.greycodes.excel14.QuickOpenAdapter;
+import com.greycodes.excel14.QuickOpenFragment;
+import com.greycodes.excel14.R;
+import com.greycodes.excel14.login.AccountFragment;
 
 import android.content.Context;
-
 import android.os.AsyncTask;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
 
 public class ParseQuickOpen {
@@ -120,7 +127,18 @@ Context context;
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			
+			QuickOpenAdapter adapter = new QuickOpenAdapter(context, ename, level, cat, venue, stime, duration, hotness);
+			HomeNDActivity.adapter=adapter;
+			Fragment f;
+			FragmentManager fragmentManager ;
+			FragmentTransaction transaction;
+			fragmentManager = ((HomeNDActivity) context).getSupportFragmentManager();
+			 transaction=fragmentManager.beginTransaction();
+			 f = new QuickOpenFragment();
+			 transaction.replace(R.id.home_content_frame,f);
+				// Add this transaction to the back stack
+               transaction.addToBackStack("detail");
+               transaction.commit();
 				
 		}
 
