@@ -15,7 +15,7 @@
         android:layout_marginRight="12dp">
     
     <TextView
-        android:id="@+id/excelgallery_desc"
+        android:id="@+id/livegallery_desc"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:textSize="20dp"
@@ -24,7 +24,7 @@
 
    
     <ImageView
-        android:id="@+id/excelgallery_image"
+        android:id="@+id/livegallery_image"
         android:layout_width="match_parent"
         android:layout_height="250dp"
          />

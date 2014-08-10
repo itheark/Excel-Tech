@@ -13,32 +13,30 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
-import android.widget.Toast;
 
-public class ParseSponsor {
+import android.content.Context;
+
+import android.os.AsyncTask;
+
+
+public class ParseSchedule {
 String url,results;
 JSONArray jsonarray;
-String[] imageurl,companyurl;
-int[] sid,pcode;
-int n;
-byte[][] imagebyte;
-Context context;
-ExcelDataBase excelDataBase;
-ImageDownloader imageDownloader;
+String[] ename,cat,stime,duration,venue;
+int[] eid,sid,level,day;
+int count,i;
 
-	public ParseSponsor(Context context) {
+Context context;
+
+	public ParseSchedule(Context context) {
 		// TODO Auto-generated constructor stub
 		this.context = context;
 	}
 	
-	public Object parseSponsorImage(){
-		url = "http://excelapi.net84.net/sponsor.json";
+	public Object parseSchedule(){
+		url = "http://excelapi.net84.net/schedule.json";
 		try {
-			return new ParseSponsorImage().execute(url).get();
+			return new parseschedule().execute("http://excelapi.net84.net/schedule.json").get();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,14 +48,14 @@ ImageDownloader imageDownloader;
 	}
 
 	
-	public class ParseSponsorImage extends AsyncTask<String, String, String>  {
+	public class parseschedule extends AsyncTask<String, String, String>  {
 
 		@Override
 		protected String doInBackground(String... params)  {
 			// TODO Auto-generated method stub
 			
 			DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-			HttpPost httppost = new HttpPost(url);
+			HttpPost httppost = new HttpPost("http://excelapi.net84.net/schedule.json");
 			httppost.setHeader("Content-type","application/json");
 			InputStream inputstream = null;
 			try{
@@ -85,25 +83,32 @@ ImageDownloader imageDownloader;
 				JSONObject jsonObject;
 				try{
 					jsonObject = new JSONObject(results);
-				 jsonarray = jsonObject.getJSONArray("sponsor");
+					jsonarray = jsonObject.getJSONArray("schedule");
+					count = jsonarray.length();
+					ename = new String[count];
+					cat = new String[count];
+					stime = new String[count];
+					duration = new String[count];
+					venue = new String[count];
+
+					eid = new int[count];
+					sid = new int[count];
+					level = new int[count];
+					day = new int[count];
+				 for(i=0;i<count;i++){
+					 eid[i] = jsonarray.getJSONObject(i).getInt("eid");
+					 eid[i] = jsonarray.getJSONObject(i).getInt("sid");
+					 ename[i] = jsonarray.getJSONObject(i).getString("name");
+					 cat[i] = jsonarray.getJSONObject(i).getString("cat");
+					 day[i] = jsonarray.getJSONObject(i).getInt("day");
+					 level[i] = jsonarray.getJSONObject(i).getInt("level");
+					 venue[i] = jsonarray.getJSONObject(i).getString("venue");
+					 stime[i] = jsonarray.getJSONObject(i).getString("starttime");
+					 duration[i] = jsonarray.getJSONObject(i).getString("durations");
+					 
+				 }
 					
-					 imageurl = new String[jsonarray.length()];
-				 companyurl = new String[jsonarray.length()];
-					 sid = new int[jsonarray.length()];
-					 pcode = new int[jsonarray.length()];
-					 imagebyte = new byte[jsonarray.length()][];
-					  n = jsonarray.length();
-					
-					for(int i=0;i<n;i++){
-						imageurl[i]= jsonarray.getJSONObject(i).getString("image");
-						companyurl[i]= jsonarray.getJSONObject(i).getString("url");
-						pcode[i]= jsonarray.getJSONObject(i).getInt("pcode");
-						sid[i]= jsonarray.getJSONObject(i).getInt("sid");
-						
-						
-						
-						
-					}
+					 
 					
 
 				}catch(JSONException e){
@@ -118,28 +123,8 @@ ImageDownloader imageDownloader;
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			imageDownloader = new ImageDownloader();
-			for(int i=0;i<n;i++){
-				imagebyte[i] = imageDownloader.Download(imageurl[i]);
-			}
-			
-			excelDataBase = new ExcelDataBase(context);
-			SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
-			ContentValues contentValues = new ContentValues();
-			//SID  ,PCODE INT NOT NULL, IMAGE ,URL VARCHAR(30)
 			
 				
-				for(int i=0;i<n;i++){
-					contentValues.put("SID", sid[i]);
-					contentValues.put("PCODE", pcode[i]);
-					contentValues.put("IMAGE", imagebyte[i]);
-					contentValues.put("URL", companyurl[i]);
-					sqLiteDatabase.insert("SPONSOR", null, contentValues);
-					Toast.makeText(context, "Sponsor Inserted", Toast.LENGTH_LONG).show();
-				}
-				
-				ParseLiveGallery parseliveGallery = new ParseLiveGallery(context);
-				Object elgallery=    parseliveGallery.parseImage();
 		}
 
 		

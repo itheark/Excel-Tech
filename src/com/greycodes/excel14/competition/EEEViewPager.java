@@ -19,6 +19,7 @@ import com.greycodes.excel14.database.InsertParticipant;
 import com.greycodes.excel14.ecevents.FragmentCircuim;
 import com.greycodes.excel14.ecevents.FragmentDefuse;
 import com.greycodes.excel14.ecevents.FragmentExtrinsicity;
+import com.greycodes.excel14.eeeevents.EaventuraFragment;
 import com.greycodes.excel14.eeeevents.FragmentExtundoprodigo;
 import com.greycodes.excel14.eeeevents.FragmentLumiere;
 
@@ -38,7 +39,7 @@ public class EEEViewPager extends Fragment implements OnClickListener,OnLongClic
 
 			  pager = (ViewPagerParallax) rootView.findViewById(R.id.eeepager);
 			 fragmentmanager=  getChildFragmentManager();
-			 pager.set_max_pages(2);
+			 pager.set_max_pages(3);
 		        pager.setBackgroundAsset(R.raw.noweeee);
 		        pager.setAdapter(new EEEViewPageAdapter(fragmentmanager));
 		        pager.setCurrentItem(0);
@@ -50,7 +51,7 @@ public class EEEViewPager extends Fragment implements OnClickListener,OnLongClic
 		@Override
 		public void onSaveInstanceState(Bundle outState) {
 	        super.onSaveInstanceState(outState);
-	        outState.putInt("num_pages", 2);
+	        outState.putInt("num_pages", 3);
 	        final ViewPagerParallax pager = (ViewPagerParallax) rootView.findViewById(R.id.eeepager);
 	        outState.putInt("current_page", pager.getCurrentItem());
 	    }
@@ -129,7 +130,8 @@ public class EEEViewPager extends Fragment implements OnClickListener,OnLongClic
 				case 1:
 					FragmentExtundoprodigo.tv.setText("Cordinator");
 					break;
-				
+				case 2:
+					break;
 				
 				
 				}
@@ -166,7 +168,9 @@ public class EEEViewPager extends Fragment implements OnClickListener,OnLongClic
 				fragment = new FragmentExtundoprodigo();
 				
 				break;
-						
+			case 2:
+				fragment = new EaventuraFragment();
+				break;
 				
 			}
 			return fragment;
@@ -180,7 +184,8 @@ public class EEEViewPager extends Fragment implements OnClickListener,OnLongClic
 				
 			case 1:
 				return "Extundo Prodigo";
-			
+			case 2:
+				return "E-aventura";
 		
 			}
 			return null;
@@ -188,6 +193,6 @@ public class EEEViewPager extends Fragment implements OnClickListener,OnLongClic
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return 2;
+			return 3;
 		}
 }

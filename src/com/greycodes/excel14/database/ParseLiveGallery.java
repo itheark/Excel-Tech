@@ -35,13 +35,13 @@ SharedPreferences sharedPreferences;
 	public ParseLiveGallery(Context context) {
 		// TODO Auto-generated constructor stub
 		this.context = context;
-		sharedPreferences = sharedPreferences = context.getSharedPreferences("Livegallery", Context.MODE_PRIVATE);
+		sharedPreferences = context.getSharedPreferences("Livegallery", Context.MODE_PRIVATE);
 	}
 	
-	public Object parseSponsorImage(){
+	public Object parseImage(){
 		url = "http://excelapi.net84.net/sponsor.json";
 		try {
-			return new ParseSponsorImage().execute("http://excelapi.net84.net/livegallery.json").get();
+			return new ParseImage().execute("http://excelapi.net84.net/livegallery.json").get();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -53,7 +53,7 @@ SharedPreferences sharedPreferences;
 	}
 
 	
-	public class ParseSponsorImage extends AsyncTask<String, String, String>  {
+	public class ParseImage extends AsyncTask<String, String, String>  {
 
 		@Override
 		protected String doInBackground(String... params)  {
@@ -123,12 +123,12 @@ SharedPreferences sharedPreferences;
 			
 			imageDownloader = new ImageDownloader();
 			for(i=0;i<n;i++){
-				if(sharedPreferences.getInt("gid", 99)<gid[i]){
+				
 					imagebyte[i] = imageDownloader.Download(imageurl[i]);
-				}
+				
 				
 			}
-			;
+			
 			excelDataBase = new ExcelDataBase(context);
 			SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
 			ContentValues contentValues = new ContentValues();
@@ -136,18 +136,21 @@ SharedPreferences sharedPreferences;
 			
 				
 				for( i=0;i<n;i++){
-					if(sharedPreferences.getInt("gid", 99)<gid[i]){
+					
 					contentValues.put("GID", gid[i]);
 					contentValues.put("DESC", desc[i]);
 					contentValues.put("IMAGE", imagebyte[i]);
 					contentValues.put("AUTHOR", author[i]);
 					sqLiteDatabase.insert("GALLERY", null, contentValues);
 					Toast.makeText(context, "Sponsor Inserted", Toast.LENGTH_LONG).show();
-					}
+				
 					}
 				Editor editor = sharedPreferences.edit();
-				editor.putInt("gid", gid[i]);
+				editor.putInt("gid", gid[i-1]);
 				editor.commit();
+				
+				ParseNewsFeed parseNewsFeed = new ParseNewsFeed(context);
+				Object nfeed=    parseNewsFeed.executenewsfeedparse();
 				
 		}
 

@@ -151,7 +151,7 @@ return flag;
 				
 			}
 			}else{
-				Toast.makeText(context, "Please Register To Participate", Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, "Please Register", Toast.LENGTH_SHORT).show();
 				Intent intent = new Intent(context, LoginActivity.class);
 				context.startActivity(intent);
 				

@@ -25,6 +25,7 @@ import com.greycodes.excel14.database.ImageDownloader;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -48,7 +49,7 @@ public class SponsorFragment extends ListFragment implements OnRefreshListener {
 	String[] imageurl,companyurl;
 	int[] sid,pcode;
 	int n;
-	byte[][] imagebyte;
+	byte[][] imagebyte,bs;
 	 int sponsor_flag;
 	ExcelDataBase excelDataBase;
 	ImageDownloader imageDownloader;
@@ -82,7 +83,8 @@ public class SponsorFragment extends ListFragment implements OnRefreshListener {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
-		sponsorList = new SponsorList(getActivity());
+		assign();
+		sponsorList = new SponsorList(getActivity(),bs);
 		setListAdapter(sponsorList);
 	}
 
@@ -220,7 +222,8 @@ public class SponsorFragment extends ListFragment implements OnRefreshListener {
 				editor.putInt("sponsor", sponsor_flag);
 				editor.commit();
 				mPullToRefreshLayout.setRefreshComplete();
-				sponsorList = new SponsorList(getActivity());
+				assign();
+				sponsorList = new SponsorList(getActivity(),bs);
 				setListAdapter(sponsorList);
 		}
 
@@ -301,7 +304,18 @@ public class SponsorFragment extends ListFragment implements OnRefreshListener {
 		    }
 
 
-	
+	public void assign(){
+		ExcelDataBase excelDataBase= new ExcelDataBase(getActivity());
+		SQLiteDatabase sqLiteDatabase=	  excelDataBase.getSQLiteDataBase();
+		String[] columns = new String[]{"PCODE","IMAGE","URL"};
+		Cursor cursor=	sqLiteDatabase.query("SPONSOR", columns, null, null, null, null, "PCODE DESC");
+		cursor.moveToFirst();
+		bs = new byte[cursor.getCount()][];
+		for(int i=0;i<cursor.getCount();i++,cursor.moveToNext()){
+			
+			bs[i]=cursor.getBlob(cursor.getColumnIndex("IMAGE"));
+		}
+	}
 
 
 }
