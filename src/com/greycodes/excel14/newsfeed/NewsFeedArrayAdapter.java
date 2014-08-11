@@ -31,7 +31,7 @@ public class NewsFeedArrayAdapter extends ArrayAdapter<String> {
 			LayoutInflater inflater = 	(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View row = inflater.inflate(R.layout.newsfeed_listview_items, parent,false);
 			
-			LinearLayout  ll = (LinearLayout) row.findViewById(R.id.newsfeed_listview_items);
+			LinearLayout  ll = (LinearLayout) row.findViewById(R.layout.newsfeed_listview_items);
 			TextView tvdescription = (TextView) row.findViewById(R.id.newsfeed_details);
 			TextView tvsubject = (TextView) row.findViewById(R.id.newsfeed_subject);
 			ImageView ipcode = (ImageView) row.findViewById(R.id.newsfeed_pcodeimage);

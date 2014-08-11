@@ -8,6 +8,7 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
@@ -82,7 +83,10 @@ public class ScheduleDay1Fragment extends Fragment implements OnScrollListener {
 			int visibleItemCount, int totalItemCount) {
 		// TODO Auto-generated method stub
 	int a=listView.getFirstVisiblePosition()+visibleItemCount/2;
+	
 	tvtime.setText(time[a]);
+	tvtime.setAnimation(AnimationUtils.loadAnimation(getActivity(),android.R.anim.fade_in));
+	
 	}
 	@Override
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
