@@ -27,12 +27,12 @@ public class CSFragment extends SherlockFragment {
 		 View rootView = inflater.inflate(R.layout.fragment_cs, container, false);
 		 
 		ImageView btHash = (ImageView) rootView.findViewById(R.id.include);
-		ImageView btApp = (ImageView) rootView.findViewById(R.id.algorithm);
-		ImageView btFour = (ImageView) rootView.findViewById(R.id.four120);
-		ImageView btBots = (ImageView) rootView.findViewById(R.id.soyouthink);
-		ImageView btHack = (ImageView) rootView.findViewById(R.id.hackmaster);
+		ImageView webbtots = (ImageView) rootView.findViewById(R.id.webots);
 		ImageView btLOC = (ImageView) rootView.findViewById(R.id.loc);
-		ImageView btMandrake = (ImageView) rootView.findViewById(R.id.webots);
+		ImageView bthackm = (ImageView) rootView.findViewById(R.id.hackmaster);
+		ImageView btfour = (ImageView) rootView.findViewById(R.id.four120);
+		ImageView btalgo = (ImageView) rootView.findViewById(R.id.algorithm);
+		ImageView btso = (ImageView) rootView.findViewById(R.id.soyouthink);
 		/* final Animation animTranslatetoright = AnimationUtils.loadAnimation(getActivity(), R.anim.anim_translatetoright);
 		 final Animation animTranslatetoleft = AnimationUtils.loadAnimation(getActivity(), R.anim.anim_translatetoleft);
 		 btHash.startAnimation(animTranslatetoright);
@@ -63,7 +63,7 @@ btHash.setOnClickListener(new View.OnClickListener() {
         transaction.commit();
 	}
 });
-btApp.setOnClickListener(new View.OnClickListener() {
+webbtots.setOnClickListener(new View.OnClickListener() {
 	
 	@Override
 	public void onClick(View v) {
@@ -79,7 +79,7 @@ btApp.setOnClickListener(new View.OnClickListener() {
         transaction.commit();
 	}
 });
-btFour.setOnClickListener(new View.OnClickListener() {
+btLOC.setOnClickListener(new View.OnClickListener() {
 	
 	@Override
 	public void onClick(View v) {
@@ -95,7 +95,7 @@ btFour.setOnClickListener(new View.OnClickListener() {
         transaction.commit();
 	}
 });
-btBots.setOnClickListener(new View.OnClickListener() {
+bthackm.setOnClickListener(new View.OnClickListener() {
 	
 	@Override
 	public void onClick(View v) {
@@ -111,7 +111,7 @@ btBots.setOnClickListener(new View.OnClickListener() {
         transaction.commit();
 	}
 });
-btHack.setOnClickListener(new View.OnClickListener() {
+btfour.setOnClickListener(new View.OnClickListener() {
 	
 	@Override
 	public void onClick(View v) {
@@ -127,7 +127,7 @@ btHack.setOnClickListener(new View.OnClickListener() {
         transaction.commit();
 	}
 });
-btLOC.setOnClickListener(new View.OnClickListener() {
+btalgo.setOnClickListener(new View.OnClickListener() {
 	
 	@Override
 	public void onClick(View v) {
@@ -143,7 +143,7 @@ btLOC.setOnClickListener(new View.OnClickListener() {
         transaction.commit();
 	}
 });
-btMandrake.setOnClickListener(new View.OnClickListener() {
+btso.setOnClickListener(new View.OnClickListener() {
 	
 	@Override
 	public void onClick(View v) {

@@ -39,6 +39,7 @@ public class CompetitionNDActivity extends SherlockFragmentActivity{
 	int[] coptions;
 	Intent cIntent;
 	Fragment f;
+	public static int pgdisplay;
 	 FragmentManager fragmentManager ;
 	 FragmentTransaction transaction;
 	@Override

@@ -29,7 +29,7 @@ public class QuickOpenAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return ename.length;
+		return level.length;
 	}
 
 	@Override

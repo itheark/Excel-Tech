@@ -16,7 +16,7 @@ public class TagURItFragment extends Fragment implements OnClickListener {
 	
 	 ImageView intro,rules,format;
 	 
-	  static TextView tv;
+	public  static TextView tv;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class TagURItFragment extends Fragment implements OnClickListener {
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("Are you one of those people whose taglines under photos and status updates gain double-digit or even triple-digit ‘likes’? Do you produce witty comments and cool taglines at the drop of a hat?\nWell, even if you don’t,’ TAG! You’re IT’ will offer you hours of amusement. Come up with witty and relevant taglines for the images provided, that too from the comfort of your homes (or offices) and you could win some serious cash here.\n\n" );
+			updateTextValue("Are you one of those people whose taglines under photos and status updates gain double-digit or even triple-digit ï¿½likesï¿½? Do you produce witty comments and cool taglines at the drop of a hat?\nWell, even if you donï¿½t,ï¿½ TAG! Youï¿½re ITï¿½ will offer you hours of amusement. Come up with witty and relevant taglines for the images provided, that too from the comfort of your homes (or offices) and you could win some serious cash here.\n\n" );
 			
 		}
 		if (v.equals(rules))
@@ -56,7 +56,7 @@ public class TagURItFragment extends Fragment implements OnClickListener {
 		
 		if (v.equals(format))
 		{
-			updateTextValue("One image per day will be put up on the site for the entire duration of the event. Contestants will have to enter an appropriate tagline for the image on the same day itself in the space provided. The best tagline for the image is selected and exciting prizes await the daily winners.\nThe captions / taglines may be witty, humourous or simply thought provoking! So go on ahead… Tag! You’re IT!\nJudging Criteria\nCreativity\nOriginality\nAptness\nUnconventionality\n\n");
+			updateTextValue("One image per day will be put up on the site for the entire duration of the event. Contestants will have to enter an appropriate tagline for the image on the same day itself in the space provided. The best tagline for the image is selected and exciting prizes await the daily winners.\nThe captions / taglines may be witty, humourous or simply thought provoking! So go on aheadï¿½ Tag! Youï¿½re IT!\nJudging Criteria\nCreativity\nOriginality\nAptness\nUnconventionality\n\n");
 			
 		}
 		

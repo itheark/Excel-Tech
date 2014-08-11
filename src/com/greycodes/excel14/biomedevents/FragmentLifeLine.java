@@ -16,7 +16,7 @@ import com.greycodes.excel14.R;
 public class FragmentLifeLine extends SherlockFragment implements OnClickListener {
 	ImageView intro,rules,format;
 	 
-	  static TextView tv;
+	public  static TextView tv;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class FragmentLifeLine extends SherlockFragment implements OnClickListene
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("A unique event that lets you envisage yourself as a life saver with a quest to prove your adroitness in debugging. Examine and “operate”the impaired medical instrument still connected to the patient. It’s time to act. It’s time to save.\n\n" );
+			updateTextValue("A unique event that lets you envisage yourself as a life saver with a quest to prove your adroitness in debugging. Examine and ï¿½operateï¿½the impaired medical instrument still connected to the patient. Itï¿½s time to act. Itï¿½s time to save.\n\n" );
 			
 		}
 		if (v.equals(rules))

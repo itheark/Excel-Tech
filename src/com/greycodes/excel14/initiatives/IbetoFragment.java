@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.greycodes.excel14.R;
 
 public class IbetoFragment extends Fragment implements OnClickListener {
-	 
+	public  static TextView tv;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {

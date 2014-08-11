@@ -96,31 +96,18 @@ Misc misc;
 					JSONObject eventid = event.getJSONObject(Integer.toString(eid));
 					
 					if(eventid.getInt("flag")==1){
-						res = new String[3];
-						college = new String[3];
-						JSONArray winners = event.getJSONArray("winners");
-						for(int i=0;i<3;i++){
-							int len = winners.getJSONObject(i).getJSONArray("name").length();
-							name = new String[len];
-							res[i]="";
-							for(int j=0;j<len;j++){
-								name[j] = winners.getJSONObject(i).getJSONArray("name").getJSONObject(j).getString("name");
-								res[i]= res[i]+"\n"+name[j];
-							}
-								college[i] = winners.getJSONObject(i).getString("college");
-								switch(i){
-								case 0:
-									resfinal = resfinal +"  1st Prize  :"+res[0]+"\n "+college[0]+"\n";
-								break;
-								case 1:
-									resfinal = resfinal +"  2nd Prize  :"+res[1]+"\n "+college[1]+"\n";
-									break;
-								case 2:
-									resfinal = resfinal +"  3rd Prize  :"+res[2]+"\n "+college[2]+"\n\n";
-									break;
-								}
-							
-														
+						JSONArray winners = eventid.getJSONArray("winners");
+						int len = winners.length();
+						name = new String[len];
+						college = new  String[len];
+						
+						
+						for(int i=0;i<len;i++){
+						name[i]=	winners.getJSONObject(i).getString("teamname");
+							college[i] =winners.getJSONObject(i).getString("college");
+						}
+						for(int i=0;i<len;i++){
+							resfinal = resfinal + "   " + Integer.toString(i+1)+ ". " +name[i]+"\n"+college[i]+"\n";
 						}
 						
 					//	for(int i=0;i<winners.getJSONObject(0).getJSONArray("name").length();i++)

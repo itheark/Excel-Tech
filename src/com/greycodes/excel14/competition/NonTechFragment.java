@@ -21,14 +21,14 @@ Fragment fragment=  null;
 			
 		 View rootView = inflater.inflate(R.layout.fragment_nontech, container, false);
 		 
-		 ImageView btQuiz = (ImageView) rootView.findViewById(R.id.bestman);
-		 ImageView btOnline = (ImageView) rootView.findViewById(R.id.csi);
-		 ImageView btInstant = (ImageView) rootView.findViewById(R.id.gamezone);
-		 ImageView btGame = (ImageView) rootView.findViewById(R.id.spider);
-		 ImageView btPhotography = (ImageView) rootView.findViewById(R.id.instant);
+		 ImageView btbest = (ImageView) rootView.findViewById(R.id.bestman);
+		 ImageView btcsi = (ImageView) rootView.findViewById(R.id.csi);
+		 ImageView btgame = (ImageView) rootView.findViewById(R.id.gamezone);
+		 ImageView btspider = (ImageView) rootView.findViewById(R.id.spider);
+		 ImageView btinstant = (ImageView) rootView.findViewById(R.id.instant);
 		 
 		
-		 btQuiz.setOnClickListener(new View.OnClickListener() {
+		 btbest.setOnClickListener(new View.OnClickListener() {
 	
 	@Override
 	public void onClick(View v) {
@@ -44,7 +44,7 @@ Fragment fragment=  null;
         transaction.commit();
 	}
 });
-		 btOnline.setOnClickListener(new View.OnClickListener() {
+		 btcsi.setOnClickListener(new View.OnClickListener() {
 	
 	@Override
 	public void onClick(View v) {
@@ -60,7 +60,7 @@ NonTechViewPager.pagetodisplay=1;
         transaction.commit();
 	}
 });
-		 btInstant.setOnClickListener(new View.OnClickListener() {
+		 btgame.setOnClickListener(new View.OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
@@ -76,7 +76,7 @@ NonTechViewPager.pagetodisplay=1;
 			        transaction.commit();
 				}
 			});
-		 btGame.setOnClickListener(new View.OnClickListener() {
+		 btspider.setOnClickListener(new View.OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
@@ -93,12 +93,12 @@ NonTechViewPager.pagetodisplay=1;
 				}
 			});
 		 
-		 btPhotography.setOnClickListener(new View.OnClickListener() {
+		 btinstant.setOnClickListener(new View.OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-			NonTechViewPager.pagetodisplay=1;
+			NonTechViewPager.pagetodisplay=4;
 					Fragment fragment =new  NonTechViewPager();
 					FragmentManager fragmentManager = getFragmentManager();
 					 FragmentTransaction transaction=fragmentManager.beginTransaction();

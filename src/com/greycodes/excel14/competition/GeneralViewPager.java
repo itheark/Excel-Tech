@@ -42,7 +42,7 @@ public class GeneralViewPager extends Fragment implements OnClickListener,OnLong
 		        pager.set_max_pages(3);
 		        pager.setBackgroundAsset(R.raw.nowgenral);
 		        pager.setAdapter(new GeneralViewPageAdapter(fragmentmanager));
-		        pager.setCurrentItem(1);
+		        pager.setCurrentItem(0);
 		        excelDataBase = new ExcelDataBase(getActivity());
 		         misc = new Misc(getActivity());
 			return rootView;

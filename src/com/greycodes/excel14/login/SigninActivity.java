@@ -85,6 +85,7 @@ public class SigninActivity extends Activity implements OnClickListener {
 					String jsonUser =fb.request("me");
 					obj = Util.parseJson(jsonUser);
 					String id =obj.optString("id");
+					Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
 				
 					
 				} catch (FacebookError e) {

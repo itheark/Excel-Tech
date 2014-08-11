@@ -62,6 +62,7 @@ public class LoginActivity extends Activity implements OnClickListener  {
 	CircularImageView pic ;
 	ImageView connectfb,signup;
 	SharedPreferences.Editor editor;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub

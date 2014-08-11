@@ -16,7 +16,7 @@ public class MarketManiaFragment extends Fragment implements OnClickListener {
 	
 	 ImageView intro,rules,format;
 	 
-	  static TextView tv;
+	public  static TextView tv;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class MarketManiaFragment extends Fragment implements OnClickListener {
 		
 		if(v.equals(intro))
 		{
-			updateTextValue(" “Business has only two functions - marketing and innovation.”- Milan Kundera\nBut you need both, some knowledge, some experience and a pinch of wisdom, in order to survive the gauntlet that is ‘Market Mania’. That’s the reason why the event is open to only professionals.\nProve your marketing acumen and troubleshooting skills, as you take on other professionals in an epic battle to decide who will wear the marketing crown.\n\n" );
+			updateTextValue(" ï¿½Business has only two functions - marketing and innovation.ï¿½- Milan Kundera\nBut you need both, some knowledge, some experience and a pinch of wisdom, in order to survive the gauntlet that is ï¿½Market Maniaï¿½. Thatï¿½s the reason why the event is open to only professionals.\nProve your marketing acumen and troubleshooting skills, as you take on other professionals in an epic battle to decide who will wear the marketing crown.\n\n" );
 			
 		}
 		if (v.equals(rules))
@@ -56,7 +56,7 @@ public class MarketManiaFragment extends Fragment implements OnClickListener {
 		
 		if (v.equals(format))
 		{
-			updateTextValue("Market Mania is split into 3 rounds\nRound 1 (Trivia Round)\nJust a lot of fun trivia, puzzles and interesting conundrums to help you unwind and set the stage for a day of fun, marketing and competition.\nRound 2 (Elevator Pitch)\nHow long would it take to convince a client that your product is the best on the market? Well, it shouldn’t take any longer than an elevator ride with a potential client and any marketer worth his/her salt will tell you it’s all about convincing, communicating and making the best pitch. Try your hand at it!\nRound 3 (Invest or Divest!)\nThe highlight round of the event. Do you have what it takes to make the wisest investment choice? Represent an investment group, study company profiles, make the best investment and pitch for your choice.\n\n");
+			updateTextValue("Market Mania is split into 3 rounds\nRound 1 (Trivia Round)\nJust a lot of fun trivia, puzzles and interesting conundrums to help you unwind and set the stage for a day of fun, marketing and competition.\nRound 2 (Elevator Pitch)\nHow long would it take to convince a client that your product is the best on the market? Well, it shouldnï¿½t take any longer than an elevator ride with a potential client and any marketer worth his/her salt will tell you itï¿½s all about convincing, communicating and making the best pitch. Try your hand at it!\nRound 3 (Invest or Divest!)\nThe highlight round of the event. Do you have what it takes to make the wisest investment choice? Represent an investment group, study company profiles, make the best investment and pitch for your choice.\n\n");
 			
 		}
 		
