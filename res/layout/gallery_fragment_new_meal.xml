@@ -24,7 +24,7 @@
      android:layout_below="@+id/meal_preview_image"
       >
 
-     <requestFocus />
+     
  </EditText>
 
     <ImageView

@@ -288,7 +288,7 @@ private void  selectItem(int position) {
 	        };
 	        
 	            
-	        ConnectionDetector.isNetworkAvailable(h,2000);
+	        ConnectionDetector.isNetworkAvailable(h,3000);
 		break;
 	case 9:
 		 homeIntent = new Intent(HomeNDActivity.this,GalleryListActivity.class);

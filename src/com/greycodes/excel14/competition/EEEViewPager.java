@@ -1,6 +1,9 @@
 package com.greycodes.excel14.competition;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -12,10 +15,12 @@ import android.view.View.OnLongClickListener;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.greycodes.excel14.ConnectionDetector;
 import com.greycodes.excel14.Misc;
 import com.greycodes.excel14.R;
 import com.greycodes.excel14.database.ExcelDataBase;
 import com.greycodes.excel14.database.InsertParticipant;
+import com.greycodes.excel14.database.ParseResult;
 import com.greycodes.excel14.ecevents.FragmentCircuim;
 import com.greycodes.excel14.ecevents.FragmentDefuse;
 import com.greycodes.excel14.ecevents.FragmentExtrinsicity;
@@ -31,6 +36,11 @@ public class EEEViewPager extends Fragment implements OnClickListener,OnLongClic
 	Misc  misc;
 	ExcelDataBase excelDataBase;
 	 ViewPagerParallax pager;
+	 ConnectionDetector connectionDetector;
+	 Handler h ;
+	 int eid=889;
+	 ParseResult parseResult;
+	 ProgressDialog progressDialog;
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
@@ -45,6 +55,18 @@ public class EEEViewPager extends Fragment implements OnClickListener,OnLongClic
 		        pager.setCurrentItem(0);
 		        excelDataBase = new ExcelDataBase(getActivity());
 		         misc = new Misc(getActivity());
+		         connectionDetector = new ConnectionDetector(getActivity());
+		         call=(ImageView)rootView.findViewById(R.id.imageView4);
+			        result=(ImageView)rootView.findViewById(R.id.imageView2);
+			        participate=(ImageView)rootView.findViewById(R.id.imageView3);
+			        parseResult = new ParseResult(getActivity());
+			        call.setOnClickListener(this);
+			        result.setOnClickListener(this);
+			        participate.setOnClickListener(this);
+			        call.setOnLongClickListener(this);
+			        
+			        
+			        
 			return rootView;
 			
 		}
@@ -74,7 +96,8 @@ public class EEEViewPager extends Fragment implements OnClickListener,OnLongClic
 				misc.call("09020404022");		
 				
 				break;
-		
+			case 2:
+				misc.call("9020404022");
 			
 			
 			}
@@ -91,7 +114,7 @@ public class EEEViewPager extends Fragment implements OnClickListener,OnLongClic
 				switch(pager.getCurrentItem()){
 				case 0:
 					if(excelDataBase.Isregistered()){
-						if(insertParticipant.insert(020, "Lumiere")){
+						if(insertParticipant.insert(899, "Lumiere")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{
 							Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
@@ -101,26 +124,66 @@ public class EEEViewPager extends Fragment implements OnClickListener,OnLongClic
 				break;
 				case 1:
 					if(excelDataBase.Isregistered()){
-						if(insertParticipant.insert(021, "Extundo Prodigo")){
+						if(insertParticipant.insert(900, "Extundo Prodigo")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{
 							Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
 						}
 					}
 					break;
-							
+				case 2:
+					if(excelDataBase.Isregistered()){
+						if(insertParticipant.insert(901, "E-aventura")){
+							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
+			}else{
+							Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
+						}
+					}
+					
+					break;
 				
 				}
 				break;
 			case R.id.imageView2:
 				switch(pager.getCurrentItem()){
 				case 0:
-					
+					Toast.makeText(getActivity(), "result", Toast.LENGTH_SHORT).show();
+			       eid=899;
 				break;
 				case 1:
+					Toast.makeText(getActivity(), "result", Toast.LENGTH_SHORT).show();
+					 eid=899+1;
+					break;
+				case 2:
+					 eid=899+2;
+					break;
 				
 				
 				}
+				
+				h = new Handler() {
+		            @Override
+		            public void handleMessage(Message msg) {
+
+		                if (msg.what != 1) { // code if not connected
+		                progressDialog.cancel();
+		                	connectionDetector.noNetworkAlert();;
+		               
+		                	
+		                	
+		            				
+		                } else { // code if connected
+			       
+						
+			           parseResult.result(eid);
+		                	 progressDialog.dismiss();          	
+		               	 
+		                }   
+		            }
+		        };
+		        
+		        progressDialog = ProgressDialog.show(getActivity(), "Excel", "Please Wait...");
+		        connectionDetector.isNetworkAvailable(h,3500);
 				break;
 			case R.id.imageView4:
 				switch(pager.getCurrentItem()){
@@ -131,6 +194,7 @@ public class EEEViewPager extends Fragment implements OnClickListener,OnLongClic
 					FragmentExtundoprodigo.tv.setText("Cordinator");
 					break;
 				case 2:
+					EaventuraFragment.tv.setText("Cordinator");
 					break;
 				
 				

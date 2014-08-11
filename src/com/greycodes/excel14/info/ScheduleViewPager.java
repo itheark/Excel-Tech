@@ -27,7 +27,7 @@ public class ScheduleViewPager extends Fragment {
 			 fragmentmanager=  getChildFragmentManager();
 		        pager.set_max_pages(2);
 		        
-		        pager.setBackgroundAsset(R.raw.nowcs);
+		       pager.setBackgroundAsset(R.raw.nowcs);
 		        pager.setAdapter(new ScheduleViewPageAdapter(fragmentmanager));
 		        pager.setCurrentItem(tspagetoset);
 		      

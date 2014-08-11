@@ -14,11 +14,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ScheduleAdapter extends BaseAdapter {
-String[] ename,cat,venue,stime,duration,time;
-int[] level;
+String[] ename,venue,stime,duration,time;
+int[] level,cat;
 Context context;
 LayoutInflater scheduleInflator;
-	public ScheduleAdapter(Context context,String[] ename,int[] level,String[] cat,String[] venue,String[] stime,String[] duration,String[] time ) {
+	public ScheduleAdapter(Context context,String[] ename,int[] level,int[] cat,String[] venue,String[] stime,String[] duration,String[] time ) {
 		// TODO Auto-generated constructor stub
 		this.ename = ename;
 		this.level = level;
@@ -63,15 +63,53 @@ LayoutInflater scheduleInflator;
 		scduration = (TextView) itemView.findViewById(R.id.scduration);
 		
 		scename.setText(ename[position]);
+		scename.setTypeface(null, Typeface.BOLD_ITALIC);
 		scroom.setText(venue[position]);
+		
+		
+		scstime.setText(stime[position]);
+		scstime.setTypeface(null, Typeface.BOLD);
+		scduration.setText(duration[position]);
 		if(level[position]==1){
 			sclevel.setText("Prelims");
-		}else
+		}else if(level[position]==2){
 			sclevel.setText("Final");
+		}else {
+			sclevel.setVisibility(TextView.INVISIBLE);
+		}
 		sclevel.setTypeface(null,Typeface.ITALIC);
-		scstime.setText(stime[position]);
-		scduration.setText(duration[position]);
-		icat.setImageResource(R.drawable.comp_icons_cs);
+		switch (cat[position]) {
+		case 1:
+			icat.setImageResource(R.drawable.nfc);
+			break;
+		case 2:
+			icat.setImageResource(R.drawable.nfec);
+			break;
+		case 3:
+			icat.setImageResource(R.drawable.nfee);
+			break;
+		case 4:
+			icat.setImageResource(R.drawable.nfr);
+			break;
+		case 5:
+			icat.setImageResource(R.drawable.nfb);
+			break;
+		case 6:
+			icat.setImageResource(R.drawable.nfg);
+			break;
+		case 7:
+			icat.setImageResource(R.drawable.nfn);
+			break;
+		case 8:
+			icat.setImageResource(R.drawable.nflogo);
+			break;
+			
+
+		default:
+			icat.setImageResource(R.drawable.nflogo);
+			break;
+		}
+		
 		return itemView;
 	}
 }

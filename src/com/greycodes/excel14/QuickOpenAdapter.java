@@ -10,11 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class QuickOpenAdapter extends BaseAdapter {
-	String[] ename,cat,venue,stime,duration;
-	int[] level,hotness;
+	String[] ename,venue,stime,duration;
+	int[] level,hotness,cat;
 	Context context;
 	LayoutInflater quickopenInflator;
-	public QuickOpenAdapter(Context context,String[] ename,int[] level,String[] cat,String[] venue,String[] stime,String[] duration,int[] hotness ) {
+	public QuickOpenAdapter(Context context,String[] ename,int[] level,int[] cat,String[] venue,String[] stime,String[] duration,int[] hotness ) {
 		// TODO Auto-generated constructor stub
 		this.ename = ename;
 		this.level = level;
@@ -63,13 +63,58 @@ public class QuickOpenAdapter extends BaseAdapter {
 		scroom.setText(venue[position]);
 		if(level[position]==1){
 			sclevel.setText("Prelims");
-		}else
+		}else if(level[position]==2){
 			sclevel.setText("Final");
+		}else {
+			sclevel.setVisibility(TextView.INVISIBLE);
+		}
+			
 		sclevel.setTypeface(null,Typeface.ITALIC);
 		scstime.setText(stime[position]);
 		scduration.setText(duration[position]);
-		icat.setImageResource(R.drawable.comp_icons_cs);
-		ihot.setImageResource(R.drawable.comp_icons_cs);
+		switch (cat[position]) {
+		case 1:
+			icat.setImageResource(R.drawable.nfc);
+			break;
+		case 2:
+			icat.setImageResource(R.drawable.nfec);
+			break;
+		case 3:
+			icat.setImageResource(R.drawable.nfee);
+			break;
+		case 4:
+			icat.setImageResource(R.drawable.nfr);
+			break;
+		case 5:
+			icat.setImageResource(R.drawable.nfb);
+			break;
+		case 6:
+			icat.setImageResource(R.drawable.nfg);
+			break;
+		case 7:
+			icat.setImageResource(R.drawable.nfn);
+			break;
+		case 8:
+			icat.setImageResource(R.drawable.nflogo);
+			break;
+			
+
+		default:
+			icat.setImageResource(R.drawable.nflogo);
+			break;
+		}
+		switch(hotness[position]){
+		case 1:
+			ihot.setImageResource(R.drawable.pcode0);
+			break;
+		case 2:
+			ihot.setImageResource(R.drawable.pcode1);
+			break;
+		case 3:
+			ihot.setImageResource(R.drawable.pcode2);
+			break;
+		}
+		
 		return itemView;
 	}
 }

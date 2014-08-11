@@ -33,6 +33,7 @@ import com.greycodes.excel14.database.ParseSchedule;
 import com.greycodes.excel14.info.ContactsFragment;
 import com.greycodes.excel14.info.Developers;
 import com.greycodes.excel14.info.FloorMapFragment;
+import com.greycodes.excel14.info.FloorMapViewPager;
 import com.greycodes.excel14.info.HospitalityFragment;
 import com.greycodes.excel14.info.MapFragment;
 import com.greycodes.excel14.info.ScheduleViewPager;
@@ -168,7 +169,7 @@ public class InfoNDActivity extends SherlockFragmentActivity {
 			}
 					break;
 			case 1:
-					f= new FloorMapFragment();
+					f= new FloorMapViewPager();
 			break;
 			case 2:
 				sharedPreferences = getSharedPreferences("flag", Context.MODE_PRIVATE);

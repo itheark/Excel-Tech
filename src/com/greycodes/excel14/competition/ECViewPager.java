@@ -1,6 +1,9 @@
 package com.greycodes.excel14.competition;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -12,6 +15,7 @@ import android.view.View.OnLongClickListener;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.greycodes.excel14.ConnectionDetector;
 import com.greycodes.excel14.Misc;
 import com.greycodes.excel14.R;
 import com.greycodes.excel14.csevents.FragmentAlgorithms;
@@ -23,6 +27,7 @@ import com.greycodes.excel14.csevents.FragmentSoYouThink;
 import com.greycodes.excel14.csevents.FragmentWebBots;
 import com.greycodes.excel14.database.ExcelDataBase;
 import com.greycodes.excel14.database.InsertParticipant;
+import com.greycodes.excel14.database.ParseResult;
 import com.greycodes.excel14.ecevents.FragmentDefuse;
 import com.greycodes.excel14.ecevents.FragmentExtrinsicity;
 import com.greycodes.excel14.ecevents.FragmentCircuim;
@@ -35,8 +40,15 @@ public class ECViewPager extends Fragment implements OnClickListener,OnLongClick
 	View rootView;
 	ImageView call,result,participate;
 	Misc  misc;
+	int eid=889;
 	ExcelDataBase excelDataBase;
 	 ViewPagerParallax pager;
+	
+	 ConnectionDetector connectionDetector;
+	 Handler h ;
+	 
+	 ParseResult parseResult;
+	 ProgressDialog progressDialog;
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
@@ -52,11 +64,13 @@ public class ECViewPager extends Fragment implements OnClickListener,OnLongClick
 		        call=(ImageView)rootView.findViewById(R.id.imageView4);
 		        result=(ImageView)rootView.findViewById(R.id.imageView2);
 		        participate=(ImageView)rootView.findViewById(R.id.imageView3);
-		        
+		        connectionDetector = new ConnectionDetector(getActivity());
 		        excelDataBase = new ExcelDataBase(getActivity());
+		        parseResult = new ParseResult(getActivity());
 		         misc = new Misc(getActivity());
 		        call.setOnClickListener(this);
-		        result.setOnClickListener(this);
+		        
+		        
 		        participate.setOnClickListener(this);
 		        call.setOnLongClickListener(this);
 			return rootView;
@@ -142,28 +156,43 @@ public class ECViewPager extends Fragment implements OnClickListener,OnLongClick
 			case R.id.imageView2:
 				switch(pager.getCurrentItem()){
 				case 0:
-					
+					Toast.makeText(getActivity(), "result", Toast.LENGTH_SHORT).show();
+			       eid=896;
 				break;
 				case 1:
-					
+					Toast.makeText(getActivity(), "result", Toast.LENGTH_SHORT).show();
+					 eid=896+1;
 					break;
 				case 2:
-					
-					break;
-				case 3:
-					
-					break;
-				case 4:
-					
-					break;
-				case 5:
-					
-					break;
-				case 6:
-					
+					 eid=896+2;
 					break;
 				
+				
 				}
+				
+				h = new Handler() {
+		            @Override
+		            public void handleMessage(Message msg) {
+
+		                if (msg.what != 1) { // code if not connected
+		                progressDialog.cancel();
+		                	connectionDetector.noNetworkAlert();;
+		               
+		                	
+		                	
+		            				
+		                } else { // code if connected
+			       
+						
+			           parseResult.result(eid);
+		                	 progressDialog.dismiss();          	
+		               	 
+		                }   
+		            }
+		        };
+		        
+		        progressDialog = ProgressDialog.show(getActivity(), "Excel", "Please Wait...");
+		        connectionDetector.isNetworkAvailable(h,5000);
 				break;
 			case R.id.imageView4:
 				switch(pager.getCurrentItem()){

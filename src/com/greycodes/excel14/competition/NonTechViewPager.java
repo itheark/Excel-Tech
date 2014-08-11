@@ -1,6 +1,9 @@
 package com.greycodes.excel14.competition;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -12,6 +15,7 @@ import android.view.View.OnLongClickListener;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.greycodes.excel14.ConnectionDetector;
 import com.greycodes.excel14.Misc;
 import com.greycodes.excel14.R;
 import com.greycodes.excel14.csevents.FragmentAlgorithms;
@@ -23,6 +27,7 @@ import com.greycodes.excel14.csevents.FragmentSoYouThink;
 import com.greycodes.excel14.csevents.FragmentWebBots;
 import com.greycodes.excel14.database.ExcelDataBase;
 import com.greycodes.excel14.database.InsertParticipant;
+import com.greycodes.excel14.database.ParseResult;
 import com.greycodes.excel14.nontechnical.FragmentBestManager;
 import com.greycodes.excel14.nontechnical.FragmentCSI;
 import com.greycodes.excel14.nontechnical.FragmentGameZone;
@@ -36,22 +41,41 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 	View rootView;
 	ImageView call,result,participate;
 	Misc  misc;
-	ExcelDataBase excelDataBase;
+	int eid=889;
+	
 	 ViewPagerParallax pager;
+	 ConnectionDetector connectionDetector;
+	 Handler h ;
+	 ExcelDataBase excelDataBase;
+	 ParseResult parseResult;
+	 ProgressDialog progressDialog;
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			// TODO Auto-generated method stub
 			rootView =	 inflater.inflate(R.layout.fragment_nontech_viewpager, container, false);
 
-			 final ViewPagerParallax pager = (ViewPagerParallax) rootView.findViewById(R.id.nontech_pager);
+			  pager = (ViewPagerParallax) rootView.findViewById(R.id.nontech_pager);
 			 fragmentmanager=  getChildFragmentManager();
 		        pager.set_max_pages(5);
 		        pager.setBackgroundAsset(R.raw.nowcs);
 		        pager.setAdapter(new NonTechnicalViewPageAdapter(fragmentmanager));
 		        pager.setCurrentItem(pagetodisplay);
-		        excelDataBase = new ExcelDataBase(getActivity());
+		       
+		         excelDataBase = new ExcelDataBase(getActivity());
 		         misc = new Misc(getActivity());
+		         connectionDetector = new ConnectionDetector(getActivity());
+		         parseResult = new ParseResult(getActivity());
+		         
+		         call=(ImageView)rootView.findViewById(R.id.imageView4);
+			        result=(ImageView)rootView.findViewById(R.id.imageView2);
+			        participate=(ImageView)rootView.findViewById(R.id.imageView3);
+			        
+			       // call.setOnClickListener(this);
+			        result.setOnClickListener(this);
+			        participate.setOnClickListener(this);
+			        call.setOnLongClickListener(this);
+			      call.setOnClickListener(this);
 			return rootView;
 			
 		}
@@ -108,7 +132,7 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 				switch(pager.getCurrentItem()){
 				case 0:
 					if(excelDataBase.Isregistered()){
-						if(insertParticipant.insert(060, "Best Manager")){
+						if(insertParticipant.insert(908, "Best Manager")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{
 							Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
@@ -118,7 +142,7 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 				break;
 				case 1:
 					if(excelDataBase.Isregistered()){
-						if(insertParticipant.insert(061, "CSI")){
+						if(insertParticipant.insert(908, "CSI")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{
 							Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
@@ -127,7 +151,7 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 					break;
 				case 2:
 					if(excelDataBase.Isregistered()){
-						if(insertParticipant.insert(062, "Game Zone")){
+						if(insertParticipant.insert(908, "Game Zone")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{
 							Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
@@ -136,7 +160,7 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 					break;
 				case 3:
 					if(excelDataBase.Isregistered()){
-						if(insertParticipant.insert(063, "Spider Web")){
+						if(insertParticipant.insert(908, "Spider Web")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{
 							Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
@@ -145,7 +169,7 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 					break;
 				case 4:
 					if(excelDataBase.Isregistered()){
-						if(insertParticipant.insert(064, "Instant Photography")){
+						if(insertParticipant.insert(908, "Instant Photography")){
 							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
 			}else{
 							Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
@@ -159,23 +183,48 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 			case R.id.imageView2:
 				switch(pager.getCurrentItem()){
 				case 0:
-					
+					Toast.makeText(getActivity(), "result", Toast.LENGTH_SHORT).show();
+			       eid=889;
 				break;
 				case 1:
-					
+					Toast.makeText(getActivity(), "result", Toast.LENGTH_SHORT).show();
+					 eid=889+1;
 					break;
 				case 2:
-					
+					 eid=889+2;
 					break;
 				case 3:
-					
+					 eid=889+3;
 					break;
 				case 4:
-					
-					break;
+					 eid=889+4;
 				
 				
 				}
+				
+				h = new Handler() {
+		            @Override
+		            public void handleMessage(Message msg) {
+
+		                if (msg.what != 1) { // code if not connected
+		                progressDialog.cancel();
+		                	connectionDetector.noNetworkAlert();;
+		               
+		                	
+		                	
+		            				
+		                } else { // code if connected
+			       
+						
+			           parseResult.result(eid);
+		                	 progressDialog.dismiss();          	
+		               	 
+		                }   
+		            }
+		        };
+		        
+		        progressDialog = ProgressDialog.show(getActivity(), "Excel", "Please Wait...");
+		        connectionDetector.isNetworkAvailable(h,5000);
 				break;
 			case R.id.imageView4:
 				switch(pager.getCurrentItem()){

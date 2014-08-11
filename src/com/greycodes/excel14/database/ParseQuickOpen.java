@@ -29,8 +29,8 @@ import android.support.v4.app.FragmentTransaction;
 public class ParseQuickOpen {
 String url,results;
 JSONArray jsonarray;
-String[] ename,cat,stime,duration,venue;
-int[] eid,hotness,level;
+String[] ename,stime,duration,venue;
+int[] eid,hotness,level,cat;
 int count,i;
 
 Context context;
@@ -93,7 +93,7 @@ Context context;
 					jsonarray = jsonObject.getJSONArray("quickopen");
 					count = jsonarray.length();
 					ename = new String[count];
-					cat = new String[count];
+					cat = new int[count];
 					stime = new String[count];
 					duration = new String[count];
 					venue = new String[count];
@@ -104,7 +104,7 @@ Context context;
 				 for(i=0;i<count;i++){
 					 eid[i] = jsonarray.getJSONObject(i).getInt("eid");
 					 ename[i] = jsonarray.getJSONObject(i).getString("ename");
-					 cat[i] = jsonarray.getJSONObject(i).getString("cat");
+					 cat[i] = jsonarray.getJSONObject(i).getInt("cat");
 					 hotness[i] = jsonarray.getJSONObject(i).getInt("hotness");
 					 level[i] = jsonarray.getJSONObject(i).getInt("level");
 					 stime[i] = jsonarray.getJSONObject(i).getString("starttime");

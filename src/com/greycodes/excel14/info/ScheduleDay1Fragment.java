@@ -4,7 +4,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,11 +21,12 @@ public class ScheduleDay1Fragment extends Fragment implements OnScrollListener {
 	ExcelDataBase excelDataBase;
 	String[] columns,selection;
 	int count;
-	String[] ename,cat,venue,stime,duration,time;
-	int[] level;
+	String[] ename,venue,stime,duration,time;
+	int[] level,cat;
 	ScheduleAdapter adapter;
 	ListView listView;
 	TextView tvtime;
+	Cursor cursor;
 	@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -38,14 +38,14 @@ public class ScheduleDay1Fragment extends Fragment implements OnScrollListener {
 	SQLiteDatabase sqLiteDatabase=	  excelDataBase.getSQLiteDataBase();
 	columns = new String[]{"EID","ENAME","LEVEL","CAT","VENUE","STIME","DURATION","TIME"};
 	selection = new String[]{"1"};
-	Cursor cursor=	sqLiteDatabase.query("SCHEDULE", columns, null, null, null, null,null);
+	 cursor=	sqLiteDatabase.query("SCHEDULE", columns, "DAY=?", selection, null, null,null);
 	
 	
 	cursor.moveToFirst();
 	Toast.makeText(getActivity(), Integer.toString(count), Toast.LENGTH_LONG).show();
 	count = cursor.getCount();
 	ename = new String[count];
-	cat = new String[count];
+	cat = new int[count];
 	venue = new String[count];
 	stime = new String[count];
 	duration = new String[count];
@@ -54,7 +54,7 @@ public class ScheduleDay1Fragment extends Fragment implements OnScrollListener {
 	for(int i=0;i<count;i++,cursor.moveToNext()){
 		
 		ename[i] = cursor.getString(cursor.getColumnIndex("ENAME"));
-		cat[i] = cursor.getString(cursor.getColumnIndex("CAT"));
+		cat[i] = cursor.getInt(cursor.getColumnIndex("CAT"));
 		venue[i] = cursor.getString(cursor.getColumnIndex("VENUE"));
 		stime[i] = cursor.getString(cursor.getColumnIndex("STIME"));
 		duration[i] = cursor.getString(cursor.getColumnIndex("DURATION"));
@@ -77,6 +77,11 @@ public class ScheduleDay1Fragment extends Fragment implements OnScrollListener {
 	listView.setOnScrollListener(this);
 		 
 		 return rootView;
+	}
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
 	}
 	@Override
 	public void onScroll(AbsListView view, int firstVisibleItem,

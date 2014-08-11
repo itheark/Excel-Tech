@@ -39,7 +39,7 @@ ImageView call,result,participate;
 
 ViewPagerParallax pager;
 public static int  pagetodisplay=0;
-int eid=100;
+int eid=889;
 //Button call;
 private int num_pages = 7;
 android.support.v4.app.FragmentManager fragmentmanager;
@@ -175,26 +175,26 @@ ProgressDialog progressDialog;
 			switch(pager.getCurrentItem()){
 			case 0:
 				Toast.makeText(getActivity(), "result", Toast.LENGTH_SHORT).show();
-		       eid=100;
+		       eid=889;
 			break;
 			case 1:
 				Toast.makeText(getActivity(), "result", Toast.LENGTH_SHORT).show();
-
+				 eid=889+1;
 				break;
 			case 2:
-				
+				 eid=889+2;
 				break;
 			case 3:
-				
+				 eid=889+3;
 				break;
 			case 4:
-				
+				 eid=889+4;
 				break;
 			case 5:
-				
+				 eid=889+5;
 				break;
 			case 6:
-				
+				 eid=889+6;
 				break;
 			
 			}

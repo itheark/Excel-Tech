@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="140dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="#eeeeee"
+    
+   
+  >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
+    android:orientation="vertical"
+    
+   
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp"
    
   >
 
+<RelativeLayout 
+    android:id="@+id/rr1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#f7f7f7">
+    
     <ImageView
         android:id="@+id/qocat"
         android:layout_width="wrap_content"
@@ -24,26 +46,25 @@
         android:layout_toRightOf="@+id/qocat"
         android:text="#include"
         android:textSize="25sp"
-        
         android:paddingBottom="5dp" />
     
     <ImageView
         android:id="@+id/hotness"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/comp_icons_cs"
+        android:src="@drawable/pcode2"
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
         android:layout_alignParentRight="true"
          />
     
-    
+    </RelativeLayout>
 	 <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/qocat"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rr1"
         android:orientation="horizontal"
-        
+        android:background="#ffffff"
         android:layout_alignParentBottom="true"
          >
          
@@ -90,4 +111,5 @@
    
     </RelativeLayout>
     
+</RelativeLayout>
 </RelativeLayout>
