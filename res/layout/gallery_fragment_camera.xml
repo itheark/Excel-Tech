@@ -16,8 +16,9 @@
         android:id="@+id/camera_photo_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/lc_shutter"
+        android:src="@drawable/camera_shutter_selector"
         android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="10dp"
         />
 
 </FrameLayout>

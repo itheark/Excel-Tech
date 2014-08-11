@@ -7,8 +7,11 @@
 <TextView 
     android:id="@+id/schedule_time"
     android:layout_width="100dp"
-    android:text="test"
-    android:layout_height="match_parent"/>
+    android:text="9 A.M"
+    android:layout_height="match_parent"
+    android:textSize="25dp"
+    android:layout_marginTop="30dp"
+    android:padding="10dp"/>
    
 <ListView
         android:id="@+id/schedule_listview"
