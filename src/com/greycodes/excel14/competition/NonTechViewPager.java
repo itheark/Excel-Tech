@@ -60,7 +60,7 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 			  pager = (ViewPagerParallax) rootView.findViewById(R.id.nontech_pager);
 			 fragmentmanager=  getChildFragmentManager();
 		        pager.set_max_pages(5);
-		        pager.setBackgroundAsset(R.raw.nowcs);
+		        pager.setBackgroundAsset(R.raw.blue001);
 		        pager.setAdapter(new NonTechnicalViewPageAdapter(fragmentmanager));
 		        pager.setCurrentItem(pagetodisplay);
 		       

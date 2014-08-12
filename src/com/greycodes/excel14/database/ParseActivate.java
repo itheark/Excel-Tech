@@ -27,7 +27,7 @@ SharedPreferences sharedPreferences;
 		// TODO Auto-generated constructor stub
 		this.context = context;
 		
-url ="";
+url ="http://excelapi.net84.net/activate.json";
 		try {
 		Object object=	new ParseAsync().execute(url).get();
 		} catch (InterruptedException e) {
@@ -88,7 +88,7 @@ url ="";
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			if(activate==1){
+			if(activate==2){
 				sharedPreferences = context.getSharedPreferences("login", Context.MODE_PRIVATE);
 			Editor editor = sharedPreferences.edit();
 			editor.putBoolean("active", true);

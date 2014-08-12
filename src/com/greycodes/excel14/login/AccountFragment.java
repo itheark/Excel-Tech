@@ -13,7 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.greycodes.excel14.HomeNDActivity;
 import com.greycodes.excel14.R;
@@ -24,59 +26,65 @@ public class AccountFragment extends ListFragment {
 	  String[] participating,columns;
 	  ExcelDataBase excelDataBase;
 	  SQLiteDatabase sqLiteDatabase;
-	  Cursor cursor;
+	 Cursor cursor;
 	  TextView tvname;
 	  SharedPreferences sharedPreferences;
-	  CircularImageView circularImageView;
-	  String[] name;
+	  ImageView propic;
+	  String name;
 	  Bitmap image;
+	  int[] tid;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 			
 		 View rootView = inflater.inflate(R.layout.user_account_activity, container, false);
 		 tvname = (TextView) rootView.findViewById(R.id.textView2);
-		 sharedPreferences = getActivity().getSharedPreferences("login",
-					Context.MODE_PRIVATE);
-			
-				String[] columns = { "NAME", "EMAIL", "PICTURE" };
-				excelDataBase = new ExcelDataBase(getActivity());
-				SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
-				 cursor = sqLiteDatabase.query("USER", columns, null,null, null, null, null);
-				cursor.moveToFirst();
-				name[0] = cursor.getString(cursor.getColumnIndex("NAME"));
-				tvname.setText(name[0]);
-
-				if (sharedPreferences.getBoolean("fb", false)) {
-					byte[] bs;
-					bs = cursor.getBlob(cursor.getColumnIndex("PICTURE"));
-					 image = BitmapFactory.decodeByteArray(bs, 0, bs.length);
-					circularImageView = (CircularImageView) rootView.findViewById(R.id.propic);
-				circularImageView.setImageBitmap(image);
-				}
-			
-		 columns = new String[]{"ENAME"};
+		propic = (ImageView) rootView.findViewById(R.id.propic);
+		excelDataBase = new ExcelDataBase(getActivity());
+		SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
+	//	 cursor = sqLiteDatabase.query("USER", columns, null,null, null, null, null);
+	
+		tvname.setText(HomeNDActivity.name[0]);
+	propic.setImageBitmap(HomeNDActivity.image);
+	/*String[] columns = { "FNAME", "PID", "PICTURE" };
+	cursor = sqLiteDatabase.query("USER", columns, null,null, null, null, null);
+	//name[0]= cursor.getString(cursor.getColumnIndex("FNAME"));
+	Toast.makeText(getActivity(), Integer.toString(cursor.getCount()), Toast.LENGTH_LONG).show();
+		Toast.makeText(getActivity(), "First", Toast.LENGTH_LONG).show();
+	String[] columnname =cursor.getColumnNames();
+	//name = cursor.getString(cursor.getColumnIndex(columnname[0]));
+	if(cursor.isNull(cursor.getColumnIndex(columnname[0]))){
+		Toast.makeText(getActivity(), "Null", Toast)
+	}*/
+		 columns = new String[]{"ENAME","TID"};
 		 
 		
 		
 		 cursor=	sqLiteDatabase.query("PARTICIPATE", columns, null, null, null, null, null);
 		
 		cursor.moveToFirst();
+		participating = new String[cursor.getCount()];
+		tid = new int[cursor.getCount()];
 		if(cursor.getCount()==0){
 			participating = new String[1];
-			participating[0]="You havent added any";
+			participating[0]="You havent registered for any";
+			tid[0] =0;
 		}
-		participating = new String[cursor.getCount()];
+	
+
+		
 		for(int i =0;i<cursor.getCount();i++,cursor.moveToNext() )
 		{
 			participating[i]= cursor.getString(cursor.getColumnIndex("ENAME"));
+			tid[i] = cursor.getInt(cursor.getColumnIndex("TID"));
 		}
-		
+	
+	
 		 
-		 ArrayAdapter<String> adapter= new ArrayAdapter<String>(inflater.getContext(), R.layout.participate_listitem, participating);
+		AccountAdapter adapter  = new AccountAdapter(getActivity(), participating, tid);
 		   setListAdapter(adapter);; 
-		 
-		 
+		
+		
 		 return rootView;
 	
 	}

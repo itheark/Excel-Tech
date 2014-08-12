@@ -50,7 +50,7 @@ public class RBViewPager extends Fragment implements OnClickListener,OnLongClick
 			  pager = (ViewPagerParallax) rootView.findViewById(R.id.roboticspager);
 			 fragmentmanager=  getChildFragmentManager();
 			 pager.set_max_pages(2);
-		        pager.setBackgroundAsset(R.raw.noweee);
+		        pager.setBackgroundAsset(R.raw.night);
 		        pager.setAdapter(new RBViewPageAdapter(fragmentmanager));
 		        pager.setCurrentItem(0);
 		        excelDataBase = new ExcelDataBase(getActivity());

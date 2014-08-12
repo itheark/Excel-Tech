@@ -52,7 +52,7 @@ public class EEEViewPager extends Fragment implements OnClickListener,OnLongClic
 			  pager = (ViewPagerParallax) rootView.findViewById(R.id.eeepager);
 			 fragmentmanager=  getChildFragmentManager();
 			 pager.set_max_pages(3);
-		        pager.setBackgroundAsset(R.raw.noweeee);
+		        pager.setBackgroundAsset(R.raw.cityjpg);
 		        pager.setAdapter(new EEEViewPageAdapter(fragmentmanager));
 		        pager.setCurrentItem(0);
 		        excelDataBase = new ExcelDataBase(getActivity());

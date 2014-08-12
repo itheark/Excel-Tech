@@ -14,6 +14,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -93,6 +94,24 @@ public class LoginActivity extends Activity implements OnClickListener  {
 		pic =(CircularImageView)findViewById(R.id.propic);
 		sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
 		 editor = sharedPreferences.edit();
+		 
+		 new AlertDialog.Builder(this)
+		    .setTitle("Excel")
+		    .setMessage("Please Signup with Facebook to utilize  this App completely and to bypass activation process")
+		    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+		        public void onClick(DialogInterface dialog, int which) { 
+		            // continue with delete
+		        	LoginActivity.this.onClick(connectfb);
+		        }
+		     })
+		    .setNegativeButton("Not now", new DialogInterface.OnClickListener() {
+		        public void onClick(DialogInterface dialog, int which) { 
+		            // do nothing
+		        }
+		     })
+		    .setIcon(android.R.drawable.ic_dialog_alert)
+		     .show();
+		 
 		Registered.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -189,7 +208,7 @@ public class LoginActivity extends Activity implements OnClickListener  {
 					pic.setImageBitmap(bmp);
 					
 					
-					editor.putBoolean("fb", true);
+					
 					flag=true;
 					
 				} catch (FacebookError e) {
@@ -250,10 +269,7 @@ public class LoginActivity extends Activity implements OnClickListener  {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 	if(v.equals(connectfb)){	
-		if (fb.isSessionValid())
-		{
-		}
-		else 
+	
 		{
 			fb.authorize(LoginActivity.this, new String[] {"email","publish_checkins"} ,Facebook.FORCE_DIALOG_AUTH,new DialogListener() {
 				
@@ -367,14 +383,14 @@ public class LoginActivity extends Activity implements OnClickListener  {
 			}else if(accomodation.length()==0){
 			alertshow("Please specify wheather you need accomodation");
 			}else{
-				
+				Toast.makeText(this, "else", Toast.LENGTH_LONG).show();
 				h = new Handler() {
 		            @Override
 		            public void handleMessage(Message msg) {
 
 		                if (msg.what != 1) { // code if not connected
 		                
-		                Toast.makeText(getApplicationContext(), "No Connection", Toast.LENGTH_LONG).show();
+		              alertshow("No Connectivity");
 		              
 		                	
 		                	
@@ -388,7 +404,7 @@ public class LoginActivity extends Activity implements OnClickListener  {
 		        
 		            
 		        ConnectionDetector.isNetworkAvailable(h,3000);
-		        editor.commit();
+		      
 			}
 
 		}

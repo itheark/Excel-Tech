@@ -132,15 +132,15 @@ return flag;
 	public boolean Isregistered() {
 		
 		sharedPreferences = context.getSharedPreferences("login", Context.MODE_PRIVATE);
-		if(sharedPreferences.getBoolean("registered",true)){
+		if(sharedPreferences.getBoolean("registered",false)){
 			
 	
-			if(sharedPreferences.getBoolean("active",true)){
+			if(sharedPreferences.getBoolean("active",false)){
 				return true;
 			}else{
 				
 				new AlertDialog.Builder(context)
-			    .setTitle("Delete entry")
+			    .setTitle("Excel")
 			    .setMessage("It seems like you havent activated your account.Check your mail to activate.")
 			    .setPositiveButton("Check Again", new DialogInterface.OnClickListener() {
 			        public void onClick(DialogInterface dialog, int which) { 

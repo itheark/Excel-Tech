@@ -12,6 +12,11 @@ import org.apache.http.params.BasicHttpParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.greycodes.excel14.CompetitionNDActivity;
+import com.greycodes.excel14.R;
+import com.parse.ParsePush;
+import com.parse.PushService;
+
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
@@ -76,7 +81,7 @@ ProgressDialog progressDialog;
 			Toast.makeText(context, "Your id for competition is "+id, Toast.LENGTH_LONG).show();
 		}else
 			Toast.makeText(context, "Already registered for the event", Toast.LENGTH_LONG).show();
-		progressDialog.dismiss();
+PushService.subscribe(context, "excel"+eid, CompetitionNDActivity.class, R.drawable.excel_logo);		progressDialog.dismiss();
 	}
 	
 	public class Result extends AsyncTask<String, String, String>  {
@@ -149,8 +154,8 @@ ProgressDialog progressDialog;
 		AlertDialog.Builder alert = new AlertDialog.Builder(context);
 
 		alert.setTitle("Excel");
-		alert.setMessage("If you have a team id please Enter.All memners of a team should have same team id");
-
+		alert.setMessage("If you have a team id please Enter.All members of a team should have same team id");
+alert.setCancelable(false);
 		// Set an EditText view to get user input 
 		final EditText input = new EditText(context);
 		input.setInputType(InputType.TYPE_CLASS_NUMBER);

@@ -43,6 +43,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.commonsware.cwac.merge.MergeAdapter;
 import com.greycodes.excel14.conference.ConferenceViewPager;
 import com.greycodes.excel14.database.ExcelDataBase;
+import com.greycodes.excel14.database.ParseActivate;
 import com.greycodes.excel14.database.ParseQuickOpen;
 import com.greycodes.excel14.excelgallery.GalleryListActivity;
 import com.greycodes.excel14.login.AccountFragment;
@@ -68,10 +69,11 @@ HomeMenuListAdapter hMenuAdapter;
 int[] homeoptions;
 Intent homeIntent;
 UserArrayAdapter userDetails;
-static String[] name = new String[1];
+public static String[] name = new String[1];
 static String[] username = new String[1];
-Bitmap image;
+public static Bitmap image;
 Fragment f;
+public static boolean fbflag=false;
 FragmentManager fragmentManager ;
 FragmentTransaction transaction;
 ProgressDialog pd;
@@ -89,30 +91,61 @@ Handler h;
         bar.setTitle(Html.fromHtml("<font color=\"#e6f3ea\">" + getString(R.string.app_name) + "</font>"));
     	ParseAnalytics.trackAppOpened(getIntent());   	          	    
 		name[0] = "Name";
-		username[0]= "email";
+		username[0]= " ";
 		  fragmentManager = getSupportFragmentManager();
 		 transaction=fragmentManager.beginTransaction();
 		 
 		 pd= new ProgressDialog(HomeNDActivity.this);
 		 image = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.user_image);
 			
+		 
+		
 		MergeAdapter mergeadapter = null;
 		
-			sharedPreferences = getSharedPreferences("login",
-					Context.MODE_PRIVATE);
+			sharedPreferences = getSharedPreferences("login",Context.MODE_PRIVATE);
 			if (sharedPreferences.getBoolean("registered", false)) {
-				String[] columns = { "NAME", "EMAIL", "PICTURE" };
+				
+				String[] columns = { "FNAME", "PID", "PICTURE" };
 				excelDataBase = new ExcelDataBase(getApplicationContext());
 				SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
 				 cursor = sqLiteDatabase.query("USER", columns, null,null, null, null, null);
 				cursor.moveToFirst();
-				name[0] = cursor.getString(cursor.getColumnIndex("NAME"));
-				username[0] = cursor.getString(cursor.getColumnIndex("EMAIL"));
+				name[0] = cursor.getString(cursor.getColumnIndex("FNAME"));
+				//username[0]="PID: ";
+				//username[0]+= cursor.getString(cursor.getColumnIndex("PID"));
+				username[0]=" ";
+				
 
 				if (sharedPreferences.getBoolean("fb", false)) {
+					fbflag=true;
 					byte[] bs;
 					bs = cursor.getBlob(cursor.getColumnIndex("PICTURE"));
 					image = BitmapFactory.decodeByteArray(bs, 0, bs.length);
+					
+				}
+				
+				if(sharedPreferences.getBoolean("active",false)){
+					
+					h = new Handler() {
+			            @Override
+			            public void handleMessage(Message msg) {
+
+			                if (msg.what != 1) { // code if not connected
+			                
+			             //   Toast.makeText(getApplicationContext(), "No Connection", Toast.LENGTH_LONG).show();
+			              
+			                	
+			                	
+			            				
+			                } else { // code if connected
+			                		      new ParseActivate(getApplicationContext(), 123);
+			               	 
+			                }   
+			            }
+			        };
+			        
+			            
+			        ConnectionDetector.isNetworkAvailable(h,3000);
 					
 				}
 			}
@@ -224,13 +257,32 @@ private void  selectItem(int position) {
 	{
 	case 0:
 
-		sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+		
 		if(sharedPreferences.getBoolean("registered",false)){
 				
 			if(sharedPreferences.getBoolean("active",false)){
 				 f = new AccountFragment();
 			}else{
-				
+				h = new Handler() {
+		            @Override
+		            public void handleMessage(Message msg) {
+
+		                if (msg.what != 1) { // code if not connected
+		                
+		                Toast.makeText(getApplicationContext(), "No Connection", Toast.LENGTH_LONG).show();
+		              
+		                	
+		                	
+		            				
+		                } else { // code if connected
+		                		      new ParseActivate(getApplicationContext(), 123);
+		               	 
+		                }   
+		            }
+		        };
+		        
+		            
+		        ConnectionDetector.isNetworkAvailable(h,3000);
 			}
 
 		

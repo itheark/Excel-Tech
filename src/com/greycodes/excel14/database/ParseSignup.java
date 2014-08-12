@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -14,10 +15,16 @@ import org.json.JSONObject;
 
 import com.greycodes.excel14.HomeNDActivity;
 import com.greycodes.excel14.R;
+import com.greycodes.excel14.login.LoginActivity;
 import com.parse.PushService;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -25,9 +32,12 @@ import android.widget.Toast;
 
 public class ParseSignup {
 Context context;
+SharedPreferences sharedPreferences;
 String fname,lname,uname,phone,pass,email,college,dept,sem,acc,results,url;
 boolean fb;
 Bitmap propic;
+Editor editor;
+ProgressDialog progressDialog;
 int username_flag,email_flag,success,pid;
 	public ParseSignup(Context context,String fname,String lname,String uname,String pass,String email,String college,String dept,String sem,String phone,String acc,Bitmap propic,boolean fb){
 		// TODO Auto-generated constructor stub
@@ -45,11 +55,23 @@ int username_flag,email_flag,success,pid;
 		this.fb=  fb;
 		if(fb)
 			this.propic= propic;
+		url= "http://excelapi.net84.net/signup.json";
+		try {
+			new SignupAsync().execute(url).get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	private void insert(){
 		
 		ExcelDataBase excelDataBase = new ExcelDataBase(context);
 		SQLiteDatabase sqLiteDatabase=	excelDataBase.getSQLiteDataBase();
+		sharedPreferences = context.getSharedPreferences("login", Context.MODE_PRIVATE);
+		 editor = sharedPreferences.edit();
 		ContentValues contentValues = new ContentValues();
 		contentValues.put("PID", pid);
 		contentValues.put("FNAME", fname);
@@ -70,11 +92,22 @@ int username_flag,email_flag,success,pid;
 		if(	sqLiteDatabase.insert("USER", null, contentValues)>=0){
 			Toast.makeText(context, "User inserted", Toast.LENGTH_LONG).show();
 			editor.putBoolean("registered", true);
+			if(fb){
+				editor.putBoolean("active",true);
+				editor.putBoolean("fb", true);
+			}
+			
 			editor.commit();
 			
 			//PushService.subscribe(getApplicationContext(), pid, HomeNDActivity.class);
-			PushService.subscribe(context, Integer.toString(pid), HomeNDActivity.class,R.drawable.excel_logo);
+			PushService.subscribe(context,"user"+pid, HomeNDActivity.class,R.drawable.excel_logo);
+		//	Toast.makeText(context, "Acoount Created.Please check your mail to activate the account", Toast.LENGTH_LONG).show();
+		alertshow("Acoount Created.Please check your mail to activate the account");
+			Intent intent = new Intent(context, HomeNDActivity.class);
+			context.startActivity(intent);
 		}
+		
+		
 		
 		
 		
@@ -134,6 +167,13 @@ int username_flag,email_flag,success,pid;
 		}
 
 		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			   progressDialog = ProgressDialog.show(context, "Excel", "Please Wait...");
+		}
+
+		@Override
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
@@ -141,7 +181,11 @@ int username_flag,email_flag,success,pid;
 				insert();
 			}else
 				if(success==2){
-					
+					if(username_flag==2){
+						alertshow("Username already taken :(");
+					}else if(email_flag==2){
+						alertshow("Your email id is already registered with us");
+					}
 				}
 				
 				
@@ -150,5 +194,20 @@ int username_flag,email_flag,success,pid;
 		}
 
 		
+	}
+	public void alertshow(String message){
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);	                	// Setting Dialog Title
+    	alertDialogBuilder.setTitle("Excel");
+
+    	// Setting Dialog Message
+    	alertDialogBuilder.setMessage(message);
+
+    	// Setting Icon to Dialog
+    	alertDialogBuilder.setIcon(R.drawable.alert);
+    	
+    	alertDialogBuilder.setNeutralButton("OK", null);
+    	
+    	AlertDialog alertDialog = alertDialogBuilder.create();
+    	alertDialog.show();
 	}
 }

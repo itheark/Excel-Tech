@@ -61,7 +61,7 @@ public class ECViewPager extends Fragment implements OnClickListener,OnLongClick
 			 pager = (ViewPagerParallax) rootView.findViewById(R.id.ecpager);
 			 fragmentmanager=  getChildFragmentManager();
 		        pager.set_max_pages(3);
-		        pager.setBackgroundAsset(R.raw.nowec);
+		        pager.setBackgroundAsset(R.raw.ecbg);
 		        pager.setAdapter(new ECViewPageAdapter(fragmentmanager));
 		        pager.setCurrentItem(pagetodisplay);
 		        call=(ImageView)rootView.findViewById(R.id.imageView4);
