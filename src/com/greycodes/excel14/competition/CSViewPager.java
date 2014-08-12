@@ -49,6 +49,9 @@ ConnectionDetector connectionDetector;
 Handler h ;
 ExcelDataBase excelDataBase;
 ParseResult parseResult;
+String Ename;
+boolean team=false;
+int tid =0;
 ProgressDialog progressDialog;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -101,76 +104,79 @@ ProgressDialog progressDialog;
 		
 		switch(v.getId()){
 		case R.id.imageView3:
-			InsertParticipant insertParticipant = new InsertParticipant(getActivity());
-			
+			Toast.makeText(getActivity(), "Please wait", Toast.LENGTH_LONG).show();
+						
 			switch(pager.getCurrentItem()){
 			case 0:
-				if(excelDataBase.Isregistered()){
-					if(insertParticipant.insert(000, "#include")){
-						Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-		}else{
-						Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
-					}
-				}
-				
-			break;
+				eid =889;
+				Ename="#include";
+				team = true;
+				break;
 			case 1:
-				if(excelDataBase.Isregistered()){
-					if(insertParticipant.insert(001, "Web Bots")){
-						Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-		}else{
-						Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
-					}
-				}
+				eid =889+1;
+				Ename="#include";
 				break;
 			case 2:
-				if(excelDataBase.Isregistered()){
-					if(insertParticipant.insert(002, "Lord of the Code")){
-						Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-		}else{
-						Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
-					}
-				}
+				eid =889+2;
+				Ename="#include";
 				break;
 			case 3:
-				if(excelDataBase.Isregistered()){
-					if(insertParticipant.insert(003, "Hackmaster")){
-						Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-		}else{
-						Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
-					}
-				}
+				eid =889+3;
+				Ename="#include";
 				break;
 			case 4:
-				if(excelDataBase.Isregistered()){
-					if(insertParticipant.insert(004, "4*120")){
-						Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-		}else{
-						Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
-					}
-				}
+				eid =889+4;
+				Ename="#include";
 				break;
 			case 5:
-				if(excelDataBase.Isregistered()){
-					if(insertParticipant.insert(005, "Algorithms")){
-						Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-		}else{
-						Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
-					}
-				}
+				eid =889+5;
+				Ename="#include";
 				break;
 			case 6:
-				if(excelDataBase.Isregistered()){
-					if(insertParticipant.insert(006, "SYTYCC")){
-						Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-		}else{
-						Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
-					}
-				}
+				eid =889+6;
+				Ename="#include";
 				break;
+				
+			
 			
 			}
+			
+			
+			
+			h = new Handler() {
+	            @Override
+	            public void handleMessage(Message msg) {
+
+	                if (msg.what != 1) { // code if not connected
+	               
+	                	connectionDetector.noNetworkAlert();;
+	               
+	                	
+	                	
+	            				
+	                } else { // code if connected
+		       
+					
+	                	if(excelDataBase.Isregistered()){
+	                		InsertParticipant insertParticipant = new InsertParticipant(getActivity());
+
+	        				insertParticipant.PInsert(eid, Ename, team);
+	        					
+	        	}else{
+	        					Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
+	        				}       	
+	               	 
+	                }   
+	            }
+	        };
+	        
+	        
+
+	        connectionDetector.isNetworkAvailable(h,5000);
+			
 			break;
+		
+
 		case R.id.imageView2:
 			switch(pager.getCurrentItem()){
 			case 0:
@@ -224,6 +230,8 @@ ProgressDialog progressDialog;
 	        connectionDetector.isNetworkAvailable(h,5000);
 			break;
 		case R.id.imageView4:
+			Toast.makeText(getActivity(), "Hold to call", Toast.LENGTH_LONG).show();
+
 			switch(pager.getCurrentItem()){
 			case 0:
 				FragmentHashInclude.tv.setText("Cordinator");

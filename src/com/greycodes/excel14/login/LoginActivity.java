@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Connection;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,9 +27,12 @@ import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.StrictMode;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,9 +43,12 @@ import com.facebook.android.Facebook;
 import com.facebook.android.Facebook.DialogListener;
 import com.facebook.android.FacebookError;
 import com.facebook.android.Util;
+import com.greycodes.excel14.ConnectionDetector;
 import com.greycodes.excel14.HomeNDActivity;
 import com.greycodes.excel14.R;
 import com.greycodes.excel14.database.ExcelDataBase;
+import com.greycodes.excel14.database.ParseQuickOpen;
+import com.greycodes.excel14.database.ParseSignup;
 import com.parse.Parse;
 import com.parse.ParseUser;
 import com.parse.PushService;
@@ -54,15 +61,16 @@ public class LoginActivity extends Activity implements OnClickListener  {
 	SharedPreferences sp,sharedPreferences;
 	Facebook fb;
 	TextView Registered;
-	String name,password,email,college,semester,phone,lastname;
-	 EditText etname,etlastname;
-	 EditText etemail,etpassword,etcollege,etsemester,etphone,etid;
+	String fname,lname,uname,password,email,college,department,semester,phone,accomodation;
+	 ConnectionDetector connectionDetector;
+	 EditText etemail,etpassword,etphone,etfname,etlname,etuname;
 	 Bitmap bmp;
+	 AutoCompleteTextView etcollege,etsemester,etaccomodation,etdepartment;
 	boolean flag =false;
 	CircularImageView pic ;
 	ImageView connectfb,signup;
 	SharedPreferences.Editor editor;
-	
+	Handler h;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -71,14 +79,17 @@ public class LoginActivity extends Activity implements OnClickListener  {
 		connectfb= (ImageView)findViewById(R.id.fbconnect);
 		signup= (ImageView)findViewById(R.id.signup);
 		Registered = (TextView) findViewById(R.id.clickhere);
-		etid= (EditText) findViewById(R.id.registration_username);
-		etname= (EditText) findViewById(R.id.registration_name);
-		etlastname= (EditText) findViewById(R.id.registration_lastname);
-		etemail= (EditText) findViewById(R.id.registration_email);
+		etfname = (EditText) findViewById(R.id.registration_name);
+		etlname = (EditText) findViewById(R.id.registration_lastname);
+		etuname = (EditText) findViewById(R.id.registration_username);
 		etpassword = (EditText) findViewById(R.id.registration_password);
-		etcollege = (EditText) findViewById(R.id.registration_college);
-		etsemester =(EditText) findViewById(R.id.registration_semester);
+		etemail = (EditText) findViewById(R.id.registration_email);
+		etcollege = (AutoCompleteTextView) findViewById(R.id.registration_college);
+		etdepartment = (AutoCompleteTextView) findViewById(R.id.registration_collegedept);
+		etsemester = (AutoCompleteTextView) findViewById(R.id.registration_semester);
 		etphone = (EditText) findViewById(R.id.registration_phone);
+		etaccomodation = (AutoCompleteTextView) findViewById(R.id.registration_accomodate);
+		connectionDetector = new ConnectionDetector(this);
 		pic =(CircularImageView)findViewById(R.id.propic);
 		sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
 		 editor = sharedPreferences.edit();
@@ -163,13 +174,13 @@ public class LoginActivity extends Activity implements OnClickListener  {
 					String jsonUser =fb.request("me");
 					obj = Util.parseJson(jsonUser);
 					String id =obj.optString("id");
-					name =obj.optString("first_name");
+					fname =obj.optString("first_name");
 					email =obj.optString("email");
-					lastname =obj.optString("last_name");
+					lname =obj.optString("last_name");
 					etemail.setText(email);
-					etname.setText(name);
-					etlastname.setText(lastname);
-					etid.setText(id);
+					etfname.setText(fname);
+					etlname.setText(lname);
+					etuname.setText(id);
 					img_url =new URL("https://graph.facebook.com/"+id+"/picture?type=normal");
 					 bmp =BitmapFactory.decodeStream(img_url.openConnection().getInputStream());
 					
@@ -323,17 +334,23 @@ public class LoginActivity extends Activity implements OnClickListener  {
 	}
 		if(v.equals(signup))
 		{
-			name = etname.getText().toString();
+			fname = etfname.getText().toString();
+			lname = etlname.getText().toString();
+			uname = etuname.getText().toString();
 			password = etpassword.getText().toString();
 			email = etemail.getText().toString();
 			college = etcollege.getText().toString();
+			department = etdepartment.getText().toString();
 			semester = etsemester.getText().toString();
 			phone= etphone.getText().toString();
+			accomodation = etaccomodation.getText().toString();
 		//	!android.util.Patterns.EMAIL_ADDRESS.matcher(validEmail).matches()
 			
-			if(name.length()<4){
+			if(fname.length()<3&&lname.length()==0){
 				alertshow("Plese enter a valid name");
-			}else if(password.length()<9){
+			}else  if(uname.length()<6){
+				alertshow("Username should contain atleast 6 characters");
+			}else if(password.length()<8){
 				alertshow("Password must contain minimum 8 characters");
 			}else if(email.length()==0){
 				alertshow("Please enter your email id");
@@ -341,39 +358,37 @@ public class LoginActivity extends Activity implements OnClickListener  {
 				alertshow("Please enter a valid email id");
 			}else if(college.length()<1){
 				alertshow("Please enter your college name");
+			}else if(department.length()<2){
+				alertshow("Please enter your departmant");
 			}else if(semester.length()==0){
 				alertshow("Semester Please!!");
 			}else if(phone.length()<10){
 				alertshow("Please enter a valid mobile number");
+			}else if(accomodation.length()==0){
+			alertshow("Please specify wheather you need accomodation");
 			}else{
-				ExcelDataBase excelDataBase = new ExcelDataBase(LoginActivity.this);
-			SQLiteDatabase sqLiteDatabase=	excelDataBase.getSQLiteDataBase();
-			ContentValues contentValues = new ContentValues();
-			contentValues.put("PID", 1);
-			contentValues.put("NAME", name);
-			contentValues.put("PASSWORD", password);
-			contentValues.put("EMAIL", email);
-			contentValues.put("SEMESTER", semester);
-			contentValues.put("PHONE", phone);
-			if(flag){
-				ByteArrayOutputStream stream = new ByteArrayOutputStream();
-				bmp.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-				byte[] byteArray = stream.toByteArray();
-				contentValues.put("PICTURE",byteArray );
-			}
-		if(	sqLiteDatabase.insert("USER", null, contentValues)>=0){
-			Toast.makeText(getApplicationContext(), "User inserted", Toast.LENGTH_LONG).show();
-			editor.putBoolean("registered", true);
-			editor.commit();
-			String pid = "excel"+etphone.getText().toString();
-			//PushService.subscribe(getApplicationContext(), pid, HomeNDActivity.class);
-			PushService.subscribe(this, pid, HomeNDActivity.class, R.drawable.ic_launcher);
-		}
-			
-			Intent intent = new Intent(LoginActivity.this, HomeNDActivity.class);
-			startActivity(intent);
-			finish();
-			
+				
+				h = new Handler() {
+		            @Override
+		            public void handleMessage(Message msg) {
+
+		                if (msg.what != 1) { // code if not connected
+		                
+		                Toast.makeText(getApplicationContext(), "No Connection", Toast.LENGTH_LONG).show();
+		              
+		                	
+		                	
+		            				
+		                } else { // code if connected
+		                       ParseSignup parseSignup = new ParseSignup(LoginActivity.this, fname, lname, uname, password, email, college, department, semester, phone, accomodation,bmp,flag);
+		               	 
+		                }   
+		            }
+		        };
+		        
+		            
+		        ConnectionDetector.isNetworkAvailable(h,3000);
+		        editor.commit();
 			}
 
 		}

@@ -41,6 +41,8 @@ public class EEEViewPager extends Fragment implements OnClickListener,OnLongClic
 	 int eid=889;
 	 ParseResult parseResult;
 	 ProgressDialog progressDialog;
+	 String Ename;
+	 boolean team;
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
@@ -108,41 +110,62 @@ public class EEEViewPager extends Fragment implements OnClickListener,OnLongClic
 			// TODO Auto-generated method stub
 			
 			switch(v.getId()){
-			case R.id.imageView3:
-				InsertParticipant insertParticipant = new InsertParticipant(getActivity());
+case R.id.imageView3:
+	Toast.makeText(getActivity(), "Please wait", Toast.LENGTH_LONG).show();
+
 				
 				switch(pager.getCurrentItem()){
 				case 0:
-					if(excelDataBase.Isregistered()){
-						if(insertParticipant.insert(899, "Lumiere")){
-							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-			}else{
-							Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
-						}
-					}
-					
-				break;
+					eid =896;
+					Ename="#include";
+					team = true;
+					break;
 				case 1:
-					if(excelDataBase.Isregistered()){
-						if(insertParticipant.insert(900, "Extundo Prodigo")){
-							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-			}else{
-							Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
-						}
-					}
+					eid =896+1;
+					Ename="#include";
 					break;
 				case 2:
-					if(excelDataBase.Isregistered()){
-						if(insertParticipant.insert(901, "E-aventura")){
-							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-			}else{
-							Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
-						}
-					}
-					
+					eid =896+2;
+					Ename="#include";
 					break;
 				
+				
+				
 				}
+				
+				
+				
+				h = new Handler() {
+		            @Override
+		            public void handleMessage(Message msg) {
+
+		                if (msg.what != 1) { // code if not connected
+		               
+		                	connectionDetector.noNetworkAlert();;
+		               
+		                	
+		                	
+		            				
+		                } else { // code if connected
+			       
+						
+		                	if(excelDataBase.Isregistered()){
+		                		InsertParticipant insertParticipant = new InsertParticipant(getActivity());
+
+		        				insertParticipant.PInsert(eid, Ename, team);
+		        					
+		        	}else{
+		        					Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
+		        				}       	
+		               	 
+		                }   
+		            }
+		        };
+		        
+		        
+
+		        connectionDetector.isNetworkAvailable(h,5000);
+				
 				break;
 			case R.id.imageView2:
 				switch(pager.getCurrentItem()){
@@ -186,6 +209,8 @@ public class EEEViewPager extends Fragment implements OnClickListener,OnLongClic
 		        connectionDetector.isNetworkAvailable(h,3500);
 				break;
 			case R.id.imageView4:
+				Toast.makeText(getActivity(), "Hold to call", Toast.LENGTH_LONG).show();
+
 				switch(pager.getCurrentItem()){
 				case 0:
 					FragmentLumiere.tv.setText("Cordinator");

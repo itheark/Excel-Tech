@@ -34,6 +34,9 @@ public class FragmentLifeLine extends SherlockFragment implements OnClickListene
 	 ParseResult parseResult;
 	 ProgressDialog progressDialog;
 	 ExcelDataBase excelDataBase;
+	 String Ename;
+	 boolean team=false;
+	 int tid =0;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -113,16 +116,47 @@ public class FragmentLifeLine extends SherlockFragment implements OnClickListene
 			
 			break;
 		case R.id.imageView3:
-			InsertParticipant insertParticipant = new InsertParticipant(getActivity());
-			if(excelDataBase.Isregistered()){
-				if(insertParticipant.insert(902, "Robowar")){
-					Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-	}else{
-					Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
-				}
-			}
+			Toast.makeText(getActivity(), "Please wait", Toast.LENGTH_LONG).show();
+
+			eid =904;
+			Ename="Lifeline";
+			h = new Handler() {
+	            @Override
+	            public void handleMessage(Message msg) {
+
+	                if (msg.what != 1) { // code if not connected
+	               
+	                	connectionDetector.noNetworkAlert();;
+	               
+	                	
+	                	
+	            				
+	                } else { // code if connected
+		       
+					
+	                	if(excelDataBase.Isregistered()){
+	                		InsertParticipant insertParticipant = new InsertParticipant(getActivity());
+
+	        				insertParticipant.PInsert(eid, Ename, team);
+	        					
+	        	}else{
+	        					Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
+	        				}       	
+	               	 
+	                }   
+	            }
+	        };
+	        
+	        
+
+	        connectionDetector.isNetworkAvailable(h,5000);
+			
+			
 			break;
+			
 		case R.id.imageView4:
+			Toast.makeText(getActivity(), "Hold to call", Toast.LENGTH_LONG).show();
+
 			updateTextValue("Cordinator");
 			break;
 			

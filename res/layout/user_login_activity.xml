@@ -94,7 +94,7 @@
             android:textColorHint="#95FFFFFF"
              />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/registration_college"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
             android:textColor="#FFFFFF"
             android:textColorHint="#95FFFFFF"
              />
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/registration_collegedept"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -113,7 +113,7 @@
             android:textColorHint="#95FFFFFF"
              />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/registration_semester"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
             android:textColor="#FFFFFF"
             android:textColorHint="#95FFFFFF"
             />
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/registration_accomodate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

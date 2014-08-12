@@ -49,6 +49,8 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 	 ExcelDataBase excelDataBase;
 	 ParseResult parseResult;
 	 ProgressDialog progressDialog;
+	 String Ename;
+	 boolean team;
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
@@ -126,59 +128,70 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 			// TODO Auto-generated method stub
 			
 			switch(v.getId()){
-			case R.id.imageView3:
-				InsertParticipant insertParticipant = new InsertParticipant(getActivity());
+case R.id.imageView3:
 				
+	Toast.makeText(getActivity(), "Please wait", Toast.LENGTH_LONG).show();
+
 				switch(pager.getCurrentItem()){
 				case 0:
-					if(excelDataBase.Isregistered()){
-						if(insertParticipant.insert(908, "Best Manager")){
-							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-			}else{
-							Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
-						}
-					}
-					
-				break;
+					eid =908;
+					Ename="#include";
+					team = true;
+					break;
 				case 1:
-					if(excelDataBase.Isregistered()){
-						if(insertParticipant.insert(908, "CSI")){
-							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-			}else{
-							Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
-						}
-					}
+					eid =908+1;
+					Ename="#include";
 					break;
 				case 2:
-					if(excelDataBase.Isregistered()){
-						if(insertParticipant.insert(908, "Game Zone")){
-							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-			}else{
-							Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
-						}
-					}
+					eid =908+2;
+					Ename="#include";
 					break;
 				case 3:
-					if(excelDataBase.Isregistered()){
-						if(insertParticipant.insert(908, "Spider Web")){
-							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-			}else{
-							Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
-						}
-					}
+					eid =908+2;
+					Ename="#include";
 					break;
 				case 4:
-					if(excelDataBase.Isregistered()){
-						if(insertParticipant.insert(908, "Instant Photography")){
-							Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-			}else{
-							Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
-						}
-					}
+					eid =908+2;
+					Ename="#include";
 					break;
-			
+
+				
 				
 				}
+				
+				
+				
+				h = new Handler() {
+		            @Override
+		            public void handleMessage(Message msg) {
+
+		                if (msg.what != 1) { // code if not connected
+		               
+		                	connectionDetector.noNetworkAlert();;
+		               
+		                	
+		                	
+		            				
+		                } else { // code if connected
+			       
+						
+		                	if(excelDataBase.Isregistered()){
+		                		InsertParticipant insertParticipant = new InsertParticipant(getActivity());
+
+		        				insertParticipant.PInsert(eid, Ename, team);
+		        					
+		        	}else{
+		        					Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
+		        				}       	
+		               	 
+		                }   
+		            }
+		        };
+		        
+		        
+
+		        connectionDetector.isNetworkAvailable(h,5000);
+				
 				break;
 			case R.id.imageView2:
 				switch(pager.getCurrentItem()){
@@ -227,6 +240,8 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 		        connectionDetector.isNetworkAvailable(h,5000);
 				break;
 			case R.id.imageView4:
+				Toast.makeText(getActivity(), "Hold to call", Toast.LENGTH_LONG).show();
+
 				switch(pager.getCurrentItem()){
 				case 0:
 					FragmentBestManager.tv.setText("Cordinator");
