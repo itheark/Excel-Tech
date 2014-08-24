@@ -50,13 +50,13 @@ public class Fragmentkryptos extends SherlockFragment implements OnClickListener
 		}
 		if (v.equals(rules))
 		{
-			updateTextValue("\n\n");
+			updateTextValue("1.The game will begin 2 weeks before Excel 2014.\n2.This is an individual event.\n3.Anyone who gives away an answer will be disqualified for the prize and will be banned from further participation.\n4.Decision of the judges shall be final.\n\n");
 			
 		}
 		
 		if (v.equals(format))
 		{
-			updateTextValue("\n\n");
+			updateTextValue("1.This is a multi-level game that tests your skill over several levels spread over two weeks.\n2.This is an individual event.\n\n");
 			
 		}
 		

@@ -67,7 +67,7 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 			  pager = (ViewPagerParallax) rootView.findViewById(R.id.nontech_pager);
 			 fragmentmanager=  getChildFragmentManager();
 		        pager.set_max_pages(5);
-		        pager.setBackgroundAsset(R.raw.blue001);
+		        pager.setBackgroundAsset(R.raw.collg1);
 		        pager.setAdapter(new NonTechnicalViewPageAdapter(fragmentmanager));
 		        pager.setCurrentItem(pagetodisplay);
 		       
@@ -124,6 +124,28 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 			case 4:
 				misc.call("09809513994");
 				break;
+			case 5:
+				misc.call("09995698700");
+				break;
+			case 6:
+				misc.call("08547232371");
+				break;
+			case 7:
+				misc.call("09809513994");
+				break;
+			case 8:
+				misc.call("08907622242");
+				break;
+			case 9:
+				misc.call("09746210049");
+				break;
+			case 10:
+				misc.call("08943529599");
+				break;
+			case 11:
+				misc.call("09809513994");
+				break;
+		
 			
 			
 			}
@@ -265,7 +287,28 @@ case R.id.imageView3:
 				case 4:
 					FragmentInstantPhotography.tv.setText("Call Hafiz C.B?");
 					break;
-				
+				case 5:
+					KapothalonFragment.tv.setText("Call Thabsheera P.K?");
+					break;
+				case 6:
+					TikiTakaFragment.tv.setText("Call Mohammed P.M?");
+					break;
+				case 7:
+					DefactoFragment.tv.setText("Call Hafiz C.B?");
+					break;
+				case 8:
+					AlleyDunk.tv.setText("Call Kanakajith N?");
+					break;
+				case 9:
+					ByzantineFragment.tv.setText("Call Ajith G?");
+					break;
+				case 10:
+					TreasureHuntFragment.tv.setText("Call Thrishal S?");
+					break;
+				case 11:
+					FunZoneFragment.tv.setText("Call Hafiz C.B?");
+					break;
+							
 				
 				}
 				break;

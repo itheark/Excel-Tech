@@ -26,6 +26,14 @@ Fragment fragment=  null;
 		 ImageView btgame = (ImageView) rootView.findViewById(R.id.gamezone);
 		 ImageView btspider = (ImageView) rootView.findViewById(R.id.spider);
 		 ImageView btinstant = (ImageView) rootView.findViewById(R.id.instant);
+		 ImageView btkappa = (ImageView) rootView.findViewById(R.id.kappa);
+		 ImageView bttikki = (ImageView) rootView.findViewById(R.id.tikki);
+		 ImageView btdefacto = (ImageView) rootView.findViewById(R.id.defacto);
+		 ImageView btalley = (ImageView) rootView.findViewById(R.id.alley);
+		 ImageView btbyzantine = (ImageView) rootView.findViewById(R.id.byz);
+		 ImageView bttresurehunt = (ImageView) rootView.findViewById(R.id.tresurehunt);
+		 ImageView btfunzone = (ImageView) rootView.findViewById(R.id.funzone);
+		 
 		 
 		
 		 btbest.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +118,112 @@ NonTechViewPager.pagetodisplay=1;
 				}
 			});
 		
+		 btkappa.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					NonTechViewPager.pagetodisplay=5;
+					Fragment fragment =new  NonTechViewPager();
+					FragmentManager fragmentManager = getFragmentManager();
+					 FragmentTransaction transaction=fragmentManager.beginTransaction();
+					 transaction.setCustomAnimations(R.anim.fadeinright, R.anim.fadeoutleft, R.anim.fadeinleft, R.anim.fadeoutright);
+					 transaction.replace(R.id.competition_content_frame,fragment);
+						// Add this transaction to the back stack
+			        transaction.addToBackStack("kappa");
+			        transaction.commit();
+				}
+			}); bttikki.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					NonTechViewPager.pagetodisplay=6;
+					Fragment fragment =new  NonTechViewPager();
+					FragmentManager fragmentManager = getFragmentManager();
+					 FragmentTransaction transaction=fragmentManager.beginTransaction();
+					 transaction.setCustomAnimations(R.anim.fadeinright, R.anim.fadeoutleft, R.anim.fadeinleft, R.anim.fadeoutright);
+					 transaction.replace(R.id.competition_content_frame,fragment);
+						// Add this transaction to the back stack
+			        transaction.addToBackStack("tikki");
+			        transaction.commit();
+				}
+			}); btdefacto.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					NonTechViewPager.pagetodisplay=7;
+					Fragment fragment =new  NonTechViewPager();
+					FragmentManager fragmentManager = getFragmentManager();
+					 FragmentTransaction transaction=fragmentManager.beginTransaction();
+					 transaction.setCustomAnimations(R.anim.fadeinright, R.anim.fadeoutleft, R.anim.fadeinleft, R.anim.fadeoutright);
+					 transaction.replace(R.id.competition_content_frame,fragment);
+						// Add this transaction to the back stack
+			        transaction.addToBackStack("defacto");
+			        transaction.commit();
+				}
+			}); btalley.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					NonTechViewPager.pagetodisplay=8;
+					Fragment fragment =new  NonTechViewPager();
+					FragmentManager fragmentManager = getFragmentManager();
+					 FragmentTransaction transaction=fragmentManager.beginTransaction();
+					 transaction.setCustomAnimations(R.anim.fadeinright, R.anim.fadeoutleft, R.anim.fadeinleft, R.anim.fadeoutright);
+					 transaction.replace(R.id.competition_content_frame,fragment);
+						// Add this transaction to the back stack
+			        transaction.addToBackStack("alley");
+			        transaction.commit();
+				}
+			}); btbyzantine.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					NonTechViewPager.pagetodisplay=9;
+					Fragment fragment =new  NonTechViewPager();
+					FragmentManager fragmentManager = getFragmentManager();
+					 FragmentTransaction transaction=fragmentManager.beginTransaction();
+					 transaction.setCustomAnimations(R.anim.fadeinright, R.anim.fadeoutleft, R.anim.fadeinleft, R.anim.fadeoutright);
+					 transaction.replace(R.id.competition_content_frame,fragment);
+						// Add this transaction to the back stack
+			        transaction.addToBackStack("byz");
+			        transaction.commit();
+				}
+			}); bttresurehunt.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					NonTechViewPager.pagetodisplay=10;
+					Fragment fragment =new  NonTechViewPager();
+					FragmentManager fragmentManager = getFragmentManager();
+					 FragmentTransaction transaction=fragmentManager.beginTransaction();
+					 transaction.setCustomAnimations(R.anim.fadeinright, R.anim.fadeoutleft, R.anim.fadeinleft, R.anim.fadeoutright);
+					 transaction.replace(R.id.competition_content_frame,fragment);
+						// Add this transaction to the back stack
+			        transaction.addToBackStack("treasure");
+			        transaction.commit();
+				}
+			}); btfunzone.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					NonTechViewPager.pagetodisplay=11;
+					Fragment fragment =new  NonTechViewPager();
+					FragmentManager fragmentManager = getFragmentManager();
+					 FragmentTransaction transaction=fragmentManager.beginTransaction();
+					 transaction.setCustomAnimations(R.anim.fadeinright, R.anim.fadeoutleft, R.anim.fadeinleft, R.anim.fadeoutright);
+					 transaction.replace(R.id.competition_content_frame,fragment);
+						// Add this transaction to the back stack
+			        transaction.addToBackStack("funzone");
+			        transaction.commit();
+				}
+			});
 
 		return rootView;
 		
