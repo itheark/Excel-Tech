@@ -13,19 +13,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.greycodes.excel14.FirstRunactivity;
-import com.greycodes.excel14.HomeNDActivity;
-
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.widget.Toast;
+
+import com.greycodes.excel14.ConnectionDetector;
+import com.greycodes.excel14.HomeNDActivity;
+import com.greycodes.excel14.R;
 
 
 
@@ -145,11 +149,11 @@ static  String url = "http://www.excelapi.net84.net/newsfeed.json";
 		
 		ExcelDataBase ebs = new ExcelDataBase(context);
     	SQLiteDatabase db = ebs.getSQLiteDataBase();
-    String[]	column = new String[]{"EID"};
-    Cursor cursor = db.query("COMPETITION", column, null, null, null, null, null);
-int insertedcompetition=   cursor.getCount();
-column = new String[]{"NID"};
-cursor = db.query("NEWSFEED", column, null, null, null, null, null);
+  //  String[]	column = new String[]{"EID"};
+  //  Cursor cursor = db.query("COMPETITION", column, null, null, null, null, null);
+//int insertedcompetition=   cursor.getCount();
+String[] column = new String[]{"NID"};
+Cursor cursor = db.query("NEWSFEED", column, null, null, null, null, null);
 int insertednewsfeed = cursor.getCount();
 column = new String[]{"SID"};
  cursor = db.query("SPONSOR", column, null, null, null, null, null);
@@ -157,8 +161,9 @@ column = new String[]{"SID"};
 int insertedsponsor = cursor.getCount();
     	Toast.makeText(context, "news feed postexecute", Toast.LENGTH_LONG).show(); 
     
-    if(insertedcompetition>0&&insertednewsfeed>0&&insertedsponsor>0){
-   
+   // if(insertedcompetition>0&&insertednewsfeed>0&&insertedsponsor>0){
+        if(insertednewsfeed>0&&insertedsponsor>0){
+
 		
     	SharedPreferences sharedPreferences = context.getSharedPreferences("app_config", Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -170,8 +175,9 @@ int insertedsponsor = cursor.getCount();
 			//firstRunactivity.dbcreated();
 	
     }else{
-    	FirstRunactivity firstRunactivity = new FirstRunactivity();
-    	firstRunactivity.alertshow("Check your Internet Connectivity");
+    	
+    		
+    	
     }
 
 		}

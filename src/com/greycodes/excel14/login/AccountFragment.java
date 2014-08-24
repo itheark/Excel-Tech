@@ -71,9 +71,10 @@ public class AccountFragment extends ListFragment {
 		participating = new String[cursor.getCount()];
 		tid = new int[cursor.getCount()];
 		if(cursor.getCount()==0){
-			participating = new String[1];
-			participating[0]="You havent registered for any";
-			tid[0] =0;
+			participating = new String[]{"You havent registered for any"};
+			tid =new  int[]{1};
+			
+			
 		}
 	
 

@@ -28,11 +28,18 @@ import com.greycodes.excel14.csevents.FragmentWebBots;
 import com.greycodes.excel14.database.ExcelDataBase;
 import com.greycodes.excel14.database.InsertParticipant;
 import com.greycodes.excel14.database.ParseResult;
+import com.greycodes.excel14.nontechnical.AlleyDunk;
+import com.greycodes.excel14.nontechnical.ByzantineFragment;
+import com.greycodes.excel14.nontechnical.DefactoFragment;
 import com.greycodes.excel14.nontechnical.FragmentBestManager;
 import com.greycodes.excel14.nontechnical.FragmentCSI;
 import com.greycodes.excel14.nontechnical.FragmentGameZone;
 import com.greycodes.excel14.nontechnical.FragmentInstantPhotography;
 import com.greycodes.excel14.nontechnical.FragmentSpiderWeb;
+import com.greycodes.excel14.nontechnical.FunZoneFragment;
+import com.greycodes.excel14.nontechnical.KapothalonFragment;
+import com.greycodes.excel14.nontechnical.TikiTakaFragment;
+import com.greycodes.excel14.nontechnical.TreasureHuntFragment;
 
 public class NonTechViewPager extends Fragment implements OnClickListener,OnLongClickListener {
 	ViewPager view=null;
@@ -303,7 +310,28 @@ case R.id.imageView3:
 			case 4:
 				fragment = new FragmentInstantPhotography();
 				break;
-			
+			case 5:
+				fragment = new KapothalonFragment();
+				break;
+			case 6:
+				fragment = new TikiTakaFragment();
+				
+				break;
+			case 7:
+				fragment = new DefactoFragment();
+				break;
+			case 8:
+				fragment = new AlleyDunk();
+				break;
+			case 9:
+				fragment = new ByzantineFragment();
+				break;
+			case 10:
+				fragment = new TreasureHuntFragment();
+				break;
+			case 11:
+				fragment = new FunZoneFragment();
+				break;
 			
 				
 			}
@@ -327,6 +355,20 @@ case R.id.imageView3:
 		
 			case 4:
 				return "Instant Photography";
+			case 5:
+				return "Kapathalon";
+			case 6:
+				return "TikiTaka";
+			case 7:
+				return "Defacto";
+			case 8:
+				return "Alley Dunk";
+			case 9:
+				return "Byzantine";
+			case 10:
+				return "Treasure Hunt";
+			case 11:
+				return "Fun Zone";
 			
 			}
 			return null;
@@ -334,6 +376,6 @@ case R.id.imageView3:
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return 5;
+			return 12;
 		}
 }

@@ -49,6 +49,7 @@ import com.greycodes.excel14.excelgallery.GalleryListActivity;
 import com.greycodes.excel14.login.AccountFragment;
 import com.greycodes.excel14.login.LoginActivity;
 import com.greycodes.excel14.newsfeed.NewsFeedFragment;
+import com.greycodes.excel14.newsfeed.NewsFeedService;
 import com.greycodes.excel14.talkseries.TalkSeriesViewPager;
 import com.parse.ParseAnalytics;
 import com.parse.PushService;
@@ -362,7 +363,8 @@ private void  selectItem(int position) {
 		overridePendingTransition(R.anim.fadeinright,R.anim.fadeoutleft);
 		break;
 	case 11:
-		f= new NewsFeedFragment();
+	//	f= new NewsFeedFragment();
+		f= new NewsFeedService();
 		break;
 	}
 	

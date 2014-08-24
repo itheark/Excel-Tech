@@ -13,15 +13,12 @@ import org.apache.http.params.BasicHttpParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.greycodes.excel14.HomeNDActivity;
-import com.greycodes.excel14.R;
-import com.greycodes.excel14.login.LoginActivity;
-import com.parse.PushService;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -29,6 +26,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.widget.Toast;
+
+import com.greycodes.excel14.HomeNDActivity;
+import com.greycodes.excel14.R;
+import com.parse.PushService;
 
 public class ParseSignup {
 Context context;
@@ -93,6 +94,7 @@ int username_flag,email_flag,success,pid;
 			Toast.makeText(context, "User inserted", Toast.LENGTH_LONG).show();
 			editor.putBoolean("registered", true);
 			if(fb){
+				Toast.makeText(context, "FB TRUE", Toast.LENGTH_LONG).show();
 				editor.putBoolean("active",true);
 				editor.putBoolean("fb", true);
 			}
@@ -102,9 +104,29 @@ int username_flag,email_flag,success,pid;
 			//PushService.subscribe(getApplicationContext(), pid, HomeNDActivity.class);
 			PushService.subscribe(context,"user"+pid, HomeNDActivity.class,R.drawable.excel_logo);
 		//	Toast.makeText(context, "Acoount Created.Please check your mail to activate the account", Toast.LENGTH_LONG).show();
-		alertshow("Acoount Created.Please check your mail to activate the account");
-			Intent intent = new Intent(context, HomeNDActivity.class);
-			context.startActivity(intent);
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);	                	// Setting Dialog Title
+    	alertDialogBuilder.setTitle("Excel");
+
+    	// Setting Dialog Message
+    	alertDialogBuilder.setMessage("Acoount Created.Please check your mail to activate the account");
+
+    	// Setting Icon to Dialog
+    	alertDialogBuilder.setIcon(R.drawable.alert);
+    	
+    	alertDialogBuilder.setNeutralButton("OK", new OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface arg0, int arg1) {
+				Intent intent = new Intent(context, HomeNDActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); 
+				context.startActivity(intent);
+				
+			}
+		});
+    	
+    	AlertDialog alertDialog = alertDialogBuilder.create();
+    	alertDialog.show();
+		
 		}
 		
 		

@@ -49,16 +49,7 @@ public class SplashScreenActivity extends Activity implements OnCompletionListen
 @Override
 public void onCompletion(MediaPlayer mp) {
 	// TODO Auto-generated method stub
-	SharedPreferences sharedPreferences = getSharedPreferences("app_config", Context.MODE_PRIVATE);
-	if(sharedPreferences.getBoolean("DB_Created", false)){
 		 intent = new Intent(this, HomeNDActivity.class);
-			Toast.makeText(getApplicationContext(), Boolean.toString(sharedPreferences.getBoolean("DB_Created", false)), Toast.LENGTH_LONG).show();	
-
-
-	}else{
-		intent	= new Intent(this, FirstRunactivity.class);
-
-	}
     startActivity(intent);
     finish();
 	
