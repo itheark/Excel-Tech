@@ -23,14 +23,17 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.StrictMode;
+import android.text.Html;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AutoCompleteTextView;
@@ -39,6 +42,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.facebook.android.DialogError;
 import com.facebook.android.Facebook;
 import com.facebook.android.Facebook.DialogListener;
@@ -77,6 +81,9 @@ public class LoginActivity extends Activity implements OnClickListener  {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.user_login_activity);
+		android.app.ActionBar bar = getActionBar();
+		bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0e1215")));
+        bar.setTitle(Html.fromHtml("<font color=\"#e6f3ea\">" + getString(R.string.app_name) + "</font>"));
 		connectfb= (ImageView)findViewById(R.id.fbconnect);
 		signup= (ImageView)findViewById(R.id.signup);
 		Registered = (TextView) findViewById(R.id.clickhere);
@@ -92,12 +99,13 @@ public class LoginActivity extends Activity implements OnClickListener  {
 		etaccomodation = (AutoCompleteTextView) findViewById(R.id.registration_accomodate);
 		connectionDetector = new ConnectionDetector(this);
 		pic =(CircularImageView)findViewById(R.id.propic);
+		getWindow().setBackgroundDrawableResource(R.drawable.loginback);
 		sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
 		 editor = sharedPreferences.edit();
 		 
 		 new AlertDialog.Builder(this)
 		    .setTitle("Excel")
-		    .setMessage("Please Signup with Facebook to utilize  this App completely and to bypass activation process")
+		    .setMessage("Signup with Facebook to utilize this App completely :)")
 		    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 		        public void onClick(DialogInterface dialog, int which) { 
 		            // continue with delete

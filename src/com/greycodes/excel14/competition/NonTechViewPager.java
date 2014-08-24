@@ -109,20 +109,20 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 			// TODO Auto-generated method stub
 			switch(pager.getCurrentItem()){
 			case 0:
-				misc.call("09020404022");		
+				misc.call("08086085727");		
 				break;
 			case 1:
-				misc.call("09020404022");		
+				misc.call("09567289920");		
 				
 				break;
 			case 2:
-				misc.call("09020404022");
+				misc.call("09895598464");
 				break;
 			case 3:
-				misc.call("09020404022");
+				misc.call("08547833270");
 				break;
 			case 4:
-				misc.call("09020404022");
+				misc.call("09809513994");
 				break;
 			
 			
@@ -251,19 +251,19 @@ case R.id.imageView3:
 
 				switch(pager.getCurrentItem()){
 				case 0:
-					FragmentBestManager.tv.setText("Cordinator");
+					FragmentBestManager.tv.setText("Call Mariya Mathew ?");
 				break;
 				case 1:
-					FragmentCSI.tv.setText("Cordinator");
+					FragmentCSI.tv.setText("Call Gokul Hariharan?");
 					break;
 				case 2:
-					FragmentGameZone.tv.setText("Cordinator");
+					FragmentGameZone.tv.setText("Call Ajay Jacob John?");
 					break;
 				case 3:
-					FragmentSpiderWeb.tv.setText("Cordinator");
+					FragmentSpiderWeb.tv.setText("Call Nithin K.M?");
 					break;
 				case 4:
-					FragmentInstantPhotography.tv.setText("Cordinator");
+					FragmentInstantPhotography.tv.setText("Call Hafiz C.B?");
 					break;
 				
 				

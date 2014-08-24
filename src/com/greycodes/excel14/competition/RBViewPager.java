@@ -89,10 +89,10 @@ public class RBViewPager extends Fragment implements OnClickListener,OnLongClick
 			// TODO Auto-generated method stub
 			switch(pager.getCurrentItem()){
 			case 0:
-				misc.call("09020404022");		
+				misc.call("09496331259");		
 				break;
 			case 1:
-				misc.call("09020404022");		
+				misc.call("09497789788");		
 				
 				break;
 		
@@ -202,10 +202,10 @@ case R.id.imageView3:
 
 				switch(pager.getCurrentItem()){
 				case 0:
-					FragmentRobowars.tv.setText("Cordinator");
+					FragmentRobowars.tv.setText("Call Midhun Murali ?");
 				break;
 				case 1:
-					FragmentTerrainMaster.tv.setText("Cordinator");
+					FragmentTerrainMaster.tv.setText("Call Arjun C.S ?");
 					break;
 				
 				

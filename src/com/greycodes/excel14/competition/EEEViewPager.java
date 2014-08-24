@@ -92,14 +92,14 @@ public class EEEViewPager extends Fragment implements OnClickListener,OnLongClic
 			// TODO Auto-generated method stub
 			switch(pager.getCurrentItem()){
 			case 0:
-				misc.call("09020404022");		
+				misc.call("09605746681");		
 				break;
 			case 1:
-				misc.call("09020404022");		
+				misc.call("09633825522");		
 				
 				break;
 			case 2:
-				misc.call("9020404022");
+				misc.call("09497323463");
 			
 			
 			}
@@ -213,13 +213,13 @@ case R.id.imageView3:
 
 				switch(pager.getCurrentItem()){
 				case 0:
-					FragmentLumiere.tv.setText("Cordinator");
+					FragmentLumiere.tv.setText("Call Asiya ?");
 				break;
 				case 1:
-					FragmentExtundoprodigo.tv.setText("Cordinator");
+					FragmentExtundoprodigo.tv.setText("Call Ashwin ?");
 					break;
 				case 2:
-					EaventuraFragment.tv.setText("Cordinator");
+					EaventuraFragment.tv.setText("Call Alex Joy ?");
 					break;
 				
 				

@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:src="@drawable/cs_algorithms" />
+        android:src="@drawable/c_seminar" />
 
     <ImageView
         android:id="@+id/event"

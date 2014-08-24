@@ -7,8 +7,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +41,8 @@ public class AccountFragment extends ListFragment {
 			Bundle savedInstanceState) {
 			
 		 View rootView = inflater.inflate(R.layout.user_account_activity, container, false);
+		 
+		
 		 tvname = (TextView) rootView.findViewById(R.id.textView2);
 		propic = (ImageView) rootView.findViewById(R.id.propic);
 		excelDataBase = new ExcelDataBase(getActivity());

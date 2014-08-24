@@ -14,16 +14,8 @@
         android:id="@+id/competition_content_frame"
        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#B1C382">
-        <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Competition"
-android:layout_gravity="center_vertical"   
-     android:textSize="30dp" />
-
-       
+        android:background="#000000">
+             
         
         </FrameLayout>
 

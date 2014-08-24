@@ -14,7 +14,7 @@ import com.greycodes.excel14.R;
 
 
 public class FragmentCSI extends SherlockFragment implements OnClickListener {
-	ImageView intro,rules,format;
+	ImageView intro;
 	 
 	public  static TextView tv;
 	@Override
@@ -24,12 +24,10 @@ public class FragmentCSI extends SherlockFragment implements OnClickListener {
 		 View rootView = inflater.inflate(R.layout.nt_csi, container, false);
 		 tv=(TextView)rootView.findViewById(R.id.txtinclude);
 		 intro=(ImageView)rootView.findViewById(R.id.intro);
-		 rules =(ImageView)rootView.findViewById(R.id.rules);
-		 format =(ImageView)rootView.findViewById(R.id.event);
+		
 		 
 		 intro.setOnClickListener(this);
-		 rules.setOnClickListener(this);
-		 format.setOnClickListener(this);
+		 
 		return rootView;
 		
 		
@@ -48,17 +46,7 @@ public class FragmentCSI extends SherlockFragment implements OnClickListener {
 			updateTextValue("The world is full of obvious things which nobody by any chance ever observes.Discover the detective in you as you delve deep into a baffling mystery. Observe, deduce and discover the missing pieces to unravel the mind boggling mystery at hand as the day dawns when MEC becomes a crime scene!\n" );
 			
 		}
-		if (v.equals(rules))
-		{
-			updateTextValue("\n\n");
-			
-		}
 		
-		if (v.equals(format))
-		{
-			updateTextValue("\n\n");
-			
-		}
 		
 		
 		
