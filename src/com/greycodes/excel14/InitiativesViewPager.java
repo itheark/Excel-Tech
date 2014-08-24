@@ -28,7 +28,7 @@ public class InitiativesViewPager extends Fragment {
 			rootView =	 inflater.inflate(R.layout.initiatives_viewpager, container, false);
 			  pager = (ViewPagerParallax) rootView.findViewById(R.id.initiativespager);
 			 fragmentmanager=  getChildFragmentManager();
-		        pager.set_max_pages(3);
+		        pager.set_max_pages(4);
 		        
 		        pager.setBackgroundAsset(R.raw.initiativesbg);
 		        pager.setAdapter(new InitiativesViewPageAdapter(fragmentmanager));

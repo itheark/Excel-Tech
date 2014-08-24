@@ -13,54 +13,39 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.greycodes.excel14.InfoNDActivity;
-import com.greycodes.excel14.R;
-import com.greycodes.excel14.info.ScheduleViewPager;
-
+import android.app.Service;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.os.IBinder;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.text.Editable;
 import android.widget.Toast;
 
+import com.greycodes.excel14.InfoNDActivity;
+import com.greycodes.excel14.R;
+import com.greycodes.excel14.info.ScheduleViewPager;
 
-public class ParseSchedule {
+
+public class ParseSchedule extends Service {
 String url,results;
 JSONArray jsonarray;
 String[] ename,stime,duration,venue,time;
 int[] eid,sid,level,day,cat;
 int count,i;
 int schedule_flag;
-Context context;
+
 ExcelDataBase excelDataBase;
 
-	public ParseSchedule(Context context) {
-		// TODO Auto-generated constructor stub
-		this.context = context;
-	}
 	
-	public Object parseSchedule(){
-		url = "http://excelapi.net84.net/schedule.json";
-		try {
-			Object object = new flagCheck().execute("http://excelapi.net84.net/flag.json").get();
-			//return new parseschedule().execute("http://excelapi.net84.net/schedule.json").get();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
+	
+
 
 	
 	public class parseschedule extends AsyncTask<String, String, String>  {
@@ -141,7 +126,7 @@ ExcelDataBase excelDataBase;
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			excelDataBase = new ExcelDataBase(context);
+			excelDataBase = new ExcelDataBase(getApplicationContext());
 			SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
 			ContentValues contentValues = new ContentValues();
 			try {
@@ -157,7 +142,7 @@ ExcelDataBase excelDataBase;
 					contentValues.put("DURATION", duration[i]);
 					contentValues.put("TIME", time[i]);
 					sqLiteDatabase.insert("SCHEDULE", null, contentValues);
-					Toast.makeText(context, "schedule Inserted", Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), "schedule Inserted", Toast.LENGTH_LONG).show();
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -170,31 +155,17 @@ ExcelDataBase excelDataBase;
 		cursor.moveToFirst();
 		 		
 			if(cursor.getCount()>0){
-				Toast.makeText(context, "flag=2", Toast.LENGTH_SHORT).show();
-				SharedPreferences   sharedPreferences = context.getSharedPreferences("flag", Context.MODE_PRIVATE);
+				Toast.makeText(getApplicationContext(), "flag=2", Toast.LENGTH_SHORT).show();
+				SharedPreferences   sharedPreferences = getSharedPreferences("flag", Context.MODE_PRIVATE);
 				Editor editor = sharedPreferences.edit();
 				editor.putInt("schedule",2);
 				editor.commit();
+				Toast.makeText(getApplicationContext(), "Schedule Updated", Toast.LENGTH_LONG).show();
 				
 			}
-			InfoNDActivity activity = new InfoNDActivity();
-			try {
-				activity.progressDialog.dismiss();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			Fragment f;
-			FragmentManager fragmentManager ;
-			 FragmentTransaction transaction;
-			 fragmentManager = ((InfoNDActivity) context).getSupportFragmentManager();
-			 transaction=fragmentManager.beginTransaction();
-		 f =new ScheduleViewPager();
-			transaction.setCustomAnimations(R.anim.fadeinright, R.anim.fadeoutleft, R.anim.fadeinleft, R.anim.fadeoutright);
-			transaction.replace(R.id.info_content_frame,f);
-			// Add this transaction to the back stack
-           transaction.addToBackStack("infoND");
-           transaction.commit();
+			
+           
+           stopSelf();
 		}
 
 		
@@ -248,27 +219,45 @@ ExcelDataBase excelDataBase;
 		  			
 		  			//SharedPreferences   sharedPreferences = getActivity().getSharedPreferences("flag", Context.MODE_PRIVATE);
 		  			if(schedule_flag==1){
-		  				Toast.makeText(context, "Schedule not released", Toast.LENGTH_LONG).show();
-		  				
+		  				Toast.makeText(getApplicationContext(), "Schedule not released", Toast.LENGTH_LONG).show();
+		  				stopSelf();
 		  			
 		  			}else{
-		  				Object   nfeed = new parseschedule().execute("http://excelapi.net84.net/schedule.json").get();
+		  			new parseschedule().execute("http://excelapi.net84.net/schedule.json");
 		  			}
 		  		} catch (JSONException e) {
 		  			// TODO Auto-generated catch block
 		  			e.printStackTrace();
-		  		} catch (InterruptedException e) {
+		  		} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (ExecutionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				} 
 		  		
 		  		
 		  		
 		  	}
 		  	  
 		    }
+
+
+	@Override
+	public void onCreate() {
+		// TODO Auto-generated method stub
+		super.onCreate();
+	}
+
+
+	@Override
+	public void onStart(Intent intent, int startId) {
+		// TODO Auto-generated method stub
+		new flagCheck().execute("http://excelapi.net84.net/flag.json");
+	}
+
+
+	@Override
+	public IBinder onBind(Intent arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

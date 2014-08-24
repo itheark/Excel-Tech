@@ -66,8 +66,10 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 
 			  pager = (ViewPagerParallax) rootView.findViewById(R.id.nontech_pager);
 			 fragmentmanager=  getChildFragmentManager();
-		        pager.set_max_pages(5);
+
 		        pager.setBackgroundAsset(R.raw.collg1);
+		        pager.set_max_pages(12);
+
 		        pager.setAdapter(new NonTechnicalViewPageAdapter(fragmentmanager));
 		        pager.setCurrentItem(pagetodisplay);
 		       
@@ -92,7 +94,7 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 		@Override
 		public void onSaveInstanceState(Bundle outState) {
 	        super.onSaveInstanceState(outState);
-	        outState.putInt("num_pages", 5);
+	        outState.putInt("num_pages", 12);
 	        final ViewPagerParallax pager = (ViewPagerParallax) rootView.findViewById(R.id.nontech_pager);
 	        outState.putInt("current_page", pager.getCurrentItem());
 	    }
