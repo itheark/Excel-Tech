@@ -65,7 +65,7 @@
        android:gravity="center"
        android:fontFamily="sans-serif"
        android:textColor="#e3e3e3"
-     android:text="\n\n"	/>	
+     android:text="Are you ready for an adventure?\nTo unravel the mysterious clues.. To explore the hidden secrets…\nPolish your technical know-how and get ready to crack the concealed and unseen, for we bring you the ever challenging technical treasure hunt of excel 2014!\nTread forward by solving the puzzles leading you to the ultimate treasure!\nIt’s time to pool your knowledge, play your best and prove your excellence!\n\n"	/>	
  
     </ScrollView>
  

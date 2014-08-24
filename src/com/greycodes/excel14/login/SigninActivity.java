@@ -19,8 +19,11 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.text.Html;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -38,9 +41,12 @@ public class SigninActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		android.app.ActionBar bar = getActionBar();
+		bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0e1215")));
+        bar.setTitle(Html.fromHtml("<font color=\"#e6f3ea\">" + getString(R.string.app_name) + "</font>"));
 		setContentView(R.layout.user_registration_activity);
 		connectfb= (ImageView)findViewById(R.id.fbconnect);
-		
+		getWindow().setBackgroundDrawableResource(R.drawable.loginback);
 		String APP_ID ="1404508176479531";
 		fb =new Facebook(APP_ID);
 		sp =getPreferences(MODE_PRIVATE);

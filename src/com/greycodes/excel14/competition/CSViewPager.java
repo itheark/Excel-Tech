@@ -230,29 +230,29 @@ ProgressDialog progressDialog;
 	        connectionDetector.isNetworkAvailable(h,5000);
 			break;
 		case R.id.imageView4:
-			Toast.makeText(getActivity(), "Hold to call", Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(), "Press & Hold to call", Toast.LENGTH_LONG).show();
 
 			switch(pager.getCurrentItem()){
 			case 0:
-				FragmentHashInclude.tv.setText("Cordinator");
+				FragmentHashInclude.tv.setText("Call Athul Jayson?");
 			break;
 			case 1:
-				FragmentWebBots.tv.setText("Cordinator");
+				FragmentWebBots.tv.setText("Call Ouseph Joseph?");
 				break;
 			case 2:
-				FragmentLOC.tv.setText("Cordinator");
+				FragmentLOC.tv.setText("Call Smera George?");
 				break;
 			case 3:
-				FragmentHackMaster.tv.setText("Cordinator");
+				FragmentHackMaster.tv.setText("Call Joe Mathai?");
 				break;
 			case 4:
-				FragmentFourOneTwenty.tv.setText("Cordinator");
+				FragmentFourOneTwenty.tv.setText("Call Milu Raju?");
 				break;
 			case 5:
-				FragmentAlgorithms.tv.setText("Cordinator");
+				FragmentAlgorithms.tv.setText("Call Anina Antony?");
 				break;
 			case 6:
-				FragmentSoYouThink.tv.setText("Cordinator");
+				FragmentSoYouThink.tv.setText("Call Emma Paul?");
 				break;
 			
 			}
@@ -270,26 +270,26 @@ ProgressDialog progressDialog;
 		// TODO Auto-generated method stub
 		switch(pager.getCurrentItem()){
 		case 0:
-			misc.call("09020404022");		
+			misc.call("09048260255");		
 			break;
 		case 1:
-			misc.call("09020404022");		
+			misc.call("09037285987");		
 			
 			break;
 		case 2:
-			misc.call("09020404022");
+			misc.call("08281425695");
 			break;
 		case 3:
-			misc.call("09020404022");
+			misc.call("09495988607");
 			break;
 		case 4:
-			misc.call("09020404022");
+			misc.call("09495813253");
 			break;
 		case 5:
-			misc.call("09020404022");
+			misc.call("09400939192");
 			break;
 		case 6:
-			misc.call("09020404022");
+			misc.call("08089812213");
 			break;
 		
 		}

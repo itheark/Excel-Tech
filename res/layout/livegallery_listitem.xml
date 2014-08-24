@@ -19,7 +19,16 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:textSize="20dp"
-        android:text="" 
+        android:text="Caption" 
+        android:background="#f7f7f7"
+        android:paddingLeft="10dp"/>
+    <TextView
+        android:id="@+id/livegallery_desc"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:textSize="15dp"
+        android:background="#f7f7f7"
+        android:text="Name" 
         android:paddingLeft="10dp"/>
 
    

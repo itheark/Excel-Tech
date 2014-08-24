@@ -100,7 +100,7 @@ public class GeneralViewPager extends Fragment implements OnClickListener,OnLong
 				
 				break;
 			case 2:
-				misc.call("09020404022");
+				misc.call("09497283109");
 				break;
 			
 			
@@ -222,7 +222,7 @@ case R.id.imageView3:
 					FragmentDalalBull.tv.setText("Cordinator");
 					break;
 				case 2:
-					FragmentPapyrusOfAni.tv.setText("Cordinator");
+					FragmentPapyrusOfAni.tv.setText("Call Athira Menon?");
 					break;
 				
 				

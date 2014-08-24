@@ -21,8 +21,16 @@
     android:layout_gravity="top">
        </android.support.v4.view.PagerTitleStrip>
        
+       
            </com.greycodes.excel14.competition.ViewPagerParallax>
-           
+            <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/speakers"
+        android:layout_marginBottom="40dp" />
    
   
   </RelativeLayout>

@@ -27,7 +27,7 @@ String rated = "5";
 			try {
 				if(title.length()==0)
 				{
-					title= "Hows that";
+					title= "Excel 2014";
 
 				}
 				put("title", title);

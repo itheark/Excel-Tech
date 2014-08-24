@@ -1,5 +1,7 @@
 package com.greycodes.excel14.initiatives;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,7 +15,7 @@ import android.widget.TextView;
 import com.greycodes.excel14.R;
 
 public class IbetoJrFragment extends Fragment implements OnClickListener {
-	 ImageView intro,rules,format;
+	 ImageView heading;
 	 public  static TextView tv;
 	  
 	@Override
@@ -21,7 +23,7 @@ public class IbetoJrFragment extends Fragment implements OnClickListener {
 			Bundle savedInstanceState) {
 			
 		 View rootView = inflater.inflate(R.layout.initiatives_ibetojr, container, false);
-		 
+		 heading =(ImageView)rootView.findViewById(R.id.include);
 		return rootView;
 	}
 	
@@ -31,6 +33,15 @@ public class IbetoJrFragment extends Fragment implements OnClickListener {
 @Override
 public void onClick(View v) {
 	// TODO Auto-generated method stub
+	if(v.equals(heading)){
+		
+		 String url = "http://ibeto.excelmec.org/";
+		 Intent i = new Intent(Intent.ACTION_VIEW);
+		 i.setData(Uri.parse(url));
+		 startActivity(i);
+		
+		
+	}
 	
 	
 	

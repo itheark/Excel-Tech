@@ -155,9 +155,9 @@ public class FragmentLifeLine extends SherlockFragment implements OnClickListene
 			break;
 			
 		case R.id.imageView4:
-			Toast.makeText(getActivity(), "Hold to call", Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(), "Press & Hold to call", Toast.LENGTH_LONG).show();
 
-			updateTextValue("Cordinator");
+			updateTextValue("Call Sabith ?");
 			break;
 			
 			
@@ -178,7 +178,7 @@ public class FragmentLifeLine extends SherlockFragment implements OnClickListene
 	@Override
 	public boolean onLongClick(View v) {
 		// TODO Auto-generated method stub
-		misc.call("09020404022");	
+		misc.call("09526814385");	
 		return true;
 	}
 	

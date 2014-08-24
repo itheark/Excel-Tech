@@ -14,7 +14,7 @@ import com.greycodes.excel14.R;
 
 
 public class FragmentInstantPhotography extends SherlockFragment implements OnClickListener {
-	ImageView intro,rules,format;
+	ImageView intro;
 	 
 	public  static TextView tv;
 	@Override
@@ -24,12 +24,10 @@ public class FragmentInstantPhotography extends SherlockFragment implements OnCl
 		 View rootView = inflater.inflate(R.layout.nt_instantphotography, container, false);
 		 tv=(TextView)rootView.findViewById(R.id.txtinclude);
 		 intro=(ImageView)rootView.findViewById(R.id.intro);
-		 rules =(ImageView)rootView.findViewById(R.id.rules);
-		 format =(ImageView)rootView.findViewById(R.id.event);
+		
 		 
 		 intro.setOnClickListener(this);
-		 rules.setOnClickListener(this);
-		 format.setOnClickListener(this);
+		
 		return rootView;
 		
 		
@@ -46,17 +44,6 @@ public class FragmentInstantPhotography extends SherlockFragment implements OnCl
 		if(v.equals(intro))
 		{
 			updateTextValue("Photography is something that cuts across all boundaries, it transcends the constraints of language and culture. Are you an artist with a camera who has his own story to tell? Then show us your the photographs, not pictures just taken, but works of art that are painstakingly fashioned. For all those shutterbugs who believe their favourite personal photograph is the one.....\n");
-			
-		}
-		if (v.equals(rules))
-		{
-			updateTextValue("\n\n");
-			
-		}
-		
-		if (v.equals(format))
-		{
-			updateTextValue("\n\n");
 			
 		}
 		

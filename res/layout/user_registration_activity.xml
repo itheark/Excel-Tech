@@ -3,7 +3,7 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/loginback"
+    
     android:orientation="vertical" >
 
 
@@ -39,16 +39,15 @@
         android:layout_below="@+id/imageView1" >
 
        
-          <EditText
-            android:id="@+id/registration_username"
+         <EditText
+            android:id="@+id/registration_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:fontFamily="sans-serif"
-            android:hint="username"
-            android:inputType="textPersonName"
+            android:hint="email"
+            android:inputType="textEmailAddress"
             android:textColor="#FFFFFF"
-            android:textColorHint="#95FFFFFF" />
+            android:textColorHint="#95FFFFFF"
+             />
          
 
         <EditText

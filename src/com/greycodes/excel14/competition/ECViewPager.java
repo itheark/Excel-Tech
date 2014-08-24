@@ -100,7 +100,7 @@ public class ECViewPager extends Fragment implements OnClickListener,OnLongClick
 			// TODO Auto-generated method stub
 			switch(pager.getCurrentItem()){
 			case 0:
-				misc.call("09020404022");		
+				misc.call("09446543432");		
 				break;
 			case 1:
 				misc.call("09020404022");		
@@ -223,7 +223,7 @@ public class ECViewPager extends Fragment implements OnClickListener,OnLongClick
 
 				switch(pager.getCurrentItem()){
 				case 0:
-					FragmentExtrinsicity.tv.setText("Cordinator");
+					FragmentExtrinsicity.tv.setText("Call Anoop George?");
 				break;
 				case 1:
 					FragmentDefuse.tv.setText("Cordinator");

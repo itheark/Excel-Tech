@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/relative1"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/hospitalitybg" >
@@ -12,7 +13,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:src="@drawable/g_dalal" />
+        android:src="@drawable/hospitality" />
      <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
@@ -35,7 +36,7 @@
        android:gravity="center"
        android:fontFamily="sans-serif"
                android:textColor="#99ffffff"
-     android:text="As one of South India’s largest techno-managerial festivals, Excel is attended by participants from across the nation. The comfortable accommodation and hospitality of all our guests (from local areas to those from far-flung places in the country) are top priority to us. We strive to ensure that your stay here at Kochi, is as satisfying and cozy as possible.\nWe leave no stone unturned towards the satisfaction of all and in ensuring that your days at Excel 2013 are some of the most memorable experiences of your life.\nFor Hospitality related queries, please contact -\n"	/>	
+     android:text="As one of South India’s largest techno-managerial festivals, Excel is attended by participants from across the nation. The comfortable accommodation and hospitality of all our guests (from local areas to those from far-flung places in the country) are top priority to us. We strive to ensure that your stay here at Kochi, is as satisfying and cozy as possible.\nWe leave no stone unturned towards the satisfaction of all and in ensuring that your days at Excel 2014 are some of the most memorable experiences of your life.\n"	/>	
  
     </ScrollView>
     
