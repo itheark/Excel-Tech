@@ -59,6 +59,8 @@ public class CameraFragment extends android.support.v4.app.Fragment {
 
 			@Override
 			public void onClick(View v) {
+				photoButton.setEnabled(false);
+				
 				if (camera == null)
 					return;
 				camera.takePicture(new Camera.ShutterCallback() {

@@ -12,6 +12,7 @@ import com.greycodes.excel14.competition.ViewPagerParallax;
 import com.greycodes.excel14.initiatives.DevconFragment;
 import com.greycodes.excel14.initiatives.IbetoFragment;
 import com.greycodes.excel14.initiatives.IbetoJrFragment;
+import com.greycodes.excel14.initiatives.OrganicFarmingFragment;
 
 public class InitiativesViewPager extends Fragment {
 	ViewPagerParallax pager;
@@ -76,6 +77,10 @@ public class InitiativesViewPager extends Fragment {
 			case 2:
 				fragment = new DevconFragment();
 				break;
+			case 3:
+				fragment = new OrganicFarmingFragment();
+				break;
+				
 				
 			}
 			return fragment;
@@ -92,7 +97,8 @@ public class InitiativesViewPager extends Fragment {
 			
 			case 2:
 				return "Devcon";
-			
+			case 3:
+				return "Organic Farming";
 					
 			}
 			return null;
@@ -100,7 +106,7 @@ public class InitiativesViewPager extends Fragment {
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return 3;
+			return 4;
 		}
 	}
 }

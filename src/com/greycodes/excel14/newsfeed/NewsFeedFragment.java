@@ -1,6 +1,9 @@
 package com.greycodes.excel14.newsfeed;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.concurrent.ExecutionException;
@@ -13,27 +16,38 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.greycodes.excel14.ConnectionDetector;
-import com.greycodes.excel14.R;
-import com.greycodes.excel14.database.ExcelDataBase;
-
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
 import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
+import android.app.DownloadManager;
+import android.app.DownloadManager.Request;
+import android.content.BroadcastReceiver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.os.ParcelFileDescriptor;
 import android.support.v4.app.ListFragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.greycodes.excel14.ConnectionDetector;
+import com.greycodes.excel14.R;
+import com.greycodes.excel14.database.ExcelDataBase;
 
 
 
@@ -48,7 +62,7 @@ public class NewsFeedFragment extends ListFragment implements OnRefreshListener{
 
 	int count;
 	String[] subject,message,columns;
-	int[] pcode;
+	int[] pcode,cat;
 	ConnectionDetector connectionDetector;
 	Handler h;
 	private	PullToRefreshLayout mPullToRefreshLayout;
@@ -62,12 +76,18 @@ NewsFeedArrayAdapter newsFeedArrayAdapter;
 		JSONArray jsonarray;
 	ExcelDataBase excelDataBase;
 	int newsfeed_flag;
-	 
+	 DownloadManager checkflg,newsfeed;
+	 private long checkflagReference;
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
 		ViewGroup viewGroup = (ViewGroup)  view;
+		
+		IntentFilter filter = new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
+		  getActivity().registerReceiver(CheckFlag, filter);
+		  
+		  
 		 mPullToRefreshLayout = new PullToRefreshLayout(viewGroup.getContext());
 		 
 		 ActionBarPullToRefresh.from(getActivity())
@@ -87,17 +107,24 @@ NewsFeedArrayAdapter newsFeedArrayAdapter;
 	
 	cursor.moveToFirst();
 	count = cursor.getCount();
+	if(count==0){
+		subject = new String[]{"SUB1","SUB2","SUB3","SUB4"};
+		message = new String[]{"MESSAGE1","MESSAGE2","MESSAGE3","MESSAGE4"};
+		pcode = new int[]{1,2,3,2};
+		cat = new int[]{1,2,3,2};
+	}else{
 	subject = new String[count];
 	message = new String[count];
 	pcode = new int[count];
+	cat = new int[count];
 	for(i=0;i<count;i++,cursor.moveToNext()){
 		subject[i] = cursor.getString(cursor.getColumnIndex("SUBJECT"));
 		message[i] = cursor.getString(cursor.getColumnIndex("MESSAGE"));
 		pcode[i] = cursor.getInt(cursor.getColumnIndex("PCODE"));
-		
+		cat[i] = cursor.getInt(cursor.getColumnIndex("CAT"));
 
 	}
-		 
+	} 
 
 	
 		 
@@ -112,7 +139,7 @@ NewsFeedArrayAdapter newsFeedArrayAdapter;
 		super.onActivityCreated(savedInstanceState);
 		
 		
-		 newsFeedArrayAdapter = new NewsFeedArrayAdapter(getActivity(), subject, message, pcode);
+		 newsFeedArrayAdapter = new NewsFeedArrayAdapter(getActivity(), subject, message, pcode,cat);
 		
 			
 			 setListAdapter(newsFeedArrayAdapter);
@@ -132,9 +159,9 @@ NewsFeedArrayAdapter newsFeedArrayAdapter;
 	}
 
 	@Override
-	public void onRefreshStarted(View view) {
+	public void onRefreshStarted(View view) { 
 		// TODO Auto-generated method stub
-		
+	/*
 		 h = new Handler() {
 	            @Override
 	            public void handleMessage(Message msg) {
@@ -150,19 +177,30 @@ NewsFeedArrayAdapter newsFeedArrayAdapter;
 	                
 		           
 	                	   Toast.makeText(getActivity(), "Connection", Toast.LENGTH_LONG).show();
-	                	try {
-							Object object = new flagCheck().execute("http://excelapi.net84.net/flag.json").get();
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (ExecutionException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+	              checkflg = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+	              Uri uri  = Uri.parse("http://www.excelapi.net84.net/newsfeed.json");
+	              DownloadManager.Request request = new DownloadManager.Request(uri); 	 
+	              request.setTitle("Excel");
+	              request.setDescription("Data for excel");
+	              request.setDestinationInExternalFilesDir(getActivity(),Environment.DIRECTORY_DOWNLOADS,"abcd.json");
+	              if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.HONEYCOMB_MR2)
+	              {
+	           	   request.setNotificationVisibility(Request.VISIBILITY_HIDDEN);
+	              }
+	              checkflagReference = checkflg.enqueue(request);
+	                	  // 	try {
+					//		Object object = new flagCheck().execute("http://excelapi.net84.net/flag.json").get();
+					//	} catch (InterruptedException e) {
+					//		// TODO Auto-generated catch block
+						//	e.printStackTrace();
+						//} catch (ExecutionException e) {
+					//		// TODO Auto-generated catch block
+					//		e.printStackTrace();
+					//	}
 		                	
 		           
 	                	
-	                	
+	                
 	               	 
 	                }   
 	            }
@@ -170,7 +208,18 @@ NewsFeedArrayAdapter newsFeedArrayAdapter;
 	        
 	            
 	        ConnectionDetector.isNetworkAvailable(h,2000);
-		
+	*/
+		checkflg = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+        Uri uri  = Uri.parse("http://www.excelapi.net84.net/newsfeed.json");
+        DownloadManager.Request request = new DownloadManager.Request(uri); 	 
+        request.setTitle("Excel");
+        request.setDescription("Data for excel");
+        request.setDestinationInExternalFilesDir(getActivity(),Environment.DIRECTORY_DOWNLOADS,"CountryList.json");
+        if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.HONEYCOMB_MR2)
+        {
+     	   request.setNotificationVisibility(Request.VISIBILITY_HIDDEN);
+        }
+        checkflagReference = checkflg.enqueue(request);
 		
 	}
 	
@@ -255,7 +304,7 @@ NewsFeedArrayAdapter newsFeedArrayAdapter;
 		
 		
     	Toast.makeText(getActivity(), "news feed postexecute", Toast.LENGTH_LONG).show(); 
-    	 newsFeedArrayAdapter = new NewsFeedArrayAdapter(getActivity(), subject, message, pcode);
+    	 newsFeedArrayAdapter = new NewsFeedArrayAdapter(getActivity(), subject, message, pcode,cat);
 		
     	 SharedPreferences   sharedPreferences = getActivity().getSharedPreferences("flag", Context.MODE_PRIVATE);
 			SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -345,6 +394,69 @@ NewsFeedArrayAdapter newsFeedArrayAdapter;
 		  	}
 		  	  
 		    }
+	  BroadcastReceiver CheckFlag = new BroadcastReceiver() {
+		
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			// TODO Auto-generated method stub
+			long referenceId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+			   if(checkflagReference == referenceId){
+			     
+			   
+			     
+			    int ch;
+			    ParcelFileDescriptor file;
+			    StringBuffer strContent = new StringBuffer("");
+			    StringBuffer countryData = new StringBuffer("");
+			     
+			    //parse the JSON data and display on the screen
+			    try {
+			    	
+			     file = checkflg.openDownloadedFile(checkflagReference);
+			     FileInputStream fileInputStream
+			     = new ParcelFileDescriptor.AutoCloseInputStream(file);
+			 
+			     while( (ch = fileInputStream.read()) != -1)
+			      strContent.append((char)ch);
+			      
+			     try {
+			  			JSONObject jsonObject = new JSONObject(strContent.toString());
+			  			newsfeed_flag = jsonObject.getInt("newsfeed");
+			  			
+			  			SharedPreferences   sharedPreferences = getActivity().getSharedPreferences("flag", Context.MODE_PRIVATE);
+			  			if(newsfeed_flag==sharedPreferences.getInt("newsfeed", 1)){
+			  				Toast.makeText(getActivity(), "No updates", Toast.LENGTH_LONG).show();
+			  				mPullToRefreshLayout.setRefreshComplete();
+			  			
+			  			}else{
+			  				Toast.makeText(getActivity(), "No updates", Toast.LENGTH_LONG).show();
+			  			}
+			  		} catch (JSONException e) {
+			  			// TODO Auto-generated catch block
+			  			e.printStackTrace();
+			  		} 
+			      
+			     
+			     
+			    	
+			   	//  new File(Environment.DIRECTORY_DOWNLOADS, "CountryList.json").list();
+
+		//	int i=	checkflg.remove(checkflagReference);
+			     Toast toast = Toast.makeText(getActivity(),
+			       "Downloading of data just finished "+newsfeed_flag, Toast.LENGTH_LONG);
+			     toast.setGravity(Gravity.TOP, 25, 400);
+			     toast.show();
+			      
+			    } catch (FileNotFoundException e) {
+			     e.printStackTrace();
+			    } catch (IOException e) {
+			     e.printStackTrace();
+			    }
+			 
+			   }
+		}
+	};
+	  
 	
 	
 	
