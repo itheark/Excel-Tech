@@ -49,7 +49,6 @@ import com.greycodes.excel14.excelgallery.GalleryListActivity;
 import com.greycodes.excel14.login.AccountFragment;
 import com.greycodes.excel14.login.LoginActivity;
 import com.greycodes.excel14.newsfeed.NewsFeedFragment;
-import com.greycodes.excel14.newsfeed.NewsFeedService;
 import com.greycodes.excel14.talkseries.TalkSeriesViewPager;
 import com.parse.ParseAnalytics;
 import com.parse.PushService;
@@ -75,7 +74,7 @@ static String[] username = new String[1];
 public static Bitmap image;
 Fragment f;
 public static boolean fbflag=false;
-FragmentManager fragmentManager ;
+public static FragmentManager fragmentManager ;
 FragmentTransaction transaction;
 ProgressDialog pd;
 SharedPreferences sharedPreferences;
@@ -320,28 +319,7 @@ private void  selectItem(int position) {
 		break;
 	case 8:
 		Toast.makeText(getApplicationContext(), "Please wait..Checking for update", Toast.LENGTH_LONG).show();
-		h = new Handler() {
-	            @Override
-	            public void handleMessage(Message msg) {
-
-	                if (msg.what != 1) { // code if not connected
-	                
-	                Toast.makeText(getApplicationContext(), "No Connection", Toast.LENGTH_LONG).show();
-	              
-	                	
-	                	
-	            				
-	                } else { // code if connected
-	                		       Toast.makeText(getApplicationContext(), "opening", Toast.LENGTH_SHORT).show();                
-	                        ParseQuickOpen quickOpen = new ParseQuickOpen(HomeNDActivity.this);
-	                        quickOpen.parseQO();
-	               	 
-	                }   
-	            }
-	        };
-	        
-	            
-	        ConnectionDetector.isNetworkAvailable(h,3000);
+		startService(new Intent(HomeNDActivity.this, ParseQuickOpen.class));
 		break;
 	case 9:
 		 homeIntent = new Intent(HomeNDActivity.this,GalleryListActivity.class);
@@ -363,8 +341,8 @@ private void  selectItem(int position) {
 		overridePendingTransition(R.anim.fadeinright,R.anim.fadeoutleft);
 		break;
 	case 11:
-	//	f= new NewsFeedFragment();
-		f= new NewsFeedService();
+		f= new NewsFeedFragment();
+		//f= new NewsFeedService();
 		break;
 	}
 	

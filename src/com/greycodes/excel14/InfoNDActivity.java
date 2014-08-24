@@ -83,7 +83,7 @@ public class InfoNDActivity extends SherlockFragmentActivity {
 		        iMenuAdapter= new HomeMenuListAdapter(InfoNDActivity.this, ioptions);
 		        iDrawerList.setAdapter(iMenuAdapter);
 		        iDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-		      ParseS = new ParseSchedule(this);
+		    //  ParseS = new ParseSchedule(this);
 		        getSupportActionBar().setHomeButtonEnabled(true);
 		        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		        iDrawerToggle= new ActionBarDrawerToggle(this, iDrawerLayout, R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close)
@@ -193,7 +193,7 @@ public class InfoNDActivity extends SherlockFragmentActivity {
 				                
 					           
 					                Toast.makeText(getApplicationContext(), " Connection", Toast.LENGTH_LONG).show();
-					              ParseS.parseSchedule();
+					          //    ParseS.parseSchedule();
 					           
 				                	
 				                	

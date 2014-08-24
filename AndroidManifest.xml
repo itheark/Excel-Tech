@@ -150,6 +150,14 @@
         </activity>
         <service android:name="com.greycodes.excel14.newsfeed.Checkflag"
             android:enabled="true"/>
+         <service android:name="com.greycodes.excel14.database.ParseLiveGallery"
+            android:enabled="true"/>
+         <service android:name="com.greycodes.excel14.database.ParseSponsor"
+            android:enabled="true"/>
+           <service android:name="com.greycodes.excel14.database.ParseQuickOpen"
+            android:enabled="true"/>
+           <service android:name="com.greycodes.excel14.database.ParseSchedule"
+            android:enabled="true"/>
     </application>
 
 </manifest>

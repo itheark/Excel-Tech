@@ -45,6 +45,7 @@ import com.greycodes.excel14.InfoNDActivity;
 import com.greycodes.excel14.R;
 import com.greycodes.excel14.database.ExcelDataBase;
 import com.greycodes.excel14.database.ImageDownloader;
+import com.greycodes.excel14.database.ParseLiveGallery;
 
 
 
@@ -130,45 +131,7 @@ public class GalleryListActivity extends ListActivity  {
 		switch (item.getItemId()) {
 
 		case R.id.action_refresh: 
-			 h = new Handler() {
-		            @Override
-		            public void handleMessage(Message msg) {
-
-		                if (msg.what != 1) { // code if not connected
-		                
-		                	
-		               Toast.makeText(getApplicationContext(), "No Connection", Toast.LENGTH_LONG).show();
-		                	
-		                
-		            				
-		                } else { // code if connected
-		                
-			           
-		                	   Toast.makeText(getApplicationContext(), "Connection", Toast.LENGTH_LONG).show();
-		                new ParseImage().execute("http://excelapi.net84.net/livegallery.json");
-		                	   
-		                	   
-		                	   /*	try {
-								Object object = new ParseImage().execute("http://excelapi.net84.net/livegallery.json").get();
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (ExecutionException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-			                	
-			           */
-		                	
-		                	
-		               	 
-		                }   
-		            }
-		        };
-		        
-		            
-		        ConnectionDetector.isNetworkAvailable(h,2000);
-			
+		startService(new Intent(GalleryListActivity.this, ParseLiveGallery.class));
 	
 
 		break;

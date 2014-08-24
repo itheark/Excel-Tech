@@ -19,43 +19,38 @@ import com.greycodes.excel14.QuickOpenFragment;
 import com.greycodes.excel14.R;
 import com.greycodes.excel14.login.AccountFragment;
 
+import android.app.Service;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.Toast;
 
 
-public class ParseQuickOpen {
+public class ParseQuickOpen extends Service{
 String url,results;
 JSONArray jsonarray;
 String[] ename,stime,duration,venue;
 int[] eid,hotness,level,cat;
 int count,i;
 
-Context context;
 
-	public ParseQuickOpen(Context context) {
-		// TODO Auto-generated constructor stub
-		this.context = context;
-	}
 	
-	public Object parseQO(){
-		url = "http://excelapi.net84.net/quickopen.json";
-		try {
-			return new parsequickopen().execute("http://excelapi.net84.net/quickopen.json").get();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
+	
 
 	
 	public class parsequickopen extends AsyncTask<String, String, String>  {
+
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			Toast.makeText(getApplicationContext(), "preexecute", Toast.LENGTH_LONG).show();
+
+		}
 
 		@Override
 		protected String doInBackground(String... params)  {
@@ -87,37 +82,7 @@ Context context;
 				}catch(Exception e){
 					e.printStackTrace();
 				}
-				JSONObject jsonObject;
-				try{
-					jsonObject = new JSONObject(results);
-					jsonarray = jsonObject.getJSONArray("quickopen");
-					count = jsonarray.length();
-					ename = new String[count];
-					cat = new int[count];
-					stime = new String[count];
-					duration = new String[count];
-					venue = new String[count];
-					eid = new int[count];
-					hotness = new int[count];
-					level = new int[count];
-					
-				 for(i=0;i<count;i++){
-					 eid[i] = jsonarray.getJSONObject(i).getInt("eid");
-					 ename[i] = jsonarray.getJSONObject(i).getString("ename");
-					 cat[i] = jsonarray.getJSONObject(i).getInt("cat");
-					 hotness[i] = jsonarray.getJSONObject(i).getInt("hotness");
-					 level[i] = jsonarray.getJSONObject(i).getInt("level");
-					 stime[i] = jsonarray.getJSONObject(i).getString("starttime");
-					 duration[i] = jsonarray.getJSONObject(i).getString("durations");
-					 venue[i]= jsonarray.getJSONObject(i).getString("venue");
-				 }
-					
-					 
-					
-
-				}catch(JSONException e){
-					e.printStackTrace();
-				}
+				
 			}
 			return results;
 			
@@ -127,22 +92,91 @@ Context context;
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			QuickOpenAdapter adapter = new QuickOpenAdapter(context, ename, level, cat, venue, stime, duration, hotness);
-			HomeNDActivity.adapter=adapter;
-			Fragment f;
-			FragmentManager fragmentManager ;
-			FragmentTransaction transaction;
-			fragmentManager = ((HomeNDActivity) context).getSupportFragmentManager();
-			 transaction=fragmentManager.beginTransaction();
-			 f = new QuickOpenFragment();
-			 transaction.replace(R.id.home_content_frame,f);
-				// Add this transaction to the back stack
-               transaction.addToBackStack("detail");
-               transaction.commit();
+			JSONObject jsonObject;
+			try{
+				jsonObject = new JSONObject(results);
+				jsonarray = jsonObject.getJSONArray("quickopen");
+				count = jsonarray.length();
+				ename = new String[count];
+				cat = new int[count];
+				stime = new String[count];
+				duration = new String[count];
+				venue = new String[count];
+				eid = new int[count];
+				hotness = new int[count];
+				level = new int[count];
+				
+			 for(i=0;i<count;i++){
+				 eid[i] = jsonarray.getJSONObject(i).getInt("eid");
+				 ename[i] = jsonarray.getJSONObject(i).getString("ename");
+				 cat[i] = jsonarray.getJSONObject(i).getInt("cat");
+				 hotness[i] = jsonarray.getJSONObject(i).getInt("hotness");
+				 level[i] = jsonarray.getJSONObject(i).getInt("level");
+				 stime[i] = jsonarray.getJSONObject(i).getString("starttime");
+				 duration[i] = jsonarray.getJSONObject(i).getString("durations");
+				 venue[i]= jsonarray.getJSONObject(i).getString("venue");
+			 }
+				
+				 
+				
+
+			}catch(JSONException e){
+				e.printStackTrace();
+			}catch(Exception e){
+				Toast.makeText(getApplicationContext(), "No Internet Connectivity", Toast.LENGTH_LONG).show();
+			stopSelf();
+			}
+			
+			try {
+				if (results.length()>10) {
+
+					QuickOpenAdapter adapter = new QuickOpenAdapter(
+							getApplicationContext(), ename, level, cat, venue,
+							stime, duration, hotness);
+					HomeNDActivity.adapter = adapter;
+
+					Fragment f;
+					//FragmentManager fragmentManager;
+					FragmentTransaction transaction;
+					//fragmentManager = HomeNDActivity.
+					//fragmentManager =  getApplicationContext().getSupportFragmentManager();
+					Toast.makeText(getApplicationContext(), "FragmentManager SET", Toast.LENGTH_LONG).show();
+
+					transaction = HomeNDActivity.fragmentManager.beginTransaction();
+					f = new QuickOpenFragment();
+					transaction.replace(R.id.home_content_frame, f);
+					
+					// Add this transaction to the back stack
+					transaction.addToBackStack("detail");
+					transaction.commit();
+
+				}else{
+					Toast.makeText(getApplicationContext(), "No Internet Connectivity", Toast.LENGTH_LONG).show();
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			stopSelf();
 				
 		}
 
 		
+	}
+
+
+	@Override
+	public IBinder onBind(Intent arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void onStart(Intent intent, int startId) {
+		// TODO Auto-generated method stub
+		Toast.makeText(getApplicationContext(), "start", Toast.LENGTH_LONG).show();
+		 new parsequickopen().execute("http://excelapi.net84.net/quickopen.json");
 	}
 
 }

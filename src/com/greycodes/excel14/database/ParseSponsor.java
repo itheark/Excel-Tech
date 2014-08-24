@@ -13,51 +13,41 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.ProgressDialog;
+import android.app.Service;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.os.IBinder;
 import android.widget.Toast;
 
-public class ParseSponsor {
-String url,results;
+public class ParseSponsor extends Service{
+
 JSONArray jsonarray;
 String[] imageurl,companyurl;
 int[] sid,pcode;
 int n;
 byte[][] imagebyte;
-Context context;
+int sponsor_flag;
 ExcelDataBase excelDataBase;
 ImageDownloader imageDownloader;
+ProgressDialog progressDialog;
 
-	public ParseSponsor(Context context) {
-		// TODO Auto-generated constructor stub
-		this.context = context;
-	}
 	
-	public Object parseSponsorImage(){
-		url = "http://excelapi.net84.net/sponsor.json";
-		try {
-			return new ParseSponsorImage().execute(url).get();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
 
 	
 	public class ParseSponsorImage extends AsyncTask<String, String, String>  {
-
+String results=null;
 		@Override
 		protected String doInBackground(String... params)  {
 			// TODO Auto-generated method stub
 			
 			DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-			HttpPost httppost = new HttpPost(url);
+			HttpPost httppost = new HttpPost("http://excelapi.net84.net/sponsor.json");
 			httppost.setHeader("Content-type","application/json");
 			InputStream inputstream = null;
 			try{
@@ -115,6 +105,14 @@ ImageDownloader imageDownloader;
 		}
 
 		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+		progressDialog =	 ProgressDialog.show(getApplicationContext(), "dialog title",
+					    "dialog message", true);
+		}
+
+		@Override
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
@@ -123,7 +121,7 @@ ImageDownloader imageDownloader;
 				imagebyte[i] = imageDownloader.Download(imageurl[i]);
 			}
 			
-			excelDataBase = new ExcelDataBase(context);
+			excelDataBase = new ExcelDataBase(getApplicationContext());
 			SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
 			ContentValues contentValues = new ContentValues();
 			//SID  ,PCODE INT NOT NULL, IMAGE ,URL VARCHAR(30)
@@ -135,14 +133,113 @@ ImageDownloader imageDownloader;
 					contentValues.put("IMAGE", imagebyte[i]);
 					contentValues.put("URL", companyurl[i]);
 					sqLiteDatabase.insert("SPONSOR", null, contentValues);
-					Toast.makeText(context, "Sponsor Inserted", Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), "Sponsor Inserted", Toast.LENGTH_LONG).show();
 				}
 				
-				ParseLiveGallery parseliveGallery = new ParseLiveGallery(context);
-				Object elgallery=    parseliveGallery.parseImage();
+				SharedPreferences   sharedPreferences = getSharedPreferences("flag", Context.MODE_PRIVATE);
+				Editor editor = sharedPreferences.edit();
+				editor.putInt("sponsor", sponsor_flag);
+				editor.commit();
+				progressDialog.dismiss();
+				stopSelf();
 		}
 
 		
 	}
 
+
+	@Override
+	public IBinder onBind(Intent arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void onCreate() {
+		// TODO Auto-generated method stub
+		super.onCreate();
+	}
+
+
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+	}
+
+
+	@Override
+	public void onStart(Intent intent, int startId) {
+		new flagCheck().execute("http://excelapi.net84.net/flag.json");
+			}
+
+	
+	
+	
+	private class flagCheck extends AsyncTask<String, String, String>{
+		  String results=null;
+		 
+		  	@Override
+		  	protected String doInBackground(String... params) {			
+		  			// TODO Auto-generated method stub
+		  		
+		  		DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
+		  		HttpPost httppost = new HttpPost("http://excelapi.net84.net/flag.json");
+		  		httppost.setHeader("Content-type","application/json");
+		  		InputStream inputstream = null;
+		  		try{
+		  			org.apache.http.HttpResponse response = httpclient.execute(httppost);
+		  			HttpEntity entity =  response.getEntity();
+		  			inputstream = entity.getContent();
+		  			BufferedReader reader = new BufferedReader(new InputStreamReader(inputstream,"UTF-8"),8);
+		  			StringBuilder theStringBuilder = new StringBuilder();
+		  			String line = null;
+		  			while((line= reader.readLine())!=null){
+		  				theStringBuilder.append(line+ '\n');
+		  				
+		  			}
+		  			results = theStringBuilder.toString();
+		  			
+		  		}catch(Exception e){
+		  			e.printStackTrace();
+		  		}finally{
+		  			try{
+		  				if(inputstream!=null)
+		  					inputstream.close();
+		  			}catch(Exception e){
+		  				e.printStackTrace();
+		  			}
+		  		}
+		  		return null;
+		  	}
+
+		  	@Override
+		  	protected void onPostExecute(String result) {
+		  		// TODO Auto-generated method stub
+		  		super.onPostExecute(result);
+		  		try {
+		  			JSONObject jsonObject = new JSONObject(results);
+		  			sponsor_flag = jsonObject.getInt("sponsor");
+		  			
+		  			SharedPreferences   sharedPreferences = getSharedPreferences("flag", Context.MODE_PRIVATE);
+		  			if(sponsor_flag==sharedPreferences.getInt("sponsor", 1)){
+		  				Toast.makeText(getApplicationContext(), "No updates", Toast.LENGTH_LONG).show();
+		  			stopSelf();
+		  			}else{
+		  				
+		  				new ParseSponsorImage().execute("http://excelapi.net84.net/sponsor.json");		  			
+		  			}
+		  		} catch (JSONException e) {
+		  			// TODO Auto-generated catch block
+		  			e.printStackTrace();
+		  		}catch (Exception e) {
+					// TODO: handle exception
+				}
+		  		
+		  		
+		  		
+		  	}
+		  	  
+		    }
 }
