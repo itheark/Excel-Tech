@@ -124,7 +124,7 @@ NonTechViewPager.pagetodisplay=1;
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					NonTechViewPager.pagetodisplay=6;
+					NonTechViewPager.pagetodisplay=5;
 					Fragment fragment =new  NonTechViewPager();
 					FragmentManager fragmentManager = getFragmentManager();
 					 FragmentTransaction transaction=fragmentManager.beginTransaction();
@@ -139,7 +139,7 @@ NonTechViewPager.pagetodisplay=1;
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					NonTechViewPager.pagetodisplay=7;
+					NonTechViewPager.pagetodisplay=6;
 					Fragment fragment =new  NonTechViewPager();
 					FragmentManager fragmentManager = getFragmentManager();
 					 FragmentTransaction transaction=fragmentManager.beginTransaction();
@@ -154,7 +154,7 @@ NonTechViewPager.pagetodisplay=1;
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					NonTechViewPager.pagetodisplay=8;
+					NonTechViewPager.pagetodisplay=7;
 					Fragment fragment =new  NonTechViewPager();
 					FragmentManager fragmentManager = getFragmentManager();
 					 FragmentTransaction transaction=fragmentManager.beginTransaction();
@@ -169,7 +169,7 @@ NonTechViewPager.pagetodisplay=1;
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					NonTechViewPager.pagetodisplay=9;
+					NonTechViewPager.pagetodisplay=8;
 					Fragment fragment =new  NonTechViewPager();
 					FragmentManager fragmentManager = getFragmentManager();
 					 FragmentTransaction transaction=fragmentManager.beginTransaction();
@@ -184,7 +184,7 @@ NonTechViewPager.pagetodisplay=1;
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					NonTechViewPager.pagetodisplay=10;
+					NonTechViewPager.pagetodisplay=9;
 					Fragment fragment =new  NonTechViewPager();
 					FragmentManager fragmentManager = getFragmentManager();
 					 FragmentTransaction transaction=fragmentManager.beginTransaction();
@@ -199,7 +199,7 @@ NonTechViewPager.pagetodisplay=1;
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					NonTechViewPager.pagetodisplay=11;
+					NonTechViewPager.pagetodisplay=10;
 					Fragment fragment =new  NonTechViewPager();
 					FragmentManager fragmentManager = getFragmentManager();
 					 FragmentTransaction transaction=fragmentManager.beginTransaction();

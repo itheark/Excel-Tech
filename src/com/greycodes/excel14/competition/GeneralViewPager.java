@@ -93,10 +93,10 @@ public class GeneralViewPager extends Fragment implements OnClickListener,OnLong
 			// TODO Auto-generated method stub
 			switch(pager.getCurrentItem()){
 			case 0:
-				misc.call("09020404022");		
+				misc.call("08281406249");		
 				break;
 			case 1:
-				misc.call("09020404022");		
+				misc.call("09567289920");		
 				
 				break;
 			case 2:
@@ -216,10 +216,10 @@ case R.id.imageView3:
 
 				switch(pager.getCurrentItem()){
 				case 0:
-					Fragmentkryptos.tv.setText("Cordinator");
+					Fragmentkryptos.tv.setText("Call Augustus Francis ?");
 				break;
 				case 1:
-					FragmentDalalBull.tv.setText("Cordinator");
+					FragmentDalalBull.tv.setText("Call Gokul Hariharan?");
 					break;
 				case 2:
 					FragmentPapyrusOfAni.tv.setText("Call Athira Menon?");

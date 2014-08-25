@@ -53,7 +53,7 @@
        android:fontFamily="sans-serif"
        
         android:textColor="#99ffffff"
-     android:text="Ever since we were children, we have been taught to avoid the roundabout way in any situation. For once, you get to scrap this notion. The dictionary defines kludge as an excessively complicated system or situation, typically involving a great deal of administrative detail. \n"	/>	
+     android:text="Ever since we were children, we have been taught to avoid the roundabout way in any situation. For once, you get to scrap this notion. The dictionary defines kluge as an excessively complicated system or situation, typically involving a great deal of administrative detail. \n"	/>	
  
     </ScrollView>
  

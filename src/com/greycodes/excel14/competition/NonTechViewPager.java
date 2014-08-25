@@ -94,7 +94,7 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 		@Override
 		public void onSaveInstanceState(Bundle outState) {
 	        super.onSaveInstanceState(outState);
-	        outState.putInt("num_pages", 12);
+	        outState.putInt("num_pages", 11);
 	        final ViewPagerParallax pager = (ViewPagerParallax) rootView.findViewById(R.id.nontech_pager);
 	        outState.putInt("current_page", pager.getCurrentItem());
 	    }
@@ -142,7 +142,7 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 				misc.call("08943529599");
 				break;
 			case 10:
-				misc.call("09809513994");
+				misc.call("09995698700");
 				break;
 		
 			
@@ -303,7 +303,7 @@ case R.id.imageView3:
 					TreasureHuntFragment.tv.setText("Call Thrishal S?");
 					break;
 				case 10:
-					FunZoneFragment.tv.setText("Call Hafiz C.B?");
+					FunZoneFragment.tv.setText("Call Thabsheera P.K?");
 					break;
 							
 				
@@ -350,10 +350,8 @@ case R.id.imageView3:
 			case 4:
 				fragment = new FragmentInstantPhotography();
 				break;
-			
 			case 5:
 				fragment = new TikiTakaFragment();
-				
 				break;
 			case 6:
 				fragment = new DefactoFragment();
