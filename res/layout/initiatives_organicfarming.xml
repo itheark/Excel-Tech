@@ -1,8 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
+    android:orientation="vertical" 
+     >
+    <ImageView
+        android:id="@+id/include"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/i_org" />
 
-</LinearLayout>
+   
+    
+    
+    
+       <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_below="@+id/include"
+        android:layout_height="240dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        >
+    <TextView
+        android:id="@+id/txtinclude"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
+       android:gravity="center"
+       android:fontFamily="sans-serif"
+       android:textColor="#e3e3e3"
+     android:text="Model Engineering College,Kochi in assosciation with Rotary Club of Thripunithura Royale,Conducted an organic farming campaign as part of EXCEL 2014 on 15th August.Aimed for spreading awareness about harmful effects of use of pesticides and to promote use of purely organic farming methods.We have distributed organic kits from krishibhavan to households in and around the city.An organic farm has been started on college campus maintained by NSS and TREE Clubs of the college.Eminent speakers have talked about the relevance of organic farming.\n\n"	/>	
+ 
+    </ScrollView>
+ 
+</RelativeLayout>

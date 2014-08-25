@@ -107,7 +107,7 @@ public class ECViewPager extends Fragment implements OnClickListener,OnLongClick
 				
 				break;
 			case 2:
-				misc.call("09020404022");
+				misc.call("08891124181");
 				break;
 			
 			
@@ -229,7 +229,7 @@ public class ECViewPager extends Fragment implements OnClickListener,OnLongClick
 					FragmentDefuse.tv.setText("Cordinator");
 					break;
 				case 2:
-					FragmentCircuim.tv.setText("Cordinator");
+					FragmentCircuim.tv.setText("Call Althaf Ameen ?");
 					break;
 				
 				

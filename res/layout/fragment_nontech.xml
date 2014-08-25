@@ -47,7 +47,42 @@
         android:id="@+id/instant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/instant" />
+        android:src="@drawable/nt_instantbutton" />
+           <ImageView
+        android:id="@+id/kappa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/nt_kappothlon" />
+            <ImageView
+        android:id="@+id/tikki"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/nt_tiki" />
+             <ImageView
+        android:id="@+id/defacto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/nt_defacto" />
+              <ImageView
+        android:id="@+id/alley"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/nt_alley" />
+               <ImageView
+        android:id="@+id/byz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/nt_byzantine" />
+                <ImageView
+        android:id="@+id/tresurehunt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/nt_treasure" />
+                 <ImageView
+        android:id="@+id/funzone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/nt_fun" />
             
             </LinearLayout>
  </ScrollView>

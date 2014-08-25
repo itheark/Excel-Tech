@@ -90,12 +90,12 @@ public class LoginActivity extends SherlockActivity implements OnClickListener  
 		Registered = (TextView) findViewById(R.id.clickhere);
 		etfname = (EditText) findViewById(R.id.registration_name);
 		etlname = (EditText) findViewById(R.id.registration_lastname);
-		etuname = (EditText) findViewById(R.id.registration_username);
+		
 		etpassword = (EditText) findViewById(R.id.registration_password);
 		etemail = (EditText) findViewById(R.id.registration_email);
 		etcollege = (AutoCompleteTextView) findViewById(R.id.registration_college);
 		etdepartment = (AutoCompleteTextView) findViewById(R.id.registration_collegedept);
-		etsemester = (AutoCompleteTextView) findViewById(R.id.registration_semester);
+		
 		etphone = (EditText) findViewById(R.id.registration_phone);
 		etaccomodation = (AutoCompleteTextView) findViewById(R.id.registration_accomodate);
 		connectionDetector = new ConnectionDetector(this);

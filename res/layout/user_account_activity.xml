@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:textColor="#ffffff"
         android:fontFamily="sans-serif"
         android:text="Profile"
@@ -53,11 +53,12 @@
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="25dp" 
         android:layout_marginRight="25dp"
+            
            
         >
     </ListView>

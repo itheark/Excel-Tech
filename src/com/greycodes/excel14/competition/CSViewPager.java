@@ -58,7 +58,7 @@ ProgressDialog progressDialog;
 		  pager = (ViewPagerParallax) rootView.findViewById(R.id.pager);
 		 fragmentmanager=  getChildFragmentManager();
 	        pager.set_max_pages(7);
-	        pager.setBackgroundAsset(R.raw.collg1);
+	        pager.setBackgroundAsset(R.raw.noweee);
 	        pager.setAdapter(new CSViewPageAdapter(fragmentmanager));
 	        call=(ImageView)rootView.findViewById(R.id.imageView4);
 	        result=(ImageView)rootView.findViewById(R.id.imageView2);

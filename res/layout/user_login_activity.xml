@@ -60,16 +60,7 @@
             android:inputType="textPersonName"
             android:textColor="#FFFFFF"
             android:textColorHint="#95FFFFFF" />
-          <EditText
-            android:id="@+id/registration_username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:fontFamily="sans-serif"
-            android:hint="username"
-            android:inputType="textPersonName"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#95FFFFFF" />
+      
          
 
         <EditText
@@ -114,15 +105,7 @@
             android:textColorHint="#95FFFFFF"
              />
 
-        <AutoCompleteTextView
-            android:id="@+id/registration_semester"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="semester"
-            android:inputType="number" 
-            android:textColor="#FFFFFF"
-            android:textColorHint="#95FFFFFF"
-             />
+      
 
         <EditText
             android:id="@+id/registration_phone"
