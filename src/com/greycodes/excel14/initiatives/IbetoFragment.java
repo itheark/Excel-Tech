@@ -23,7 +23,7 @@ public class IbetoFragment extends Fragment implements OnClickListener {
 		 View rootView = inflater.inflate(R.layout.initiatives_ibeto, container, false);
 		 
 		 heading =(ImageView)rootView.findViewById(R.id.include);
-		
+		heading.setOnClickListener(this);
 		 
 		 
 		return rootView;

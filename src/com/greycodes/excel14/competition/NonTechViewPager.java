@@ -133,7 +133,7 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 				misc.call("08547232371");
 				break;
 			case 7:
-				misc.call("09809513994");
+				misc.call("09746834201");
 				break;
 			case 8:
 				misc.call("08907622242");
@@ -296,7 +296,7 @@ case R.id.imageView3:
 					TikiTakaFragment.tv.setText("Call Mohammed P.M?");
 					break;
 				case 7:
-					DefactoFragment.tv.setText("Call Hafiz C.B?");
+					DefactoFragment.tv.setText("Call Jetha Ajith?");
 					break;
 				case 8:
 					AlleyDunk.tv.setText("Call Kanakajith N?");

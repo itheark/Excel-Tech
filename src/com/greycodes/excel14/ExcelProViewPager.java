@@ -237,10 +237,10 @@ public class ExcelProViewPager extends Fragment implements OnLongClickListener,O
 			switch(pager.getCurrentItem()){
 			
 			case 0:
-				MarketManiaFragment.tv.setText("Cordinator");
+				MarketManiaFragment.tv.setText("Call Tom Peter ?");
 			break;
 			case 1:
-				TagURItFragment.tv.setText("Cordinator");
+				TagURItFragment.tv.setText("Call Sreekesh Prabhu ?");
 				break;
 			
 			
@@ -260,10 +260,10 @@ public class ExcelProViewPager extends Fragment implements OnLongClickListener,O
 		// TODO Auto-generated method stub
 		switch(pager.getCurrentItem()){
 		case 0:
-			misc.call("09020404022");		
+			misc.call("08547522884");		
 			break;
 		case 1:
-			misc.call("09020404022");		
+			misc.call("09645530375");		
 			
 			break;
 	
