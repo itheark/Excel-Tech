@@ -195,6 +195,7 @@ String results;
 						subject = new String[jsonarray.length()];
 						message = new String[jsonarray.length()];
 						pcode = new int[jsonarray.length()];
+						cat = new int[jsonarray.length()];
 						nid = new int[jsonarray.length()];
 						n = jsonarray.length();
 						for (int i = 0; i < n; i++) {
@@ -205,6 +206,7 @@ String results;
 							pcode[i] = jsonarray.getJSONObject(i).getInt(
 									"pcode");
 							nid[i] = jsonarray.getJSONObject(i).getInt("nid");
+							cat[i] = jsonarray.getJSONObject(i).getInt("cat");
 
 						}
 					}
@@ -232,6 +234,7 @@ String results;
 					contentValues.put("SUBJECT", subject[i]);
 					contentValues.put("MESSAGE", message[i]);
 					contentValues.put("PCODE", pcode[i]);
+					contentValues.put("CAT", cat[i]);
 					sqLiteDatabase.insert("NEWSFEED", null, contentValues);
 					Toast.makeText(getApplicationContext(),
 							"Newsfeed Inserted", Toast.LENGTH_LONG).show();

@@ -23,7 +23,7 @@
         android:background="#f7f7f7"
         android:paddingLeft="10dp"/>
     <TextView
-        android:id="@+id/livegallery_desc"
+        android:id="@+id/livegallery_auth"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:textSize="15dp"

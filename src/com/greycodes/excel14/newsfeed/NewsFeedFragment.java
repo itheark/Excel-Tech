@@ -13,6 +13,7 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.greycodes.excel14.R;
@@ -72,13 +73,14 @@ NewsFeedArrayAdapter newsFeedArrayAdapter;
 		 mPullToRefreshLayout.setRefreshing(true);
 		 onRefreshStarted(viewGroup);
 		 
-		 columns = new String[]{"SUBJECT","MESSAGE","PCODE"};
+		 columns = new String[]{"SUBJECT","MESSAGE","PCODE","CAT"};
 		  ExcelDataBase excelDataBase = new ExcelDataBase(getActivity());
 	SQLiteDatabase sqLiteDatabase=	  excelDataBase.getSQLiteDataBase();
 	Cursor cursor=	sqLiteDatabase.query("NEWSFEED", columns, null, null, null, null, "NID DESC");
 	
 	cursor.moveToFirst();
 	count = cursor.getCount();
+	Toast.makeText(getActivity(), ""+count, Toast.LENGTH_LONG).show();
 	if(count==0){
 		subject = new String[]{"SUB1","SUB2","SUB3","SUB4"};
 		message = new String[]{"MESSAGE1","MESSAGE2","MESSAGE3","MESSAGE4"};
@@ -100,7 +102,10 @@ NewsFeedArrayAdapter newsFeedArrayAdapter;
 
 	
 		 
-		 
+	newsFeedArrayAdapter = new NewsFeedArrayAdapter(getActivity(), subject, message, pcode,cat);
+	
+	
+	 setListAdapter(newsFeedArrayAdapter); 
 		 
 		
 	}
@@ -111,10 +116,7 @@ NewsFeedArrayAdapter newsFeedArrayAdapter;
 		super.onActivityCreated(savedInstanceState);
 		
 		
-		 newsFeedArrayAdapter = new NewsFeedArrayAdapter(getActivity(), subject, message, pcode,cat);
-		
-			
-			 setListAdapter(newsFeedArrayAdapter);
+		 
 	}
 
 	@Override

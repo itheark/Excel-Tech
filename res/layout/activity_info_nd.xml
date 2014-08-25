@@ -16,6 +16,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="#25000000"
+        android:divider="#0000"
          android:listSelector="@android:color/transparent"
         />
 
