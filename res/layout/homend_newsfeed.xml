@@ -11,14 +11,11 @@
     <ListView
         android:id="@android:id/list"
         android:layout_height="match_parent"
-        android:divider="#0000"
-         android:listSelector="@android:color/transparent"
         android:layout_width="match_parent" />
 
  
 
 </uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout>
-
 
 
 
