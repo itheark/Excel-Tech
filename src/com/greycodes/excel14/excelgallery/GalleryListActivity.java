@@ -91,12 +91,12 @@ public class GalleryListActivity extends SherlockListActivity  {
     desc = new String[cursor.getCount()];
     bs = new byte[cursor.getCount()][];
     for(int i=0;i<cursor.getCount();i++,cursor.moveToNext()){
-    	desc[i]= cursor.getString(cursor.getColumnIndex("AUTHOR"));
-    	desc[i]= desc[i]+" : "+ cursor.getString(cursor.getColumnIndex("DESC"));
+    	author[i]= cursor.getString(cursor.getColumnIndex("AUTHOR"));
+    	desc[i]=  cursor.getString(cursor.getColumnIndex("DESC"));
     	bs[i]=cursor.getBlob(cursor.getColumnIndex("IMAGE"));
     }
     	
-    	adapter = new LiveGalleryAdapter(this,desc,bs);
+    	adapter = new LiveGalleryAdapter(this,desc,bs,author);
     	setListAdapter(adapter);
 
 		// Subclass of ParseQueryAdapter
@@ -231,8 +231,7 @@ public class GalleryListActivity extends SherlockListActivity  {
 	}
 
 	
-	
-	
+	/*
 	public class ParseImage extends AsyncTask<String, String, String>  {
 
 		@Override
@@ -345,7 +344,7 @@ public class GalleryListActivity extends SherlockListActivity  {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			} 	*/
 			/*	 author = new String[cursor.getCount()];
 				    desc = new String[cursor.getCount()];
 				    bs = new byte[cursor.getCount()][];
@@ -355,6 +354,7 @@ public class GalleryListActivity extends SherlockListActivity  {
 				    	bs[i]=cursor.getBlob(cursor.getColumnIndex("IMAGE"));
 				    }
 				    	*/
+	    	 /*
 				    	adapter = new LiveGalleryAdapter(getApplicationContext(),desc,bs);
 				    	setListAdapter(adapter);
 				    	
@@ -363,5 +363,5 @@ public class GalleryListActivity extends SherlockListActivity  {
 
 		
 	}
-
+*/
 }

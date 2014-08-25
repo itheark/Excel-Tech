@@ -43,11 +43,10 @@ public class ProShowFragment extends Fragment implements OnClickListener{
  ImageView thai,naresh,avial,comin;
  Intent intent;
  int proshow_flag;
- ImageDownloader imageDownloader;
+
  String results,url,video;
  byte[] imagebyte;
- Handler h;
- SharedPreferences   sharedPreferences;
+
     //public static final String URL = "http://www.excelmec.org/excel2013/images/proshow.jpg";
    // ImageView imageView;
 	//ProgressDialog progDialog;
@@ -60,59 +59,7 @@ public class ProShowFragment extends Fragment implements OnClickListener{
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
     	 View rootView = inflater.inflate(R.layout.homend_proshow_fragment, container, false);
-		   sharedPreferences = getActivity().getSharedPreferences("flag", Context.MODE_PRIVATE);
-
-		   
-		   if(sharedPreferences.getBoolean("proshow", false)){
-			   
-			   String[] columns = new String[]{"IMAGE","VIDEO"};
-			   comin = (ImageView) rootView.findViewById(R.id.commin);
-			   ExcelDataBase excelDataBase = new ExcelDataBase(getActivity());
-				SQLiteDatabase sqLiteDatabase=	  excelDataBase.getSQLiteDataBase();
-				Cursor cursor=	sqLiteDatabase.query("PROSHOW", columns, null, null, null, null, null);
-				cursor.moveToFirst();
-			imagebyte=	cursor.getBlob(cursor.getColumnIndex("IMAGE"));
-			video=	cursor.getString(cursor.getColumnIndex("VIDEO"));
-				
-				Bitmap bitmap = BitmapFactory.decodeByteArray(imagebyte, 0,
-						imagebyte.length);
-						comin.setImageBitmap(bitmap);
-						
-						comin.setOnClickListener(new OnClickListener() {
-							
-							@Override
-							public void onClick(View view) {
-								// TODO Auto-generated method stub
-								watchYoutubeVideo(video);
-							}
-						});
-			   
-		   }else{
-			 ConnectionDetector connectionDetector = new ConnectionDetector(getActivity());
-			 h = new Handler() {
-		            @Override
-		            public void handleMessage(Message msg) {
-
-		                if (msg.what != 1) { // code if not connected
-		                
-		               // Toast.makeText(getActivity(), "No Connection", Toast.LENGTH_LONG).show();
-		              
-		                	
-		                	
-		            				
-		                } else { // code if connected
-		                		       Toast.makeText(getActivity(), "connection", Toast.LENGTH_SHORT).show();                
-		                        
-		                new  flagCheck().execute("http://excelapi.net84.net/flag.json");
-		               	 
-		                }   
-		            }
-		        };
-		        
-		            
-		        connectionDetector.isNetworkAvailable(h,2000);
-		   }
-		   
+ 
     	 thai = (ImageView) rootView.findViewById(R.id.thai);
     	 naresh = (ImageView) rootView.findViewById(R.id.naresh);
     	 avial = (ImageView) rootView.findViewById(R.id.avial);
@@ -160,163 +107,7 @@ case R.id.avial:
 	         }
 	}
 	
-	private class flagCheck extends AsyncTask<String, String, String>{
-		  String results;
-		  
-		  	@Override
-		  	protected String doInBackground(String... params) {			
-		  			// TODO Auto-generated method stub
-		  		
-		  		DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-		  		HttpPost httppost = new HttpPost("http://excelapi.net84.net/flag.json");
-		  		httppost.setHeader("Content-type","application/json");
-		  		InputStream inputstream = null;
-		  		try{
-		  			org.apache.http.HttpResponse response = httpclient.execute(httppost);
-		  			HttpEntity entity =  response.getEntity();
-		  			inputstream = entity.getContent();
-		  			BufferedReader reader = new BufferedReader(new InputStreamReader(inputstream,"UTF-8"),8);
-		  			StringBuilder theStringBuilder = new StringBuilder();
-		  			String line = null;
-		  			while((line= reader.readLine())!=null){
-		  				theStringBuilder.append(line+ '\n');
-		  				
-		  			}
-		  			results = theStringBuilder.toString();
-		  			
-		  		}catch(Exception e){
-		  			e.printStackTrace();
-		  		}finally{
-		  			try{
-		  				if(inputstream!=null)
-		  					inputstream.close();
-		  			}catch(Exception e){
-		  				e.printStackTrace();
-		  			}
-		  		}
-		  		return null;
-		  	}
 
-		  	@Override
-		  	protected void onPostExecute(String result) {
-		  		// TODO Auto-generated method stub
-		  		super.onPostExecute(result);
-		  		try {
-		  			JSONObject jsonObject = new JSONObject(results);
-		  			proshow_flag = jsonObject.getInt("proshow");
-		  			
-		  			//SharedPreferences   sharedPreferences = getActivity().getSharedPreferences("flag", Context.MODE_PRIVATE);
-		  			if(proshow_flag==1){
-		  				//Toast.makeText(getActivity(), "No updates", Toast.LENGTH_LONG).show();
-		  				
-		  			
-		  			}else{
-		  				Object   nfeed = new ParseProshow().execute("http://excelapi.net84.net/proshow.json").get();
-		  			}
-		  		} catch (JSONException e) {
-		  			// TODO Auto-generated catch block
-		  			e.printStackTrace();
-		  		} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ExecutionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		  		
-		  		
-		  		
-		  	}
-		  	  
-		    }
-	
-	
-	
-	public class ParseProshow extends AsyncTask<String, String, String>  {
-
-		@Override
-		protected String doInBackground(String... params)  {
-			// TODO Auto-generated method stub
-			
-			DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-			HttpPost httppost = new HttpPost("http://excelapi.net84.net/proshow.json");
-			httppost.setHeader("Content-type","application/json");
-			InputStream inputstream = null;
-			try{
-				org.apache.http.HttpResponse response = httpclient.execute(httppost);
-				HttpEntity entity =  response.getEntity();
-				inputstream = entity.getContent();
-				BufferedReader reader = new BufferedReader(new InputStreamReader(inputstream,"UTF-8"),8);
-				StringBuilder theStringBuilder = new StringBuilder();
-				String line = null;
-				while((line= reader.readLine())!=null){
-					theStringBuilder.append(line+ '\n');
-					
-				}
-				results = theStringBuilder.toString();
-				
-			}catch(Exception e){
-				e.printStackTrace();
-			}finally{
-				try{
-					if(inputstream!=null)
-						inputstream.close();
-				}catch(Exception e){
-					e.printStackTrace();
-				}
-				JSONObject jsonObject;
-				try{
-					jsonObject = new JSONObject(results);
-					
-				url=	jsonObject.getJSONObject("proshow").getString("url");
-				video=	jsonObject.getJSONObject("proshow").getString("channel");
-						
-				 
-
-				}catch(JSONException e){
-					e.printStackTrace();
-				}
-			}
-			return results;
-			
-		}
-
-		@Override
-		protected void onPostExecute(String result) {
-			// TODO Auto-generated method stub
-			super.onPostExecute(result);
-			imageDownloader = new ImageDownloader();
-			
-				imagebyte = imageDownloader.Download(url);
-			
-			
-		ExcelDataBase	excelDataBase = new ExcelDataBase(getActivity());
-			SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
-			ContentValues contentValues = new ContentValues();
-			//SID  ,PCODE INT NOT NULL, IMAGE ,URL VARCHAR(30)
-			 ;
-				
-				
-					contentValues.put("IMAGE",imagebyte );
-					contentValues.put("VIDEO",video);
-					
-					sqLiteDatabase.insert("PROSHOW", null, contentValues);
-					
-					String[] columns = new String[]{"IMAGE","VIDEO"};
-					Cursor cursor=	sqLiteDatabase.query("PROSHOW", columns, null, null, null, null, null);
-					if(cursor.getCount()>0){
-						
-					
-					
-					Editor editor = sharedPreferences.edit();
-					editor.putBoolean("proshow", true);
-					editor.commit();
-				Toast.makeText(getActivity(), "Proshow Deal", Toast.LENGTH_LONG).show();
-					}
-				}
-				
-				
-		}
 
 		
 	}

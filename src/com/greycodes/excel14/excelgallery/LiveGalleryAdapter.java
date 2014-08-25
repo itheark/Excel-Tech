@@ -16,18 +16,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class LiveGalleryAdapter extends  BaseAdapter{
-	String[] desc;
+	String[] desc,auth;
 	byte[][] bs;
 	Context context;
 	LayoutInflater liveGalleryInflator;
 	
 	
 
-	public LiveGalleryAdapter(Context context,String[] desc,byte[][] bs){
+	public LiveGalleryAdapter(Context context,String[] desc,byte[][] bs,String[] auth){
 		this.context = context;
 		this.desc=desc;
 		this.bs= bs;
-		
+		this.auth = auth;
 		
 	}
 	@Override
@@ -53,16 +53,17 @@ public class LiveGalleryAdapter extends  BaseAdapter{
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		ImageView imgIcon;
-		TextView tvdesc;
+		TextView tvdesc,tvauth;
 		liveGalleryInflator =(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View itemView = liveGalleryInflator.inflate(R.layout.livegallery_listitem, parent, false);
 		imgIcon=(ImageView) itemView.findViewById(R.id.livegallery_image);
 		tvdesc = (TextView) itemView.findViewById(R.id.livegallery_desc);
-	
+		tvauth = (TextView) itemView.findViewById(R.id.livegallery_auth);
 		Bitmap bitmap = BitmapFactory.decodeByteArray(bs[position], 0,
 		bs[position].length);
 		imgIcon.setImageBitmap(bitmap);
 		tvdesc.setText(desc[position]);
+		tvauth.setText(auth[position]);
 		
 		return itemView;
 	}
