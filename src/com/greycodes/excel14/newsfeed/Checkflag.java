@@ -109,7 +109,7 @@ public class Checkflag extends Service{
 		  		if(results==null){
 		  		
 		  			try {
-						NewsFeedFragment.mPullToRefreshLayout.setRefreshComplete();
+						NewsFeedFragment.mPullToRefreshLayout.setRefreshing(false);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -129,8 +129,7 @@ public class Checkflag extends Service{
 		  				Toast.makeText(getApplicationContext(), "No updates", Toast.LENGTH_LONG).show();
 		  			try {
 						if(NewsFeedFragment.mPullToRefreshLayout.isRefreshing()){
-							NewsFeedFragment.mPullToRefreshLayout.setRefreshComplete();
-						}
+							NewsFeedFragment.mPullToRefreshLayout.setRefreshing(false);						}
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -247,8 +246,7 @@ String results;
 			}
 		try {
 			if(NewsFeedFragment.mPullToRefreshLayout.isRefreshing()){
-				NewsFeedFragment.mPullToRefreshLayout.setRefreshComplete();
-				NewsFeedFragment newsFeedFragment = new NewsFeedFragment();
+				NewsFeedFragment.mPullToRefreshLayout.setRefreshing(false);				NewsFeedFragment newsFeedFragment = new NewsFeedFragment();
 				newsFeedFragment.setadapter();
 			}
 			

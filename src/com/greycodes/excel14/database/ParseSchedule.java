@@ -80,43 +80,7 @@ ExcelDataBase excelDataBase;
 				}catch(Exception e){
 					e.printStackTrace();
 				}
-				JSONObject jsonObject;
-				try{
-					jsonObject = new JSONObject(results);
-					jsonarray = jsonObject.getJSONArray("schedule");
-					count = jsonarray.length();
-					ename = new String[count];
-					cat = new int[count];
-					stime = new String[count];
-					duration = new String[count];
-					venue = new String[count];
-					time = new String[count];
-					
-					eid = new int[count];
-					sid = new int[count];
-					level = new int[count];
-					day = new int[count];
-					
-				 for(i=0;i<count;i++){
-					 
-					 sid[i] = jsonarray.getJSONObject(i).getInt("sid");
-					 eid[i] = jsonarray.getJSONObject(i).getInt("eid");
-					 ename[i] = jsonarray.getJSONObject(i).getString("name");
-					 level[i] = jsonarray.getJSONObject(i).getInt("level");
-					 day[i] = jsonarray.getJSONObject(i).getInt("day");
-					 cat[i] = jsonarray.getJSONObject(i).getInt("cat");
-					 venue[i] = jsonarray.getJSONObject(i).getString("venue");
-					 stime[i] = jsonarray.getJSONObject(i).getString("stime");
-					 duration[i] = jsonarray.getJSONObject(i).getString("duration");
-					 time[i] = jsonarray.getJSONObject(i).getString("time");
-				 }
-					
-					 
-					
-
-				}catch(JSONException e){
-					e.printStackTrace();
-				}
+				
 			}
 			return results;
 			
@@ -125,6 +89,43 @@ ExcelDataBase excelDataBase;
 		@Override
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
+			JSONObject jsonObject;
+			try{
+				jsonObject = new JSONObject(results);
+				jsonarray = jsonObject.getJSONArray("schedule");
+				count = jsonarray.length();
+				ename = new String[count];
+				cat = new int[count];
+				stime = new String[count];
+				duration = new String[count];
+				venue = new String[count];
+				time = new String[count];
+				
+				eid = new int[count];
+				sid = new int[count];
+				level = new int[count];
+				day = new int[count];
+				
+			 for(i=0;i<count;i++){
+				 
+				 sid[i] = jsonarray.getJSONObject(i).getInt("sid");
+				 eid[i] = jsonarray.getJSONObject(i).getInt("eid");
+				 ename[i] = jsonarray.getJSONObject(i).getString("name");
+				 level[i] = jsonarray.getJSONObject(i).getInt("level");
+				 day[i] = jsonarray.getJSONObject(i).getInt("day");
+				 cat[i] = jsonarray.getJSONObject(i).getInt("cat");
+				 venue[i] = jsonarray.getJSONObject(i).getString("venue");
+				 stime[i] = jsonarray.getJSONObject(i).getString("stime");
+				 duration[i] = jsonarray.getJSONObject(i).getString("duration");
+				 time[i] = jsonarray.getJSONObject(i).getString("time");
+			 }
+				
+				 
+				
+
+			}catch(JSONException e){
+				Toast.makeText(getApplicationContext(), "No internet Connectivity", Toast.LENGTH_LONG).show();
+			}
 			super.onPostExecute(result);
 			excelDataBase = new ExcelDataBase(getApplicationContext());
 			SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();

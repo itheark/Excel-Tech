@@ -42,6 +42,7 @@ public class CompetitionNDActivity extends SherlockFragmentActivity{
 	public static int pgdisplay;
 	 FragmentManager fragmentManager ;
 	 FragmentTransaction transaction;
+	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

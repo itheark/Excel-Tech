@@ -178,32 +178,7 @@ public class InfoNDActivity extends SherlockFragmentActivity {
 				}
 				else{
 					Toast.makeText(getApplicationContext(), "Please wait..Checking for update", Toast.LENGTH_LONG).show();
-					 h = new Handler() {
-				            @Override
-				            public void handleMessage(Message msg) {
-
-				                if (msg.what != 1) { // code if not connected
-				                
-				                Toast.makeText(getApplicationContext(), "No Connection", Toast.LENGTH_LONG).show();
-				              
-				                	
-				                	
-				            				
-				                } else { // code if connected
-				                
-					           
-					                Toast.makeText(getApplicationContext(), " Connection", Toast.LENGTH_LONG).show();
-					          //    ParseS.parseSchedule();
-					           
-				                	
-				                	
-				               	 
-				                }   
-				            }
-				        };
-				        
-				            
-				        ConnectionDetector.isNetworkAvailable(h,2000);
+					startService(new Intent(InfoNDActivity.this, ParseSchedule.class));
 					
 					//	ParseSchedule ParseS = new ParseSchedule(getApplicationContext());
 					//ParseS.parseSchedule();
