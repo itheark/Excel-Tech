@@ -10,15 +10,18 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
-public class ConferenceViewPager extends Fragment {
+public class ConferenceViewPager extends Fragment implements OnClickListener {
 
 	ViewPager view=null;
 	public static int  pagetodisplay=0;
 	android.support.v4.app.FragmentManager fragmentmanager;
 	private int num_pages = 3;
 	View rootView;
+	
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
@@ -31,8 +34,9 @@ public class ConferenceViewPager extends Fragment {
 		        pager.setBackgroundAsset(R.raw.nowec);
 		        pager.setAdapter(new ConferenceViewPageAdapter(fragmentmanager));
 		        pager.setCurrentItem(pagetodisplay);
-
-			return rootView;
+		        
+		        
+		        return rootView;
 			
 		}
 
@@ -48,6 +52,13 @@ public class ConferenceViewPager extends Fragment {
 		public void onResume() {
 			// TODO Auto-generated method stub
 			super.onResume();
+			
+		}
+
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			
 			
 		}
 
