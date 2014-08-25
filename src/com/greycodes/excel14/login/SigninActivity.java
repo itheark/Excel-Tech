@@ -4,17 +4,17 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
 import com.facebook.android.DialogError;
 import com.facebook.android.Facebook;
 import com.facebook.android.FacebookError;
 import com.facebook.android.Util;
 import com.facebook.android.Facebook.DialogListener;
 import com.greycodes.excel14.R;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -29,7 +29,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class SigninActivity extends Activity implements OnClickListener {
+public class SigninActivity extends SherlockActivity implements OnClickListener {
 	
 	
 	Facebook fb;
@@ -37,11 +37,12 @@ public class SigninActivity extends Activity implements OnClickListener {
 	SharedPreferences sp;
 	String id;
 	ImageView connectfb;
-	@Override
+	@SuppressLint("NewApi") @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		android.app.ActionBar bar = getActionBar();
+	 
+		ActionBar bar = getSupportActionBar();
 		bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0e1215")));
         bar.setTitle(Html.fromHtml("<font color=\"#e6f3ea\">" + getString(R.string.app_name) + "</font>"));
 		setContentView(R.layout.user_registration_activity);

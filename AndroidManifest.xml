@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="8"
         android:targetSdkVersion="18" />
 
     <uses-permission android:name="android.permission.CAMERA" />
@@ -53,7 +53,7 @@
         android:icon="@drawable/excel_logo"
         android:label="@string/app_name"
         android:screenOrientation="portrait"
-        android:theme="@style/Sherlock.__Theme.Light" >
+        android:theme="@style/Theme.Sherlock" >
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyDftfKOhLjWCbAY80qfJfZhMDuU0neWIPM" />

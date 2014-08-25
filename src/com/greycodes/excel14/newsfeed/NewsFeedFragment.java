@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.actionbarsherlock.app.SherlockListFragment;
 import com.greycodes.excel14.R;
 import com.greycodes.excel14.database.ExcelDataBase;
 
@@ -26,11 +27,12 @@ import com.greycodes.excel14.database.ExcelDataBase;
 
 
 
-public class NewsFeedFragment extends ListFragment implements OnRefreshListener{
+public class NewsFeedFragment extends SherlockListFragment implements OnRefreshListener{
 
 	int count;
 	String[] subject,message,columns;
 	int[] pcode,cat;
+	
 	static public	PullToRefreshLayout mPullToRefreshLayout;
 	int n,i;
 static  String url = "http://www.excelapi.net84.net/newsfeed.json";

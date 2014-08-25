@@ -43,6 +43,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
 import com.facebook.android.DialogError;
 import com.facebook.android.Facebook;
 import com.facebook.android.Facebook.DialogListener;
@@ -58,7 +59,7 @@ import com.parse.Parse;
 import com.parse.ParseUser;
 import com.parse.PushService;
 
-public class LoginActivity extends Activity implements OnClickListener  {
+public class LoginActivity extends SherlockActivity implements OnClickListener  {
 	
 
 
@@ -81,7 +82,7 @@ public class LoginActivity extends Activity implements OnClickListener  {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.user_login_activity);
-		android.app.ActionBar bar = getActionBar();
+	ActionBar bar = getSupportActionBar();
 		bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0e1215")));
         bar.setTitle(Html.fromHtml("<font color=\"#e6f3ea\">" + getString(R.string.app_name) + "</font>"));
 		connectfb= (ImageView)findViewById(R.id.fbconnect);

@@ -3,14 +3,11 @@ package com.greycodes.excel14.excelgallery;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.hardware.Camera;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
@@ -18,7 +15,6 @@ import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -60,6 +56,7 @@ public class CameraFragment extends android.support.v4.app.Fragment {
 			@Override
 			public void onClick(View v) {
 				photoButton.setEnabled(false);
+				Toast.makeText(getActivity(), "Please wait....Uploading your picture.this my take few seconds depending upon your connection", Toast.LENGTH_LONG).show();
 				
 				if (camera == null)
 					return;
@@ -84,6 +81,9 @@ public class CameraFragment extends android.support.v4.app.Fragment {
 
 		surfaceView = (SurfaceView) v.findViewById(R.id.camera_surface_view);
 		SurfaceHolder holder = surfaceView.getHolder();
+		
+		holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+		
 		holder.addCallback(new Callback() {
 
 			public void surfaceCreated(SurfaceHolder holder) {

@@ -3,7 +3,6 @@ package com.greycodes.excel14.excelgallery;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -13,11 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
-import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
-import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -32,16 +27,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Html;
-import android.util.AttributeSet;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.view.Menu;
 import com.greycodes.excel14.ConnectionDetector;
 import com.greycodes.excel14.HomeNDActivity;
-import com.greycodes.excel14.InfoNDActivity;
 import com.greycodes.excel14.R;
 import com.greycodes.excel14.database.ExcelDataBase;
 import com.greycodes.excel14.database.ImageDownloader;
@@ -49,7 +41,7 @@ import com.greycodes.excel14.database.ParseLiveGallery;
 
 
 
-public class GalleryListActivity extends ListActivity  {
+public class GalleryListActivity extends SherlockListActivity  {
 	
 
 
@@ -74,7 +66,7 @@ public class GalleryListActivity extends ListActivity  {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.excellive_activity);
-		android.app.ActionBar bar = getActionBar();
+	ActionBar bar = getSupportActionBar();
         bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0e1215")));
         bar.setTitle(Html.fromHtml("<font color=\"#e6f3ea\">" + getString(R.string.app_name) + "</font>"));
       /*  Fragment f;
@@ -116,19 +108,40 @@ public class GalleryListActivity extends ListActivity  {
 		// Default view is all meals
 	}
 
+	
+/*
+	@Override
+	public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
+		getMenuInflater().inflate(R.menu.activity_meal_list, (Menu) menu);
+		return true;
+	}
+*/
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_meal_list, menu);
+		getSupportMenuInflater().inflate(R.menu.activity_meal_list, menu);
+		
 		return true;
 	}
 
 	/*
+	@Override
+	public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
+		// TODO Auto-generated method stub
+		getMenuInflater().inflate(R.menu.activity_meal_list,  menu);
+		return true;
+	}
+	*/
+	
+	
+	/*
 	 * Posting meals and refreshing the list will be controlled from the Action
 	 * Bar.
 	 */
+	
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
+	public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
+		
+		switch ( item.getItemId()) {
 
 		case R.id.action_refresh: 
 		startService(new Intent(GalleryListActivity.this, ParseLiveGallery.class));
@@ -183,12 +196,25 @@ public class GalleryListActivity extends ListActivity  {
 			home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(home);
 		}
-		return super.onOptionsItemSelected(item);
+		return true;
 	}
+	
+
+	
 
 	
 
 	
+
+
+	
+
+
+
+
+
+	
+
 
 	private void newMeal() {
 		Intent i = new Intent(this, NewImageActivity.class);
