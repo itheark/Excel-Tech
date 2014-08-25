@@ -26,7 +26,7 @@ Fragment fragment=  null;
 		 ImageView btgame = (ImageView) rootView.findViewById(R.id.gamezone);
 		 ImageView btspider = (ImageView) rootView.findViewById(R.id.spider);
 		 ImageView btinstant = (ImageView) rootView.findViewById(R.id.instant);
-		 ImageView btkappa = (ImageView) rootView.findViewById(R.id.kappa);
+		 
 		 ImageView bttikki = (ImageView) rootView.findViewById(R.id.tikki);
 		 ImageView btdefacto = (ImageView) rootView.findViewById(R.id.defacto);
 		 ImageView btalley = (ImageView) rootView.findViewById(R.id.alley);
@@ -118,22 +118,8 @@ NonTechViewPager.pagetodisplay=1;
 				}
 			});
 		
-		 btkappa.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					NonTechViewPager.pagetodisplay=5;
-					Fragment fragment =new  NonTechViewPager();
-					FragmentManager fragmentManager = getFragmentManager();
-					 FragmentTransaction transaction=fragmentManager.beginTransaction();
-					 transaction.setCustomAnimations(R.anim.fadeinright, R.anim.fadeoutleft, R.anim.fadeinleft, R.anim.fadeoutright);
-					 transaction.replace(R.id.competition_content_frame,fragment);
-						// Add this transaction to the back stack
-			        transaction.addToBackStack("kappa");
-			        transaction.commit();
-				}
-			}); bttikki.setOnClickListener(new View.OnClickListener() {
+		
+			 bttikki.setOnClickListener(new View.OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {

@@ -35,7 +35,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:gravity="center_vertical"
         android:paddingLeft="5dp"
-        android:layout_toRightOf="@+id/newsfeed_cat"
+        android:textColor="#333333"
+              android:layout_toRightOf="@+id/newsfeed_cat"
          />
     
 <ImageView android:layout_width="wrap_content"
@@ -52,7 +53,8 @@
         android:text="yes"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:paddingTop="5dp"
-        android:paddingLeft="8dp" />
+        android:paddingLeft="8dp"
+        android:textColor="#666666" />
 
   
 </LinearLayout>

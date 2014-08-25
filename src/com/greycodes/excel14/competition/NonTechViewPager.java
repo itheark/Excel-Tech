@@ -37,7 +37,7 @@ import com.greycodes.excel14.nontechnical.FragmentGameZone;
 import com.greycodes.excel14.nontechnical.FragmentInstantPhotography;
 import com.greycodes.excel14.nontechnical.FragmentSpiderWeb;
 import com.greycodes.excel14.nontechnical.FunZoneFragment;
-import com.greycodes.excel14.nontechnical.KapothalonFragment;
+
 import com.greycodes.excel14.nontechnical.TikiTakaFragment;
 import com.greycodes.excel14.nontechnical.TreasureHuntFragment;
 
@@ -68,7 +68,7 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 			 fragmentmanager=  getChildFragmentManager();
 
 		        pager.setBackgroundAsset(R.raw.collg1);
-		        pager.set_max_pages(12);
+		        pager.set_max_pages(11);
 
 		        pager.setAdapter(new NonTechnicalViewPageAdapter(fragmentmanager));
 		        pager.setCurrentItem(pagetodisplay);
@@ -127,24 +127,21 @@ public class NonTechViewPager extends Fragment implements OnClickListener,OnLong
 				misc.call("09809513994");
 				break;
 			case 5:
-				misc.call("09995698700");
-				break;
-			case 6:
 				misc.call("08547232371");
 				break;
-			case 7:
+			case 6:
 				misc.call("09746834201");
 				break;
-			case 8:
+			case 7:
 				misc.call("08907622242");
 				break;
-			case 9:
+			case 8:
 				misc.call("09746210049");
 				break;
-			case 10:
+			case 9:
 				misc.call("08943529599");
 				break;
-			case 11:
+			case 10:
 				misc.call("09809513994");
 				break;
 		
@@ -289,25 +286,23 @@ case R.id.imageView3:
 				case 4:
 					FragmentInstantPhotography.tv.setText("Call Hafiz C.B?");
 					break;
+				
 				case 5:
-					KapothalonFragment.tv.setText("Call Thabsheera P.K?");
-					break;
-				case 6:
 					TikiTakaFragment.tv.setText("Call Mohammed P.M?");
 					break;
-				case 7:
+				case 6:
 					DefactoFragment.tv.setText("Call Jetha Ajith?");
 					break;
-				case 8:
+				case 7:
 					AlleyDunk.tv.setText("Call Kanakajith N?");
 					break;
-				case 9:
+				case 8:
 					ByzantineFragment.tv.setText("Call Ajith G?");
 					break;
-				case 10:
+				case 9:
 					TreasureHuntFragment.tv.setText("Call Thrishal S?");
 					break;
-				case 11:
+				case 10:
 					FunZoneFragment.tv.setText("Call Hafiz C.B?");
 					break;
 							
@@ -355,26 +350,24 @@ case R.id.imageView3:
 			case 4:
 				fragment = new FragmentInstantPhotography();
 				break;
+			
 			case 5:
-				fragment = new KapothalonFragment();
-				break;
-			case 6:
 				fragment = new TikiTakaFragment();
 				
 				break;
-			case 7:
+			case 6:
 				fragment = new DefactoFragment();
 				break;
-			case 8:
+			case 7:
 				fragment = new AlleyDunk();
 				break;
-			case 9:
+			case 8:
 				fragment = new ByzantineFragment();
 				break;
-			case 10:
+			case 9:
 				fragment = new TreasureHuntFragment();
 				break;
-			case 11:
+			case 10:
 				fragment = new FunZoneFragment();
 				break;
 			
@@ -400,19 +393,18 @@ case R.id.imageView3:
 		
 			case 4:
 				return "Instant Photography";
+		
 			case 5:
-				return "Kapathalon";
-			case 6:
 				return "TikiTaka";
-			case 7:
+			case 6:
 				return "Defacto";
-			case 8:
+			case 7:
 				return "Alley Dunk";
+			case 8:
+				return "kludge";
 			case 9:
-				return "Byzantine";
-			case 10:
 				return "Treasure Hunt";
-			case 11:
+			case 10:
 				return "Fun Zone";
 			
 			}
@@ -421,6 +413,6 @@ case R.id.imageView3:
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return 12;
+			return 11;
 		}
 }

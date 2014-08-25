@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/camera_preview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-   android:keepScreenOn="true"
-    >
+    android:orientation="vertical" 
+    android:keepScreenOn="true">
 
     <SurfaceView
         android:id="@+id/camera_surface_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:layout_weight="1" />
 
-    <ImageView
-        android:id="@+id/camera_photo_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/camera_shutter_selector"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="10dp"
-        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_weight="1"
+        android:background="#000000"
+                 >
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/camera_photo_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/camerashutter" />
+                 
+    </RelativeLayout>
+
+</LinearLayout>
