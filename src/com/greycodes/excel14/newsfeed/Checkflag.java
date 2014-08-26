@@ -108,12 +108,7 @@ public class Checkflag extends Service{
 		  		Toast.makeText(getApplicationContext(), results, Toast.LENGTH_LONG).show();
 		  		if(results==null){
 		  		
-		  			try {
-						NewsFeedFragment.mPullToRefreshLayout.setRefreshing(false);
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}	
+		  				
 		  			onDestroy();
 		  		}else{
 		  			try {
@@ -127,13 +122,7 @@ public class Checkflag extends Service{
 		  			SharedPreferences   sharedPreferences = getApplicationContext().getSharedPreferences("flag", Context.MODE_PRIVATE);
 		  			if(newsfeed_flag==sharedPreferences.getInt("newsfeed", 1)){
 		  				Toast.makeText(getApplicationContext(), "No updates", Toast.LENGTH_LONG).show();
-		  			try {
-						if(NewsFeedFragment.mPullToRefreshLayout.isRefreshing()){
-							NewsFeedFragment.mPullToRefreshLayout.setRefreshing(false);						}
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+		  			
 		  				
 		  			
 		  			}else{
@@ -244,16 +233,7 @@ String results;
 				editor.putInt("newsfeed", newsfeed_flag);
 				editor.commit();
 			}
-		try {
-			if(NewsFeedFragment.mPullToRefreshLayout.isRefreshing()){
-				NewsFeedFragment.mPullToRefreshLayout.setRefreshing(false);				NewsFeedFragment newsFeedFragment = new NewsFeedFragment();
-				newsFeedFragment.setadapter();
-			}
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 			onDestroy();
 
 		}

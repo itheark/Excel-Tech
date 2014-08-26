@@ -15,11 +15,11 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.greycodes.excel14.R;
 import com.greycodes.excel14.database.ExcelDataBase;
-public class NewsFeedFragment extends SherlockListFragment implements OnRefreshListener{
+public class NewsFeedFragment extends SherlockListFragment{
 int count;
 String[] subject,message,columns;
 int[] pcode,cat;
-static public	PullToRefreshLayout mPullToRefreshLayout;
+
 int n,i;
 static String url = "http://www.excelapi.net84.net/newsfeed.json";
 NewsFeedArrayAdapter newsFeedArrayAdapter;
@@ -39,16 +39,8 @@ public void onViewCreated(View view, Bundle savedInstanceState) {
 // TODO Auto-generated method stub
 super.onViewCreated(view, savedInstanceState);
 ViewGroup viewGroup = (ViewGroup) view;
-mPullToRefreshLayout = new PullToRefreshLayout(viewGroup.getContext());
-ActionBarPullToRefresh.from(getActivity())
-// We need to insert the PullToRefreshLayout into the Fragment's ViewGroup
-.insertLayoutInto(viewGroup)
-// Here we mark just the ListView and it's Empty View as pullable
-.theseChildrenArePullable(android.R.id.list, android.R.id.empty)
-.listener(this)
-.setup(mPullToRefreshLayout);
-mPullToRefreshLayout.setRefreshing(true);
-onRefreshStarted(viewGroup);
+getActivity().startService(new Intent(getActivity(), Checkflag.class));
+
 columns = new String[]{"SUBJECT","MESSAGE","PCODE","CAT"};
 ExcelDataBase excelDataBase = new ExcelDataBase(getActivity());
 SQLiteDatabase sqLiteDatabase=	excelDataBase.getSQLiteDataBase();
@@ -87,21 +79,10 @@ Bundle savedInstanceState) {
 View rootView = inflater.inflate(R.layout.homend_newsfeed, container, false);
 return rootView;
 }
-@Override
-public void onRefreshStarted(View view) {
-// TODO Auto-generated method stub
-getActivity().startService(new Intent(getActivity(), Checkflag.class));
-}
+
+
 public void setadapter(){
 newsFeedArrayAdapter = new NewsFeedArrayAdapter(getActivity(), subject, message, pcode,cat);
 setListAdapter(newsFeedArrayAdapter);
-try {
-if(mPullToRefreshLayout.isRefreshing()){
-mPullToRefreshLayout.setRefreshComplete();
-}
-} catch (Exception e) {
-// TODO Auto-generated catch block
-e.printStackTrace();
-}
 }
 }
