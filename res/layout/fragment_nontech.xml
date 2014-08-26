@@ -48,11 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/nt_instantbutton" />
-           <ImageView
-        android:id="@+id/kappa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/nt_kappothlon" />
+           
             <ImageView
         android:id="@+id/tikki"
         android:layout_width="wrap_content"

@@ -19,7 +19,7 @@ import com.greycodes.excel14.Misc;
 import com.greycodes.excel14.R;
 
 public class HospitalityFragment extends Fragment implements OnClickListener, OnLongClickListener {
- ImageView call;
+ ImageView call,callres;
  public static TextView tv;
  RelativeLayout rr;
 	@Override
@@ -33,6 +33,11 @@ public class HospitalityFragment extends Fragment implements OnClickListener, On
 		 call.setOnClickListener(this);
 		 tv.setOnClickListener(this);
 		 call.setOnLongClickListener(this);
+		 callres =(ImageView)rootView.findViewById(R.id.imageView5);
+		 tv=(TextView)rootView.findViewById(R.id.txtinclude);
+		 callres.setOnClickListener(this);
+		 tv.setOnClickListener(this);
+		 callres.setOnLongClickListener(this);
 		 rr.setOnClickListener(this);
 		return rootView;
 	}
@@ -43,9 +48,18 @@ public class HospitalityFragment extends Fragment implements OnClickListener, On
 			
 			Toast.makeText(getActivity(), "Press & Hold to call", Toast.LENGTH_LONG).show();
 			updateTextValue("Call Sajay Sunny ?\n");
-			
-			
 		}
+			if(v.equals(callres))
+			
+			
+			{
+				
+				Toast.makeText(getActivity(), "Press & Hold to call", Toast.LENGTH_LONG).show();
+				updateTextValue("Call Razine V ?\n");
+				}
+			
+			
+		
 			if(v.equals(tv)){
 				
 				updateTextValue("As one of South India’s largest techno-managerial festivals, Excel is attended by participants from across the nation. The comfortable accommodation and hospitality of all our guests (from local areas to those from far-flung places in the country) are top priority to us. We strive to ensure that your stay here at Kochi, is as satisfying and cozy as possible.\nWe leave no stone unturned towards the satisfaction of all and in ensuring that your days at Excel 2014 are some of the most memorable experiences of your life.\n");
@@ -69,6 +83,15 @@ if(v.equals(call)){
 			
 			
 		}
+
+if(v.equals(callres)){
+	String number ="08129414996";
+Intent intent = new Intent(Intent.ACTION_CALL);
+intent.setData(Uri.parse("tel:"+number));
+startActivity(intent);
+	
+	
+}
 		
 		
 	return true;	

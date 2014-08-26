@@ -66,7 +66,7 @@
        android:fontFamily="sans-serif"
        
         android:textColor="#99ffffff"
-     android:text="Even the hardest problems in this world are solved with the most simplest of logic. If complex algorithms are just a child’s play for you, then get ready to prove yourself at Excel ‘Algorithms’. Amaze us with your efficient plans and you might be the one to land your hands on that handsome cash prize.\n\n"	/>	
+     android:text="WebCamp, the web developers conference which provides you an open stage to speak about what inspires you.So hurry up! Register yourself as a speaker, or as a participant in which case you can vote on which speakers finally make it to the event based on what interests you.\n\n"	/>	
  
     </ScrollView>
  

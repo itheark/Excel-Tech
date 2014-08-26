@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/rr"
     android:layout_height="match_parent"
     android:orientation="vertical" 
      >
@@ -66,7 +67,7 @@
        android:fontFamily="sans-serif"
        
         android:textColor="#99ffffff"
-     android:text="Even the hardest problems in this world are solved with the most simplest of logic. If complex algorithms are just a child’s play for you, then get ready to prove yourself at Excel ‘Algorithms’. Amaze us with your efficient plans and you might be the one to land your hands on that handsome cash prize.\n\n"	/>	
+     android:text="Go lang\n\nDo you envision yourself as a lord of the code?\nAdd the Google's programming language, Go,  to your list of languages.\nExcel 2014 brings you the first ever Go workshop in kerala conducted by Actiotech.\nHurry up and register yourself and be a part of the fast growing Go community.\n\nImage processing\nHave you ever wondered how an autonomous robot would recognize its surroundings?Ever wanted to create security systems that detects people? Face recognition?If yes, the Image processing workshops at Excel 2014 is the place to be.Get yourself registered and gain headway into the world of image processing.\n\n"	/>	
  
     </ScrollView>
  
