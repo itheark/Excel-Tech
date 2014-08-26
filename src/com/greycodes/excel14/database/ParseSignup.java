@@ -34,13 +34,13 @@ import com.parse.PushService;
 public class ParseSignup {
 Context context;
 SharedPreferences sharedPreferences;
-String fname,lname,uname,phone,pass,email,college,dept,sem,acc,results,url;
+String fname,lname,uname,phone,pass,email,college,dept,acc,results,url;
 boolean fb;
 Bitmap propic;
 Editor editor;
 ProgressDialog progressDialog;
 int username_flag,email_flag,success,pid;
-	public ParseSignup(Context context,String fname,String lname,String uname,String pass,String email,String college,String dept,String sem,String phone,String acc,Bitmap propic,boolean fb){
+	public ParseSignup(Context context,String fname,String lname,String uname,String pass,String email,String college,String dept,String phone,String acc,Bitmap propic,boolean fb){
 		// TODO Auto-generated constructor stub
 		this.context =context;
 		this.fname = fname;
@@ -50,7 +50,7 @@ int username_flag,email_flag,success,pid;
 		this.email = email;
 		this.college = college;
 		this.dept = dept;
-		this.sem = sem;
+		
 		this.phone = phone;
 		this.acc = acc;
 		this.fb=  fb;
@@ -77,12 +77,12 @@ int username_flag,email_flag,success,pid;
 		contentValues.put("PID", pid);
 		contentValues.put("FNAME", fname);
 		contentValues.put("LNAME", lname);
-		contentValues.put("UNAME", uname);
+		
 		contentValues.put("PASSWORD", pass);
 		contentValues.put("EMAIL", email);
 		contentValues.put("COLLEGE", college);
 		contentValues.put("DEPT", dept);
-		contentValues.put("SEMESTER", sem);
+		
 		contentValues.put("PHONE", phone);
 		if(fb){
 			ByteArrayOutputStream stream = new ByteArrayOutputStream();

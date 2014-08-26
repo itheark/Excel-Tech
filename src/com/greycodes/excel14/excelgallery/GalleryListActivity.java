@@ -1,28 +1,21 @@
 package com.greycodes.excel14.excelgallery;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.ByteArrayOutputStream;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.BasicHttpParams;
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
-import android.os.AsyncTask;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -87,16 +80,45 @@ public class GalleryListActivity extends SherlockListActivity  {
     	 cursor=	sqLiteDatabase.query("GALLERY", columns, null, null, null, null, "GID DESC");
     	 cursor.moveToFirst();
     	 
-    author = new String[cursor.getCount()];
-    desc = new String[cursor.getCount()];
-    bs = new byte[cursor.getCount()][];
-    for(int i=0;i<cursor.getCount();i++,cursor.moveToNext()){
-    	author[i]= cursor.getString(cursor.getColumnIndex("AUTHOR"));
-    	desc[i]=  cursor.getString(cursor.getColumnIndex("DESC"));
-    	bs[i]=cursor.getBlob(cursor.getColumnIndex("IMAGE"));
-    }
-    	
-    	adapter = new LiveGalleryAdapter(this,desc,bs,author);
+    if (cursor.getCount()>0) {
+		author = new String[cursor.getCount()];
+		desc = new String[cursor.getCount()];
+		bs = new byte[cursor.getCount()][];
+		for (int i = 0; i < cursor.getCount(); i++, cursor.moveToNext()) {
+			author[i] = cursor.getString(cursor.getColumnIndex("AUTHOR"));
+			desc[i] = cursor.getString(cursor.getColumnIndex("DESC"));
+			bs[i] = cursor.getBlob(cursor.getColumnIndex("IMAGE"));
+		}
+	}else{
+		
+	 desc = new String[]{"The man in charge.Excel chairman talk on Excel Goes Green","Well renowned actress Mrs. Muthumani Somasundaran addressing the crowd about the relevance of organic ",
+			 "AISEC members being a part of our organic farming initiative."
+	 };
+	 author = new String[]{"Excel 2014","Excel 2014","Excel 2014"};
+	 
+	 
+	 
+		bs = new byte[3][];
+		
+		int drawabale[] = new int[]{R.drawable.lg2,R.drawable.lg3,R.drawable.lg4};
+		
+		
+				
+		Drawable[] d = new Drawable[3];
+		for(int i=0;i<3;i++){
+			
+			d[i] = getResources().getDrawable(drawabale[i]);
+		}
+		
+		
+		for (int i = 0; i <3; i++, cursor.moveToNext()) {
+			Bitmap bitmap = ((BitmapDrawable)d[i]).getBitmap();
+			ByteArrayOutputStream stream = new ByteArrayOutputStream();
+			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+			bs[i] = stream.toByteArray();
+		}
+	}
+		adapter = new LiveGalleryAdapter(this,desc,bs,author);
     	setListAdapter(adapter);
 
 		// Subclass of ParseQueryAdapter
