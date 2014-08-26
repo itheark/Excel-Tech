@@ -48,7 +48,7 @@ public class FragmentAlgorithms extends SherlockFragment implements OnClickListe
 		}
 		if (v.equals(rules))
 		{
-			updateTextValue("\n\n");
+			updateTextValue("(To be updated ...)\n\n");
 			
 		}
 		

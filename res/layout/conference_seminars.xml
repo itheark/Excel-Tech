@@ -64,9 +64,9 @@
         android:textSize="15sp"
        android:gravity="center"
        android:fontFamily="sans-serif"
-       
+       android:layout_gravity="center_horizontal"
         android:textColor="#99ffffff"
-     android:text="WebCamp, the web developers conference which provides you an open stage to speak about what inspires you.So hurry up! Register yourself as a speaker, or as a participant in which case you can vote on which speakers finally make it to the event based on what interests you.\n\n"	/>	
+     android:text="WebCamp, the web developers conference which provides you an open stage to speak about what inspires you.So hurry up! Register yourself as a speaker, or as a participant in which case you can vote on which speakers finally make it to the event based on what interests you.\n(To be updated..)\n\n"	/>	
  
     </ScrollView>
  

@@ -63,6 +63,7 @@
         android:layout_marginTop="10dp"
         android:textSize="15sp"
        android:gravity="center"
+       android:layout_gravity="center_horizontal"
        android:fontFamily="sans-serif"
        android:textColor="#e3e3e3"
      android:text="Are you an electronic wiz? Does the world of electronics and circuits excite you? Then buckle up to face the ultimatum in the arena of electronics at excel 2k14. Challenge your intellect and analytical competence at the battle ground of “Extrinsicity”.  The traps are set, Are u?\n\n"	/>	

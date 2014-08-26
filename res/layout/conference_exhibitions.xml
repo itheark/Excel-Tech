@@ -64,9 +64,9 @@
         android:textSize="15sp"
        android:gravity="center"
        android:fontFamily="sans-serif"
-       
+       android:layout_gravity="center_horizontal"
         android:textColor="#99ffffff"
-     android:text="Even the hardest problems in this world are solved with the most simplest of logic. If complex algorithms are just a child’s play for you, then get ready to prove yourself at Excel ‘Algorithms’. Amaze us with your efficient plans and you might be the one to land your hands on that handsome cash prize.\n\n"	/>	
+     android:text="(To be updated...)\n\n"	/>	
  
     </ScrollView>
  

@@ -399,11 +399,11 @@ case R.id.imageView3:
 			case 7:
 				return "Alley Dunk";
 			case 8:
-				return "kludge";
+				return "kluge";
 			case 9:
 				return "Treasure Hunt";
 			case 10:
-				return "Fun Zone";
+				return "Crunchy Zone";
 			
 			}
 			return null;

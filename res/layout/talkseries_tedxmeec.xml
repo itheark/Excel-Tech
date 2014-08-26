@@ -37,7 +37,7 @@
         android:textSize="15sp"
        android:gravity="center"
        android:fontFamily="sans-serif"
-       
+       android:layout_gravity="center_horizontal"
         android:textColor="#99ffffff"
          android:text= "TEDxMEC is an independently organised TED event which seeks to establish the internationally renowned TED experience at Govt. Model Engineering College, Kochi. At TEDxMEC, TED Talks videos and live speakers combine to spark deep discussion and connection in a small group. We present a platform where people bring about changes in one of the oldest languages known to man - stories! The world around us is less curious about people and more curious about ideas. TEDxMEC is here to inspire, to celebrate ideas. This year TEDxMEC is scheduled to be held on 25th September 2014 from 5pm to 9pm in the college amphitheatre at Thrikkakara, Kochi.\n\n"
      	/>	

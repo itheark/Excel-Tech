@@ -51,7 +51,7 @@
         android:textSize="15sp"
        android:gravity="center"
        android:fontFamily="sans-serif"
-       
+       android:layout_gravity="center_horizontal"
         android:textColor="#99ffffff"
      android:text="If its clean, unadulterated fun that you pursue, then this is the place for you. Crunchy Zone aka FunZone is the ultimate place to unwind and relax during your otherwise hectic life. \nWe guarantee you unlimited fun and awesome prizes at Kappothlon, a competition of nine fun rounds sponsored by Kappo Chips. Its fun to get paid while having fun. \n"	/>	
  

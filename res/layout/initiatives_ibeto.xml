@@ -36,6 +36,7 @@
         android:layout_marginTop="10dp"
         android:textSize="15sp"
        android:gravity="center"
+       android:layout_gravity="center_horizontal"
        android:fontFamily="sans-serif"
        android:textColor="#e3e3e3"
      android:text="Excel 2014 is a platform not only for technical events, but also for innovation! This is the main aim of the 3rd edition of Innovations for a Better Tomorrow (IBETO), conducted in association with IEEE.\nIBETO is the search for socially beneficial technical innovations, challenging students to use technology for the betterment of society. IBETO 2014 has received an overwhelming response, with over 250 abstracts from across the nation. Out of the entries that come in, 10 of the most innovative, feasible and socially relevant ideas have been selected to be developed into a complete product.\nExcel 2014 takes care of funding for these selected projects, ensuring that financial limitations do not deny genuine innovators the chance to Innovate for a Better Tomorrow. They are guided by the expert mentors provided by Excel 2014. The best implemented project will be awarded prize money of INR 1 lakh!!!\n\n"	/>	
