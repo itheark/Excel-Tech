@@ -15,13 +15,22 @@ import com.greycodes.excel14.HomeNDActivity;
 import com.greycodes.excel14.QuickOpenAdapter;
 import com.greycodes.excel14.QuickOpenFragment;
 import com.greycodes.excel14.R;
+import com.greycodes.excel14.login.OnlineStatusFragment;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Parsescore extends Service {
@@ -32,7 +41,7 @@ int hack_flag,kryptos_flag,include_flag,dalal_flag,webbots_flag;
 	@Override
 	public void onStart(Intent intent, int startId) {
 		// TODO Auto-generated method stub
-		
+		new parsequickopen().execute("http://excelapi.net84.net/onlinescore.json");
 	}
 
 	@Override
@@ -92,6 +101,7 @@ int hack_flag,kryptos_flag,include_flag,dalal_flag,webbots_flag;
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			JSONObject jsonObject;
+			
 			try{
 				jsonObject = new JSONObject(results);
 				
@@ -105,43 +115,47 @@ int hack_flag,kryptos_flag,include_flag,dalal_flag,webbots_flag;
 					hmlevel = jsonObject.getJSONObject("score").getJSONObject("hackmaster").getString("level");
 					hmpoints = jsonObject.getJSONObject("score").getJSONObject("hackmaster").getString("points");
 				}
+				
 				if(kryptos_flag==2){
 					krank= jsonObject.getJSONObject("score").getJSONObject("kryptos").getString("rank");
 					klevel = jsonObject.getJSONObject("score").getJSONObject("kryptos").getString("level");
 				}
+				Toast.makeText(getApplicationContext(),"klevel"+ klevel, Toast.LENGTH_LONG).show();
+
 				if(include_flag==2){
 					hirank= jsonObject.getJSONObject("score").getJSONObject("hashinclude").getString("rank");
-					hisub = jsonObject.getJSONObject("score").getJSONObject("hashinclude").getString("level");
+					hisub = jsonObject.getJSONObject("score").getJSONObject("hashinclude").getString("submission");
 					hipoints = jsonObject.getJSONObject("score").getJSONObject("hashinclude").getString("points");
 				}
+				Toast.makeText(getApplicationContext(),"#include"+ hipoints, Toast.LENGTH_LONG).show();
+
 				if(dalal_flag==2){
 					drank= jsonObject.getJSONObject("score").getJSONObject("dalalbul").getString("rank");
-					dworth = jsonObject.getJSONObject("score").getJSONObject("dalalbul").getString("level");
-					dshares = jsonObject.getJSONObject("score").getJSONObject("dalalbul").getString("worth");
+					dworth = jsonObject.getJSONObject("score").getJSONObject("dalalbul").getString("worth");
+					dshares = jsonObject.getJSONObject("score").getJSONObject("dalalbul").getString("share");
 				}
 				if(webbots_flag==2){
 					wwins= jsonObject.getJSONObject("score").getJSONObject("webbots").getString("wins");
 					wloses = jsonObject.getJSONObject("score").getJSONObject("webbots").getString("loses");
 					wrank = jsonObject.getJSONObject("score").getJSONObject("webbots").getString("rank");
 				}
-			
+				Toast.makeText(getApplicationContext(),"wloss"+ wloses, Toast.LENGTH_LONG).show();
 				 
 				
 
 			}catch(JSONException e){
-				e.printStackTrace();
+				
+				Toast.makeText(getApplicationContext(),""+e, Toast.LENGTH_LONG).show();
+
 			}catch(Exception e){
 				Toast.makeText(getApplicationContext(), "No Internet Connectivity", Toast.LENGTH_LONG).show();
 			stopSelf();
 			}
 			
-			try {/*
+			try {
 				if (results.length()>10) {
-
-					QuickOpenAdapter adapter = new QuickOpenAdapter(
-							getApplicationContext(), ename, level, cat, venue,
-							stime, duration, hotness);
-					HomeNDActivity.adapter = adapter;
+onlineScoreAdapter scoreAdapter = new onlineScoreAdapter();
+					HomeNDActivity.scoreAdapter = scoreAdapter;
 
 					Fragment f;
 					//FragmentManager fragmentManager;
@@ -151,7 +165,7 @@ int hack_flag,kryptos_flag,include_flag,dalal_flag,webbots_flag;
 					Toast.makeText(getApplicationContext(), "FragmentManager SET", Toast.LENGTH_LONG).show();
 
 					transaction = HomeNDActivity.fragmentManager.beginTransaction();
-					f = new QuickOpenFragment();
+					f = new OnlineStatusFragment();
 					transaction.replace(R.id.home_content_frame, f);
 					
 					// Add this transaction to the back stack
@@ -161,7 +175,7 @@ int hack_flag,kryptos_flag,include_flag,dalal_flag,webbots_flag;
 				}else{
 					Toast.makeText(getApplicationContext(), "No Internet Connectivity", Toast.LENGTH_LONG).show();
 				}
-			*/} catch (Exception e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -171,5 +185,151 @@ int hack_flag,kryptos_flag,include_flag,dalal_flag,webbots_flag;
 
 		
 	}
+	
+public class	onlineScoreAdapter extends BaseAdapter{
+LayoutInflater onlinescore;
+
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		int count =0;
+		if(hack_flag==2)
+			count++;
+		if(kryptos_flag==2)
+			count++;
+		if(include_flag==2)
+			count++;
+		if(dalal_flag==2)
+			count++;
+		if(webbots_flag==2)
+			count++;
+		return count;
+	}
+
+	@Override
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public long getItemId(int position) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		// TODO Auto-generated method stub
+		TextView tv1,tv2,tv3;
+		ImageView imageView;
+		onlinescore=(LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View itemView = onlinescore.inflate(R.layout.user_onlinescore_listitem, parent, false);
+		tv1=(TextView) itemView.findViewById(R.id.textView1);
+		tv2=(TextView) itemView.findViewById(R.id.textView2);
+		tv3=(TextView) itemView.findViewById(R.id.textView3);
+		imageView = (ImageView) itemView.findViewById(R.id.imageView1);
+		switch(position){
+		case 0:
+			if(hack_flag==2){
+				tv1.setText(hmrank);
+				tv2.setText(hmlevel);
+				tv3.setText(hmpoints);
+				imageView.setImageResource(R.drawable.mp_hackmaster);
+			}else if(kryptos_flag==0){
+				tv1.setText(krank);
+				tv2.setText(klevel);
+				tv3.setText("");
+				imageView.setImageResource(R.drawable.mp_csi);
+			}else if(include_flag==2){
+				tv1.setText(hirank);
+				tv2.setText(hisub);
+				tv3.setText(hipoints);
+				imageView.setImageResource(R.drawable.mp_hashinclude);
+			}else if(dalal_flag==2){
+				tv1.setText(drank);
+				tv2.setText(dworth);
+				tv3.setText(dshares);
+				imageView.setImageResource(R.drawable.mp_dalal);
+			}else if(webbots_flag==2){
+				tv1.setText(wwins);
+				tv2.setText(wloses);
+				tv3.setText(wrank);
+				imageView.setImageResource(R.drawable.mp_webbots);
+			}
+			break;
+		case 1:
+			if(kryptos_flag==0){
+				tv1.setText(krank);
+				tv2.setText(klevel);
+				tv3.setText("");
+				imageView.setImageResource(R.drawable.mp_csi);
+			}else if(include_flag==2){
+				tv1.setText(hirank);
+				tv2.setText(hisub);
+				tv3.setText(hipoints);
+			}else if(dalal_flag==2){
+				tv1.setText(drank);
+				tv2.setText(dworth);
+				tv3.setText(dshares);
+				imageView.setImageResource(R.drawable.mp_dalal);
+			}else if(webbots_flag==2){
+				tv1.setText(wwins);
+				tv2.setText(wloses);
+				tv3.setText(wrank);
+				imageView.setImageResource(R.drawable.mp_webbots);
+			}
+			break;
+		case 2:
+			 if(include_flag==2){
+				tv1.setText(hirank);
+				tv2.setText(hisub);
+				tv3.setText(hipoints);
+				imageView.setImageResource(R.drawable.mp_hashinclude);
+			}else if(dalal_flag==2){
+				tv1.setText(drank);
+				tv2.setText(dworth);
+				tv3.setText(dshares);
+				imageView.setImageResource(R.drawable.mp_dalal);
+			}else if(webbots_flag==2){
+				tv1.setText(wwins);
+				tv2.setText(wloses);
+				tv3.setText(wrank);
+				imageView.setImageResource(R.drawable.mp_webbots);
+			}
+			break;
+		case 3:
+			  if(dalal_flag==2){
+				tv1.setText(drank);
+				tv2.setText(dworth);
+				tv3.setText(dshares);
+				imageView.setImageResource(R.drawable.mp_dalal);
+			}else if(webbots_flag==2){
+				tv1.setText(wwins);
+				tv2.setText(wloses);
+				tv3.setText(wrank);
+				imageView.setImageResource(R.drawable.mp_webbots);
+			}
+			 break;
+		case 4:
+			 if(webbots_flag==2){
+					tv1.setText(wwins);
+					tv2.setText(wloses);
+					tv3.setText(wrank);
+					imageView.setImageResource(R.drawable.mp_webbots);
+				}
+			 break;
+			
+		}
+		
+		
+		
+		
+		
+		return itemView;
+	}
+	
+	
+}
 
 }

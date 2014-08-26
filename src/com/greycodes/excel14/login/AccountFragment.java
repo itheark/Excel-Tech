@@ -1,11 +1,15 @@
 package com.greycodes.excel14.login;
 
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +21,7 @@ import android.widget.TextView;
 import com.greycodes.excel14.HomeNDActivity;
 import com.greycodes.excel14.R;
 import com.greycodes.excel14.database.ExcelDataBase;
+import com.greycodes.excel14.database.Parsescore;
 
 
 public class AccountFragment extends ListFragment {
@@ -61,7 +66,7 @@ public class AccountFragment extends ListFragment {
 		
 		@Override
 		public void onClick(View view) {
-			
+			getActivity().startService(new Intent(getActivity(), Parsescore.class));
 			
 		}
 	});

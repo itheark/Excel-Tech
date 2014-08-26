@@ -45,6 +45,7 @@ import com.greycodes.excel14.conference.ConferenceViewPager;
 import com.greycodes.excel14.database.ExcelDataBase;
 import com.greycodes.excel14.database.ParseActivate;
 import com.greycodes.excel14.database.ParseQuickOpen;
+import com.greycodes.excel14.database.Parsescore.onlineScoreAdapter;
 import com.greycodes.excel14.excelgallery.GalleryListActivity;
 import com.greycodes.excel14.login.AccountFragment;
 import com.greycodes.excel14.login.LoginActivity;
@@ -61,7 +62,7 @@ public class HomeNDActivity extends SherlockFragmentActivity {
 
 static public QuickOpenAdapter adapter;
 	
-  
+public static  onlineScoreAdapter scoreAdapter;
 	DrawerLayout hDrawerLayout;
 ListView hDrawerList;
 ActionBarDrawerToggle hDrawerToggle;
