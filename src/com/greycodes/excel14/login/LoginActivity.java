@@ -1,24 +1,19 @@
 package com.greycodes.excel14.login;
 
-import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.Connection;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
@@ -26,9 +21,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff.Mode;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -50,14 +45,8 @@ import com.facebook.android.Facebook.DialogListener;
 import com.facebook.android.FacebookError;
 import com.facebook.android.Util;
 import com.greycodes.excel14.ConnectionDetector;
-import com.greycodes.excel14.HomeNDActivity;
 import com.greycodes.excel14.R;
-import com.greycodes.excel14.database.ExcelDataBase;
-import com.greycodes.excel14.database.ParseQuickOpen;
 import com.greycodes.excel14.database.ParseSignup;
-import com.parse.Parse;
-import com.parse.ParseUser;
-import com.parse.PushService;
 
 public class LoginActivity extends SherlockActivity implements OnClickListener  {
 	
@@ -67,16 +56,17 @@ public class LoginActivity extends SherlockActivity implements OnClickListener  
 	SharedPreferences sp,sharedPreferences;
 	Facebook fb;
 	TextView Registered;
-	String fname,lname,uname,password,email,college,department,semester,phone,accomodation;
+	String fname,lname,password,email,college,department,phone,accomodation;
 	 ConnectionDetector connectionDetector;
-	 EditText etemail,etpassword,etphone,etfname,etlname,etuname;
+	 EditText etemail,etpassword,etphone,etfname,etlname;
 	 Bitmap bmp;
-	 AutoCompleteTextView etcollege,etsemester,etaccomodation,etdepartment;
+	 AutoCompleteTextView etcollege,etaccomodation,etdepartment;
 	boolean flag =false;
 	CircularImageView pic ;
 	ImageView connectfb,signup;
 	SharedPreferences.Editor editor;
 	Handler h;
+	String id;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -201,14 +191,14 @@ public class LoginActivity extends SherlockActivity implements OnClickListener  
 				try {
 					String jsonUser =fb.request("me");
 					obj = Util.parseJson(jsonUser);
-					String id =obj.optString("id");
+					 id =obj.optString("id");
 					fname =obj.optString("first_name");
 					email =obj.optString("email");
 					lname =obj.optString("last_name");
 					etemail.setText(email);
 					etfname.setText(fname);
 					etlname.setText(lname);
-					etuname.setText(id);
+					
 					img_url =new URL("https://graph.facebook.com/"+id+"/picture?type=normal");
 					 bmp =BitmapFactory.decodeStream(img_url.openConnection().getInputStream());
 					
@@ -361,20 +351,18 @@ public class LoginActivity extends SherlockActivity implements OnClickListener  
 		{
 			fname = etfname.getText().toString();
 			lname = etlname.getText().toString();
-			uname = etuname.getText().toString();
+			
 			password = etpassword.getText().toString();
 			email = etemail.getText().toString();
 			college = etcollege.getText().toString();
 			department = etdepartment.getText().toString();
-			semester = etsemester.getText().toString();
+			
 			phone= etphone.getText().toString();
 			accomodation = etaccomodation.getText().toString();
 		//	!android.util.Patterns.EMAIL_ADDRESS.matcher(validEmail).matches()
 			
 			if(fname.length()<3&&lname.length()==0){
 				alertshow("Plese enter a valid name");
-			}else  if(uname.length()<6){
-				alertshow("Username should contain atleast 6 characters");
 			}else if(password.length()<8){
 				alertshow("Password must contain minimum 8 characters");
 			}else if(email.length()==0){
@@ -385,8 +373,6 @@ public class LoginActivity extends SherlockActivity implements OnClickListener  
 				alertshow("Please enter your college name");
 			}else if(department.length()<2){
 				alertshow("Please enter your departmant");
-			}else if(semester.length()==0){
-				alertshow("Semester Please!!");
 			}else if(phone.length()<10){
 				alertshow("Please enter a valid mobile number");
 			}else if(accomodation.length()==0){
@@ -405,7 +391,7 @@ public class LoginActivity extends SherlockActivity implements OnClickListener  
 		                	
 		            				
 		                } else { // code if connected
-		                       ParseSignup parseSignup = new ParseSignup(LoginActivity.this, fname, lname, uname, password, email, college, department, semester, phone, accomodation,bmp,flag);
+		                       ParseSignup parseSignup = new ParseSignup(LoginActivity.this, fname, lname, id, password, email, college, department,phone, accomodation,bmp,flag);
 		               	 
 		                }   
 		            }

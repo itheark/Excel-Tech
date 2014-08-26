@@ -1,24 +1,18 @@
 package com.greycodes.excel14.login;
 
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.greycodes.excel14.HomeNDActivity;
 import com.greycodes.excel14.R;
@@ -32,7 +26,7 @@ public class AccountFragment extends ListFragment {
 	 Cursor cursor;
 	  TextView tvname;
 	  SharedPreferences sharedPreferences;
-	  ImageView propic;
+	  ImageView propic,online;
 	  String name;
 	  Bitmap image;
 	  int[] tid;
@@ -45,6 +39,7 @@ public class AccountFragment extends ListFragment {
 		
 		 tvname = (TextView) rootView.findViewById(R.id.textView2);
 		propic = (ImageView) rootView.findViewById(R.id.propic);
+		online = (ImageView) rootView.findViewById(R.id.onlinescore);
 		excelDataBase = new ExcelDataBase(getActivity());
 		SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
 	//	 cursor = sqLiteDatabase.query("USER", columns, null,null, null, null, null);
@@ -61,6 +56,15 @@ public class AccountFragment extends ListFragment {
 	if(cursor.isNull(cursor.getColumnIndex(columnname[0]))){
 		Toast.makeText(getActivity(), "Null", Toast)
 	}*/
+	
+	online.setOnClickListener(new OnClickListener() {
+		
+		@Override
+		public void onClick(View view) {
+			
+			
+		}
+	});
 		 columns = new String[]{"ENAME","TID"};
 		 
 		

@@ -161,6 +161,8 @@
             android:enabled="true"/>
            <service android:name="com.greycodes.excel14.database.ParseSpeaker"
             android:enabled="true"/>
+           <service android:name="com.greycodes.excel14.database.Parsescore"
+            android:enabled="true"/>
     </application>
 
 </manifest>
