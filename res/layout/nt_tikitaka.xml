@@ -51,7 +51,7 @@
         android:textSize="15sp"
        android:gravity="center"
        android:fontFamily="sans-serif"
-       
+       android:layout_gravity="center_horizontal"
         android:textColor="#99ffffff"
      android:text="The end of an era in football? Maybe, when the match is 11 on 11. But in a 3 on 3 competition, it still is a recipe for success. Find the perfect partners and unleash your football mastership with sprinkles of verve and panache. \n"	/>	
  

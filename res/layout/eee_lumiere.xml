@@ -64,7 +64,7 @@
         android:textSize="15sp"
        android:gravity="center"
        android:fontFamily="sans-serif"
-       
+       android:layout_gravity="center_horizontal"
        android:textColor="#e3e3e3"
      android:text="“Wire your way to light the bulb of victory!”\nEver wanted an opportunity to be able to apply basic wiring skills in a practical situation? Then...... Lumiere is the platform just for you! The challenge here is to come up with efficient solutions for a given wiring problem and all this .....while the 'clock is ticking'!!\n\n"	/>	
  

@@ -81,7 +81,7 @@ public class FragmentLifeLine extends SherlockFragment implements OnClickListene
 		
 		switch (v.getId()) {
 		case R.id.intro:
-			updateTextValue("A unique event that lets you envisage yourself as a life saver with a quest to prove your adroitness in debugging. Examine and �operate�the impaired medical instrument still connected to the patient. It�s time to act. It�s time to save.\n\n" );
+			updateTextValue("A unique event that lets you envisage yourself as a life saver with a quest to prove your adroitness in debugging. Examine and 'operate' the impaired medical instrument still connected to the patient. It's time to act. It's time to save.\n\n" );
 			break;
 		case R.id.rules:
 			updateTextValue("1.	The competition is held for teams of 2 members.\n2.	Cross-college teams ARE allowed.\n3.	Failing to save the 'patient' in given time results in immediate elimination.\n4.	The coordinators of the event reserve the right to take appropriate decisions in case of any issues/conflicts.\n5.	Rules are subject to change at any point in time. All rules will be explained at the event as well.\n6.	The decision of the judges would be final and binding.\n\n");

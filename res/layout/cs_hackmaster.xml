@@ -64,9 +64,9 @@
         android:textSize="15sp"
        android:gravity="center"
        android:fontFamily="sans-serif"
-       
+       android:layout_gravity="center_horizontal"
        android:textColor="#e3e3e3"
-     android:text="Most hackers are young because young people tend to be adaptable. As long as you remain adaptableï¿½\nwhatï¿½s life without a certain scandal? Whatï¿½s power without some mischief? Living at the edge of the law? Be the vigilante that controls the code.\n\n"	/>	
+     android:text="Most hackers are young because young people tend to be adaptable. As long as you remain adaptable, what's life without a certain scandal? What's power without some mischief? Living at the edge of the law? Be the vigilante that controls the code.\n\n"	/>	
  
     </ScrollView>
   

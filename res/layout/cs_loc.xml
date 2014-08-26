@@ -63,6 +63,7 @@
         android:layout_marginTop="10dp"
         android:textSize="15sp"
        android:gravity="center"
+       android:layout_gravity="center_horizontal"
        android:fontFamily="sans-serif"
        android:textColor="#e3e3e3"
             android:text="“Talk is cheap, show me the code ” – Linus Torvalds\n Are you ready to manipulate lines of code to outwit and outshine your opponents and rise as the one true Lord of the Code?\n\n" />

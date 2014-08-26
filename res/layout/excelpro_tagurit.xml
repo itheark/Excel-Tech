@@ -11,42 +11,14 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:src="@drawable/ep_tag" />
+        android:src="@drawable/bucky" />
 
-    <ImageView
-        android:id="@+id/event"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-         android:layout_centerHorizontal="true"
-        android:src="@drawable/cs_eventformat"
-        android:layout_below="@+id/include" 
-        android:layout_marginTop="20dp"/>
-
-    <ImageView
-        android:id="@+id/intro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-          android:src="@drawable/cs_intro"
-          android:layout_below="@+id/include" 
-        android:layout_marginTop="20dp"
-        android:layout_toLeftOf="@+id/event" 
-        />
-
-    <ImageView
-        android:id="@+id/rules"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/event"
-        android:layout_toRightOf="@+id/event"
-        android:src="@drawable/cs_rules" />
-
-    
-    
+      
     
        <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
-        android:layout_below="@+id/intro"
+        android:layout_below="@+id/include"
         android:layout_height="240dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
@@ -61,11 +33,22 @@
         android:layout_marginRight="25dp"
         android:layout_marginTop="10dp"
         android:textSize="15sp"
+        android:layout_gravity="center_horizontal"
        android:gravity="center"
        android:fontFamily="sans-serif"
        android:textColor="#e3e3e3"
-     android:text="Are you one of those people whose taglines under photos and status updates gain double-digit or even triple-digit ‘likes’? Do you produce witty comments and cool taglines at the drop of a hat?\nWell, even if you don’t,’ TAG! You’re IT’ will offer you hours of amusement. Come up with witty and relevant taglines for the images provided, that too from the comfort of your homes (or offices) and you could win some serious cash here.\n\n" />	
+     android:text="In Free Fall,lead Bucky through the tricky paths to land safely.\nCompete with your friends for the lead.\n\nGame Features:\n- Simple one touch controls.\n- Motion sensitive gliding.\n- Easy and fun to play,hard to master.\n- Gradual difficulty increase.\n- Amazing sound effects.\n- Works on all android platforms.\n\n" />	
  
     </ScrollView>
+
+       <ImageView
+           android:id="@+id/buckylink"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/scrollView1"
+           android:layout_centerHorizontal="true"
+           android:layout_marginTop="5dp"
+           android:clickable="true"
+           android:src="@drawable/bucky_link" />
  
 </RelativeLayout>

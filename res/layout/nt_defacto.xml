@@ -22,7 +22,7 @@
           android:src="@drawable/cs_intro"
           android:layout_below="@+id/include" 
         android:layout_marginTop="20dp"
-        
+        android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         />
 
@@ -53,7 +53,7 @@
        android:fontFamily="sans-serif"
        
         android:textColor="#99ffffff"
-     android:text="Whats it gonna be? \nFIFA, Counter Strike, Call of Duty or DotA? Pick your favourite. \nReady? Get Set! ITS SHOWTIME!\nFeel the exhilarating adrenaline rush while you put your skills to test against hard core gamers. Team up, use whatever it takes to beat ‘em all and get to the top! \n"	/>	
+     android:text="(To be updated...)\n"	/>	
  
     </ScrollView>
  

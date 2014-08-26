@@ -3,46 +3,27 @@ package com.greycodes.excel14;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.Toast;
-
 import com.greycodes.excel14.competition.ViewPagerParallax;
-import com.greycodes.excel14.database.ExcelDataBase;
-import com.greycodes.excel14.database.InsertParticipant;
-import com.greycodes.excel14.database.ParseResult;
-import com.greycodes.excel14.excelpro.MarketManiaFragment;
 import com.greycodes.excel14.excelpro.TagURItFragment;
-import com.greycodes.excel14.robotics.FragmentRobowars;
-import com.greycodes.excel14.robotics.FragmentTerrainMaster;
 
-public class ExcelProViewPager extends Fragment implements OnLongClickListener,OnClickListener {
+public class ExcelProViewPager extends Fragment implements OnClickListener {
 	ViewPagerParallax pager;
 	public static int  tspagetoset=0;
 	//Button call;
-	private int num_pages = 2;
+	private int num_pages = 1;
 	android.support.v4.app.FragmentManager fragmentmanager;
 	View rootView;
-	 ConnectionDetector connectionDetector;
-	 Handler h ;
-	 int eid=902;
-	 ParseResult parseResult;
+	 
 	 ProgressDialog progressDialog;
-	 ImageView call,result,participate;
+	 
 		Misc  misc;
-		ExcelDataBase excelDataBase;
-		String Ename;
-		 boolean team=false;
-		 int tid =0;
+		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
@@ -50,7 +31,7 @@ public class ExcelProViewPager extends Fragment implements OnLongClickListener,O
 			rootView =	 inflater.inflate(R.layout.excelpro_viewpager, container, false);
 			  pager = (ViewPagerParallax) rootView.findViewById(R.id.excelpropager);
 			 fragmentmanager=  getChildFragmentManager();
-		        pager.set_max_pages(2);
+		        pager.set_max_pages(1);
 		        
 		        pager.setBackgroundAsset(R.raw.noweee);
 		        pager.setAdapter(new ExcelProViewPageAdapter(fragmentmanager));
@@ -61,20 +42,10 @@ public class ExcelProViewPager extends Fragment implements OnLongClickListener,O
 		            pager.setCurrentItem(savedInstanceState.getInt("current_page"), false);
 		        }
 		        
-		        excelDataBase = new ExcelDataBase(getActivity());
+		       
 		         misc = new Misc(getActivity());
 		         
-		         connectionDetector = new ConnectionDetector(getActivity());
-		         call=(ImageView)rootView.findViewById(R.id.imageView4);
-			        result=(ImageView)rootView.findViewById(R.id.imageView2);
-			        participate=(ImageView)rootView.findViewById(R.id.imageView3);
-			        parseResult = new ParseResult(getActivity());
-			       // call.setOnClickListener(this);
-			        result.setOnClickListener(this);
-			        participate.setOnClickListener(this);
-			        call.setOnLongClickListener(this);
-			      call.setOnClickListener(this);
-		        
+		         			       		        
 				return rootView;
 
 		    }
@@ -102,10 +73,8 @@ public class ExcelProViewPager extends Fragment implements OnLongClickListener,O
 			Fragment fragment=null;
 			switch(position){
 			
+			
 			case 0:
-				fragment = new MarketManiaFragment();
-				break;
-			case 1:
 				fragment = new TagURItFragment();
 				break;
 			
@@ -118,10 +87,7 @@ public class ExcelProViewPager extends Fragment implements OnLongClickListener,O
 			// TODO Auto-generated method stub
 			switch(position){
 			case 0:
-				return "Market Mania";
-				
-			case 1:
-				return "Tag You're It";
+				return "Bucky Free Fall";
 			
 					}
 			return null;
@@ -129,7 +95,7 @@ public class ExcelProViewPager extends Fragment implements OnLongClickListener,O
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return 2;
+			return 1;
 		}
 	}
 
@@ -139,137 +105,12 @@ public class ExcelProViewPager extends Fragment implements OnLongClickListener,O
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		
-		switch(v.getId()){
-		case R.id.imageView3:
-			Toast.makeText(getActivity(), "Please wait", Toast.LENGTH_LONG).show();
-
-			
-			switch(pager.getCurrentItem()){
-			case 0:
-				eid =922;
-				Ename="#include";
-				team = true;
-				break;
-			case 1:
-				eid =922+1;
-				Ename="#include";
-				break;
-			
-			
-			
-			}
-			
-			
-			
-			h = new Handler() {
-	            @Override
-	            public void handleMessage(Message msg) {
-
-	                if (msg.what != 1) { // code if not connected
-	               
-	                	connectionDetector.noNetworkAlert();;
-	               
-	                	
-	                	
-	            				
-	                } else { // code if connected
-		       
-					
-	                	if(excelDataBase.Isregistered()){
-	                		InsertParticipant insertParticipant = new InsertParticipant(getActivity());
-
-	        				insertParticipant.PInsert(eid, Ename, team);
-	        					
-	        	}else{
-	        					Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
-	        				}       	
-	               	 
-	                }   
-	            }
-	        };
-	        
-	        
-
-	        connectionDetector.isNetworkAvailable(h,5000);
-			
-			break;
-		case R.id.imageView2:
-			switch(pager.getCurrentItem()){
-			case 0:
-				Toast.makeText(getActivity(), "result", Toast.LENGTH_SHORT).show();
-		       eid=922;
-			break;
-			case 1:
-				Toast.makeText(getActivity(), "result", Toast.LENGTH_SHORT).show();
-				 eid=922+1;
-				break;
 		
 			
-			}
 			
-			h = new Handler() {
-	            @Override
-	            public void handleMessage(Message msg) {
-
-	                if (msg.what != 1) { // code if not connected
-	                progressDialog.cancel();
-	                	connectionDetector.noNetworkAlert();;
-	               
-	                	
-	                	
-	            				
-	                } else { // code if connected
-		       
-					
-		           parseResult.result(eid);
-	                	 progressDialog.dismiss();          	
-	               	 
-	                }   
-	            }
-	        };
-	        
-	        progressDialog = ProgressDialog.show(getActivity(), "Excel", "Please Wait...");
-	        connectionDetector.isNetworkAvailable(h,5000);
-			break;
-		case R.id.imageView4:
-			Toast.makeText(getActivity(), "Hold to call", Toast.LENGTH_LONG).show();
-
-			switch(pager.getCurrentItem()){
-			
-			case 0:
-				MarketManiaFragment.tv.setText("Call Tom Peter ?");
-			break;
-			case 1:
-				TagURItFragment.tv.setText("Call Sreekesh Prabhu ?");
-				break;
-			
-			
-			
-			}
-			break;
+		
 		}
 		
 		
 	
-		
-		
-	}
-
-	@Override
-	public boolean onLongClick(View arg0) {
-		// TODO Auto-generated method stub
-		switch(pager.getCurrentItem()){
-		case 0:
-			misc.call("08547522884");		
-			break;
-		case 1:
-			misc.call("09645530375");		
-			
-			break;
-	
-		
-		
-		}
-		return true;
-	}
 }

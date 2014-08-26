@@ -50,7 +50,7 @@ public class FragmentHackMaster extends SherlockFragment implements OnClickListe
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("Most hackers are young because young people tend to be adaptable. As long as you remain adaptable�\nwhat�s life without a certain scandal? What�s power without some mischief? Living at the edge of the law? Be the vigilante that controls the code.\n\n" );
+			updateTextValue("Most hackers are young because young people tend to be adaptable. As long as you remain adaptable, what's life without a certain scandal? What's power without some mischief? Living at the edge of the law? Be the vigilante that controls the code.\n\n" );
 
 			
 		}

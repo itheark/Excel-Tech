@@ -48,7 +48,7 @@ public class FragmentSoYouThink extends Fragment implements OnClickListener {
 		}
 		if (v.equals(rules))
 		{
-			updateTextValue("\n\n");
+			updateTextValue("(To be updated ...)\n\n");
 			
 		}
 		

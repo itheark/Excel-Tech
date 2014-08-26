@@ -64,7 +64,7 @@
         android:textSize="15sp"
        android:gravity="center"
        android:fontFamily="sans-serif"
-       
+       android:layout_gravity="center_horizontal"
         android:textColor="#99ffffff"
      android:text="The world is full of obvious things, which nobody by chance ever observes. - Sherlock Holmes\nAre you ready to plunge into the vivid world of mysteries?  Are you game to explore the hidden and unseen? Use your wit to unlock the ‘krypt’. Extricate the tricky puzzles and expound the mysterious clues.  Battle it out in the race to discover the ultimate treasure!\nNOTE: Think deep….Only the astute, intelligent and versatile make it to the end.\n "	/>	
  

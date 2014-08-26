@@ -35,6 +35,7 @@
         android:textSize="15sp"
        android:gravity="center"
        android:fontFamily="sans-serif"
+       android:layout_gravity="center_horizontal"
                android:textColor="#99ffffff"
      android:text="As one of South India’s largest techno-managerial festivals, Excel is attended by participants from across the nation. The comfortable accommodation and hospitality of all our guests (from local areas to those from far-flung places in the country) are top priority to us. We strive to ensure that your stay here at Kochi, is as satisfying and cozy as possible.\nWe leave no stone unturned towards the satisfaction of all and in ensuring that your days at Excel 2014 are some of the most memorable experiences of your life.\n"	/>	
  

@@ -64,6 +64,7 @@
         android:textSize="15sp"
        android:gravity="center"
        android:fontFamily="sans-serif"
+       android:layout_gravity="center_horizontal"
       android:textColor="#e3e3e3"
      android:text="Have you ever imagined accomplishing the dangerous feat of defusing a bomb? DEFUSE gives you the once-in-a-lifetime opportunity to fulfil that dream! A time bound event, where your perseverance and teamwork will be put to test. Analyse, crack and defuse the bomb before it blows. Watch out! The clock is ticking...\n\n"/>	
  

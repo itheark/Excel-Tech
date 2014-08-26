@@ -63,6 +63,7 @@
         android:layout_marginTop="10dp"
         android:textSize="15sp"
        android:gravity="center"
+       android:layout_gravity="center_horizontal"
        android:fontFamily="sans-serif"
        android:textColor="#e3e3e3"
      android:text="4 people AND 120 seconds of synchronous understanding and unrivalled teamwork separate the winners from the others. Start from where your predecessor left off, and better his effort to win the title. Time is of the essence and so is the sync between the 4! \n\n"/>	
