@@ -24,7 +24,7 @@
         android:layout_toRightOf="@+id/sccat"
         android:text="#include"
         android:textSize="25sp"
-        
+        android:textColor="#333333"
         android:paddingBottom="5dp" />
 	 <RelativeLayout
         android:layout_width="match_parent"

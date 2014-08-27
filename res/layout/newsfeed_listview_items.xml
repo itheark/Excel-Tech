@@ -43,6 +43,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/newsfeed_pcodeimage"
     android:layout_alignParentRight="true"
+    android:layout_centerVertical="true"
     android:paddingRight="5dp"   />
 
 </RelativeLayout>
