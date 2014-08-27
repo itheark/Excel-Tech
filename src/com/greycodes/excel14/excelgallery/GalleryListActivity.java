@@ -186,7 +186,6 @@ public class GalleryListActivity extends SherlockListActivity  {
 		                } else { // code if connected
 		                
 			           
-		                	   Toast.makeText(getApplicationContext(), "Connection", Toast.LENGTH_LONG).show();
 		                	   newMeal();		                	   
 		                	   
 		                	   /*	try {

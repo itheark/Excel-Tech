@@ -31,6 +31,7 @@ import android.os.StrictMode;
 import android.text.Html;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -64,9 +65,10 @@ public class LoginActivity extends SherlockActivity implements OnClickListener  
 	boolean flag =false;
 	CircularImageView pic ;
 	ImageView connectfb,signup;
-	SharedPreferences.Editor editor;
 	Handler h;
 	String id;
+	ArrayAdapter<String> adapteracc;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -75,7 +77,12 @@ public class LoginActivity extends SherlockActivity implements OnClickListener  
 	ActionBar bar = getSupportActionBar();
 		bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0e1215")));
         bar.setTitle(Html.fromHtml("<font color=\"#e6f3ea\">" + getString(R.string.app_name) + "</font>"));
-		connectfb= (ImageView)findViewById(R.id.fbconnect);
+        String item[]={
+                "Yes", "No"
+              };
+        adapteracc = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, item);
+       
+        connectfb= (ImageView)findViewById(R.id.fbconnect);
 		signup= (ImageView)findViewById(R.id.signup);
 		Registered = (TextView) findViewById(R.id.clickhere);
 		etfname = (EditText) findViewById(R.id.registration_name);
@@ -90,9 +97,10 @@ public class LoginActivity extends SherlockActivity implements OnClickListener  
 		etaccomodation = (AutoCompleteTextView) findViewById(R.id.registration_accomodate);
 		connectionDetector = new ConnectionDetector(this);
 		pic =(CircularImageView)findViewById(R.id.propic);
+		etaccomodation.setAdapter(adapteracc);
+		etaccomodation.setThreshold(0);
 		getWindow().setBackgroundDrawableResource(R.drawable.loginback);
 		sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
-		 editor = sharedPreferences.edit();
 		 
 		 new AlertDialog.Builder(this)
 		    .setTitle("Excel")

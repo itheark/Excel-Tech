@@ -16,46 +16,29 @@ import org.json.JSONObject;
 import com.greycodes.excel14.ConnectionDetector;
 import com.greycodes.excel14.Misc;
 
+import android.app.ProgressDialog;
+import android.app.Service;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.IBinder;
 import android.widget.Toast;
 
-public class ParseResult {
-String results;
+public class ParseResult extends Service {
+String results,url;
 String[] res,name,college;
 int eid;
 Context context;
 boolean flag;
 String resfinal;
 Misc misc;
-	public ParseResult(Context context) {
-		// TODO Auto-generated constructor stub
-		this.context= context;
-		misc = new Misc(context);
-		resfinal = " \n";
-		//res[0]=name[0]=college[0]="\n";
-		
-	}
+	
 	public String getFinalResult(){
 		return resfinal;
 	}
 	
-	public void result(int eid){
-		this.eid = eid;
-		
-		
-		try {
-			resfinal = "\n";
-			Object object= new Result().execute("http://excelapi.net84.net/result.json").get();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
+	
 
 	public class Result extends AsyncTask<String, String, String>  {
 
@@ -64,7 +47,7 @@ Misc misc;
 			// TODO Auto-generated method stub
 			
 			DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-			HttpPost httppost = new HttpPost("http://excelapi.net84.net/result.json");
+			HttpPost httppost = new HttpPost(url);
 			httppost.setHeader("Content-type","application/json");
 			InputStream inputstream = null;
 			try{
@@ -89,58 +72,8 @@ Misc misc;
 				}catch(Exception e){
 					e.printStackTrace();
 				}
-				JSONObject jsonObject;
-				try{
-					jsonObject = new JSONObject(results);
-					JSONObject event = jsonObject.getJSONObject("event");
-					JSONObject eventid = event.getJSONObject(Integer.toString(eid));
-					
-					if(eventid.getInt("flag")==1){
-						JSONArray winners = eventid.getJSONArray("winners");
-						int len = winners.length();
-						name = new String[len];
-						college = new  String[len];
-						
-						
-						for(int i=0;i<len;i++){
-						name[i]=	winners.getJSONObject(i).getString("teamname");
-							college[i] =winners.getJSONObject(i).getString("college");
-						}
-						for(int i=0;i<len;i++){
-							resfinal = resfinal + "   " + Integer.toString(i+1)+ ". " +name[i]+"\n"+college[i]+"\n";
-						}
-						
-					//	for(int i=0;i<winners.getJSONObject(0).getJSONArray("name").length();i++)
-						
-					}else
-						if(eventid.getInt("flag")==2){
-						JSONArray shortlist = eventid.getJSONArray("shortlisted");
-						int len = shortlist.length();
-						name = new String[len];
-						college = new  String[len];
-						
-						
-						for(int i=0;i<len;i++){
-						name[i]=	shortlist.getJSONObject(i).getString("teamname");
-							college[i] =shortlist.getJSONObject(i).getString("college");
-						}
-						for(int i=0;i<len;i++){
-							resfinal = resfinal + "   " + Integer.toString(i+1)+ ". " +name[i]+"\n"+college[i]+"\n";
-						}
-						
-					}else{
-						resfinal = "We are Also Waiting";
-					}
-					
-					
-					
-					
-				 
-					
-
-				}catch(JSONException e){
-					e.printStackTrace();
-				}
+				
+				
 			}
 			return results;
 			
@@ -150,11 +83,86 @@ Misc misc;
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			Toast.makeText(context, "ParseResult", Toast.LENGTH_LONG).show();
-		misc.settext(eid, resfinal);
-			
+			try{
+				JSONObject jsonObject;
+				jsonObject = new JSONObject(results);
+				JSONObject event = jsonObject.getJSONObject("event");
+				JSONObject eventid = event.getJSONObject(Integer.toString(eid));
+				
+				if(eventid.getInt("flag")==1){
+					JSONArray winners = eventid.getJSONArray("winners");
+					int len = winners.length();
+					name = new String[len];
+					college = new  String[len];
+					
+					
+					for(int i=0;i<len;i++){
+					name[i]=	winners.getJSONObject(i).getString("teamname");
+						college[i] =winners.getJSONObject(i).getString("college");
+					}
+					for(int i=0;i<len;i++){
+						resfinal = resfinal + "   " + Integer.toString(i+1)+ ". " +name[i]+"\n"+college[i]+"\n";
+					}
+					
+				//	for(int i=0;i<winners.getJSONObject(0).getJSONArray("name").length();i++)
+					
+				}else
+					if(eventid.getInt("flag")==2){
+					JSONArray shortlist = eventid.getJSONArray("shortlisted");
+					int len = shortlist.length();
+					name = new String[len];
+					college = new  String[len];
+					
+					
+					for(int i=0;i<len;i++){
+					name[i]=	shortlist.getJSONObject(i).getString("teamname");
+						college[i] =shortlist.getJSONObject(i).getString("college");
+					}
+					for(int i=0;i<len;i++){
+						resfinal = resfinal + "   " + Integer.toString(i+1)+ ". " +name[i]+"\n"+college[i]+"\n";
+					}
+					
+				}else{
+					resfinal = "We are Also Waiting";
+				}
+				
+				
+				
+				
+				try {
+					misc.settext(eid, resfinal);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					//stopSelf();
+				}
+				
+
+			}catch(Exception e){
+				Toast.makeText(getApplicationContext(), "No network"+e, Toast.LENGTH_LONG).show();;
+			//	stopSelf();
+			}
+		
+			stopSelf();
 		}
 
 		
-	} 
+	}
+
+	@Override
+	public IBinder onBind(Intent arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void onStart(Intent intent, int startId) {
+		// TODO Auto-generated method stub
+		 eid =intent.getIntExtra("eid", 0);
+		 url = "http://excelmec.org/Login2014/view_result.php?eid="+eid;
+misc = new Misc(getApplicationContext());
+		 new Result().execute(url);
+	}
+
+	
 }

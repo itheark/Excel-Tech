@@ -63,7 +63,6 @@ public class Checkflag extends Service{
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-	  		Toast.makeText(getApplicationContext(), "Preexecute", Toast.LENGTH_LONG).show();
 
 		}
 
@@ -105,7 +104,6 @@ public class Checkflag extends Service{
 		  	protected void onPostExecute(String result) {
 		  		// TODO Auto-generated method stub
 		  		super.onPostExecute(result);
-		  		Toast.makeText(getApplicationContext(), results, Toast.LENGTH_LONG).show();
 		  		if(results==null){
 		  		
 		  				
@@ -126,7 +124,6 @@ public class Checkflag extends Service{
 		  				
 		  			
 		  			}else{
-		  				Toast.makeText(getApplicationContext(), "PNEWSFEED", Toast.LENGTH_LONG).show();
 		  				new PNewsFeed().execute("http://excelapi.net84.net/newsfeed.json");
 		  				
 		  			}
@@ -224,8 +221,7 @@ String results;
 					contentValues.put("PCODE", pcode[i]);
 					contentValues.put("CAT", cat[i]);
 					sqLiteDatabase.insert("NEWSFEED", null, contentValues);
-					Toast.makeText(getApplicationContext(),
-							"Newsfeed Inserted", Toast.LENGTH_LONG).show();
+					
 				}
 				SharedPreferences sharedPreferences = getApplicationContext()
 						.getSharedPreferences("flag", Context.MODE_PRIVATE);

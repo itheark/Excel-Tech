@@ -56,7 +56,6 @@ int hack_flag,kryptos_flag,include_flag,dalal_flag,webbots_flag;
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			Toast.makeText(getApplicationContext(), "preexecute", Toast.LENGTH_LONG).show();
 
 		}
 
@@ -120,14 +119,12 @@ int hack_flag,kryptos_flag,include_flag,dalal_flag,webbots_flag;
 					krank= jsonObject.getJSONObject("score").getJSONObject("kryptos").getString("rank");
 					klevel = jsonObject.getJSONObject("score").getJSONObject("kryptos").getString("level");
 				}
-				Toast.makeText(getApplicationContext(),"klevel"+ klevel, Toast.LENGTH_LONG).show();
 
 				if(include_flag==2){
 					hirank= jsonObject.getJSONObject("score").getJSONObject("hashinclude").getString("rank");
 					hisub = jsonObject.getJSONObject("score").getJSONObject("hashinclude").getString("submission");
 					hipoints = jsonObject.getJSONObject("score").getJSONObject("hashinclude").getString("points");
 				}
-				Toast.makeText(getApplicationContext(),"#include"+ hipoints, Toast.LENGTH_LONG).show();
 
 				if(dalal_flag==2){
 					drank= jsonObject.getJSONObject("score").getJSONObject("dalalbul").getString("rank");
@@ -139,13 +136,11 @@ int hack_flag,kryptos_flag,include_flag,dalal_flag,webbots_flag;
 					wloses = jsonObject.getJSONObject("score").getJSONObject("webbots").getString("loses");
 					wrank = jsonObject.getJSONObject("score").getJSONObject("webbots").getString("rank");
 				}
-				Toast.makeText(getApplicationContext(),"wloss"+ wloses, Toast.LENGTH_LONG).show();
 				 
 				
 
 			}catch(JSONException e){
 				
-				Toast.makeText(getApplicationContext(),""+e, Toast.LENGTH_LONG).show();
 
 			}catch(Exception e){
 				Toast.makeText(getApplicationContext(), "No Internet Connectivity", Toast.LENGTH_LONG).show();
@@ -162,7 +157,6 @@ onlineScoreAdapter scoreAdapter = new onlineScoreAdapter();
 					FragmentTransaction transaction;
 					//fragmentManager = HomeNDActivity.
 					//fragmentManager =  getApplicationContext().getSupportFragmentManager();
-					Toast.makeText(getApplicationContext(), "FragmentManager SET", Toast.LENGTH_LONG).show();
 
 					transaction = HomeNDActivity.fragmentManager.beginTransaction();
 					f = new OnlineStatusFragment();

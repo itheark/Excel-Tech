@@ -1,6 +1,7 @@
 package com.greycodes.excel14.competition;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -45,7 +46,7 @@ Misc  misc;
 ConnectionDetector connectionDetector;
 Handler h ;
 ExcelDataBase excelDataBase;
-ParseResult parseResult;
+
 String Ename;
 boolean team=false;
 int tid =0;
@@ -68,7 +69,7 @@ ProgressDialog progressDialog;
 	        excelDataBase = new ExcelDataBase(getActivity());
 	         misc = new Misc(getActivity());
 	         connectionDetector = new ConnectionDetector(getActivity());
-	         parseResult = new ParseResult(getActivity());
+	         
 	        call.setOnClickListener(this);
 	        result.setOnClickListener(this);
 	        participate.setOnClickListener(this);
@@ -78,6 +79,13 @@ ProgressDialog progressDialog;
 	    }
 
 	    @Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		getActivity().stopService(new Intent(getActivity(), ParseResult.class));
+	}
+
+		@Override
 		public void onSaveInstanceState(Bundle outState) {
 	        super.onSaveInstanceState(outState);
 	        outState.putInt("num_pages", num_pages);
@@ -106,6 +114,7 @@ ProgressDialog progressDialog;
 			switch(pager.getCurrentItem()){
 			case 0:
 				eid =889;
+				
 				Ename="#include";
 				team = true;
 				break;
@@ -140,36 +149,17 @@ ProgressDialog progressDialog;
 			
 			
 			
-			h = new Handler() {
-	            @Override
-	            public void handleMessage(Message msg) {
 
-	                if (msg.what != 1) { // code if not connected
-	               
-	                	connectionDetector.noNetworkAlert();;
-	               
-	                	
-	                	
-	            				
-	                } else { // code if connected
-		       
+			if(excelDataBase.Isregistered()){
+        		Intent service1 = new Intent(getActivity(), ParseResult.class);
+    			service1.putExtra("eid", eid);
+    			getActivity().startService(service1);
+    			Toast.makeText(getActivity(), "Please wait...fetching result", Toast.LENGTH_LONG).show();
 					
-	                	if(excelDataBase.Isregistered()){
-	                		InsertParticipant insertParticipant = new InsertParticipant(getActivity());
-
-	        				insertParticipant.PInsert(eid, Ename, team);
-	        					
-	        	}else{
-	        					//Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
-	        				}       	
-	               	 
-	                }   
-	            }
-	        };
-	        
-	        
-
-	        connectionDetector.isNetworkAvailable(h,5000);
+	}else{
+					Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
+				}
+		
 			
 			break;
 		
@@ -177,11 +167,9 @@ ProgressDialog progressDialog;
 		case R.id.imageView2:
 			switch(pager.getCurrentItem()){
 			case 0:
-				Toast.makeText(getActivity(), "result", Toast.LENGTH_SHORT).show();
 		       eid=889;
 			break;
 			case 1:
-				Toast.makeText(getActivity(), "result", Toast.LENGTH_SHORT).show();
 				 eid=889+1;
 				break;
 			case 2:
@@ -201,30 +189,11 @@ ProgressDialog progressDialog;
 				break;
 			
 			}
-			
-			h = new Handler() {
-	            @Override
-	            public void handleMessage(Message msg) {
-
-	                if (msg.what != 1) { // code if not connected
-	                progressDialog.cancel();
-	                	connectionDetector.noNetworkAlert();;
-	               
-	                	
-	                	
-	            				
-	                } else { // code if connected
-		       
-					
-		           parseResult.result(eid);
-	                	 progressDialog.dismiss();          	
-	               	 
-	                }   
-	            }
-	        };
-	        
-	        progressDialog = ProgressDialog.show(getActivity(), "Excel", "Please Wait...");
-	        connectionDetector.isNetworkAvailable(h,5000);
+			Intent service1 = new Intent(getActivity(), ParseResult.class);
+			service1.putExtra("eid", eid);
+			getActivity().startService(service1);
+			Toast.makeText(getActivity(), "Please wait...fetching result", Toast.LENGTH_LONG).show();
+	       
 			break;
 		case R.id.imageView4:
 			Toast.makeText(getActivity(), "Press & Hold to call", Toast.LENGTH_LONG).show();
@@ -357,7 +326,7 @@ class CSViewPageAdapter extends FragmentStatePagerAdapter{
 		case 5:
 			return "Algorithms";
 		case 6:
-			return "SYTYCC";
+			return "So You Think";
 		}
 		return null;
 	}

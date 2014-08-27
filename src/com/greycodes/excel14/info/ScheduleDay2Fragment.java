@@ -42,7 +42,6 @@ public class ScheduleDay2Fragment extends Fragment implements OnScrollListener {
 	
 	
 	cursor.moveToFirst();
-	Toast.makeText(getActivity(), Integer.toString(count), Toast.LENGTH_LONG).show();
 	count = cursor.getCount();
 	ename = new String[count];
 	cat = new int[count];

@@ -91,10 +91,8 @@ int username_flag,email_flag,success,pid;
 			contentValues.put("PICTURE",byteArray );
 		}
 		if(	sqLiteDatabase.insert("USER", null, contentValues)>=0){
-			Toast.makeText(context, "User inserted", Toast.LENGTH_LONG).show();
 			editor.putBoolean("registered", true);
 			if(fb){
-				Toast.makeText(context, "FB TRUE", Toast.LENGTH_LONG).show();
 				editor.putBoolean("active",true);
 				editor.putBoolean("fb", true);
 			}
@@ -203,11 +201,10 @@ int username_flag,email_flag,success,pid;
 				insert();
 			}else
 				if(success==2){
-					if(username_flag==2){
-						alertshow("Username already taken :(");
-					}else if(email_flag==2){
+					
+						
 						alertshow("Your email id is already registered with us");
-					}
+					
 				}
 				
 				

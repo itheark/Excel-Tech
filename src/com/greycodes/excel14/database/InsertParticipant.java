@@ -12,63 +12,34 @@ import org.apache.http.params.BasicHttpParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.greycodes.excel14.CompetitionNDActivity;
-import com.greycodes.excel14.R;
-import com.parse.ParsePush;
-import com.parse.PushService;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.app.Service;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
-import android.text.Editable;
+import android.os.IBinder;
 import android.text.InputType;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class InsertParticipant {
+import com.greycodes.excel14.CompetitionNDActivity;
+import com.greycodes.excel14.R;
+import com.parse.PushService;
+
+public class InsertParticipant extends Service {
 Context context;
 String url,results,Ename;
-int flag,id,eid,tid;
+int flag,eid,tid,uid;
 boolean team,success=false;
 
 ProgressDialog progressDialog;
-	public InsertParticipant(Context context) {
-		// TODO Auto-generated constructor stub
-		this.context = context;
-		
-	}
 	
-	public void PInsert(int eid,String Ename,boolean team){
-		
-		this.eid = eid;
-		this.Ename = Ename;
-		this.team = team;
-		
-		progressDialog = ProgressDialog.show(context, "Excel", "Please Wait...");
-		progressDialog.setCancelable(false);
-		if(team){
-			Alert();
-			
-		}else{
-			url = "http://excelapi.net84.net/participate.json";
-			try {
-				Object object = new Result().execute(url).get();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ExecutionException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		
-		
-	}
+	
+	
 	
 	public void insert(){
 		ExcelDataBase excelDataBase = new ExcelDataBase(context);
@@ -76,9 +47,9 @@ ProgressDialog progressDialog;
 		ContentValues contentValues = new ContentValues();
 		contentValues.put("EID", eid);
 		contentValues.put("ENAME", Ename);
-		contentValues.put("TID", id);
+		contentValues.put("TID", tid);
 		if((sqLiteDatabase.insert("PARTICIPATE", null, contentValues))>0){
-			Toast.makeText(context, "Your id for competition is "+id, Toast.LENGTH_LONG).show();
+			Toast.makeText(context, "Your id for competition is "+tid, Toast.LENGTH_LONG).show();
 		}else
 			Toast.makeText(context, "Already registered for the event", Toast.LENGTH_LONG).show();
 PushService.subscribe(context, "excel"+eid, CompetitionNDActivity.class, R.drawable.excel_logo);		progressDialog.dismiss();
@@ -116,16 +87,7 @@ PushService.subscribe(context, "excel"+eid, CompetitionNDActivity.class, R.drawa
 				}catch(Exception e){
 					e.printStackTrace();
 				}
-				JSONObject jsonObject;
-				try{
-					jsonObject = new JSONObject(results);
-					flag = jsonObject.getJSONObject("participate").getInt("success");
-					id = jsonObject.getJSONObject("participate").getInt("id");		 
-					
-
-				}catch(JSONException e){
-					e.printStackTrace();
-				}
+				
 			}
 			return results;
 			
@@ -135,6 +97,17 @@ PushService.subscribe(context, "excel"+eid, CompetitionNDActivity.class, R.drawa
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
+			JSONObject jsonObject;
+			try{
+				jsonObject = new JSONObject(results);
+				flag = jsonObject.getJSONObject("participate").getInt("success");
+				tid = jsonObject.getJSONObject("participate").getInt("id");		 
+				
+
+			}catch(JSONException e){
+				e.printStackTrace();
+				Toast.makeText(getApplicationContext(), "No internet connectivity"+e, Toast.LENGTH_LONG).show();
+			}
 			if(flag==1){
 				insert();
 			}else
@@ -165,17 +138,23 @@ alert.setCancelable(false);
 
 		alert.setPositiveButton("I Have", new DialogInterface.OnClickListener() {
 		public void onClick(DialogInterface dialog, int whichButton) {
-			tid = Integer.parseInt(input.getText().toString());
-			url = "http://excelapi.net84.net/participate.json";
-			try {
-				Object object = new Result().execute(url).get();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ExecutionException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if(input.length()==0){
+				Toast.makeText(context, "Please Enter a valid team id	", Toast.LENGTH_LONG).show();
+				Alert();
+			}else{
+				tid = Integer.parseInt(input.getText().toString());
+				url = "http://excelapi.net84.net/participate.json";
+				try {
+					Object object = new Result().execute(url).get();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ExecutionException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+			
 		  // Do something with value!
 		  }
 		});
@@ -196,6 +175,28 @@ alert.setCancelable(false);
 		});
 
 		alert.show();
+	}
+
+	@Override
+	public void onStart(Intent intent, int startId) {
+		// TODO Auto-generated method stub
+
+	team=	intent.getBooleanExtra("team", false);
+		uid =intent.getIntExtra("uid", 0);
+	eid= 	intent.getIntExtra("eid", 0);
+	if(team){
+		Alert();
+	}else{
+		
+	}
+		
+	
+	}
+
+	@Override
+	public IBinder onBind(Intent intent) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

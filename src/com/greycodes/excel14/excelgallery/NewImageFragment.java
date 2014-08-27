@@ -88,7 +88,6 @@ Toast.makeText(getActivity(), "Photo will be publiched once approved", Toast.LEN
 					SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
 					Cursor cursor = sqLiteDatabase.query("USER", columns, null,null, null, null, null);
 					cursor.moveToFirst();
-					Toast.makeText(getActivity(), " "+cursor.getCount(), Toast.LENGTH_LONG).show();
 					name = new String[1];
 					name[0]= cursor.getString(cursor.getColumnIndex("FNAME"));
 				}else

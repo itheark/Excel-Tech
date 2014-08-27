@@ -1,12 +1,5 @@
 package com.greycodes.excel14.database;
 
-import com.greycodes.excel14.CompetitionNDActivity;
-import com.greycodes.excel14.HomeNDActivity;
-import com.greycodes.excel14.InfoNDActivity;
-import com.greycodes.excel14.R;
-import com.greycodes.excel14.login.AccountFragment;
-import com.greycodes.excel14.login.LoginActivity;
-
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
@@ -17,10 +10,9 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.widget.Toast;
+
+import com.greycodes.excel14.login.LoginActivity;
 
 public class ExcelDataBase {
 Context context;
@@ -30,7 +22,6 @@ SharedPreferences sharedPreferences;
 	public ExcelDataBase(Context context) {
 		// TODO Auto-generated constructor stub
 		this.context = context;
-		Toast.makeText(context, "exceldatabase constructor", Toast.LENGTH_SHORT).show();
 
 		helper= new ExcelDatabaseHelper();
 	}
@@ -49,9 +40,7 @@ SharedPreferences sharedPreferences;
 		contentvalues.put("MOB", mob);
 	long flag=	db.insert("COMPETITION", null, contentvalues);
 if(flag<0){
-	Toast.makeText(context, "not inserted", Toast.LENGTH_SHORT).show();
 }else{
-	Toast.makeText(context, "inserted", Toast.LENGTH_SHORT).show();
 }
 return flag;
 	}
@@ -94,7 +83,6 @@ return flag;
 		//static final String Create_proshow = "CREATE TABLE PROSHOW (IMAGE BLOB NOT NULL,VIDEO VARCHAR NOT NULL);";
 		public ExcelDatabaseHelper() {
 			super(context, Database_name, null, Database_version);
-			Toast.makeText(context, "ExcelDatabaseHelper constructor", Toast.LENGTH_SHORT).show();
 		}
 
 		
@@ -113,7 +101,6 @@ return flag;
 				db.execSQL(Create_LiveGallery);
 				db.execSQL(Create_schedule);
 				db.execSQL(Create_speakers);
-				Toast.makeText(context, " db created", Toast.LENGTH_LONG).show();
 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

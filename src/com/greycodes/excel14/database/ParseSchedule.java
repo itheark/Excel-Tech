@@ -143,7 +143,6 @@ ExcelDataBase excelDataBase;
 					contentValues.put("DURATION", duration[i]);
 					contentValues.put("TIME", time[i]);
 					sqLiteDatabase.insert("SCHEDULE", null, contentValues);
-					Toast.makeText(getApplicationContext(), "schedule Inserted", Toast.LENGTH_LONG).show();
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -156,12 +155,10 @@ ExcelDataBase excelDataBase;
 		cursor.moveToFirst();
 		 		
 			if(cursor.getCount()>0){
-				Toast.makeText(getApplicationContext(), "flag=2", Toast.LENGTH_SHORT).show();
 				SharedPreferences   sharedPreferences = getSharedPreferences("flag", Context.MODE_PRIVATE);
 				Editor editor = sharedPreferences.edit();
 				editor.putInt("schedule",2);
 				editor.commit();
-				Toast.makeText(getApplicationContext(), "Schedule Updated", Toast.LENGTH_LONG).show();
 				
 			}
 			
