@@ -19,7 +19,7 @@
      android:layout_width="253dp"
      android:layout_height="wrap_content"
      android:inputType="textMultiLine"
-     android:hint="Enter your comment"
+     android:hint="Enter a Caption"
      android:layout_centerHorizontal="true"
      android:layout_below="@+id/meal_preview_image"
       >
