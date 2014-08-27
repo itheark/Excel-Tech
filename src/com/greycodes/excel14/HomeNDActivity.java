@@ -139,7 +139,7 @@ Handler h;
 			                	
 			            				
 			                } else { // code if connected
-			                		      new ParseActivate(getApplicationContext(), 123);
+			                		   startService(new Intent(HomeNDActivity.this,ParseActivate.class));
 			               	 
 			                }   
 			            }
@@ -264,26 +264,7 @@ private void  selectItem(int position) {
 			if(sharedPreferences.getBoolean("active",false)){
 				 f = new AccountFragment();
 			}else{
-				h = new Handler() {
-		            @Override
-		            public void handleMessage(Message msg) {
-
-		                if (msg.what != 1) { // code if not connected
-		                
-		                Toast.makeText(getApplicationContext(), "No Connection", Toast.LENGTH_LONG).show();
-		              
-		                	
-		                	
-		            				
-		                } else { // code if connected
-		                		      new ParseActivate(getApplicationContext(), 123);
-		               	 
-		                }   
-		            }
-		        };
-		        
-		            
-		        ConnectionDetector.isNetworkAvailable(h,3000);
+				 startService(new Intent(HomeNDActivity.this,ParseActivate.class));
 			}
 
 		

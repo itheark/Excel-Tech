@@ -47,7 +47,6 @@ SQLiteDatabase sqLiteDatabase=	excelDataBase.getSQLiteDataBase();
 Cursor cursor=	sqLiteDatabase.query("NEWSFEED", columns, null, null, null, null, "NID DESC");
 cursor.moveToFirst();
 count = cursor.getCount();
-Toast.makeText(getActivity(), ""+count, Toast.LENGTH_LONG).show();
 if(count==0){
 subject = new String[]{"SUB1","SUB2","SUB3","SUB4"};
 message = new String[]{"MESSAGE1","MESSAGE2","MESSAGE3","MESSAGE4"};

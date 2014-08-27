@@ -3,6 +3,7 @@ package com.greycodes.excel14.database;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Currency;
 import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpEntity;
@@ -12,32 +13,23 @@ import org.apache.http.params.BasicHttpParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Service;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.os.IBinder;
 import android.widget.Toast;
 
-public class ParseActivate {
+public class ParseActivate extends Service{
 Context context;
 String results,url;
 int activate;
 SharedPreferences sharedPreferences;
-	public ParseActivate(Context context,int pid) {
-		// TODO Auto-generated constructor stub
-		this.context = context;
-		
-url ="http://excelapi.net84.net/activate.json";
-		try {
-		Object object=	new ParseAsync().execute(url).get();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+
 	public class ParseAsync extends AsyncTask<String, String, String>  {
 
 		@Override
@@ -70,15 +62,7 @@ url ="http://excelapi.net84.net/activate.json";
 				}catch(Exception e){
 					e.printStackTrace();
 				}
-				JSONObject jsonObject;
-				try{
-					jsonObject = new JSONObject(results);
-					activate = jsonObject.getInt("activate")	; 
-					
-
-				}catch(JSONException e){
-					e.printStackTrace();
-				}
+				
 			}
 			return results;
 			
@@ -88,16 +72,48 @@ url ="http://excelapi.net84.net/activate.json";
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
+			JSONObject jsonObject;
+			try{
+				jsonObject = new JSONObject(results);
+				activate = jsonObject.getInt("activate")	; 
+				
+
+			}catch(JSONException e){
+				e.printStackTrace();
+				
+			}
+			
 			if(activate==2){
 				sharedPreferences = context.getSharedPreferences("login", Context.MODE_PRIVATE);
 			Editor editor = sharedPreferences.edit();
 			editor.putBoolean("active", true);
 			editor.commit();
-			}else
-				Toast.makeText(context, "Account not activated", Toast.LENGTH_LONG).show();
+			}
+			//	Toast.makeText(context, "Account not activated", Toast.LENGTH_LONG).show();
 			
 		}
 
 		
 	}
+	@Override
+	public IBinder onBind(Intent arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void onStart(Intent intent, int startId) {
+		// TODO Auto-generated method stub
+		String[] columns = {"PID" };
+	ExcelDataBase	excelDataBase = new ExcelDataBase(getApplicationContext());
+		SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
+		Cursor cursor = sqLiteDatabase.query("USER", columns, null,null, null, null, null);
+		cursor.moveToFirst();	if(cursor.getCount()>0){
+			int pid =cursor.getInt(cursor.getColumnIndex("PID"));
+			url ="http://excelmec.org/Login2014/check_active.php?pid="+pid;
+		}
+		
+		new ParseAsync().execute(url);
+		
+		}
+	
 }

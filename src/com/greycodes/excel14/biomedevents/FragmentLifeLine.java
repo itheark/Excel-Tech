@@ -1,6 +1,7 @@
 package com.greycodes.excel14.biomedevents;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -31,7 +32,6 @@ public class FragmentLifeLine extends SherlockFragment implements OnClickListene
 	 ConnectionDetector connectionDetector;
 	 Handler h ;
 	 int eid=902;
-	 ParseResult parseResult;
 	 ProgressDialog progressDialog;
 	 ExcelDataBase excelDataBase;
 	 String Ename;
@@ -52,7 +52,6 @@ public class FragmentLifeLine extends SherlockFragment implements OnClickListene
 		 format.setOnClickListener(this);
 		 misc = new Misc(getActivity());
 		 excelDataBase   = new ExcelDataBase(getActivity());
-		 parseResult = new ParseResult(getActivity());
 		 call=(ImageView)rootView.findViewById(R.id.imageView4);
 	        result=(ImageView)rootView.findViewById(R.id.imageView2);
 	        participate=(ImageView)rootView.findViewById(R.id.imageView3);
@@ -90,29 +89,11 @@ public class FragmentLifeLine extends SherlockFragment implements OnClickListene
 			updateTextValue("Lifeline consists of 3 stages and will test participants on their knowledge of electronics, its applications in the field of biomedical engineering and their ability to diagnose and debug problems related to a circuit as quickly as possible.\nFIRST LEVEL:\n1.	This round consists of a 30 minute MCQ test.\n2.	the test will contain electronics and biomed related questions.\n3.	Six teams selected from this round will proceed to the next round.\nSEMI FINALS:\n1.	Each team will be given 6 tasks to complete.\n2.	A time of 5 minutes will be allotted for each task.\n3.	The groups completing the maximum no of tasks move to the finals.\nFINALS:\n1.	Each team will be given one circuit to design.\n2.	The team completing the design with correct output within the time allotted will be declared winners.\n\n");
 			break;
 		case R.id.imageView2:
-			h = new Handler() {
-	            @Override
-	            public void handleMessage(Message msg) {
-
-	                if (msg.what != 1) { // code if not connected
-	                progressDialog.cancel();
-	                	connectionDetector.noNetworkAlert();;
-	               
-	                	
-	                	
-	            				
-	                } else { // code if connected
-		       
-					
-		           parseResult.result(904);
-	                	 progressDialog.dismiss();          	
-	               	 
-	                }   
-	            }
-	        };
-	        
-	        progressDialog = ProgressDialog.show(getActivity(), "Excel", "Please Wait...");
-	        connectionDetector.isNetworkAvailable(h,5000);
+			Intent service = new Intent(getActivity(), ParseResult.class);
+			service.putExtra("eid", eid);
+			getActivity().startService(service);
+			Toast.makeText(getActivity(), "Please wait...fetching result", Toast.LENGTH_LONG).show();
+	       
 			
 			break;
 		case R.id.imageView3:
@@ -135,9 +116,10 @@ public class FragmentLifeLine extends SherlockFragment implements OnClickListene
 		       
 					
 	                	if(excelDataBase.Isregistered()){
-	                		InsertParticipant insertParticipant = new InsertParticipant(getActivity());
-
-	        				insertParticipant.PInsert(eid, Ename, team);
+	                		Intent service1 = new Intent(getActivity(), ParseResult.class);
+	            			service1.putExtra("eid", eid);
+	            			getActivity().startService(service1);
+	            			Toast.makeText(getActivity(), "Please wait...fetching result", Toast.LENGTH_LONG).show();
 	        					
 	        	}else{
 	        					Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
@@ -174,7 +156,12 @@ public class FragmentLifeLine extends SherlockFragment implements OnClickListene
 	    tv.setAnimation(AnimationUtils.loadAnimation(getActivity(),android.R.anim.fade_in));
 		}
 
-
+	   @Override
+		public void onPause() {
+			// TODO Auto-generated method stub
+			super.onPause();
+			getActivity().stopService(new Intent(getActivity(), ParseResult.class));
+		}
 	@Override
 	public boolean onLongClick(View v) {
 		// TODO Auto-generated method stub

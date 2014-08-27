@@ -163,6 +163,11 @@
             android:enabled="true"/>
            <service android:name="com.greycodes.excel14.database.Parsescore"
             android:enabled="true"/>
+           <service android:name="com.greycodes.excel14.database.ParseResult"
+            android:enabled="true"/>
+           <service android:name="com.greycodes.excel14.database.InsertParticipant"
+            android:enabled="true"/>
+           
     </application>
 
 </manifest>

@@ -32,6 +32,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.greycodes.excel14.database.ParseSchedule;
 import com.greycodes.excel14.info.ContactsFragment;
 import com.greycodes.excel14.info.Developers;
+import com.greycodes.excel14.info.FeedBackFragment;
 import com.greycodes.excel14.info.FloorMapFragment;
 import com.greycodes.excel14.info.FloorMapViewPager;
 import com.greycodes.excel14.info.HospitalityFragment;
@@ -75,7 +76,7 @@ public class InfoNDActivity extends SherlockFragmentActivity {
  fragmentManager = getSupportFragmentManager();
 	 transaction=fragmentManager.beginTransaction();
 		
-		ioptions=new int[] {R.drawable.importantcontacts_nd,R.drawable.floormap_nd,R.drawable.schedule_nd,R.drawable.hospitality_nd,R.drawable.map_nd,R.drawable.developers,R.drawable.sponsor};
+		ioptions=new int[] {R.drawable.importantcontacts_nd,R.drawable.floormap_nd,R.drawable.schedule_nd,R.drawable.hospitality_nd,R.drawable.map_nd,R.drawable.developers,R.drawable.sponsor,R.drawable.proshow_nd};
 		        
 		        iDrawerLayout =(DrawerLayout) findViewById(R.id.drawer_layout_info);
 		        iDrawerList = (ListView) findViewById(R.id.listview_drawer_info);
@@ -196,6 +197,9 @@ public class InfoNDActivity extends SherlockFragmentActivity {
 				break;
 			case 6:
 				f = new SponsorFragment();
+				break;
+			case 7:
+				f= new FeedBackFragment();
 				break;
 		
 			}

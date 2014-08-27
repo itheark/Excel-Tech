@@ -3,7 +3,6 @@ package com.greycodes.excel14.database;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -133,7 +132,6 @@ String results=null;
 					contentValues.put("IMAGE", imagebyte[i]);
 					contentValues.put("URL", companyurl[i]);
 					sqLiteDatabase.insert("SPONSOR", null, contentValues);
-					Toast.makeText(getApplicationContext(), "Sponsor Inserted", Toast.LENGTH_LONG).show();
 				}
 				
 				SharedPreferences   sharedPreferences = getSharedPreferences("flag", Context.MODE_PRIVATE);

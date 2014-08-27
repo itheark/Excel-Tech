@@ -41,14 +41,12 @@ public class ParseSpeaker extends Service {
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
-		Toast.makeText(getApplicationContext(), "oncrate", Toast.LENGTH_LONG).show();
 
 	}
 
 	@Override
 	public void onStart(Intent intent, int startId) {
 		// TODO Auto-generated method stub
-		Toast.makeText(getApplicationContext(), "started", Toast.LENGTH_LONG).show();
 
 		new flagCheck().execute("http://excelapi.net84.net/flag.json");
 	}
@@ -101,7 +99,6 @@ public class ParseSpeaker extends Service {
 		@Override
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
-			Toast.makeText(getApplicationContext(), results, Toast.LENGTH_LONG).show();
 			JSONObject jsonObject;
 			try{
 				jsonObject = new JSONObject(results);
@@ -140,7 +137,6 @@ public class ParseSpeaker extends Service {
 					contentValues.put("EVENT", event[i]);
 					
 					sqLiteDatabase.insert("SPEAKERS", null, contentValues);
-					Toast.makeText(getApplicationContext(), "speaker Inserted", Toast.LENGTH_LONG).show();
 				}
 				Toast.makeText(getApplicationContext(), "Talkseries Updated", Toast.LENGTH_LONG).show();
 			} catch (Exception e) {
@@ -198,7 +194,6 @@ public class ParseSpeaker extends Service {
 		  	protected void onPostExecute(String result) {
 		  		// TODO Auto-generated method stub
 		  		super.onPostExecute(result);
-				Toast.makeText(getApplicationContext(), "flagcheck", Toast.LENGTH_LONG).show();
 
 		  		try {
 		  			JSONObject jsonObject = new JSONObject(results);
@@ -210,7 +205,6 @@ public class ParseSpeaker extends Service {
 		  				stopSelf();
 		  			
 		  			}else{
-		  				Toast.makeText(getApplicationContext(), "else", Toast.LENGTH_LONG).show();
 
 		  			new Parsespeaker().execute("http://excelapi.net84.net/speaker.json");
 		  			}

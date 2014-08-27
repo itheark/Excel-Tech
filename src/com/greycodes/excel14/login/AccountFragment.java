@@ -17,6 +17,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.greycodes.excel14.HomeNDActivity;
 import com.greycodes.excel14.R;
@@ -66,6 +67,7 @@ public class AccountFragment extends ListFragment {
 		
 		@Override
 		public void onClick(View view) {
+			Toast.makeText(getActivity(), "Please wait....", Toast.LENGTH_LONG).show();
 			getActivity().startService(new Intent(getActivity(), Parsescore.class));
 			
 		}

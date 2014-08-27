@@ -131,7 +131,6 @@ SharedPreferences sharedPreferences;
 				contentValues.put("IMAGE", imagebyte[i]);
 				contentValues.put("AUTHOR", author[i]);
 				sqLiteDatabase.insert("GALLERY", null, contentValues);
-				Toast.makeText(getApplicationContext(), "Sponsor Inserted", Toast.LENGTH_LONG).show();
 				}
 				}
 				Editor editor = sharedPreferences.edit();

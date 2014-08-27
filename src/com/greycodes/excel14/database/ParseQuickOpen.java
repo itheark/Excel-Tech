@@ -48,7 +48,6 @@ int count,i;
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			Toast.makeText(getApplicationContext(), "preexecute", Toast.LENGTH_LONG).show();
 
 		}
 
@@ -175,7 +174,6 @@ int count,i;
 	@Override
 	public void onStart(Intent intent, int startId) {
 		// TODO Auto-generated method stub
-		Toast.makeText(getApplicationContext(), "start", Toast.LENGTH_LONG).show();
 		 new parsequickopen().execute("http://excelapi.net84.net/quickopen.json");
 	}
 

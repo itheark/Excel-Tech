@@ -1,6 +1,7 @@
 package com.greycodes.excel14.competition;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -39,7 +40,7 @@ public class GeneralViewPager extends Fragment implements OnClickListener,OnLong
 	 ConnectionDetector connectionDetector;
 	 Handler h ;
 	 int eid=889;
-	 ParseResult parseResult;
+	
 	 ProgressDialog progressDialog;
 	 String Ename;
 	 boolean team;
@@ -58,12 +59,11 @@ public class GeneralViewPager extends Fragment implements OnClickListener,OnLong
 		        excelDataBase = new ExcelDataBase(getActivity());
 		         misc = new Misc(getActivity());
 		         connectionDetector = new ConnectionDetector(getActivity());
-		         parseResult = new ParseResult(getActivity());
+		       
 		         
 		         call=(ImageView)rootView.findViewById(R.id.imageView4);
 			        result=(ImageView)rootView.findViewById(R.id.imageView2);
 			        participate=(ImageView)rootView.findViewById(R.id.imageView3);
-			        parseResult = new ParseResult(getActivity());
 			       // call.setOnClickListener(this);
 			        result.setOnClickListener(this);
 			        participate.setOnClickListener(this);
@@ -87,7 +87,12 @@ public class GeneralViewPager extends Fragment implements OnClickListener,OnLong
 			super.onResume();
 			
 		}
-
+		   @Override
+			public void onPause() {
+				// TODO Auto-generated method stub
+				super.onPause();
+				getActivity().stopService(new Intent(getActivity(), ParseResult.class));
+			}
 		@Override
 		public boolean onLongClick(View arg0) {
 			// TODO Auto-generated method stub
@@ -138,46 +143,23 @@ case R.id.imageView3:
 				
 				
 				
-				h = new Handler() {
-		            @Override
-		            public void handleMessage(Message msg) {
-
-		                if (msg.what != 1) { // code if not connected
-		               
-		                	connectionDetector.noNetworkAlert();;
-		               
-		                	
-		                	
-		            				
-		                } else { // code if connected
-			       
-						
-		                	if(excelDataBase.Isregistered()){
-		                		InsertParticipant insertParticipant = new InsertParticipant(getActivity());
-
-		        				insertParticipant.PInsert(eid, Ename, team);
-		        					
-		        	}else{
-		        					Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
-		        				}       	
-		               	 
-		                }   
-		            }
-		        };
-		        
-		        
-
-		        connectionDetector.isNetworkAvailable(h,5000);
+				if(excelDataBase.Isregistered()){
+            		Intent service1 = new Intent(getActivity(), ParseResult.class);
+        			service1.putExtra("eid", eid);
+        			getActivity().startService(service1);
+        			Toast.makeText(getActivity(), "Please wait...fetching result", Toast.LENGTH_LONG).show();
+    					
+    	}else{
+    					Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
+    				}
 				
 				break;
 			case R.id.imageView2:
 				switch(pager.getCurrentItem()){
 				case 0:
-					Toast.makeText(getActivity(), "result", Toast.LENGTH_SHORT).show();
 			       eid=905;
 				break;
 				case 1:
-					Toast.makeText(getActivity(), "result", Toast.LENGTH_SHORT).show();
 					 eid=905+1;
 					break;
 				case 2:
@@ -187,32 +169,13 @@ case R.id.imageView3:
 				
 				}
 				
-				h = new Handler() {
-		            @Override
-		            public void handleMessage(Message msg) {
-
-		                if (msg.what != 1) { // code if not connected
-		                progressDialog.cancel();
-		                	connectionDetector.noNetworkAlert();;
-		               
-		                	
-		                	
-		            				
-		                } else { // code if connected
-			       
-						
-			           parseResult.result(eid);
-		                	 progressDialog.dismiss();          	
-		               	 
-		                }   
-		            }
-		        };
-		        
-		        progressDialog = ProgressDialog.show(getActivity(), "Excel", "Please Wait...");
-		        connectionDetector.isNetworkAvailable(h,3500);
+				Intent service = new Intent(getActivity(), ParseResult.class);
+				service.putExtra("eid", eid);
+				getActivity().startService(service);
+				Toast.makeText(getActivity(), "Please wait...fetching result", Toast.LENGTH_LONG).show();
 				break;
 			case R.id.imageView4:
-				Toast.makeText(getActivity(), "Hold to call", Toast.LENGTH_LONG).show();
+				Toast.makeText(getActivity(), "Press & Hold to call", Toast.LENGTH_LONG).show();
 
 				switch(pager.getCurrentItem()){
 				case 0:
