@@ -56,7 +56,7 @@ public class CameraFragment extends android.support.v4.app.Fragment {
 			@Override
 			public void onClick(View v) {
 				photoButton.setEnabled(false);
-				Toast.makeText(getActivity(), "Please wait....Uploading your picture.this my take few seconds depending upon your connection", Toast.LENGTH_LONG).show();
+				Toast.makeText(getActivity(), "Please wait....Uploading your picture.This my take few seconds depending upon your connection", Toast.LENGTH_LONG).show();
 				
 				if (camera == null)
 					return;

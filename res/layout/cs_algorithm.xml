@@ -39,7 +39,17 @@
         android:layout_alignTop="@+id/event"
         android:layout_toRightOf="@+id/event"
         android:src="@drawable/cs_rules" />
-
+ <TextView
+           android:id="@+id/prizemoney"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/intro"
+           android:layout_marginTop="2dp"
+           android:fontFamily="sans-serif"
+       		android:layout_gravity="center_horizontal"
+       		android:textColor="#e3e3e3"
+           android:layout_centerHorizontal="true"
+           android:text="PRIZE MONEY : 12K+" />
     
     
     
@@ -69,5 +79,7 @@
      android:text="Even the hardest problems in this world are solved with the most simplest of logic. If complex algorithms are just a child’s play for you, then get ready to prove yourself at Excel ‘Algorithms’. Amaze us with your efficient plans and you might be the one to land your hands on that handsome cash prize.\n\n"	/>	
  
     </ScrollView>
+
+      
 
 </RelativeLayout>

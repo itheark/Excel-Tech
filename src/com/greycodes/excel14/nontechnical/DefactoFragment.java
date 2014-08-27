@@ -40,7 +40,7 @@ public class DefactoFragment extends Fragment implements OnClickListener {
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("(To be updated...)\n"	 );
+			updateTextValue("Defacto was born out of Excel's ambition to reach out the young Einsteins and Madam Curies in school. A quiz aimed solely at school students, Defacto promises to be a fun and interactive session, combining the innovation of college quizzing and the inquisitiveness of school quizzing. \nLet your intellect shine, let the rolling of brain race with every passing of minute and get yourselves ready for a gem of a quiz!\n");
 			
 		}
 		
