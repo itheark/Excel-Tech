@@ -181,6 +181,7 @@ case R.id.imageView3:
 				service.putExtra("eid", eid);
 				getActivity().startService(service);
 				//Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();				break;
+			break;
 			case R.id.imageView4:
 				Toast.makeText(getActivity(), "Press & Hold to call", Toast.LENGTH_LONG).show();
 

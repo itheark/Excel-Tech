@@ -91,7 +91,7 @@ public class GalleryListActivity extends SherlockListActivity  {
 		}
 	}else{
 		
-	 desc = new String[]{"The man in charge."," Actress  Muthumani on Organic Farming ",
+	 desc = new String[]{"The man in charge."," Actress  Muthumani ",
 			 "Excel goes green."
 	 };
 	 author = new String[]{"Excel 2014","Excel 2014","Excel 2014"};

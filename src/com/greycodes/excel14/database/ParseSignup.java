@@ -114,7 +114,10 @@ url= "http://excelmec.org/Login2014/signup.php?firstname="+fname+"&lastname="+ln
     	alertDialogBuilder.setTitle("Excel");
 
     	// Setting Dialog Message
-    	alertDialogBuilder.setMessage("Acoount Created.Please check your mail to activate the account");
+    	if(fb){
+    		alertDialogBuilder.setMessage("Account Created Successfully");
+    	}else
+    	alertDialogBuilder.setMessage("Account Created.Please check your mail to activate the account");
 
     	// Setting Icon to Dialog
     	alertDialogBuilder.setIcon(R.drawable.alert);

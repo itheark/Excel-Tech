@@ -138,7 +138,7 @@ Misc misc;
 				
 
 			}catch(Exception e){
-				Toast.makeText(getApplicationContext(), "No network"+e, Toast.LENGTH_LONG).show();;
+				Toast.makeText(getApplicationContext(), "No network", Toast.LENGTH_LONG).show();;
 			//	stopSelf();
 			}
 		

@@ -101,7 +101,8 @@ String[] name;
 						name[0] = cursor.getString(cursor
 								.getColumnIndex("FNAME"));
 					} else {
-						name[0] = "Guest";
+						
+						name = new String[]{"Guest"};
 					}
 					ParseUser parseUser = new ParseUser();
 					parseUser.setUsername(name[0]);

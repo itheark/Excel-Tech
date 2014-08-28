@@ -73,10 +73,11 @@ public class ECViewPager extends Fragment implements OnClickListener,OnLongClick
 		   
 		         misc = new Misc(getActivity());
 		        call.setOnClickListener(this);
-		        
+		        result.setOnClickListener(this);
 		        
 		        participate.setOnClickListener(this);
 		        call.setOnLongClickListener(this);
+		        
 			return rootView;
 			
 		}
@@ -178,6 +179,7 @@ public class ECViewPager extends Fragment implements OnClickListener,OnLongClick
 				Intent service = new Intent(getActivity(), ParseResult.class);
 				service.putExtra("eid", eid);
 				getActivity().startService(service);
+				break;
 			case R.id.imageView4:
 				Toast.makeText(getActivity(), "Press & Hold to call", Toast.LENGTH_LONG).show();
 
