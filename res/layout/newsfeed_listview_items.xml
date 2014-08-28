@@ -16,6 +16,7 @@
     android:layout_marginRight="10dp"
     android:layout_marginLeft="10dp">
 <RelativeLayout 
+    android:id="@+id/rrr"
      android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -51,15 +52,6 @@
 </RelativeLayout>
 
 
-   <ScrollView
-        android:id="@+id/scrollView1"
-        android:layout_width="fill_parent"
-        
-        android:layout_height="40dp"
-        
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        >
     
     <TextView
         android:id="@+id/newsfeed_details"
@@ -70,8 +62,7 @@
         android:paddingTop="5dp"
         android:paddingLeft="8dp"
         android:textColor="#666666" />
-    </ScrollView>
-
+    
   
 </LinearLayout>
 </RelativeLayout>
