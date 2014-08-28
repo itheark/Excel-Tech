@@ -128,7 +128,7 @@ public class ECViewPager extends Fragment implements OnClickListener,OnLongClick
 				switch(pager.getCurrentItem()){
 				case 0:
 					eid =1007;
-					team=false;
+					team=true;
 					Ename="Extrinsicity";
 					break;
 				case 1:
@@ -151,10 +151,10 @@ public class ECViewPager extends Fragment implements OnClickListener,OnLongClick
 				if(excelDataBase.Isregistered()){
 					Intent service1 = new Intent(getActivity(), InsertParticipant.class);
 	    			service1.putExtra("eid", eid);
-	    			service1.putExtra("team", team);
+	    			service1.putExtra("team", true);
 	    			service1.putExtra("Ename", Ename);
 	    			getActivity().startService(service1);
-	    			Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();    					
+	    			//Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();    					
     	}else{
     				//	Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
     				}
@@ -178,7 +178,6 @@ public class ECViewPager extends Fragment implements OnClickListener,OnLongClick
 				Intent service = new Intent(getActivity(), ParseResult.class);
 				service.putExtra("eid", eid);
 				getActivity().startService(service);
-				Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();				break;
 			case R.id.imageView4:
 				Toast.makeText(getActivity(), "Press & Hold to call", Toast.LENGTH_LONG).show();
 

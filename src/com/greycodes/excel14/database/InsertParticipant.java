@@ -3,20 +3,17 @@ package com.greycodes.excel14.database;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.app.Service;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -28,7 +25,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.greycodes.excel14.CompetitionNDActivity;
-import com.greycodes.excel14.HomeNDActivity;
 import com.greycodes.excel14.R;
 import com.parse.PushService;
 
@@ -68,7 +64,7 @@ stopSelf();
 			// TODO Auto-generated method stub
 			
 			DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-			HttpPost httppost = new HttpPost(url);
+			HttpGet httppost = new HttpGet(url);
 			httppost.setHeader("Content-type","application/json");
 			InputStream inputstream = null;
 			try{
@@ -104,11 +100,15 @@ stopSelf();
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			JSONObject jsonObject;
+			
 			try{
+				JSONObject jsonObject;
 				jsonObject = new JSONObject(results);
 				flag = jsonObject.getJSONObject("participate").getInt("success");
-				tid = jsonObject.getJSONObject("participate").getInt("id");		 
+				if(flag==1){
+					tid = jsonObject.getJSONObject("participate").getInt("id");	
+				}
+					 
 				
 
 			}catch(JSONException e){
@@ -120,12 +120,18 @@ stopSelf();
 				insert();
 			}else
 				if(flag==2)
-				Toast.makeText(CompetitionNDActivity.context, "Error", Toast.LENGTH_LONG).show();
+				Toast.makeText(CompetitionNDActivity.context, "Team id not found", Toast.LENGTH_LONG).show();
 				else
-					if(flag==3)
-						Toast.makeText(CompetitionNDActivity.context, "Team id not found", Toast.LENGTH_LONG).show();
+					if(flag==3){
 						
-			
+					if(team){
+						Toast.makeText(CompetitionNDActivity.context, "Teamis full", Toast.LENGTH_LONG).show();
+					}else{
+						Toast.makeText(CompetitionNDActivity.context, "Already registered", Toast.LENGTH_LONG).show();
+					}
+						
+						
+					}
 		}
 
 		
@@ -151,7 +157,7 @@ alert.setCancelable(false);
 				Alert();
 			}else{
 				tid = Integer.parseInt(input.getText().toString());
-				url = "http://excelapi.net84.net/participate.json";
+				url = "http://excelmec.org/Login2014/parti1.php?eid="+eid+"&pid="+uid+"&tid="+tid;
 				try {
 				 new Insertparticipant().execute(url);
 				} catch (Exception e) {
@@ -169,6 +175,7 @@ alert.setCancelable(false);
 		  public void onClick(DialogInterface dialog, int whichButton) {
 			  url = "http://excelapi.net84.net/participate.json";
 			  try {
+				  url = "http://excelmec.org/Login2014/parti1.php?eid="+eid+"&pid="+uid+"&tid=0";
 					new Insertparticipant().execute(url);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -184,7 +191,7 @@ alert.setCancelable(false);
 	@Override
 	public void onStart(Intent intent, int startId) {
 		// TODO Auto-generated method stub
-		url = "http://excelapi.net84.net/participate.json";
+		
 		String[] columns = { "PID"};
 	ExcelDataBase	excelDataBase = new ExcelDataBase(getApplicationContext());
 		SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
@@ -211,10 +218,11 @@ alert.setCancelable(false);
 
 	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 	public void onClick(DialogInterface dialog, int whichButton) {
-		
+		Toast.makeText(getApplicationContext(), "Waiting for internet connection", Toast.LENGTH_LONG).show();
 		if(team){
 			Alert();
 		}else{
+			url = "http://excelmec.org/Login2014/parti1.php?eid="+eid+"&pid="+uid+"&tid=0";
 			 new Insertparticipant().execute(url);
 		}
 	  // Do something with value!

@@ -55,7 +55,7 @@ ExcelDataBase excelDataBase;
 			// TODO Auto-generated method stub
 			
 			DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-			HttpPost httppost = new HttpPost("http://excelapi.net84.net/schedule.json");
+			HttpPost httppost = new HttpPost("http://excelmec.org/Login2014/schedule.php");
 			httppost.setHeader("Content-type","application/json");
 			InputStream inputstream = null;
 			try{
@@ -221,7 +221,7 @@ ExcelDataBase excelDataBase;
 		  				stopSelf();
 		  			
 		  			}else{
-		  			new parseschedule().execute("http://excelapi.net84.net/schedule.json");
+		  			new parseschedule().execute("http://excelmec.org/Login2014/schedule.php");
 		  			}
 		  		} catch (JSONException e) {
 		  			// TODO Auto-generated catch block

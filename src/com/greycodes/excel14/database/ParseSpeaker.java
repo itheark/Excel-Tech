@@ -65,7 +65,7 @@ public class ParseSpeaker extends Service {
 			// TODO Auto-generated method stub
 			
 			DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-			HttpPost httppost = new HttpPost("http://excelapi.net84.net/speaker.json");
+			HttpPost httppost = new HttpPost("http://excelmec.org/Login2014/speaker.php");
 			httppost.setHeader("Content-type","application/json");
 			InputStream inputstream = null;
 			try{
@@ -138,7 +138,6 @@ public class ParseSpeaker extends Service {
 					
 					sqLiteDatabase.insert("SPEAKERS", null, contentValues);
 				}
-				Toast.makeText(getApplicationContext(), "Talkseries Updated", Toast.LENGTH_LONG).show();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -201,12 +200,11 @@ public class ParseSpeaker extends Service {
 		  			
 		  			//SharedPreferences   sharedPreferences = getActivity().getSharedPreferences("flag", Context.MODE_PRIVATE);
 		  			if(speaker_flag==1){
-		  				Toast.makeText(getApplicationContext(), "Schedule not released", Toast.LENGTH_LONG).show();
 		  				stopSelf();
 		  			
 		  			}else{
 
-		  			new Parsespeaker().execute("http://excelapi.net84.net/speaker.json");
+		  			new Parsespeaker().execute("http://excelmec.org/Login2014/speaker.php");
 		  			}
 		  		} catch (JSONException e) {
 		  			// TODO Auto-generated catch block

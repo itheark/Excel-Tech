@@ -3,27 +3,21 @@ package com.greycodes.excel14.database;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.concurrent.ExecutionException;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.greycodes.excel14.ConnectionDetector;
-import com.greycodes.excel14.Misc;
-
-import android.app.ProgressDialog;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.os.IBinder;
 import android.widget.Toast;
+
+import com.greycodes.excel14.Misc;
 
 public class ParseResult extends Service {
 String results,url;
@@ -166,6 +160,7 @@ Misc misc;
 		 eid =intent.getIntExtra("eid", 0);
 		 url = "http://excelmec.org/Login2014/view_result.php?eid="+eid;
 misc = new Misc(getApplicationContext());
+Toast.makeText(getApplicationContext(), "Waiting for internet", Toast.LENGTH_LONG).show();
 		 new Result().execute(url);
 	}
 

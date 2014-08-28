@@ -25,6 +25,7 @@ import android.content.SharedPreferences.Editor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.greycodes.excel14.HomeNDActivity;
@@ -37,6 +38,7 @@ SharedPreferences sharedPreferences;
 String fname,lname,uname,phone,pass,email,college,dept,acc,results,url;
 boolean fb;
 Bitmap propic;
+
 Editor editor;
 ProgressDialog progressDialog;
 int username_flag,email_flag,success,pid;
@@ -83,7 +85,7 @@ url= "http://excelmec.org/Login2014/signup.php?firstname="+fname+"&lastname="+ln
 		contentValues.put("PID", pid);
 		contentValues.put("FNAME", fname);
 		contentValues.put("LNAME", lname);
-		contentValues.put("UNAME", uname);
+		
 		contentValues.put("PASSWORD", pass);
 		contentValues.put("EMAIL", email);
 		contentValues.put("COLLEGE", college);
@@ -97,10 +99,8 @@ url= "http://excelmec.org/Login2014/signup.php?firstname="+fname+"&lastname="+ln
 			contentValues.put("PICTURE",byteArray );
 		}
 		if(	sqLiteDatabase.insert("USER", null, contentValues)>=0){
-			Toast.makeText(context, "User inserted", Toast.LENGTH_LONG).show();
 			editor.putBoolean("registered", true);
 			if(fb){
-				Toast.makeText(context, "FB TRUE", Toast.LENGTH_LONG).show();
 				editor.putBoolean("active",true);
 				editor.putBoolean("fb", true);
 			}
@@ -193,8 +193,7 @@ url= "http://excelmec.org/Login2014/signup.php?firstname="+fname+"&lastname="+ln
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			Toast.makeText(context, results, Toast.LENGTH_LONG).show();
-			/*
+			
 			JSONObject jsonObject;
 			try{
 				jsonObject = new JSONObject(results);
@@ -207,18 +206,16 @@ url= "http://excelmec.org/Login2014/signup.php?firstname="+fname+"&lastname="+ln
 
 			}catch(JSONException e){
 				e.printStackTrace();
-				Toast.makeText(context, ""+e, Toast.LENGTH_LONG).show();
+				Toast.makeText(context, "No network connection", Toast.LENGTH_LONG).show();
 			}catch (Exception e) {
-				Toast.makeText(context, ""+e, Toast.LENGTH_LONG).show();			}
-			if(success==1){
+				Toast.makeText(context, "No network connection", Toast.LENGTH_LONG).show();			}
+			if(success==2){
 				progressDialog.dismiss();
-				Toast.makeText(context, "success", Toast.LENGTH_LONG).show();
 				insert();
 			}else
-				if(success==2){
+				if(success==1){
 					
 					progressDialog.dismiss();
-					Toast.makeText(context, "success", Toast.LENGTH_LONG).show();
 						alertshow("Email id  already registered with us :(");
 					
 			
@@ -227,7 +224,7 @@ url= "http://excelmec.org/Login2014/signup.php?firstname="+fname+"&lastname="+ln
 				
 			
 		}
-			*/
+			
 		}
 		
 	}

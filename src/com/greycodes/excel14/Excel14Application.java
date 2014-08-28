@@ -19,7 +19,7 @@ public class Excel14Application extends Application {
 		ParseObject.registerSubclass(Gallery.class);
 
 		
-		Parse.initialize(this, "i8yPBMBNwy08qVPPrgLFswlvbYOv3LQXeebDl49a", "Hdvc9dDQNlSmFHOTRr1PeuOvxYB99wFTeWFAeXKp");
+		Parse.initialize(this, "C51j5nzJGPzEey1ck1xplDyRgY3GDHoVuRhNdh2Q", "Qdf41XjsFJt687gtW9xXVvAPs14iYTNEhcY8aE8c");
 		PushService.setDefaultPushCallback(this, HomeNDActivity.class);
 
 		

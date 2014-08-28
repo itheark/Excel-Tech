@@ -45,7 +45,7 @@ String results=null;
 			// TODO Auto-generated method stub
 			
 			DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-			HttpPost httppost = new HttpPost("http://excelapi.net84.net/sponsor.json");
+			HttpPost httppost = new HttpPost("http://excelmec.org/Login2014/sponsor.php");
 			httppost.setHeader("Content-type","application/json");
 			InputStream inputstream = null;
 			try{
@@ -224,7 +224,7 @@ String results=null;
 		  			stopSelf();
 		  			}else{
 		  				
-		  				new ParseSponsorImage().execute("http://excelapi.net84.net/sponsor.json");		  			
+		  				new ParseSponsorImage().execute("http://excelmec.org/Login2014/sponsor.php");		  			
 		  			}
 		  		} catch (JSONException e) {
 		  			// TODO Auto-generated catch block

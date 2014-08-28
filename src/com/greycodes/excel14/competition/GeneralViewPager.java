@@ -140,6 +140,7 @@ case R.id.imageView3:
 				case 2:
 					eid =1018;
 					Ename="Papyrus of Ani";
+					team=true;
 					break;
 				
 				
@@ -155,7 +156,7 @@ case R.id.imageView3:
 	    			service1.putExtra("team", team);
 	    			service1.putExtra("Ename", Ename);
 	    			getActivity().startService(service1);
-	    			Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();						
+	    			//Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();						
 				}else{
     				//	Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
     				}
@@ -179,7 +180,7 @@ case R.id.imageView3:
 				Intent service = new Intent(getActivity(), ParseResult.class);
 				service.putExtra("eid", eid);
 				getActivity().startService(service);
-				Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();				break;
+				//Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();				break;
 			case R.id.imageView4:
 				Toast.makeText(getActivity(), "Press & Hold to call", Toast.LENGTH_LONG).show();
 

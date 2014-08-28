@@ -167,7 +167,7 @@ ProgressDialog progressDialog;
     			service1.putExtra("team", team);
     			service1.putExtra("Ename", Ename);
     			getActivity().startService(service1);
-    			Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();					
+    			//Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();					
 	}else{
 					//Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
 				}
@@ -204,7 +204,7 @@ ProgressDialog progressDialog;
 			Intent service1 = new Intent(getActivity(), ParseResult.class);
 			service1.putExtra("eid", eid);
 			getActivity().startService(service1);
-			Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();	       
+			//Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();	       
 			break;
 		case R.id.imageView4:
 			Toast.makeText(getActivity(), "Press & Hold to call", Toast.LENGTH_LONG).show();

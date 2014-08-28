@@ -1,24 +1,19 @@
 package com.greycodes.excel14.login;
 
-import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.Connection;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
@@ -26,9 +21,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff.Mode;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -36,6 +31,7 @@ import android.os.StrictMode;
 import android.text.Html;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -50,20 +46,17 @@ import com.facebook.android.Facebook.DialogListener;
 import com.facebook.android.FacebookError;
 import com.facebook.android.Util;
 import com.greycodes.excel14.ConnectionDetector;
-import com.greycodes.excel14.HomeNDActivity;
 import com.greycodes.excel14.R;
-import com.greycodes.excel14.database.ExcelDataBase;
-import com.greycodes.excel14.database.ParseQuickOpen;
 import com.greycodes.excel14.database.ParseSignup;
-import com.parse.Parse;
-import com.parse.ParseUser;
-import com.parse.PushService;
 
 public class LoginActivity extends SherlockActivity implements OnClickListener  {
 	
 
 
-
+	private ArrayAdapter<String> adapter;
+	String item[]={
+	        "Yes", "No"
+	      };
 	SharedPreferences sp,sharedPreferences;
 	Facebook fb;
 	TextView Registered;
@@ -90,7 +83,7 @@ public class LoginActivity extends SherlockActivity implements OnClickListener  
 		Registered = (TextView) findViewById(R.id.clickhere);
 		etfname = (EditText) findViewById(R.id.registration_name);
 		etlname = (EditText) findViewById(R.id.registration_lastname);
-		
+		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, item);
 		etpassword = (EditText) findViewById(R.id.registration_password);
 		etemail = (EditText) findViewById(R.id.registration_email);
 		etcollege = (AutoCompleteTextView) findViewById(R.id.registration_college);
@@ -98,6 +91,8 @@ public class LoginActivity extends SherlockActivity implements OnClickListener  
 		
 		etphone = (EditText) findViewById(R.id.registration_phone);
 		etaccomodation = (AutoCompleteTextView) findViewById(R.id.registration_accomodate);
+		etaccomodation.setAdapter(adapter);
+		etaccomodation.setThreshold(0);
 		connectionDetector = new ConnectionDetector(this);
 		pic =(CircularImageView)findViewById(R.id.propic);
 		getWindow().setBackgroundDrawableResource(R.drawable.loginback);
@@ -312,7 +307,7 @@ public class LoginActivity extends SherlockActivity implements OnClickListener  
 		            params.putString("Message","Excel");
 		            params.putString("name", "Excel MEC 14"); 
 						params.putString("caption", "Check out the new Excel App"); 
-						params.putString("description", "Conceived by the students of Govt. Model Engineering College,Kochi, Excel promotes interaction within the engineering community. What started as a small-scale festival is now one of South India’s most celebrated events. ");
+						params.putString("description", "Conceived by the students of Govt. Model Engineering College,Kochi, Excel promotes interaction within the engineering community. What started as a small-scale festival is now one of South Indiaï¿½s most celebrated events. ");
 						params.putString("link", "https://play.google.com/store/apps/details?id=com.greycodes.excel14");
 						params.putString("picture", "http://greycodes.com/image_icons/25_logo.png"); 
 
@@ -388,7 +383,6 @@ public class LoginActivity extends SherlockActivity implements OnClickListener  
 			}else if(accomodation.length()==0){
 			alertshow("Please specify wheather you need accomodation");
 			}else{
-				Toast.makeText(this, "else", Toast.LENGTH_LONG).show();
 				h = new Handler() {
 		            @Override
 		            public void handleMessage(Message msg) {

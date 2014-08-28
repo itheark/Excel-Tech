@@ -113,7 +113,7 @@ SharedPreferences sharedPreferences;
 		Cursor cursor = sqLiteDatabase.query("USER", columns, null,null, null, null, null);
 		cursor.moveToFirst();	if(cursor.getCount()>0){
 			int pid =cursor.getInt(cursor.getColumnIndex("PID"));
-			Toast.makeText(getApplicationContext(), ""+pid, Toast.LENGTH_LONG).show();
+			//Toast.makeText(getApplicationContext(), ""+pid, Toast.LENGTH_LONG).show();
 			url ="http://excelmec.org/Login2014/check_active.php?pid="+pid;
 			
 		}

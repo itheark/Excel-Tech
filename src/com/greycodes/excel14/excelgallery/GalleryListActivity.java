@@ -91,8 +91,8 @@ public class GalleryListActivity extends SherlockListActivity  {
 		}
 	}else{
 		
-	 desc = new String[]{"The man in charge.Excel chairman talk on Excel Goes Green","Well renowned actress Mrs. Muthumani Somasundaran addressing the crowd about the relevance of organic ",
-			 "AISEC members being a part of our organic farming initiative."
+	 desc = new String[]{"The man in charge."," Actress  Muthumani on Organic Farming ",
+			 "Excel goes green."
 	 };
 	 author = new String[]{"Excel 2014","Excel 2014","Excel 2014"};
 	 

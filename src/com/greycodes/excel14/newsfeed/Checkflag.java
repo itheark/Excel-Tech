@@ -43,7 +43,6 @@ public class Checkflag extends Service{
 
 	@Override
 	public void onStart(Intent intent, int startId) {
-		Toast.makeText(getApplicationContext(), "onStart", Toast.LENGTH_LONG).show();
 		
 		new flagCheck().execute("http://excelapi.net84.net/flag.json");
 		
@@ -86,7 +85,6 @@ public class Checkflag extends Service{
 		  				
 		  			}
 		  			results = theStringBuilder.toString();
-		  			Toast.makeText(getApplicationContext(), results, Toast.LENGTH_LONG).show();
 		  		}catch(Exception e){
 		  			e.printStackTrace();
 		  		}finally{

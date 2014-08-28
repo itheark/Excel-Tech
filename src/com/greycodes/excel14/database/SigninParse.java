@@ -38,8 +38,12 @@ String fname,lname,phone,college,dept,email,acc,pass;
 		email = intent.getStringExtra("email");
 		pass = intent.getStringExtra("pass");
 		fb = intent.getIntExtra("fb", 0);
+Toast.makeText(getApplicationContext(), "waiting for internet", Toast.LENGTH_LONG).show();
 		if(fb==0){
 			url = "http://excelmec.org/Login2014/signin.php?email="+email+"&pass="+pass;	
+		}else
+		{
+			url = "http://excelmec.org/Login2014/signin.php?fbid="+fb;
 		}
 		
 	new Signinparse().execute(url);
@@ -98,7 +102,7 @@ String fname,lname,phone,college,dept,email,acc,pass;
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			
+
 			JSONObject jsonObject;
 			try{
 				jsonObject = new JSONObject(results);
@@ -106,9 +110,10 @@ String fname,lname,phone,college,dept,email,acc,pass;
 				success = user.getInt("success");
 						 
 				if(success==1){
-					Toast.makeText(getApplicationContext(), "Wrong Username/password", Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_LONG).show();
 				}else
 					if(success==2){
+
 					fname=	user.getString("fname");
 					lname=	user.getString("lname");
 					phone=	user.getString("phone");

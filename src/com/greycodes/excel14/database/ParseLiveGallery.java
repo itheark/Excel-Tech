@@ -74,32 +74,7 @@ SharedPreferences sharedPreferences;
 				}catch(Exception e){
 					e.printStackTrace();
 				}
-				JSONObject jsonObject;
-				try{
-					jsonObject = new JSONObject(results);
-				 jsonarray = jsonObject.getJSONArray("livegallery");
-					
-					 imageurl = new String[jsonarray.length()];
-					 desc = new String[jsonarray.length()];
-					 author = new String[jsonarray.length()];
-					 gid = new int[jsonarray.length()];
-					 imagebyte = new byte[jsonarray.length()][];
-					  n = jsonarray.length();
-					
-					for(int i=0;i<n;i++){
-						gid[i]= jsonarray.getJSONObject(i).getInt("gid");
-						imageurl[i]= jsonarray.getJSONObject(i).getString("url");
-						desc[i]= jsonarray.getJSONObject(i).getString("desc");
-						author[i]= jsonarray.getJSONObject(i).getString("author");
-						
-						
-						
-					}
-					
-
-				}catch(JSONException e){
-					e.printStackTrace();
-				}
+				
 			}
 			return results;
 			
@@ -109,7 +84,34 @@ SharedPreferences sharedPreferences;
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			
+			JSONObject jsonObject;
+			try{
+				jsonObject = new JSONObject(results);
+			 jsonarray = jsonObject.getJSONArray("livegallery");
+				
+				 imageurl = new String[jsonarray.length()];
+				 desc = new String[jsonarray.length()];
+				 author = new String[jsonarray.length()];
+				 gid = new int[jsonarray.length()];
+				 imagebyte = new byte[jsonarray.length()][];
+				  n = jsonarray.length();
+				
+				for(int i=0;i<n;i++){
+					gid[i]= jsonarray.getJSONObject(i).getInt("gid");
+					imageurl[i]= jsonarray.getJSONObject(i).getString("url");
+					desc[i]= jsonarray.getJSONObject(i).getString("desc");
+					author[i]= jsonarray.getJSONObject(i).getString("author");
+					
+					
+					
+				}
+				
+
+			}catch(JSONException e){
+				e.printStackTrace();
+			}catch(Exception e){
+				Toast.makeText(getApplicationContext(),"Internet connection", Toast.LENGTH_LONG).show();
+			}
 			imageDownloader = new ImageDownloader();
 			for(i=0;i<n;i++){
 				if(sharedPreferences.getInt("gid", 0)<gid[i]){
@@ -118,24 +120,29 @@ SharedPreferences sharedPreferences;
 				}
 				}
 			
-			excelDataBase = new ExcelDataBase(getApplicationContext());
-			SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
-			ContentValues contentValues = new ContentValues();
-			//SID  ,PCODE INT NOT NULL, IMAGE ,URL VARCHAR(30)
-			
+			try {
+				excelDataBase = new ExcelDataBase(getApplicationContext());
+				SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
+				ContentValues contentValues = new ContentValues();
+				//SID  ,PCODE INT NOT NULL, IMAGE ,URL VARCHAR(30)
 				
-			for( i=0;i<n;i++){
-				if(sharedPreferences.getInt("gid", 0)<gid[i]){
-				contentValues.put("GID", gid[i]);
-				contentValues.put("DESC", desc[i]);
-				contentValues.put("IMAGE", imagebyte[i]);
-				contentValues.put("AUTHOR", author[i]);
-				sqLiteDatabase.insert("GALLERY", null, contentValues);
-				}
-				}
-				Editor editor = sharedPreferences.edit();
-				editor.putInt("gid", gid[n-1]);
-				editor.commit();
+					
+				for( i=0;i<n;i++){
+					if(sharedPreferences.getInt("gid", 0)<gid[i]){
+					contentValues.put("GID", gid[i]);
+					contentValues.put("DESC", desc[i]);
+					contentValues.put("IMAGE", imagebyte[i]);
+					contentValues.put("AUTHOR", author[i]);
+					sqLiteDatabase.insert("GALLERY", null, contentValues);
+					}
+					}
+					Editor editor = sharedPreferences.edit();
+					editor.putInt("gid", gid[n-1]);
+					editor.commit();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 				
 				stopSelf();
 				

@@ -48,7 +48,7 @@ public class ParseTS extends Service {
 			// TODO Auto-generated method stub
 			
 			DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-			HttpPost httppost = new HttpPost("http://excelapi.net84.net/conference.json");
+			HttpPost httppost = new HttpPost("http://excelmec.org/Login2014/conference.php");
 			httppost.setHeader("Content-type","application/json");
 			InputStream inputstream = null;
 			try{
@@ -176,7 +176,7 @@ public class ParseTS extends Service {
 		  				stopSelf();
 		  			
 		  			}else{
-		  			new parsets().execute("http://excelapi.net84.net/conference.json");
+		  			new parsets().execute("http://excelmec.org/Login2014/conference.php");
 		  			}
 		  		} catch (JSONException e) {
 		  			// TODO Auto-generated catch block

@@ -86,7 +86,7 @@ public class FragmentLifeLine extends SherlockFragment implements OnClickListene
 			updateTextValue("1.	The competition is held for teams of 2 members.\n2.	Cross-college teams ARE allowed.\n3.	Failing to save the 'patient' in given time results in immediate elimination.\n4.	The coordinators of the event reserve the right to take appropriate decisions in case of any issues/conflicts.\n5.	Rules are subject to change at any point in time. All rules will be explained at the event as well.\n6.	The decision of the judges would be final and binding.\n\n");
 		break;
 		case R.id.event:
-			updateTextValue("Lifeline consists of 3 stages and will test participants on their knowledge of electronics, its applications in the field of biomedical engineering and their ability to diagnose and debug problems related to a circuit as quickly as possible.\nFIRST LEVEL:\n1.	This round consists of a 30 minute MCQ test.\n2.	the test will contain electronics and biomed related questions.\n3.	Six teams selected from this round will proceed to the next round.\nSEMI FINALS:\n\nFollowing your instincts is crucial when you are dealing with a life waiting to be saved and all you have is limited time. This round tests your ability to make decisions and execute them in the given time.• The round consists of three biomedical circuit level tasks which tests your practical electronics knowledge.\n• Time allotted for each task is 10 minutes.\n• Failure to complete all the tasks within the allotted time will lead to your elimination.\n• Only four teams which complete the tasks first will make their way to the next round.\nFINALS\n\nCareful what you do, because one mistake from the biomedical engineer, its not an IC burnt, but a life lost.\nSmall innovative designs from you today could be the technology of tomorrow. This round brings out the scientist in you.\n• In this round, you will be asked to design and implement a circuit which will be the solution for a real life problem.\n• Time allotted will be 1hr 30min.\n• Winner will be selected depending on the perfection and implementation of the circuit.\n\n");
+			updateTextValue("Lifeline consists of 3 stages and will test participants on their knowledge of electronics, its applications in the field of biomedical engineering and their ability to diagnose and debug problems related to a circuit as quickly as possible.\nFIRST LEVEL:\n1.	This round consists of a 30 minute MCQ test.\n2.	the test will contain electronics and biomed related questions.\n3.	Six teams selected from this round will proceed to the next round.\nSEMI FINALS:\n\nFollowing your instincts is crucial when you are dealing with a life waiting to be saved and all you have is limited time. This round tests your ability to make decisions and execute them in the given time.ï¿½ The round consists of three biomedical circuit level tasks which tests your practical electronics knowledge.\nï¿½ Time allotted for each task is 10 minutes.\nï¿½ Failure to complete all the tasks within the allotted time will lead to your elimination.\nï¿½ Only four teams which complete the tasks first will make their way to the next round.\nFINALS\n\nCareful what you do, because one mistake from the biomedical engineer, its not an IC burnt, but a life lost.\nSmall innovative designs from you today could be the technology of tomorrow. This round brings out the scientist in you.\nï¿½ In this round, you will be asked to design and implement a circuit which will be the solution for a real life problem.\nï¿½ Time allotted will be 1hr 30min.\nï¿½ Winner will be selected depending on the perfection and implementation of the circuit.\n\n");
 			break;
 		case R.id.imageView2:
 			Intent service = new Intent(getActivity(), ParseResult.class);
@@ -96,13 +96,14 @@ public class FragmentLifeLine extends SherlockFragment implements OnClickListene
 			
 			break;
 		case R.id.imageView3:
-			Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();
+			//Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();
 
 			eid =1015;
 			Ename="Lifeline";
 			if(excelDataBase.Isregistered()){
         		Intent service1 = new Intent(getActivity(), InsertParticipant.class);
     			service1.putExtra("eid", eid);
+    			service1.putExtra("team", true);
     			service1.putExtra("Ename", "Lifline");
     			getActivity().startService(service1);
     			

@@ -113,8 +113,8 @@ public class SigninActivity extends SherlockActivity implements OnClickListener 
 					String jsonUser =fb.request("me");
 					obj = Util.parseJson(jsonUser);
 					 id =Integer.parseInt(obj.optString("id"));
-					Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
-				
+					
+					
 					
 				} catch (FacebookError e) {
 					// TODO Auto-generated catch block
@@ -185,7 +185,11 @@ public class SigninActivity extends SherlockActivity implements OnClickListener 
 					
 					update();
 					Toast.makeText(SigninActivity.this,"Logged IN",Toast.LENGTH_LONG).show();
-					
+					 Intent intent = new Intent(SigninActivity.this, SigninParse.class);
+						intent.putExtra("email", "email");
+						intent.putExtra("pass", "pass");
+						intent.putExtra("fb", id);
+						startService(intent);
 							
 					
 					

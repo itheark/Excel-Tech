@@ -56,7 +56,7 @@ int count,i;
 			// TODO Auto-generated method stub
 			
 			DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-			HttpPost httppost = new HttpPost("http://excelapi.net84.net/quickopen.json");
+			HttpPost httppost = new HttpPost("http://excelmec.org/Login2014/quickopen.php");
 			httppost.setHeader("Content-type","application/json");
 			InputStream inputstream = null;
 			try{
@@ -139,7 +139,6 @@ int count,i;
 					FragmentTransaction transaction;
 					//fragmentManager = HomeNDActivity.
 					//fragmentManager =  getApplicationContext().getSupportFragmentManager();
-					Toast.makeText(getApplicationContext(), "FragmentManager SET", Toast.LENGTH_LONG).show();
 
 					transaction = HomeNDActivity.fragmentManager.beginTransaction();
 					f = new QuickOpenFragment();
@@ -174,7 +173,7 @@ int count,i;
 	@Override
 	public void onStart(Intent intent, int startId) {
 		// TODO Auto-generated method stub
-		 new parsequickopen().execute("http://excelapi.net84.net/quickopen.json");
+		 new parsequickopen().execute("http://excelmec.org/Login2014/quickopen.php");
 	}
 
 }
