@@ -29,9 +29,9 @@ public class ParseResult extends Service {
 String results,url;
 String[] res,name,college;
 int eid;
-Context context;
+
 boolean flag;
-String resfinal;
+String resfinal="";
 Misc misc;
 	
 	public String getFinalResult(){
@@ -41,6 +41,12 @@ Misc misc;
 	
 
 	public class Result extends AsyncTask<String, String, String>  {
+
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+		}
 
 		@Override
 		protected String doInBackground(String... params)  {
@@ -95,7 +101,7 @@ Misc misc;
 					name = new String[len];
 					college = new  String[len];
 					
-					
+					resfinal="Winners\n";
 					for(int i=0;i<len;i++){
 					name[i]=	winners.getJSONObject(i).getString("teamname");
 						college[i] =winners.getJSONObject(i).getString("college");
@@ -113,7 +119,7 @@ Misc misc;
 					name = new String[len];
 					college = new  String[len];
 					
-					
+					resfinal="ShortListed\n";
 					for(int i=0;i<len;i++){
 					name[i]=	shortlist.getJSONObject(i).getString("teamname");
 						college[i] =shortlist.getJSONObject(i).getString("college");
@@ -125,7 +131,6 @@ Misc misc;
 				}else{
 					resfinal = "We are Also Waiting";
 				}
-				
 				
 				
 				

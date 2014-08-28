@@ -178,8 +178,7 @@ public class InfoNDActivity extends SherlockFragmentActivity {
 					f= new ScheduleViewPager();
 				}
 				else{
-					Toast.makeText(getApplicationContext(), "Please wait..Checking for update", Toast.LENGTH_LONG).show();
-					startService(new Intent(InfoNDActivity.this, ParseSchedule.class));
+					Toast.makeText(this, "Please wait...waiting for internet", Toast.LENGTH_LONG).show();					startService(new Intent(InfoNDActivity.this, ParseSchedule.class));
 					
 					//	ParseSchedule ParseS = new ParseSchedule(getApplicationContext());
 					//ParseS.parseSchedule();

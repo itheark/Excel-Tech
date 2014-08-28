@@ -92,46 +92,24 @@ public class FragmentLifeLine extends SherlockFragment implements OnClickListene
 			Intent service = new Intent(getActivity(), ParseResult.class);
 			service.putExtra("eid", eid);
 			getActivity().startService(service);
-			Toast.makeText(getActivity(), "Please wait...fetching result", Toast.LENGTH_LONG).show();
-	       
+			Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();	       
 			
 			break;
 		case R.id.imageView3:
-			Toast.makeText(getActivity(), "Please wait", Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();
 
-			eid =904;
+			eid =1015;
 			Ename="Lifeline";
-			h = new Handler() {
-	            @Override
-	            public void handleMessage(Message msg) {
-
-	                if (msg.what != 1) { // code if not connected
-	               
-	                	connectionDetector.noNetworkAlert();;
-	               
-	                	
-	                	
-	            				
-	                } else { // code if connected
-		       
+			if(excelDataBase.Isregistered()){
+        		Intent service1 = new Intent(getActivity(), InsertParticipant.class);
+    			service1.putExtra("eid", eid);
+    			service1.putExtra("Ename", "Lifline");
+    			getActivity().startService(service1);
+    			
 					
-	                	if(excelDataBase.Isregistered()){
-	                		Intent service1 = new Intent(getActivity(), ParseResult.class);
-	            			service1.putExtra("eid", eid);
-	            			getActivity().startService(service1);
-	            			Toast.makeText(getActivity(), "Please wait...fetching result", Toast.LENGTH_LONG).show();
-	        					
-	        	}else{
-	        					Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
-	        				}       	
-	               	 
-	                }   
-	            }
-	        };
-	        
-	        
-
-	        connectionDetector.isNetworkAvailable(h,5000);
+	}else{
+				//	Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
+				}
 			
 			
 			break;

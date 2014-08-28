@@ -25,7 +25,7 @@ import android.os.IBinder;
 import android.widget.Toast;
 
 public class ParseActivate extends Service{
-Context context;
+
 String results,url;
 int activate;
 SharedPreferences sharedPreferences;
@@ -54,13 +54,13 @@ SharedPreferences sharedPreferences;
 				results = theStringBuilder.toString();
 				
 			}catch(Exception e){
-				e.printStackTrace();
+				stopSelf();
 			}finally{
 				try{
 					if(inputstream!=null)
 						inputstream.close();
 				}catch(Exception e){
-					e.printStackTrace();
+					stopSelf();
 				}
 				
 			}
@@ -72,25 +72,29 @@ SharedPreferences sharedPreferences;
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			JSONObject jsonObject;
+			
 			try{
+				JSONObject jsonObject;
 				jsonObject = new JSONObject(results);
 				activate = jsonObject.getInt("activate")	; 
 				
 
-			}catch(JSONException e){
-				e.printStackTrace();
+			}catch(Exception e){
+				stopSelf();
 				
 			}
 			
 			if(activate==2){
-				sharedPreferences = context.getSharedPreferences("login", Context.MODE_PRIVATE);
+				sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
 			Editor editor = sharedPreferences.edit();
 			editor.putBoolean("active", true);
 			editor.commit();
+			Toast.makeText(getApplicationContext(), "Account activated :)", Toast.LENGTH_LONG).show();
+			}else{
+				Toast.makeText(getApplicationContext(), "Account not activated", Toast.LENGTH_LONG).show();
 			}
 			//	Toast.makeText(context, "Account not activated", Toast.LENGTH_LONG).show();
-			
+			stopSelf();
 		}
 
 		
@@ -109,7 +113,9 @@ SharedPreferences sharedPreferences;
 		Cursor cursor = sqLiteDatabase.query("USER", columns, null,null, null, null, null);
 		cursor.moveToFirst();	if(cursor.getCount()>0){
 			int pid =cursor.getInt(cursor.getColumnIndex("PID"));
+			Toast.makeText(getApplicationContext(), ""+pid, Toast.LENGTH_LONG).show();
 			url ="http://excelmec.org/Login2014/check_active.php?pid="+pid;
+			
 		}
 		
 		new ParseAsync().execute(url);

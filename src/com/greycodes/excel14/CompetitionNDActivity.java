@@ -1,6 +1,7 @@
 package com.greycodes.excel14;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -42,7 +43,7 @@ public class CompetitionNDActivity extends SherlockFragmentActivity{
 	public static int pgdisplay;
 	 FragmentManager fragmentManager ;
 	 FragmentTransaction transaction;
-	 
+	 public static Context context;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,7 +51,7 @@ public class CompetitionNDActivity extends SherlockFragmentActivity{
 		 FragmentManager fragmentManager = getSupportFragmentManager();
 		 FragmentTransaction transaction=fragmentManager.beginTransaction();
 		coptions=new int[] {R.drawable.computer_nd,R.drawable.electronics_nd,R.drawable.electrical_nd,R.drawable.robotics,R.drawable.biomedical_nd,R.drawable.general_nd,R.drawable.non_technical_nd};
-		        
+		        context = this;
 		        cDrawerLayout =(DrawerLayout) findViewById(R.id.drawer_layout_competition);
 		        cDrawerList = (ListView) findViewById(R.id.listview_drawer_competition);
 		        cDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,GravityCompat.START);
@@ -187,6 +188,13 @@ public class CompetitionNDActivity extends SherlockFragmentActivity{
 			
 		}
 
+
+		@Override
+		protected void onDestroy() {
+			// TODO Auto-generated method stub
+			super.onDestroy();
+	
+		}
 
 		@Override
 		public void onConfigurationChanged(Configuration newConfig) {

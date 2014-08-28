@@ -38,7 +38,7 @@ public class ScheduleDay2Fragment extends Fragment implements OnScrollListener {
 	SQLiteDatabase sqLiteDatabase=	  excelDataBase.getSQLiteDataBase();
 	columns = new String[]{"EID","ENAME","LEVEL","CAT","VENUE","STIME","DURATION","TIME"};
 	selection = new String[]{"2"};
-	 cursor=	sqLiteDatabase.query("SCHEDULE", columns, "DAY=?", selection, null, null,null);
+	 cursor=	sqLiteDatabase.query("SCHEDULE", columns, "DAY=?", selection, null, null,"SID ASC");
 	
 	
 	cursor.moveToFirst();

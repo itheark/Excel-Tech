@@ -52,7 +52,7 @@ public class ECViewPager extends Fragment implements OnClickListener,OnLongClick
 	 ProgressDialog progressDialog;
 	 
 	 String Ename;
-	 boolean team;
+	 boolean team=false;
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
@@ -116,34 +116,30 @@ public class ECViewPager extends Fragment implements OnClickListener,OnLongClick
 			return true;
 		}
 
-		   @Override
-			public void onPause() {
-				// TODO Auto-generated method stub
-				super.onPause();
-				getActivity().stopService(new Intent(getActivity(), ParseResult.class));
-			}
+		  
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			
 			switch(v.getId()){
 			case R.id.imageView3:
-				Toast.makeText(getActivity(), "Please wait", Toast.LENGTH_LONG).show();
 
 				
 				switch(pager.getCurrentItem()){
 				case 0:
-					eid =896;
-					Ename="#include";
-					team = true;
+					eid =1007;
+					team=false;
+					Ename="Extrinsicity";
 					break;
 				case 1:
-					eid =896+1;
-					Ename="#include";
+					eid =1008;
+					team=false;
+					Ename="Defuse";
 					break;
 				case 2:
-					eid =896+2;
-					Ename="#include";
+					eid =1009;
+					team=false;
+					Ename="Circuimstance";
 					break;
 				
 				
@@ -153,26 +149,27 @@ public class ECViewPager extends Fragment implements OnClickListener,OnLongClick
 				
 				
 				if(excelDataBase.Isregistered()){
-            		Intent service1 = new Intent(getActivity(), ParseResult.class);
-        			service1.putExtra("eid", eid);
-        			getActivity().startService(service1);
-        			Toast.makeText(getActivity(), "Please wait...fetching result", Toast.LENGTH_LONG).show();
-    					
+					Intent service1 = new Intent(getActivity(), InsertParticipant.class);
+	    			service1.putExtra("eid", eid);
+	    			service1.putExtra("team", team);
+	    			service1.putExtra("Ename", Ename);
+	    			getActivity().startService(service1);
+	    			Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();    					
     	}else{
-    					Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
+    				//	Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
     				}
 				
 				break;
 			case R.id.imageView2:
 				switch(pager.getCurrentItem()){
 				case 0:
-			       eid=896;
+					eid =1007;
 				break;
 				case 1:
-					 eid=896+1;
+					eid =1008;
 					break;
 				case 2:
-					 eid=896+2;
+					eid =1009;
 					break;
 				
 				
@@ -181,8 +178,7 @@ public class ECViewPager extends Fragment implements OnClickListener,OnLongClick
 				Intent service = new Intent(getActivity(), ParseResult.class);
 				service.putExtra("eid", eid);
 				getActivity().startService(service);
-				Toast.makeText(getActivity(), "Please wait...fetching result", Toast.LENGTH_LONG).show();
-				break;
+				Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();				break;
 			case R.id.imageView4:
 				Toast.makeText(getActivity(), "Press & Hold to call", Toast.LENGTH_LONG).show();
 
@@ -207,6 +203,19 @@ public class ECViewPager extends Fragment implements OnClickListener,OnLongClick
 			
 			
 		}
+
+		   @Override
+			public void onPause() {
+				// TODO Auto-generated method stub
+				super.onPause();
+				try {
+					getActivity().stopService(new Intent(getActivity(), InsertParticipant.class));
+					getActivity().stopService(new Intent(getActivity(), ParseResult.class));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			    }
 
 		
 		

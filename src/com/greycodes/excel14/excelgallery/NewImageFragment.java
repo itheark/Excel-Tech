@@ -73,58 +73,67 @@ String[] name;
 
 			@Override
 			public void onClick(View v) {
-				Gallery meal = ((NewImageActivity) getActivity()).getCurrentMeal();
-Toast.makeText(getActivity(), "Photo will be publiched once approved", Toast.LENGTH_LONG).show();
-				// When the user clicks "Save," upload the meal to Parse
-				// Add data to the meal object:
-			
-
-				// Associate the meal with the current user
-				SharedPreferences sharedPreferences = getActivity().getSharedPreferences("login",Context.MODE_PRIVATE);
-				if (sharedPreferences.getBoolean("registered", false)) {
-					
-					String[] columns = {"FNAME"};
-					ExcelDataBase excelDataBase = new ExcelDataBase(getActivity());
-					SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
-					Cursor cursor = sqLiteDatabase.query("USER", columns, null,null, null, null, null);
-					cursor.moveToFirst();
-					name = new String[1];
-					name[0]= cursor.getString(cursor.getColumnIndex("FNAME"));
-				}else
-				{
-					name[0] = "Guest";
+				if(title.length()>25){
+					Toast.makeText(getActivity(), "Caption should be less than 25 characters", Toast.LENGTH_LONG).show();
 				}
-				
-				ParseUser parseUser = new ParseUser();
-				parseUser.setUsername(name[0]);
-				
-				meal.setAuthor(ParseUser.getCurrentUser());
-			//	meal.setAuthor(ParseUser);
+				else {
+					Gallery meal = ((NewImageActivity) getActivity())
+							.getCurrentMeal();
+					Toast.makeText(getActivity(),
+							"Photo will be publiched once approved",
+							Toast.LENGTH_LONG).show();
+					// When the user clicks "Save," upload the meal to Parse
+					// Add data to the meal object:
+					// Associate the meal with the current user
+					SharedPreferences sharedPreferences = getActivity()
+							.getSharedPreferences("login", Context.MODE_PRIVATE);
+					if (sharedPreferences.getBoolean("registered", false)) {
 
-				
-				// Add the rating
-				meal.setRating("5");
-				meal.setTitle(name[0]+"  "+title.getText().toString());
-				// If the user added a photo, that data will be
-				// added in the CameraFragment
-
-				// Save the meal and return
-				meal.saveInBackground(new SaveCallback() {
-
-					@Override
-					public void done(ParseException e) {
-						if (e == null) {
-							getActivity().setResult(Activity.RESULT_OK);
-							getActivity().finish();
-						} else {
-							Toast.makeText(
-									getActivity().getApplicationContext(),
-									"Error saving: " + e.getMessage(),
-									Toast.LENGTH_SHORT).show();
-						}
+						String[] columns = { "FNAME" };
+						ExcelDataBase excelDataBase = new ExcelDataBase(
+								getActivity());
+						SQLiteDatabase sqLiteDatabase = excelDataBase
+								.getSQLiteDataBase();
+						Cursor cursor = sqLiteDatabase.query("USER", columns,
+								null, null, null, null, null);
+						cursor.moveToFirst();
+						name = new String[1];
+						name[0] = cursor.getString(cursor
+								.getColumnIndex("FNAME"));
+					} else {
+						name[0] = "Guest";
 					}
+					ParseUser parseUser = new ParseUser();
+					parseUser.setUsername(name[0]);
+					meal.setAuthor(ParseUser.getCurrentUser());
+					//	meal.setAuthor(ParseUser);
+					// Add the rating
+					meal.setRating("5");
+					String tit =title.getText().toString();
+					if(tit.length()==0){
+						tit="Excel 2014";
+					}
+					meal.setTitle(name[0] + "  " + tit);
+					// If the user added a photo, that data will be
+					// added in the CameraFragment
+					// Save the meal and return
+					meal.saveInBackground(new SaveCallback() {
 
-				});
+						@Override
+						public void done(ParseException e) {
+							if (e == null) {
+								getActivity().setResult(Activity.RESULT_OK);
+								getActivity().finish();
+							} else {
+								Toast.makeText(
+										getActivity().getApplicationContext(),
+										"Error saving: " + e.getMessage(),
+										Toast.LENGTH_SHORT).show();
+							}
+						}
+
+					});
+				}
 
 			}
 		});
@@ -177,6 +186,7 @@ Toast.makeText(getActivity(), "Photo will be publiched once approved", Toast.LEN
 				.getCurrentMeal().getPhotoFile();
 		if (photoFile != null) {
 			mealPreview.setParseFile(photoFile);
+			
 			mealPreview.loadInBackground(new GetDataCallback() {
 				@Override
 				public void done(byte[] data, ParseException e) {

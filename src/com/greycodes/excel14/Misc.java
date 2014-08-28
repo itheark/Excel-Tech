@@ -25,11 +25,18 @@ import com.greycodes.excel14.general.Fragmentkryptos;
 import com.greycodes.excel14.initiatives.DevconFragment;
 import com.greycodes.excel14.initiatives.IbetoFragment;
 import com.greycodes.excel14.initiatives.IbetoJrFragment;
+import com.greycodes.excel14.initiatives.OrganicFarmingFragment;
+import com.greycodes.excel14.nontechnical.AlleyDunk;
+import com.greycodes.excel14.nontechnical.ByzantineFragment;
+import com.greycodes.excel14.nontechnical.DefactoFragment;
 import com.greycodes.excel14.nontechnical.FragmentBestManager;
 import com.greycodes.excel14.nontechnical.FragmentCSI;
 import com.greycodes.excel14.nontechnical.FragmentGameZone;
 import com.greycodes.excel14.nontechnical.FragmentInstantPhotography;
 import com.greycodes.excel14.nontechnical.FragmentSpiderWeb;
+import com.greycodes.excel14.nontechnical.FunZoneFragment;
+import com.greycodes.excel14.nontechnical.TikiTakaFragment;
+import com.greycodes.excel14.nontechnical.TreasureHuntFragment;
 import com.greycodes.excel14.robotics.FragmentRobowars;
 import com.greycodes.excel14.robotics.FragmentTerrainMaster;
 import com.greycodes.excel14.talkseries.DotIssueFragment;
@@ -56,110 +63,130 @@ Context context;
 	public void settext(int eid,String text){
 		TextView tv =null;
 		switch(eid){
-		case 889:
+		case 1000:
 			tv =FragmentHashInclude.tv;
 			break;
-		case 890:
+		case 1001:
 			tv =FragmentWebBots.tv;
 			break;
-		case 891:
+		case 1002:
 			tv =FragmentLOC.tv;
 			break;
-		case 892:
+		case 1003:
 			tv =FragmentHackMaster.tv;
 			break;
-		case 893:
+		case 1004:
 			tv =FragmentFourOneTwenty.tv;
 			break;
-		case 894:
+		case 1005:
 			tv =FragmentAlgorithms.tv;
 			break;
-		case 895:
+		case 1006:
 			tv =FragmentSoYouThink.tv;
 			break;
-		case 896:
+		case 1007:
 			tv =FragmentExtrinsicity.tv;
 			break;
-		case 897:
+		case 1008:
 			tv =FragmentDefuse.tv;
 			break;
-		case 898:
+		case 1009:
 			tv =FragmentCircuim.tv;
 			break;
-		case 899:
+		case 1010:
 			tv =FragmentLumiere.tv;
 			break;
-		case 900:
+		case 1011:
 			tv =FragmentExtundoprodigo.tv;
 			break;
-		case 901:
+		case 1012:
 			tv =EaventuraFragment.tv;
 			break;
-		case 902:
+		case 1013:
 			tv =FragmentRobowars.tv;
 			break;
-		case 903:
+		case 1014:
 			tv =FragmentTerrainMaster.tv;
 			break;
-		case 904:
+		case 1015:
 			tv =FragmentLifeLine.tv;
 			break;
-		case 905:
+		case 1016:
 			tv =Fragmentkryptos.tv;
 			break;
-		case 906:
+		case 1017:
 			tv =FragmentDalalBull.tv;
 			break;
-		case 907:
+		case 1018:
 			tv =FragmentPapyrusOfAni.tv;
 			break;
-		case 908:
+		case 1019:
 			tv =FragmentBestManager.tv;
 			break;
-		case 909:
+		case 1020:
 			tv =FragmentCSI.tv;
 			break;
-		case 910:
+		case 1021:
 			tv =FragmentGameZone.tv;
 			break;
-		case 911:
+		case 1022:
 			tv =FragmentSpiderWeb.tv;
 			break;
-		case 912:
+		case 1023:
 			tv =FragmentInstantPhotography.tv;
 			break;
-		case 913:
+		case 1024:
+			tv =TikiTakaFragment.tv;
+			break;
+		case 1025:
+			tv =DefactoFragment.tv;
+			break;
+		case 1026:
+			tv =AlleyDunk.tv;
+			break;
+		case 1027:
+			tv =ByzantineFragment.tv;
+			break;
+		case 1028:
+			tv =TreasureHuntFragment.tv;
+			break;
+		case 1029:
+			tv =FunZoneFragment.tv;
+			break;
+		case 1030:
 			tv =DotIssueFragment.tv;
 			break;
-		case 914:
+		case 1031:
 			tv =TedXMecFragment.tv;
 			break;
-		case 915:
+		case 1032:
 			tv =SeminarFragment.tv;
 			break;
-		case 916:
+		case 1033:
 			tv =ExhibitionFragment.tv;
 			break;
-		case 917:
+		case 1034:
 			tv =WorkshopFragment.tv;
 			break;
 		
-		case 919:
+		case 1035:
 			tv =IbetoFragment.tv;
 			break;
-		case 920:
+		case 1036:
 			tv =IbetoJrFragment.tv;
 			break;
-		case 921:
+		case 1037:
 			tv =DevconFragment.tv;
 			break;
-		case 922:
+		case 1039:
 			tv =MarketManiaFragment.tv;
 			break;
-		case 923:
+		case 1040:
 			tv =TagURItFragment.tv;
 			break;
-			
+		case 1038:
+			tv =OrganicFarmingFragment.tv;
+			break;
 			
 			
 		}
