@@ -75,6 +75,8 @@
        android:gravity="center"
        android:fontFamily="sans-serif"
        android:layout_gravity="center_horizontal"
+       android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:textColor="#99ffffff"
      android:text="Is it your whim to surmount the arena of stock market? Do the words ‘investment’ and ‘trade’ invigorate you? THEN come unveil the crafty businessman in you, manage your own portfolio and debacle your competitors in a risk-free environment. The dynamic simulation of virtual stock market awaits the real dealer!\n"	/>	
  

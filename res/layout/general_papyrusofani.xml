@@ -74,6 +74,8 @@
         android:textSize="15sp"
        android:gravity="center"
        android:fontFamily="sans-serif"
+       android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
        android:layout_gravity="center_horizontal"
         android:textColor="#99ffffff"
      android:text="“Vision without action is merely a dream\nAction without vision just passes the time\nVision wiht action can change the world\n”\nIt is time to titillate your grey cells, bring out innovative and ingenious ideas and unleash it to the world, ’cos it awaits a change! Papyrus of ani provides you the right platform to impact the scientific world with your brilliant thoughts and win exciting cash prizes! \n\n"	/>	

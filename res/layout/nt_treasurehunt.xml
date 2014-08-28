@@ -61,6 +61,8 @@
         android:textSize="15sp"
        android:gravity="center"
        android:fontFamily="sans-serif"
+       android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
        android:layout_gravity="center_horizontal"
         android:textColor="#99ffffff"
      android:text="Are you adventurous enough to set out on a hunt for something that you may never find? Pick your crew and get ready to solve some puzzles and find the hidden treasure. The event is based on the adage 'Finders Keepers, Losers Weepers'. In case you get lost in the morass of riddles, your whole effort would be rendered futile.\n"	/>	

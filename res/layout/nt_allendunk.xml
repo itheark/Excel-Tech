@@ -62,6 +62,8 @@
        android:gravity="center"
        android:fontFamily="sans-serif"
        android:layout_gravity="center_horizontal"
+       android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:textColor="#99ffffff"
      android:text="Its time to get high on adrenaline and shoot some hoops. Showcase your potential with the basketball in this one of a kind flood-lit tournament. Take on the best and show them what you got!\n"	/>	
  

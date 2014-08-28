@@ -62,6 +62,8 @@
        android:gravity="center"
        android:fontFamily="sans-serif"
        android:layout_gravity="center_horizontal"
+       android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:textColor="#99ffffff"
      android:text="Photography is something that cuts across all boundaries, it transcends the constraints of language and culture. Are you an artist with a camera who has his own story to tell? Then show us your the photographs, not pictures just taken, but works of art that are painstakingly fashioned. For all those shutterbugs who believe their favourite personal photograph is the one.....\n"	/>	
  

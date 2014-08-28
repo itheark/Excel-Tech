@@ -76,6 +76,8 @@
        android:gravity="center"
        android:fontFamily="sans-serif"
       android:textColor="#e3e3e3"
+      android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
      android:text="A unique event that lets you envisage yourself as a life saver with a quest to prove your adroitness in debugging. Examine and “operate”the impaired medical instrument still connected to the patient. It’s time to act. It’s time to save.\n\n"	/>	
  
     </ScrollView>

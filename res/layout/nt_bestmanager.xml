@@ -63,7 +63,8 @@
         android:textSize="15sp"
        android:gravity="center"
        android:fontFamily="sans-serif"
-       
+       android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:textColor="#99ffffff"
      android:text= "Ever seen a company that runs without that one guy up there?  As Peter Drucker says, “ The manager is the dynamic, life-giving element in every business” The World Needs Managers; to lead... to plan... to motivate... We challenge you to walk the walk and talk the talk and convince us that you are in the ‘top’ of the world’s best managers.\n\n"	/>	
  
