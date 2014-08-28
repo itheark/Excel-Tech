@@ -13,14 +13,6 @@
         android:layout_marginTop="30dp"
         android:src="@drawable/c_exhibition" />
 
-    <ImageView
-        android:id="@+id/event"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-         android:layout_centerHorizontal="true"
-        android:src="@drawable/cs_eventformat"
-        android:layout_below="@+id/include" 
-        android:layout_marginTop="20dp"/>
 
     <ImageView
         android:id="@+id/intro"
@@ -29,16 +21,10 @@
           android:src="@drawable/cs_intro"
           android:layout_below="@+id/include" 
         android:layout_marginTop="20dp"
-        android:layout_toLeftOf="@+id/event" 
+        android:layout_centerHorizontal="true" 
         />
 
-    <ImageView
-        android:id="@+id/rules"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/event"
-        android:layout_toRightOf="@+id/event"
-        android:src="@drawable/cs_rules" />
+   
 
     
     

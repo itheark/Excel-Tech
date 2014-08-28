@@ -65,5 +65,13 @@
         android:layout_centerVertical="true"
         android:src="@drawable/logohome" />
 
+    <ImageView
+        android:id="@+id/npbuilder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/excelmecorg"
+         android:layout_alignRight="@+id/excelmecorg"
+        android:layout_marginTop="3dp"
+        android:src="@drawable/nucleus" />
    
 </RelativeLayout>
