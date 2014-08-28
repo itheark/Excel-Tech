@@ -159,7 +159,7 @@ ExcelDataBase excelDataBase;
 				Editor editor = sharedPreferences.edit();
 				editor.putInt("schedule",2);
 				editor.commit();
-				
+				Toast.makeText(getApplicationContext(), "Schedule updated", Toast.LENGTH_LONG).show();
 			}
 			
            
