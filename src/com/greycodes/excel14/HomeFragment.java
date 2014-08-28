@@ -27,7 +27,7 @@ public class HomeFragment extends Fragment implements OnClickListener {
 	ImageView fbicon;
 	ImageView navigate;
 	SharedPreferences sharedPreferences;
-	ImageView excelmecorg;
+	ImageView excelmecorg,npbuilder;
 	ExcelDataBase excelDataBase;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,10 +39,12 @@ public class HomeFragment extends Fragment implements OnClickListener {
 		navigate = (ImageView) rootView.findViewById(R.id.navigate_icon);
 		fbicon= (ImageView) rootView.findViewById(R.id.fb_icon);
 		excelmecorg=(ImageView)rootView.findViewById(R.id.excelmecorg);
+		npbuilder=(ImageView)rootView.findViewById(R.id.npbuilder);
 		 login.setOnClickListener(this);
 		 navigate.setOnClickListener(this);
 		 fbicon.setOnClickListener(this);
 		 excelmecorg.setOnClickListener(this);
+		 npbuilder.setOnClickListener(this);
 		 	 excelDataBase = new ExcelDataBase(getActivity());
 		 return rootView;
 	}
@@ -128,7 +130,14 @@ public class HomeFragment extends Fragment implements OnClickListener {
 				startActivity(fb);
 			 
 		}
-		
+		if(v.equals(npbuilder))
+		{
+			 String url = "http://nucleusproperties.in/";
+			 Intent i = new Intent(Intent.ACTION_VIEW);
+			 i.setData(Uri.parse(url));
+			 startActivity(i);
+			
+		}
 		
 		
 	}

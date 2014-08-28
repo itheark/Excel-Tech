@@ -18,15 +18,16 @@
         android:id="@+id/livegallery_desc"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:text="Caption" 
         android:textColor="#333333"
-        android:paddingLeft="10dp"/>
+        android:paddingLeft="10dp"
+        />
     <TextView
         android:id="@+id/livegallery_auth"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:textSize="15dp"
+        android:textSize="14dp"
         android:textColor="#666666"
         android:text="Name" 
         android:paddingLeft="10dp"/>
