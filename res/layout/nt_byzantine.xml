@@ -25,7 +25,17 @@
         
         android:layout_centerHorizontal="true"
         />
-
+<TextView
+           android:id="@+id/prizemoney"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/intro"
+           android:layout_marginTop="2dp"
+           android:fontFamily="sans-serif"
+       		android:layout_gravity="center_horizontal"
+       		android:textColor="#e3e3e3"
+           android:layout_centerHorizontal="true"
+           android:text="PRIZE MONEY : 7K+" />
  
     
     
@@ -52,7 +62,8 @@
        android:gravity="center"
        android:layout_gravity="center_horizontal"
        android:fontFamily="sans-serif"
-       
+       android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:textColor="#99ffffff"
      android:text="Ever since we were children, we have been taught to avoid the roundabout way in any situation. For once, you get to scrap this notion. The dictionary defines kluge as an excessively complicated system or situation, typically involving a great deal of administrative detail. \n"	/>	
  

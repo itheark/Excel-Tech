@@ -40,7 +40,17 @@
         android:layout_toRightOf="@+id/event"
         android:src="@drawable/cs_rules" />
 
-    
+    <TextView
+           android:id="@+id/prizemoney"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/intro"
+           android:layout_marginTop="2dp"
+           android:fontFamily="sans-serif"
+       		android:layout_gravity="center_horizontal"
+       		android:textColor="#e3e3e3"
+           android:layout_centerHorizontal="true"
+           android:text="PRIZE MONEY : 12K+" />
     
     
        <ScrollView
@@ -64,6 +74,8 @@
         android:textSize="15sp"
        android:gravity="center"
        android:layout_gravity="center_horizontal"
+       android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
        android:fontFamily="sans-serif"
        android:textColor="#e3e3e3"
      android:text="“Creativity is seeing what everybody has seen and thinking what nobody has thought.”\nThe moment has come to give wings to your imagination. Use your expert electrical and mechanical skills as a weapon to crown yourself as the master creator; give birth to your own gadget, crack the problem and dare your opponents. The crowd awaits the gadget of the day!\n\n"	/>	

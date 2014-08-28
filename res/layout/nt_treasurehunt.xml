@@ -26,7 +26,17 @@
         android:layout_centerHorizontal="true"
         />
 
- 
+ <TextView
+           android:id="@+id/prizemoney"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/intro"
+           android:layout_marginTop="2dp"
+           android:fontFamily="sans-serif"
+       		android:layout_gravity="center_horizontal"
+       		android:textColor="#e3e3e3"
+           android:layout_centerHorizontal="true"
+           android:text="PRIZE MONEY : 10K+" />
     
     
     
@@ -51,6 +61,8 @@
         android:textSize="15sp"
        android:gravity="center"
        android:fontFamily="sans-serif"
+       android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
        android:layout_gravity="center_horizontal"
         android:textColor="#99ffffff"
      android:text="Are you adventurous enough to set out on a hunt for something that you may never find? Pick your crew and get ready to solve some puzzles and find the hidden treasure. The event is based on the adage 'Finders Keepers, Losers Weepers'. In case you get lost in the morass of riddles, your whole effort would be rendered futile.\n"	/>	

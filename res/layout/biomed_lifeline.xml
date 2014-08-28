@@ -41,7 +41,17 @@
         android:layout_toRightOf="@+id/event"
         android:src="@drawable/cs_rules" />
 
-    
+    <TextView
+           android:id="@+id/prizemoney"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/intro"
+           android:layout_marginTop="2dp"
+           android:fontFamily="sans-serif"
+       		android:layout_gravity="center_horizontal"
+       		android:textColor="#e3e3e3"
+           android:layout_centerHorizontal="true"
+           android:text="PRIZE MONEY : 12K+" />
     
     
        <ScrollView
@@ -66,6 +76,8 @@
        android:gravity="center"
        android:fontFamily="sans-serif"
       android:textColor="#e3e3e3"
+      android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
      android:text="A unique event that lets you envisage yourself as a life saver with a quest to prove your adroitness in debugging. Examine and “operate”the impaired medical instrument still connected to the patient. It’s time to act. It’s time to save.\n\n"	/>	
  
     </ScrollView>

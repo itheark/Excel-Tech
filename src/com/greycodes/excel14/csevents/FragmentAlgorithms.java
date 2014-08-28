@@ -48,7 +48,7 @@ public class FragmentAlgorithms extends SherlockFragment implements OnClickListe
 		}
 		if (v.equals(rules))
 		{
-			updateTextValue("(To be updated ...)\n\n");
+			updateTextValue("1.It is not mandatory that the team members should be from the same college.\n2. Use of mobile phones will not be allowed during the event.\n3.The time received by each participant for coding depends on the cycle (Refer Event Format)\n4.The team that codes the most optimal solution in the shortest time will be declared as winners.\n5.Programs with least complexity would be given preference.\n6.During the round the teams can contact the coordinators or the volunteers in case of emergency.\n7.Rules are subject to change at any point in time. All rules will be explained at the event.\n8.Decision of the judges will be final.\n\n");
 			
 		}
 		

@@ -39,7 +39,17 @@
         android:layout_alignTop="@+id/event"
         android:layout_toRightOf="@+id/event"
         android:src="@drawable/cs_rules" />
-
+	<TextView
+           android:id="@+id/prizemoney"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/intro"
+           android:layout_marginTop="2dp"
+           android:fontFamily="sans-serif"
+       		android:layout_gravity="center_horizontal"
+       		android:textColor="#e3e3e3"
+           android:layout_centerHorizontal="true"
+           android:text="PRIZE MONEY : 14K+" />
     
     
     
@@ -64,6 +74,8 @@
         android:textSize="15sp"
        android:gravity="center"
        android:fontFamily="sans-serif"
+       android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
        android:layout_gravity="center_horizontal"
         android:textColor="#99ffffff"
      android:text="The world is full of obvious things, which nobody by chance ever observes. - Sherlock Holmes\nAre you ready to plunge into the vivid world of mysteries?  Are you game to explore the hidden and unseen? Use your wit to unlock the ‘krypt’. Extricate the tricky puzzles and expound the mysterious clues.  Battle it out in the race to discover the ultimate treasure!\nNOTE: Think deep….Only the astute, intelligent and versatile make it to the end.\n "	/>	

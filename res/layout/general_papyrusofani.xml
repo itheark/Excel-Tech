@@ -40,7 +40,17 @@
         android:layout_toRightOf="@+id/event"
         android:src="@drawable/cs_rules" />
 
-    
+    <TextView
+           android:id="@+id/prizemoney"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/intro"
+           android:layout_marginTop="2dp"
+           android:fontFamily="sans-serif"
+       		android:layout_gravity="center_horizontal"
+       		android:textColor="#e3e3e3"
+           android:layout_centerHorizontal="true"
+           android:text="PRIZE MONEY : 20K+" />
     
     
        <ScrollView
@@ -64,9 +74,11 @@
         android:textSize="15sp"
        android:gravity="center"
        android:fontFamily="sans-serif"
+       android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
        android:layout_gravity="center_horizontal"
         android:textColor="#99ffffff"
-     android:text="“Vision without action is merely a dream”\nIt is time to titillate your grey cells, bring out innovative and ingenious ideas and unleash it to the world, ’cos it awaits a change! Papyrus of ani provides you the right platform to impact the scientific world with your brilliant thoughts and win exciting cash prizes! \n\n"	/>	
+     android:text="“Vision without action is merely a dream\nAction without vision just passes the time\nVision wiht action can change the world\n”\nIt is time to titillate your grey cells, bring out innovative and ingenious ideas and unleash it to the world, ’cos it awaits a change! Papyrus of ani provides you the right platform to impact the scientific world with your brilliant thoughts and win exciting cash prizes! \n\n"	/>	
  
     </ScrollView>
  

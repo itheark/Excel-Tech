@@ -310,11 +310,11 @@ public class LoginActivity extends SherlockActivity implements OnClickListener  
 					Bundle params = new Bundle();
 		            params.putString("place", "104014799634228");  // YOUR PLACE ID
 		            params.putString("Message","Excel");
-		            params.putString("name", "Excel 14"); 
-						params.putString("caption", "Excel Android App"); 
-						params.putString("description", "Check out the new Excel App");
-						params.putString("link", "http://www.excelmec.org/excel2014/");
-						params.putString("picture", "http://www.excelmec.org/excel2014/col_logo.png"); 
+		            params.putString("name", "Excel MEC 14"); 
+						params.putString("caption", "Check out the new Excel App"); 
+						params.putString("description", "Conceived by the students of Govt. Model Engineering College,Kochi, Excel promotes interaction within the engineering community. What started as a small-scale festival is now one of South India’s most celebrated events. ");
+						params.putString("link", "https://play.google.com/store/apps/details?id=com.greycodes.excel14");
+						params.putString("picture", "http://greycodes.com/image_icons/25_logo.png"); 
 
 		            JSONObject coordinates = new JSONObject();
 		            try {

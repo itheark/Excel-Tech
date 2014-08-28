@@ -40,7 +40,17 @@
         android:layout_toRightOf="@+id/event"
         android:src="@drawable/cs_rules" />
 
-    
+    <TextView
+           android:id="@+id/prizemoney"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/intro"
+           android:layout_marginTop="2dp"
+           android:fontFamily="sans-serif"
+       		android:layout_gravity="center_horizontal"
+       		android:textColor="#e3e3e3"
+           android:layout_centerHorizontal="true"
+           android:text="PRIZE MONEY : 12K+" />
     
     
        <ScrollView
@@ -65,6 +75,8 @@
        android:gravity="center"
        android:layout_gravity="center_horizontal"
        android:fontFamily="sans-serif"
+       android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
        android:textColor="#e3e3e3"
      android:text="Are you ready for an adventure?\nTo unravel the mysterious clues.. To explore the hidden secrets…\nPolish your technical know-how and get ready to crack the concealed and unseen, for we bring you the ever challenging technical treasure hunt of excel 2014!\nTread forward by solving the puzzles leading you to the ultimate treasure!\nIt’s time to pool your knowledge, play your best and prove your excellence!\n\n"	/>	
  

@@ -39,7 +39,17 @@
         android:layout_alignTop="@+id/event"
         android:layout_toRightOf="@+id/event"
         android:src="@drawable/cs_rules" />
-
+<TextView
+           android:id="@+id/prizemoney"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/intro"
+           android:layout_marginTop="2dp"
+           android:fontFamily="sans-serif"
+       		android:layout_gravity="center_horizontal"
+       		android:textColor="#e3e3e3"
+           android:layout_centerHorizontal="true"
+           android:text="PRIZE MONEY : 12K+" />
     
     
     
@@ -66,6 +76,8 @@
        android:fontFamily="sans-serif"
        android:layout_gravity="center_horizontal"
       android:textColor="#e3e3e3"
+      android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
      android:text="Have you ever imagined accomplishing the dangerous feat of defusing a bomb? DEFUSE gives you the once-in-a-lifetime opportunity to fulfil that dream! A time bound event, where your perseverance and teamwork will be put to test. Analyse, crack and defuse the bomb before it blows. Watch out! The clock is ticking...\n\n"/>	
  
     </ScrollView>

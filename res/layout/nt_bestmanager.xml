@@ -27,7 +27,17 @@
         />
 
    
-
+<TextView
+           android:id="@+id/prizemoney"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/intro"
+           android:layout_marginTop="2dp"
+           android:fontFamily="sans-serif"
+       		android:layout_gravity="center_horizontal"
+       		android:textColor="#e3e3e3"
+           android:layout_centerHorizontal="true"
+           android:text="PRIZE MONEY : 10K+" />
     
     
     
@@ -53,7 +63,8 @@
         android:textSize="15sp"
        android:gravity="center"
        android:fontFamily="sans-serif"
-       
+       android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:textColor="#99ffffff"
      android:text= "Ever seen a company that runs without that one guy up there?  As Peter Drucker says, “ The manager is the dynamic, life-giving element in every business” The World Needs Managers; to lead... to plan... to motivate... We challenge you to walk the walk and talk the talk and convince us that you are in the ‘top’ of the world’s best managers.\n\n"	/>	
  

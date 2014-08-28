@@ -43,12 +43,12 @@ public class FragmentSoYouThink extends Fragment implements OnClickListener {
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("“ If You control the code,You control the world”\nAnybody can code, So can you! Or can you?For the first time at Excel, show off your coding skills at ‘So you think you can code’ with brand-new rules and surprises, this event will test you till you break or fight back!  Defying the usual norms, this event will challenge you, surprise you and test you till you break or fight back! Get –Set- code!\n\n" );
+			updateTextValue("“If You control the code,You control the world”\nAnybody can code, So can you! Or can you?For the first time at Excel, show off your coding skills at ‘So you think you can code’ with brand-new rules and surprises, this event will test you till you break or fight back!  Defying the usual norms, this event will challenge you, surprise you and test you till you break or fight back! Get –Set- code!\n\n" );
 			
 		}
 		if (v.equals(rules))
 		{
-			updateTextValue("(To be updated ...)\n\n");
+			updateTextValue("1.It is not mandatory that the team members should be from the same college.\n2.Participants will need to know C, C++.\n3.The participants of a team will not be allowed to communicate with one another once.\n4.Use of mobile phones will not be allowed during the event.\n5.The time received by each participant for coding depends on the cycle (Refer Event Format)\n6.The team that codes the most optimal solution in the shortest time will be declared as winners.\n7.Programs with least complexity would be given preference.\n8.During the round the teams can contact the coordinators or the volunteers in case of emergency.\n9.Rules are subject to change at any point in time. All rules will be explained at the event.\n10.Decision of the judges will be final.\n\n");
 			
 		}
 		

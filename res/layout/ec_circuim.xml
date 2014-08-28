@@ -41,7 +41,17 @@
         android:src="@drawable/cs_rules" />
 
     
-    
+    <TextView
+           android:id="@+id/prizemoney"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/intro"
+           android:layout_marginTop="2dp"
+           android:fontFamily="sans-serif"
+       		android:layout_gravity="center_horizontal"
+       		android:textColor="#e3e3e3"
+           android:layout_centerHorizontal="true"
+           android:text="PRIZE MONEY : 12K+" />
     
        <ScrollView
         android:id="@+id/scrollView1"
@@ -65,6 +75,8 @@
        android:gravity="center"
        android:fontFamily="sans-serif"
        android:layout_gravity="center_horizontal"
+       android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
        android:textColor="#e3e3e3"
      android:text="Do you find yourself enriched with the spirit of a true engineer? Does your mind ponder upon ways to solve real life problems with your technical cognizance? Circuimstance is here with right key to unlock your whim to explore the world of engineering !\nTricky tasks awaits your call.. Keep calm and slay them all!\nConfront the problem.Concoct the answer.Conquer the title.\nExpect the unexpected! Think complicated.\n\n"/>	
  

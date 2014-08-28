@@ -26,7 +26,17 @@
         android:layout_centerHorizontal="true"
         />
 
- 
+ <TextView
+           android:id="@+id/prizemoney"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/intro"
+           android:layout_marginTop="2dp"
+           android:fontFamily="sans-serif"
+       		android:layout_gravity="center_horizontal"
+       		android:textColor="#e3e3e3"
+           android:layout_centerHorizontal="true"
+           android:text="PRIZE MONEY : 11K+" />
     
     
     
@@ -53,7 +63,7 @@
        android:fontFamily="sans-serif"
        
         android:textColor="#99ffffff"
-     android:text="(To be updated...)\n"	/>	
+     android:text="Defacto was born out of Excel's ambition to reach out the young Einsteins and Madam Curies in school. A quiz aimed solely at school students, Defacto promises to be a fun and interactive session, combining the innovation of college quizzing and the inquisitiveness of school quizzing. \nLet your intellect shine, let the rolling of brain race with every passing of minute and get yourselves ready for a gem of a quiz!\n"	/>	
  
     </ScrollView>
  
