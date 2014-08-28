@@ -48,7 +48,7 @@ public void onClick(View v) {
 	
 	if(v.equals(intro))
 	{
-		updateTextValue("“We’ve all played the game ‘Snake’. Haven’t we? We were all addicted to “Snake” at some point of our lives. Guiding a snake to eat as much food it can without hitting the walls and its own ever growing length was always exciting.\n\n" );
+		updateTextValue("“We’ve all played the game ‘Snake’. Haven’t we? We were all addicted to “Snake” at some point of our lives. Guiding a snake to eat as much food it can without hitting the walls and the pther opponet was always exciting.\n\n" );
 		
 	}
 	if (v.equals(rules))
@@ -59,7 +59,7 @@ public void onClick(View v) {
 	
 	if (v.equals(format))
 	{
-		updateTextValue("Web Bots will be an online multi-level game that tests your skill over several levels spread Players are to code an AI bot for a game. (Don't worry, we've made it darn easy to write abot).These bots are pitted against each other and the bot that wins, advances to the nextround. The bot who wins all the rounds, bags the prize.The game is simple. Bots are two coloured cells on an NxN grid. Bots leave a coloured trail wherever they move. A bot must not hit its own trail or that of another and also the walls.Got it? Those are the bots that you'll be coding.\n\n");
+		updateTextValue("Web Bots will be an online multi-level game that tests your skill over several levels spread Players are to code an AI bot for a game. (Don't worry, we've made it darn easy to write abot).These bots are pitted against each other and the bot that wins, advances to the nextround. The bot who wins all the rounds, bags the prize.The game is simple. Bots are two coloured cells on an NxN grid. A bot must not hit its own trail or that of another and also the walls.Got it? Those are the bots that you'll be coding.\n\n");
 		
 	}
 	
