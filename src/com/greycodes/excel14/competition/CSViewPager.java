@@ -47,7 +47,7 @@ ConnectionDetector connectionDetector;
 Handler h ;
 ExcelDataBase excelDataBase;
 
-String Ename;
+String Ename="";
 boolean team=false;
 int tid =0;
 ProgressDialog progressDialog;
@@ -82,8 +82,14 @@ ProgressDialog progressDialog;
 	public void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		getActivity().stopService(new Intent(getActivity(), ParseResult.class));
-	}
+		try {
+			getActivity().stopService(new Intent(getActivity(), InsertParticipant.class));
+			getActivity().stopService(new Intent(getActivity(), ParseResult.class));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    }
 
 		@Override
 		public void onSaveInstanceState(Bundle outState) {
@@ -109,38 +115,43 @@ ProgressDialog progressDialog;
 		
 		switch(v.getId()){
 		case R.id.imageView3:
-			Toast.makeText(getActivity(), "Please wait", Toast.LENGTH_LONG).show();
-						
+			boolean team =false;			
 			switch(pager.getCurrentItem()){
 			case 0:
-				eid =889;
-				
+				eid =1000;
+				team=false;
 				Ename="#include";
-				team = true;
+				
 				break;
 			case 1:
-				eid =889+1;
-				Ename="#include";
+				eid =1001;
+				team=false;
+				Ename="Web Bots";
 				break;
 			case 2:
-				eid =889+2;
-				Ename="#include";
+				eid =1002;
+				team=true;
+				Ename="Lord of the Code";
 				break;
 			case 3:
-				eid =889+3;
-				Ename="#include";
+				eid =1003;
+				team=false;
+				Ename="Hackmaster";
 				break;
 			case 4:
-				eid =889+4;
-				Ename="#include";
+				eid =1004;
+				team=true;
+				Ename="4*120";
 				break;
 			case 5:
-				eid =889+5;
-				Ename="#include";
+				eid =1005;
+				team=true;
+				Ename="Algorithms";
 				break;
 			case 6:
-				eid =889+6;
-				Ename="#include";
+				eid =1006;
+				team=true;
+				Ename="So You Think";
 				break;
 				
 			
@@ -151,13 +162,14 @@ ProgressDialog progressDialog;
 			
 
 			if(excelDataBase.Isregistered()){
-        		Intent service1 = new Intent(getActivity(), ParseResult.class);
+        		Intent service1 = new Intent(getActivity(), InsertParticipant.class);
     			service1.putExtra("eid", eid);
+    			service1.putExtra("team", team);
+    			service1.putExtra("Ename", Ename);
     			getActivity().startService(service1);
-    			Toast.makeText(getActivity(), "Please wait...fetching result", Toast.LENGTH_LONG).show();
-					
+    			Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();					
 	}else{
-					Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
+					//Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
 				}
 		
 			
@@ -167,33 +179,32 @@ ProgressDialog progressDialog;
 		case R.id.imageView2:
 			switch(pager.getCurrentItem()){
 			case 0:
-		       eid=889;
+				eid =1000;
 			break;
 			case 1:
-				 eid=889+1;
+				eid =1001;
 				break;
 			case 2:
-				 eid=889+2;
+				eid =1002;
 				break;
 			case 3:
-				 eid=889+3;
+				eid =1003;
 				break;
 			case 4:
-				 eid=889+4;
+				eid =1004;
 				break;
 			case 5:
-				 eid=889+5;
+				eid =1005;
 				break;
 			case 6:
-				 eid=889+6;
+				eid =1006;;
 				break;
 			
 			}
 			Intent service1 = new Intent(getActivity(), ParseResult.class);
 			service1.putExtra("eid", eid);
 			getActivity().startService(service1);
-			Toast.makeText(getActivity(), "Please wait...fetching result", Toast.LENGTH_LONG).show();
-	       
+			Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();	       
 			break;
 		case R.id.imageView4:
 			Toast.makeText(getActivity(), "Press & Hold to call", Toast.LENGTH_LONG).show();
@@ -229,6 +240,12 @@ ProgressDialog progressDialog;
 	
 		
 		
+	}
+
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
 	}
 
 	@Override

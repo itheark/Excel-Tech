@@ -118,6 +118,8 @@ public class GalleryListActivity extends SherlockListActivity  {
 			bs[i] = stream.toByteArray();
 		}
 	}
+	startService(new Intent(GalleryListActivity.this, ParseLiveGallery.class));
+
 		adapter = new LiveGalleryAdapter(this,desc,bs,author);
     	setListAdapter(adapter);
 

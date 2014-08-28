@@ -50,12 +50,9 @@ public AccountAdapter(Context context,String[] ename,int[] tid){
 		tvename=(TextView) itemView.findViewById(R.id.account_ename);
 		tvtid=(TextView) itemView.findViewById(R.id.account_tid);
 		tvename.setText(ename[position]);
-		tvtid.setText(Integer.toString(tid[position]));
-		
-		
-		
-		
-		
+		if (tid[position]!=1) {
+			tvtid.setText(Integer.toString(tid[position]));
+		}
 		return itemView;
 	}
 

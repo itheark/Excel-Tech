@@ -124,7 +124,7 @@ public class Checkflag extends Service{
 		  				
 		  			
 		  			}else{
-		  				new PNewsFeed().execute("http://excelapi.net84.net/newsfeed.json");
+		  				new PNewsFeed().execute("http://excelmec.org/Login2014/news_feed.php");
 		  				
 		  			}
 		  		}
@@ -145,7 +145,7 @@ String results;
 			// TODO Auto-generated method stub
 			
 			DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-			HttpPost httppost = new HttpPost("http://excelapi.net84.net/newsfeed.json");
+			HttpPost httppost = new HttpPost("http://excelmec.org/Login2014/news_feed.php");
 			httppost.setHeader("Content-type","application/json");
 			InputStream inputstream = null;
 			try{

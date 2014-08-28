@@ -54,7 +54,6 @@ int hack_flag,kryptos_flag,include_flag,dalal_flag,webbots_flag;
 
 		@Override
 		protected void onPreExecute() {
-			// TODO Auto-generated method stub
 			super.onPreExecute();
 
 		}
@@ -100,7 +99,7 @@ int hack_flag,kryptos_flag,include_flag,dalal_flag,webbots_flag;
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			JSONObject jsonObject;
-			
+
 			try{
 				jsonObject = new JSONObject(results);
 				
@@ -171,7 +170,6 @@ onlineScoreAdapter scoreAdapter = new onlineScoreAdapter();
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 			stopSelf();
 				

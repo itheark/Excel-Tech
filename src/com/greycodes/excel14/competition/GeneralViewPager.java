@@ -41,7 +41,7 @@ public class GeneralViewPager extends Fragment implements OnClickListener,OnLong
 	 Handler h ;
 	 int eid=889;
 	
-	 ProgressDialog progressDialog;
+	 
 	 String Ename;
 	 boolean team;
 		@Override
@@ -87,12 +87,7 @@ public class GeneralViewPager extends Fragment implements OnClickListener,OnLong
 			super.onResume();
 			
 		}
-		   @Override
-			public void onPause() {
-				// TODO Auto-generated method stub
-				super.onPause();
-				getActivity().stopService(new Intent(getActivity(), ParseResult.class));
-			}
+		   
 		@Override
 		public boolean onLongClick(View arg0) {
 			// TODO Auto-generated method stub
@@ -112,7 +107,18 @@ public class GeneralViewPager extends Fragment implements OnClickListener,OnLong
 			}
 			return true;
 		}
-
+		   @Override
+			public void onPause() {
+				// TODO Auto-generated method stub
+				super.onPause();
+				try {
+					getActivity().stopService(new Intent(getActivity(), InsertParticipant.class));
+					getActivity().stopService(new Intent(getActivity(), ParseResult.class));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			    }
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
@@ -120,21 +126,20 @@ public class GeneralViewPager extends Fragment implements OnClickListener,OnLong
 			switch(v.getId()){
 case R.id.imageView3:
 				
-	Toast.makeText(getActivity(), "Please wait", Toast.LENGTH_LONG).show();
 
 				switch(pager.getCurrentItem()){
 				case 0:
-					eid =905;
-					Ename="#include";
+					eid =1016;
+					Ename="Kryptos";
 					team = true;
 					break;
 				case 1:
-					eid =905+1;
-					Ename="#include";
+					eid =1017;
+					Ename="Dalal Bull";
 					break;
 				case 2:
-					eid =905+2;
-					Ename="#include";
+					eid =1018;
+					Ename="Papyrus of Ani";
 					break;
 				
 				
@@ -144,26 +149,28 @@ case R.id.imageView3:
 				
 				
 				if(excelDataBase.Isregistered()){
-            		Intent service1 = new Intent(getActivity(), ParseResult.class);
-        			service1.putExtra("eid", eid);
-        			getActivity().startService(service1);
-        			Toast.makeText(getActivity(), "Please wait...fetching result", Toast.LENGTH_LONG).show();
-    					
-    	}else{
-    					Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
+					
+					Intent service1 = new Intent(getActivity(), InsertParticipant.class);
+	    			service1.putExtra("eid", eid);
+	    			service1.putExtra("team", team);
+	    			service1.putExtra("Ename", Ename);
+	    			getActivity().startService(service1);
+	    			Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();						
+				}else{
+    				//	Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
     				}
 				
 				break;
 			case R.id.imageView2:
 				switch(pager.getCurrentItem()){
 				case 0:
-			       eid=905;
+					eid =1016;
 				break;
 				case 1:
-					 eid=905+1;
+					eid =1017;
 					break;
 				case 2:
-					 eid=905+2;
+					eid =1018;
 					break;
 				
 				
@@ -172,8 +179,7 @@ case R.id.imageView3:
 				Intent service = new Intent(getActivity(), ParseResult.class);
 				service.putExtra("eid", eid);
 				getActivity().startService(service);
-				Toast.makeText(getActivity(), "Please wait...fetching result", Toast.LENGTH_LONG).show();
-				break;
+				Toast.makeText(getActivity(), "Please wait...waiting for internet", Toast.LENGTH_LONG).show();				break;
 			case R.id.imageView4:
 				Toast.makeText(getActivity(), "Press & Hold to call", Toast.LENGTH_LONG).show();
 

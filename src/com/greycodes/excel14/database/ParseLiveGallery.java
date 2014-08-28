@@ -49,7 +49,7 @@ SharedPreferences sharedPreferences;
 			// TODO Auto-generated method stub
 			
 			DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-			HttpPost httppost = new HttpPost("http://excelapi.net84.net/livegallery.json");
+			HttpPost httppost = new HttpPost("http://excelmec.org/Login2014/lg_printjson.php");
 			httppost.setHeader("Content-type","application/json");
 			InputStream inputstream = null;
 			try{
@@ -112,8 +112,8 @@ SharedPreferences sharedPreferences;
 			
 			imageDownloader = new ImageDownloader();
 			for(i=0;i<n;i++){
-				if(sharedPreferences.getInt("gid", 99)<gid[i]){
-					Toast.makeText(getApplicationContext(), "livegallery condition ok", Toast.LENGTH_SHORT).show();
+				if(sharedPreferences.getInt("gid", 0)<gid[i]){
+					
 				imagebyte[i] = imageDownloader.Download(imageurl[i]);
 				}
 				}
@@ -125,7 +125,7 @@ SharedPreferences sharedPreferences;
 			
 				
 			for( i=0;i<n;i++){
-				if(sharedPreferences.getInt("gid", 99)<gid[i]){
+				if(sharedPreferences.getInt("gid", 0)<gid[i]){
 				contentValues.put("GID", gid[i]);
 				contentValues.put("DESC", desc[i]);
 				contentValues.put("IMAGE", imagebyte[i]);
@@ -156,7 +156,7 @@ SharedPreferences sharedPreferences;
 	@Override
 	public void onStart(Intent intent, int startId) {
 		// TODO Auto-generated method stub
-		new ParseImage().execute("http://excelapi.net84.net/livegallery.json");
+		new ParseImage().execute("http://excelmec.org/Login2014/lg_printjson.php");
 	}
 
 	@Override

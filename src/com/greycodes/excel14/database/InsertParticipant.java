@@ -19,6 +19,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.IBinder;
@@ -27,35 +28,40 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.greycodes.excel14.CompetitionNDActivity;
+import com.greycodes.excel14.HomeNDActivity;
 import com.greycodes.excel14.R;
 import com.parse.PushService;
 
 public class InsertParticipant extends Service {
-Context context;
+
 String url,results,Ename;
 int flag,eid,tid,uid;
 boolean team,success=false;
 
-ProgressDialog progressDialog;
+
 	
 	
 	
 	
 	public void insert(){
-		ExcelDataBase excelDataBase = new ExcelDataBase(context);
+		ExcelDataBase excelDataBase = new ExcelDataBase(CompetitionNDActivity.context);
 		SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
 		ContentValues contentValues = new ContentValues();
 		contentValues.put("EID", eid);
 		contentValues.put("ENAME", Ename);
 		contentValues.put("TID", tid);
 		if((sqLiteDatabase.insert("PARTICIPATE", null, contentValues))>0){
-			Toast.makeText(context, "Your id for competition is "+tid, Toast.LENGTH_LONG).show();
+			if(team){
+				Toast.makeText(CompetitionNDActivity.context, "Team id  is "+tid+" Use this id to add members to your team :)", Toast.LENGTH_LONG).show();
+			}
+			Toast.makeText(CompetitionNDActivity.context, "Successful :)", Toast.LENGTH_LONG).show();
 		}else
-			Toast.makeText(context, "Already registered for the event", Toast.LENGTH_LONG).show();
-PushService.subscribe(context, "excel"+eid, CompetitionNDActivity.class, R.drawable.excel_logo);		progressDialog.dismiss();
+			Toast.makeText(CompetitionNDActivity.context, "Already registered for the event", Toast.LENGTH_LONG).show();
+PushService.subscribe(getApplicationContext(), "excel"+eid, CompetitionNDActivity.class, R.drawable.excel_logo);		
+stopSelf();
 	}
 	
-	public class Result extends AsyncTask<String, String, String>  {
+	public class Insertparticipant extends AsyncTask<String, String, String>  {
 
 		@Override
 		protected String doInBackground(String... params)  {
@@ -80,6 +86,7 @@ PushService.subscribe(context, "excel"+eid, CompetitionNDActivity.class, R.drawa
 				
 			}catch(Exception e){
 				e.printStackTrace();
+				stopSelf();
 			}finally{
 				try{
 					if(inputstream!=null)
@@ -106,16 +113,17 @@ PushService.subscribe(context, "excel"+eid, CompetitionNDActivity.class, R.drawa
 
 			}catch(JSONException e){
 				e.printStackTrace();
+				stopSelf();
 				Toast.makeText(getApplicationContext(), "No internet connectivity"+e, Toast.LENGTH_LONG).show();
 			}
 			if(flag==1){
 				insert();
 			}else
 				if(flag==2)
-				Toast.makeText(context, "Error", Toast.LENGTH_LONG).show();
+				Toast.makeText(CompetitionNDActivity.context, "Error", Toast.LENGTH_LONG).show();
 				else
 					if(flag==3)
-						Toast.makeText(context, "Team id not found", Toast.LENGTH_LONG).show();
+						Toast.makeText(CompetitionNDActivity.context, "Team id not found", Toast.LENGTH_LONG).show();
 						
 			
 		}
@@ -124,13 +132,13 @@ PushService.subscribe(context, "excel"+eid, CompetitionNDActivity.class, R.drawa
 	}
 	
 	void Alert(){
-		AlertDialog.Builder alert = new AlertDialog.Builder(context);
+		AlertDialog.Builder alert = new AlertDialog.Builder(CompetitionNDActivity.context);
 
 		alert.setTitle("Excel");
 		alert.setMessage("If you have a team id please Enter.All members of a team should have same team id");
 alert.setCancelable(false);
 		// Set an EditText view to get user input 
-		final EditText input = new EditText(context);
+		final EditText input = new EditText(CompetitionNDActivity.context);
 		input.setInputType(InputType.TYPE_CLASS_NUMBER);
 		input.setHint("Team id");
 		
@@ -139,20 +147,18 @@ alert.setCancelable(false);
 		alert.setPositiveButton("I Have", new DialogInterface.OnClickListener() {
 		public void onClick(DialogInterface dialog, int whichButton) {
 			if(input.length()==0){
-				Toast.makeText(context, "Please Enter a valid team id	", Toast.LENGTH_LONG).show();
+				Toast.makeText(CompetitionNDActivity.context, "Please Enter a valid team id	", Toast.LENGTH_LONG).show();
 				Alert();
 			}else{
 				tid = Integer.parseInt(input.getText().toString());
 				url = "http://excelapi.net84.net/participate.json";
 				try {
-					Object object = new Result().execute(url).get();
-				} catch (InterruptedException e) {
+				 new Insertparticipant().execute(url);
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (ExecutionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+					stopSelf();
+				} 
 			}
 			
 		  // Do something with value!
@@ -163,12 +169,10 @@ alert.setCancelable(false);
 		  public void onClick(DialogInterface dialog, int whichButton) {
 			  url = "http://excelapi.net84.net/participate.json";
 			  try {
-					Object object = new Result().execute(url).get();
-				} catch (InterruptedException e) {
+					new Insertparticipant().execute(url);
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ExecutionException e) {
-					// TODO Auto-generated catch block
+					stopSelf();
 					e.printStackTrace();
 				}
 		  }
@@ -180,16 +184,53 @@ alert.setCancelable(false);
 	@Override
 	public void onStart(Intent intent, int startId) {
 		// TODO Auto-generated method stub
-
-	team=	intent.getBooleanExtra("team", false);
-		uid =intent.getIntExtra("uid", 0);
+		url = "http://excelapi.net84.net/participate.json";
+		String[] columns = { "PID"};
+	ExcelDataBase	excelDataBase = new ExcelDataBase(getApplicationContext());
+		SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
+	Cursor	 cursor = sqLiteDatabase.query("USER", columns, null,null, null, null, null);
+		cursor.moveToFirst();
+		uid =	cursor.getInt(cursor.getColumnIndex("PID"));
+		
+		team=	intent.getBooleanExtra("team", false);
+		
 	eid= 	intent.getIntExtra("eid", 0);
-	if(team){
-		Alert();
-	}else{
+	
+	Ename = intent.getStringExtra("Ename");
+	
 		
-	}
+	
+	
+	AlertDialog.Builder alert = new AlertDialog.Builder(CompetitionNDActivity.context);
+
+	alert.setTitle("Excel");
+	alert.setMessage("Are you sure?");
+alert.setCancelable(false);
+	// Set an EditText view to get user input 
+	
+
+	alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+	public void onClick(DialogInterface dialog, int whichButton) {
 		
+		if(team){
+			Alert();
+		}else{
+			 new Insertparticipant().execute(url);
+		}
+	  // Do something with value!
+	  }
+	});
+
+	alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+	  public void onClick(DialogInterface dialog, int whichButton) {
+		stopSelf();
+	  }
+	});
+
+	alert.show();
+	
+	
+	
 	
 	}
 

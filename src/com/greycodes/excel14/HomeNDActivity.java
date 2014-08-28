@@ -95,7 +95,6 @@ Handler h;
 		username[0]= " ";
 		  fragmentManager = getSupportFragmentManager();
 		 transaction=fragmentManager.beginTransaction();
-		 
 		 pd= new ProgressDialog(HomeNDActivity.this);
 		 image = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.user_image);
 			
@@ -125,28 +124,10 @@ Handler h;
 					
 				}
 				
-				if(sharedPreferences.getBoolean("active",false)){
+				if(!sharedPreferences.getBoolean("active",false)){
 					
-					h = new Handler() {
-			            @Override
-			            public void handleMessage(Message msg) {
+         		   startService(new Intent(HomeNDActivity.this,ParseActivate.class));
 
-			                if (msg.what != 1) { // code if not connected
-			                
-			             //   Toast.makeText(getApplicationContext(), "No Connection", Toast.LENGTH_LONG).show();
-			              
-			                	
-			                	
-			            				
-			                } else { // code if connected
-			                		   startService(new Intent(HomeNDActivity.this,ParseActivate.class));
-			               	 
-			                }   
-			            }
-			        };
-			        
-			            
-			        ConnectionDetector.isNetworkAvailable(h,3000);
 					
 				}
 			}
@@ -300,8 +281,7 @@ private void  selectItem(int position) {
 		f= new ExcelProViewPager();
 		break;
 	case 8:
-		Toast.makeText(getApplicationContext(), "Please wait..Checking for update", Toast.LENGTH_LONG).show();
-		startService(new Intent(HomeNDActivity.this, ParseQuickOpen.class));
+		Toast.makeText(this, "Please wait...waiting for internet", Toast.LENGTH_LONG).show();		startService(new Intent(HomeNDActivity.this, ParseQuickOpen.class));
 		break;
 	case 9:
 		 homeIntent = new Intent(HomeNDActivity.this,GalleryListActivity.class);

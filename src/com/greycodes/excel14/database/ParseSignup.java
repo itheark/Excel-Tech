@@ -56,7 +56,13 @@ int username_flag,email_flag,success,pid;
 		this.fb=  fb;
 		if(fb)
 			this.propic= propic;
-		url= "http://excelapi.net84.net/signup.json";
+		if(fb){
+			this.propic= propic;
+			url= "http://excelmec.org/Login2014/signup.php?firstname="+fname+"&lastname="+lname+"&phone="+phone+"&college="+college+"&dept="+dept+"&email="+email+"&password="+pass+"&accom="+acc+"&fbid="+uname;
+		}else{
+url= "http://excelmec.org/Login2014/signup.php?firstname="+fname+"&lastname="+lname+"&phone="+phone+"&college="+college+"&dept="+dept+"&email="+email+"&password="+pass+"&accom="+acc;
+
+		}
 		try {
 			new SignupAsync().execute(url).get();
 		} catch (InterruptedException e) {
@@ -77,7 +83,7 @@ int username_flag,email_flag,success,pid;
 		contentValues.put("PID", pid);
 		contentValues.put("FNAME", fname);
 		contentValues.put("LNAME", lname);
-		
+		contentValues.put("UNAME", uname);
 		contentValues.put("PASSWORD", pass);
 		contentValues.put("EMAIL", email);
 		contentValues.put("COLLEGE", college);
@@ -91,8 +97,10 @@ int username_flag,email_flag,success,pid;
 			contentValues.put("PICTURE",byteArray );
 		}
 		if(	sqLiteDatabase.insert("USER", null, contentValues)>=0){
+			Toast.makeText(context, "User inserted", Toast.LENGTH_LONG).show();
 			editor.putBoolean("registered", true);
 			if(fb){
+				Toast.makeText(context, "FB TRUE", Toast.LENGTH_LONG).show();
 				editor.putBoolean("active",true);
 				editor.putBoolean("fb", true);
 			}
@@ -168,19 +176,7 @@ int username_flag,email_flag,success,pid;
 				}catch(Exception e){
 					e.printStackTrace();
 				}
-				JSONObject jsonObject;
-				try{
-					jsonObject = new JSONObject(results);
-					pid = jsonObject.getInt("pid");
-					success = jsonObject.getInt("success");
-					username_flag = jsonObject.getInt("username");
-					email_flag = jsonObject.getInt("email");
-							 
-					
-
-				}catch(JSONException e){
-					e.printStackTrace();
-				}
+				
 			}
 			return results;
 			
@@ -197,21 +193,42 @@ int username_flag,email_flag,success,pid;
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
+			Toast.makeText(context, results, Toast.LENGTH_LONG).show();
+			/*
+			JSONObject jsonObject;
+			try{
+				jsonObject = new JSONObject(results);
+				pid = jsonObject.getInt("pid");
+				success = jsonObject.getInt("success");
+				
+				
+						 
+				
+
+			}catch(JSONException e){
+				e.printStackTrace();
+				Toast.makeText(context, ""+e, Toast.LENGTH_LONG).show();
+			}catch (Exception e) {
+				Toast.makeText(context, ""+e, Toast.LENGTH_LONG).show();			}
 			if(success==1){
+				progressDialog.dismiss();
+				Toast.makeText(context, "success", Toast.LENGTH_LONG).show();
 				insert();
 			}else
 				if(success==2){
 					
-						
-						alertshow("Your email id is already registered with us");
+					progressDialog.dismiss();
+					Toast.makeText(context, "success", Toast.LENGTH_LONG).show();
+						alertshow("Email id  already registered with us :(");
 					
-				}
+			
 				
 				
 				
 			
 		}
-
+			*/
+		}
 		
 	}
 	public void alertshow(String message){

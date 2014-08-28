@@ -1,18 +1,16 @@
 package com.greycodes.excel14.competition;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -22,8 +20,6 @@ import com.greycodes.excel14.R;
 import com.greycodes.excel14.database.ExcelDataBase;
 import com.greycodes.excel14.database.InsertParticipant;
 import com.greycodes.excel14.database.ParseResult;
-import com.greycodes.excel14.eeeevents.FragmentExtundoprodigo;
-import com.greycodes.excel14.eeeevents.FragmentLumiere;
 import com.greycodes.excel14.robotics.FragmentRobowars;
 import com.greycodes.excel14.robotics.FragmentTerrainMaster;
 
@@ -39,7 +35,7 @@ public class RBViewPager extends Fragment implements OnClickListener,OnLongClick
 	 Handler h ;
 	 int eid=902;
 	 
-	 ProgressDialog progressDialog;
+	
 	 String Ename;
 	 boolean team;
 		@Override
@@ -102,31 +98,37 @@ public class RBViewPager extends Fragment implements OnClickListener,OnLongClick
 			return true;
 		}
 		
+		   
 		   @Override
 			public void onPause() {
 				// TODO Auto-generated method stub
 				super.onPause();
-				getActivity().stopService(new Intent(getActivity(), ParseResult.class));
-			}
-		   
+				try {
+					getActivity().stopService(new Intent(getActivity(), InsertParticipant.class));
+					getActivity().stopService(new Intent(getActivity(), ParseResult.class));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			    }
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			
 			switch(v.getId()){
 case R.id.imageView3:
-	Toast.makeText(getActivity(), "Please wait", Toast.LENGTH_LONG).show();
 		
 				
 				switch(pager.getCurrentItem()){
 				case 0:
-					eid =902;
-					Ename="#include";
-					team = true;
+					eid =1013;
+					Ename="Robowars";
+					team = false;
 					break;
 				case 1:
-					eid =902+1;
-					Ename="#include";
+					eid =1014;
+					Ename="Terrain Master";
+					team = false;
 					break;
 				
 				
@@ -135,13 +137,15 @@ case R.id.imageView3:
 				
 				
 				if(excelDataBase.Isregistered()){
-            		Intent service1 = new Intent(getActivity(), ParseResult.class);
-        			service1.putExtra("eid", eid);
-        			getActivity().startService(service1);
-        			Toast.makeText(getActivity(), "Please wait...fetching result", Toast.LENGTH_LONG).show();
-    					
-    	}else{
-    					Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
+					Intent service1 = new Intent(getActivity(), InsertParticipant.class);
+	    			service1.putExtra("eid", eid);
+	    			service1.putExtra("team", team);
+	    			service1.putExtra("Ename", Ename);
+	    			getActivity().startService(service1);
+	    			Toast.makeText(getActivity(), "Please wait...", Toast.LENGTH_LONG).show();
+						
+				}else{
+    				//	Toast.makeText(getActivity(), "Already Registered", Toast.LENGTH_SHORT).show();
     				}
 				
 				break;
@@ -167,7 +171,7 @@ case R.id.imageView3:
 
 				switch(pager.getCurrentItem()){
 				case 0:
-					FragmentRobowars.tv.setText("Call Midhun Murali�?");
+					FragmentRobowars.tv.setText("Call Midhun Murali?");
 				break;
 				case 1:
 					FragmentTerrainMaster.tv.setText("Call Arjun C.S ?");

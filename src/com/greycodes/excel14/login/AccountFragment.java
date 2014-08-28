@@ -67,7 +67,7 @@ public class AccountFragment extends ListFragment {
 		
 		@Override
 		public void onClick(View view) {
-			Toast.makeText(getActivity(), "Please wait....", Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(), "Please wait....waiting for internet", Toast.LENGTH_LONG).show();
 			getActivity().startService(new Intent(getActivity(), Parsescore.class));
 			
 		}
@@ -104,6 +104,13 @@ public class AccountFragment extends ListFragment {
 		
 		 return rootView;
 	
+	}
+
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		getActivity().stopService(new Intent(getActivity(), Parsescore.class));
 	}
 
 	@Override
