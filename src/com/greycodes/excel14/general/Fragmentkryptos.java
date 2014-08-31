@@ -45,7 +45,7 @@ public class Fragmentkryptos extends SherlockFragment implements OnClickListener
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("The world is full of obvious things, which nobody by chance ever observes. - Sherlock Holmes\nAre you ready to plunge into the vivid world of mysteries?  Are you game to explore the hidden and unseen? Use your wit to unlock the ‘krypt’. Extricate the tricky puzzles and expound the mysterious clues.  Battle it out in the race to discover the ultimate treasure!\nNOTE: Think deep….Only the astute, intelligent and versatile make it to the end.\n " );
+			updateTextValue("The world is full of obvious things, which nobody by chance ever observes. - Sherlock Holmes\nAre you ready to plunge into the vivid world of mysteries?  Are you game to explore the hidden and unseen? Use your nuts to unlock the krypt. Extricate the tricky puzzles and expound the mysterious clues.  Battle it out in the race to discover the ultimate treasure!\nNOTE: Think deepï¿½.Only the astute, intelligent and versatile make it to the end.\n " );
 			
 		}
 		if (v.equals(rules))

@@ -161,7 +161,7 @@ Toast.makeText(getApplicationContext(), "waiting for internet", Toast.LENGTH_LON
 			}catch(JSONException e){
 				e.printStackTrace();
 			}catch (Exception e) {
-				Toast.makeText(getApplicationContext(), "No internet "+e, Toast.LENGTH_LONG).show();			}
+				Toast.makeText(getApplicationContext(), "No internet ", Toast.LENGTH_LONG).show();			}
 			
 			stopSelf();
 				

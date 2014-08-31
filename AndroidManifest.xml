@@ -1,50 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.greycodes.excel14"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionCode="8"
+    android:versionName="2.3.3" >
 
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="19" />
 
-    <uses-permission android:name="android.permission.CAMERA" />
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
 
-    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission
+        android:name="android.permission.CAMERA"
+        android:required="false" />
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission
+        android:name="android.permission.INTERNET"
+        android:required="false" />
+    <uses-permission
+        android:name="android.permission.ACCESS_NETWORK_STATE"
+        android:required="false" />
+    <uses-permission
+        android:name="android.permission.WAKE_LOCK"
+        android:required="false" />
+    <uses-permission
+        android:name="android.permission.VIBRATE"
+        android:required="false" />
+    <uses-permission
+        android:name="android.permission.RECEIVE_BOOT_COMPLETED"
+        android:required="false" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission
+        android:name="com.google.android.c2dm.permission.RECEIVE"
+        android:required="false" />
+    <uses-permission
+        android:name="android.permission.CALL_PHONE"
+        android:required="false" />
     <!--
   IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
   to match your app's package name + ".permission.C2D_MESSAGE".
     -->
     <permission
         android:name="com.greycodes.excel14.permission.C2D_MESSAGE"
-        android:protectionLevel="signature" />
+        android:protectionLevel="signature"
+        android:required="false" />
 
-    <uses-permission android:name="com.greycodes.excel14.permission.C2D_MESSAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission
+        android:name="com.greycodes.excel14.permission.C2D_MESSAGE"
+        android:required="false" />
+    <uses-permission
+        android:name="android.permission.INTERNET"
+        android:required="false" />
+    <uses-permission
+        android:name="android.permission.ACCESS_NETWORK_STATE"
+        android:required="false" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:required="false" />
+    <uses-permission
+        android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"
+        android:required="false" />
 
     <!--
      The following two permissions are not required to use
 <<<<<<< local
      Google Maps Android API v2, but are recommended.
     -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission
+        android:name="android.permission.ACCESS_COARSE_LOCATION"
+        android:required="false" />
+    <uses-permission
+        android:name="android.permission.ACCESS_FINE_LOCATION"
+        android:required="false" />
 
     <uses-feature
         android:glEsVersion="0x00020000"
-        android:required="true" />
+        android:required="false" />
 
     <application
         android:name="com.greycodes.excel14.Excel14Application"
@@ -93,9 +133,8 @@
         </activity>
         <activity
             android:name="com.greycodes.excel14.login.LoginActivity"
-            android:screenOrientation="portrait" 
-            android:windowSoftInputMode="stateHidden|adjustResize"
-            >
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
         </activity>
         <activity
             android:name="com.greycodes.excel14.login.SigninActivity"
@@ -117,7 +156,8 @@
         </receiver>
         <receiver
             android:name="com.parse.GcmBroadcastReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND" >
+            android:permission="com.google.android.c2dm.permission.SEND"
+            android:required="false" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
@@ -148,32 +188,48 @@
             android:name="com.greycodes.excel14.FirstRunactivity"
             android:label="@string/title_activity_first_runactivity" >
         </activity>
-        <service android:name="com.greycodes.excel14.newsfeed.Checkflag"
-            android:enabled="true"/>
-         <service android:name="com.greycodes.excel14.database.ParseLiveGallery"
-            android:enabled="true"/>
-         <service android:name="com.greycodes.excel14.database.ParseSponsor"
-            android:enabled="true"/>
-           <service android:name="com.greycodes.excel14.database.ParseQuickOpen"
-            android:enabled="true"/>
-           <service android:name="com.greycodes.excel14.database.ParseSchedule"
-            android:enabled="true"/>
-           <service android:name="com.greycodes.excel14.database.ParseSpeaker"
-            android:enabled="true"/>
-           <service android:name="com.greycodes.excel14.database.Parsescore"
-            android:enabled="true"/>
-           <service android:name="com.greycodes.excel14.database.ParseResult"
-            android:enabled="true"/>
-           <service android:name="com.greycodes.excel14.database.InsertParticipant"
-            android:enabled="true"/>
-            <service android:name="com.greycodes.excel14.database.ParseActivate"
-            android:enabled="true"/>
-             <service android:name="com.greycodes.excel14.database.SigninParse"
-            android:enabled="true"/>
-             <service android:name="com.greycodes.excel14.database.ParseTS"
-            android:enabled="true"/>
-            
-           
+
+        <service
+            android:name="com.greycodes.excel14.newsfeed.Checkflag"
+            android:enabled="true" />
+        <service
+            android:name="com.greycodes.excel14.database.ParseLiveGallery"
+            android:enabled="true" />
+        <service
+            android:name="com.greycodes.excel14.database.ParseSponsor"
+            android:enabled="true" />
+        <service
+            android:name="com.greycodes.excel14.database.ParseQuickOpen"
+            android:enabled="true" />
+        <service
+            android:name="com.greycodes.excel14.database.ParseSchedule"
+            android:enabled="true" />
+        <service
+            android:name="com.greycodes.excel14.database.ParseSpeaker"
+            android:enabled="true" />
+        <service
+            android:name="com.greycodes.excel14.database.Parsescore"
+            android:enabled="true" />
+        <service
+            android:name="com.greycodes.excel14.database.ParseResult"
+            android:enabled="true" />
+        <service
+            android:name="com.greycodes.excel14.database.InsertParticipant"
+            android:enabled="true" />
+        <service
+            android:name="com.greycodes.excel14.database.ParseActivate"
+            android:enabled="true" />
+        <service
+            android:name="com.greycodes.excel14.database.SigninParse"
+            android:enabled="true" />
+        <service
+            android:name="com.greycodes.excel14.database.ParseTS"
+            android:enabled="true" />
+        <service
+            android:name="com.greycodes.excel14.database.ParseSignup"
+            android:enabled="true" />
+
+      
     </application>
 
 </manifest>

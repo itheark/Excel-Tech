@@ -211,7 +211,7 @@ ProgressDialog progressDialog;
 
 			switch(pager.getCurrentItem()){
 			case 0:
-				FragmentHashInclude.tv.setText("Call Athul Jayson?");
+				FragmentHashInclude.tv.setText("Call Kevin J Pallan?");
 			break;
 			case 1:
 				FragmentWebBots.tv.setText("Call Ouseph Joseph?");
@@ -226,10 +226,10 @@ ProgressDialog progressDialog;
 				FragmentFourOneTwenty.tv.setText("Call Milu Raju?");
 				break;
 			case 5:
-				FragmentAlgorithms.tv.setText("Call Anina Antony?");
+				FragmentAlgorithms.tv.setText("Call Joyce Jojo?");
 				break;
 			case 6:
-				FragmentSoYouThink.tv.setText("Call Emma Paul?");
+				FragmentSoYouThink.tv.setText("Call Athul Jayson?");
 				break;
 			
 			}
@@ -253,7 +253,7 @@ ProgressDialog progressDialog;
 		// TODO Auto-generated method stub
 		switch(pager.getCurrentItem()){
 		case 0:
-			misc.call("09048260255");		
+			misc.call("09497276437");		
 			break;
 		case 1:
 			misc.call("09037285987");		
@@ -269,7 +269,7 @@ ProgressDialog progressDialog;
 			misc.call("09495813253");
 			break;
 		case 5:
-			misc.call("09400939192");
+			misc.call("09947813730");
 			break;
 		case 6:
 			misc.call("08089812213");

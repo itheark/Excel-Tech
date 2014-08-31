@@ -51,7 +51,7 @@ import com.greycodes.excel14.database.ParseSignup;
 
 public class LoginActivity extends SherlockActivity implements OnClickListener  {
 	
-
+public static Context context;
 
 	private ArrayAdapter<String> adapter;
 	String item[]={
@@ -63,7 +63,7 @@ public class LoginActivity extends SherlockActivity implements OnClickListener  
 	String fname,lname,uname,password,email,college,department,phone,accomodation;
 	 ConnectionDetector connectionDetector;
 	 EditText etemail,etpassword,etphone,etfname,etlname;
-	 Bitmap bmp;
+	public static Bitmap bmp;
 	 AutoCompleteTextView etcollege,etsemester,etaccomodation,etdepartment;
 	boolean flag =false;
 	CircularImageView pic ;
@@ -88,7 +88,7 @@ public class LoginActivity extends SherlockActivity implements OnClickListener  
 		etemail = (EditText) findViewById(R.id.registration_email);
 		etcollege = (AutoCompleteTextView) findViewById(R.id.registration_college);
 		etdepartment = (AutoCompleteTextView) findViewById(R.id.registration_collegedept);
-		
+		context = LoginActivity.this;
 		etphone = (EditText) findViewById(R.id.registration_phone);
 		etaccomodation = (AutoCompleteTextView) findViewById(R.id.registration_accomodate);
 		etaccomodation.setAdapter(adapter);
@@ -305,9 +305,9 @@ public class LoginActivity extends SherlockActivity implements OnClickListener  
 					Bundle params = new Bundle();
 		            params.putString("place", "104014799634228");  // YOUR PLACE ID
 		            params.putString("Message","Excel");
-		            params.putString("name", "Excel MEC 14"); 
-						params.putString("caption", "Check out the new Excel App"); 
-						params.putString("description", "Conceived by the students of Govt. Model Engineering College,Kochi, Excel promotes interaction within the engineering community. What started as a small-scale festival is now one of South India�s most celebrated events. ");
+		            params.putString("name", "Excel 2014"); 
+						params.putString("caption", " Nucleus Properties presents Excel 2014"); 
+						params.putString("description", "Conceived by the students of Govt. Model Engineering College,Kochi, Excel promotes interaction within the engineering community.#excelmec ");
 						params.putString("link", "https://play.google.com/store/apps/details?id=com.greycodes.excel14");
 						params.putString("picture", "http://greycodes.com/image_icons/qrcode.png"); 
 
@@ -355,6 +355,7 @@ public class LoginActivity extends SherlockActivity implements OnClickListener  
 		if(v.equals(signup))
 		{
 			fname = etfname.getText().toString();
+			
 			lname = etlname.getText().toString();
 			
 			password = etpassword.getText().toString();
@@ -383,27 +384,36 @@ public class LoginActivity extends SherlockActivity implements OnClickListener  
 			}else if(accomodation.length()==0){
 			alertshow("Please specify wheather you need accomodation");
 			}else{
-				h = new Handler() {
-		            @Override
-		            public void handleMessage(Message msg) {
 
-		                if (msg.what != 1) { // code if not connected
-		                
-		              alertshow("No Connectivity");
-		              
-		                	
-		                	
-		            				
-		                } else { // code if connected
-		                       ParseSignup parseSignup = new ParseSignup(LoginActivity.this, fname, lname, uname, password, email, college, department, phone, accomodation,bmp,flag);
+				fname = fname.replaceAll("\\s","");
+				
+				lname = lname.replaceAll("\\s","");
+				
+				password = password.replaceAll("\\s","");
+				email = email.replaceAll("\\s","");
+				college = college.replaceAll("\\s","");
+				department = department.replaceAll("\\s","");
+				
+				phone= phone.replaceAll("\\s","");
+				accomodation = accomodation.replaceAll("\\s","");
+				
+			
+		                     //  ParseSignup parseSignup = new ParseSignup(LoginActivity.this, fname, lname, uname, password, email, college, department, phone, accomodation,bmp,flag);
 		               	 
-		                }   
-		            }
-		        };
-		        
-		            
-		        ConnectionDetector.isNetworkAvailable(h,3000);
+		              // startService(new Intent(LoginActivity.this, ParseSignup.class));
+		      Intent service = new Intent(LoginActivity.this, ParseSignup.class);
+		      service.putExtra("fname", fname);
+		      service.putExtra("lname", fname);
+		      service.putExtra("uname", uname);
+		      service.putExtra("pass", password);
+		      service.putExtra("email", email);
+		      service.putExtra("college", college);
+		      service.putExtra("dept", department);
+		      service.putExtra("phone", phone);
+		      service.putExtra("acc", accomodation);
+		      service.putExtra("fb", flag);
 		      
+		      startService(service);
 			}
 
 		}

@@ -40,7 +40,7 @@ public class AlleyDunk extends Fragment implements OnClickListener {
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("Its time to get high on adrenaline and shoot some hoops. Showcase your potential with the basketball in this one of a kind flood-lit tournament. Take on the best and show them what you got!\n"	 );
+			updateTextValue("Its time to get high on adrenaline and shoot some hoops. Showcase your potential with basketball in this one of a kind flood-lit tournament. Take on the best and show them what you got!\n"	 );
 			
 		}
 		

@@ -37,7 +37,7 @@
        android:gravity="center"
        android:fontFamily="sans-serif"
        android:textColor="#e3e3e3"
-     android:text="In Free Fall,lead Bucky through the tricky paths to land safely.\nCompete with your friends for the lead.\n\nGame Features:\n- Simple one touch controls.\n- Motion sensitive gliding.\n- Easy and fun to play,hard to master.\n- Gradual difficulty increase.\n- Amazing sound effects.\n- Works on all android platforms.\n\n" />	
+     android:text="In Free Fall,lead Bucky through the tricky paths to land safely.\nCompete with your friends for the lead.\n\nGame Features:\n- Simple one touch controls.\n- Motion sensitive gliding.\n- Easy and fun to play,hard to master.\n- Gradual difficulty increase.\n- Amazing sound effects.\n- Works on all android platforms.\nExciting Prizes awaits you!!\n\n" />	
  
     </ScrollView>
 

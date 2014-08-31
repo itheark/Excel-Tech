@@ -9,6 +9,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -30,6 +31,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.text.Editable;
 import android.text.Html;
 import android.view.View;
 import android.widget.AdapterView;
@@ -147,7 +149,14 @@ homeoptions=new int[] {R.drawable.home_nd,R.drawable.competition_nd,
  
         
         hDrawerList.setAdapter(mergeadapter);
-      
+   SharedPreferences     sharedPrefer = getSharedPreferences("firstrun",Context.MODE_PRIVATE);
+		if (!sharedPrefer.getBoolean("first", false)) {
+			Editor editor = sharedPrefer.edit();
+			editor.putBoolean("first", true);
+			editor.commit();
+			hDrawerLayout.openDrawer(hDrawerList);
+			
+		}
 
         hDrawerList.setOnItemClickListener(new DrawerItemClickListener());
          getSupportActionBar().setHomeButtonEnabled(true);
@@ -245,6 +254,7 @@ private void  selectItem(int position) {
 			if(sharedPreferences.getBoolean("active",false)){
 				 f = new AccountFragment();
 			}else{
+				Toast.makeText(this, "Account not activated", Toast.LENGTH_LONG).show();
 				 startService(new Intent(HomeNDActivity.this,ParseActivate.class));
 			}
 

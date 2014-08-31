@@ -43,7 +43,7 @@ public class FragmentCSI extends SherlockFragment implements OnClickListener {
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("The world is full of obvious things which nobody by any chance ever observes.Discover the detective in you as you delve deep into a baffling mystery. Observe, deduce and discover the missing pieces to unravel the mind boggling mystery at hand as the day dawns when MEC becomes a crime scene!\n" );
+			updateTextValue("The world is full of obvious things which nobody by any chance ever observes. Discover the detective in you as you delve deep into a baffling mystery. Observe, deduce and discover the missing pieces to unravel the mind boggling mystery at hand as the day dawns when MEC becomes a crime scene!\n" );
 			
 		}
 		

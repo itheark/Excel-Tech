@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.app.Service;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -25,24 +26,25 @@ import android.content.SharedPreferences.Editor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
-import android.widget.ArrayAdapter;
+import android.os.IBinder;
 import android.widget.Toast;
 
 import com.greycodes.excel14.HomeNDActivity;
 import com.greycodes.excel14.R;
+import com.greycodes.excel14.login.LoginActivity;
 import com.parse.PushService;
 
-public class ParseSignup {
-Context context;
+public class ParseSignup extends Service {
+
 SharedPreferences sharedPreferences;
 String fname,lname,uname,phone,pass,email,college,dept,acc,results,url;
 boolean fb;
 Bitmap propic;
 
 Editor editor;
-ProgressDialog progressDialog;
+//ProgressDialog progressDialog;
 int username_flag,email_flag,success,pid;
-	public ParseSignup(Context context,String fname,String lname,String uname,String pass,String email,String college,String dept,String phone,String acc,Bitmap propic,boolean fb){
+/*	public ParseSignup(Context context,String fname,String lname,String uname,String pass,String email,String college,String dept,String phone,String acc,Bitmap propic,boolean fb){
 		// TODO Auto-generated constructor stub
 		this.context =context;
 		this.fname = fname;
@@ -65,83 +67,120 @@ int username_flag,email_flag,success,pid;
 url= "http://excelmec.org/Login2014/signup.php?firstname="+fname+"&lastname="+lname+"&phone="+phone+"&college="+college+"&dept="+dept+"&email="+email+"&password="+pass+"&accom="+acc;
 
 		}
-		try {
-			new SignupAsync().execute(url).get();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		Toast.makeText(context, "Construcotr", Toast.LENGTH_LONG).show();
+	}
+	*/
+	@Override
+	public void onStart(Intent intent, int startId) {
+		// TODO Auto-generated method stub
+		Toast.makeText(getApplicationContext(), "Please wait for internet", Toast.LENGTH_LONG).show();
+			//new SignupAsync().execute(url);
+		fname =intent.getStringExtra("fname");
+		lname=intent.getStringExtra("lname");
+		uname=intent.getStringExtra("uname");
+		pass=intent.getStringExtra("pass");
+		email=intent.getStringExtra("email");
+		college=intent.getStringExtra("college");
+		dept=intent.getStringExtra("dept");
+		phone=intent.getStringExtra("phone");
+		acc=intent.getStringExtra("acc");
+		fb=intent.getBooleanExtra("fb", false);
+		
+		if(fb){
+			propic= LoginActivity.bmp;
+			url= "http://excelmec.org/Login2014/signup.php?firstname="+fname+"&lastname="+lname+"&phone="+phone+"&college="+college+"&dept="+dept+"&email="+email+"&password="+pass+"&accom="+acc+"&fbid="+uname;
+		}else{
+			url= "http://excelmec.org/Login2014/signup.php?firstname="+fname+"&lastname="+lname+"&phone="+phone+"&college="+college+"&dept="+dept+"&email="+email+"&password="+pass+"&accom="+acc;
 		}
+		
+			//Toast.makeText(getApplicationContext(), url, Toast.LENGTH_LONG).show();
+		new SignupAsync().execute(url);
 	}
 	private void insert(){
-		
-		ExcelDataBase excelDataBase = new ExcelDataBase(context);
-		SQLiteDatabase sqLiteDatabase=	excelDataBase.getSQLiteDataBase();
-		sharedPreferences = context.getSharedPreferences("login", Context.MODE_PRIVATE);
-		 editor = sharedPreferences.edit();
-		ContentValues contentValues = new ContentValues();
-		contentValues.put("PID", pid);
-		contentValues.put("FNAME", fname);
-		contentValues.put("LNAME", lname);
-		
-		contentValues.put("PASSWORD", pass);
-		contentValues.put("EMAIL", email);
-		contentValues.put("COLLEGE", college);
-		contentValues.put("DEPT", dept);
-		
-		contentValues.put("PHONE", phone);
-		if(fb){
-			ByteArrayOutputStream stream = new ByteArrayOutputStream();
-			propic.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-			byte[] byteArray = stream.toByteArray();
-			contentValues.put("PICTURE",byteArray );
-		}
-		if(	sqLiteDatabase.insert("USER", null, contentValues)>=0){
-			editor.putBoolean("registered", true);
+	
+		try {
+			ExcelDataBase excelDataBase = new ExcelDataBase(getApplicationContext());
+			SQLiteDatabase sqLiteDatabase=	excelDataBase.getSQLiteDataBase();
+			sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+			 editor = sharedPreferences.edit();
+			ContentValues contentValues = new ContentValues();
+			
+			contentValues.put("PID", pid);
+			contentValues.put("FNAME", fname);
+			contentValues.put("LNAME", lname);
+			
+			contentValues.put("PASSWORD", pass);
+			contentValues.put("EMAIL", email);
+			contentValues.put("COLLEGE", college);
+			contentValues.put("DEPT", dept);
+			
+			contentValues.put("PHONE", phone);
 			if(fb){
-				editor.putBoolean("active",true);
-				editor.putBoolean("fb", true);
-			}
-			
-			editor.commit();
-			
-			//PushService.subscribe(getApplicationContext(), pid, HomeNDActivity.class);
-			PushService.subscribe(context,"user"+pid, HomeNDActivity.class,R.drawable.excel_logo);
-		//	Toast.makeText(context, "Acoount Created.Please check your mail to activate the account", Toast.LENGTH_LONG).show();
-		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);	                	// Setting Dialog Title
-    	alertDialogBuilder.setTitle("Excel");
-
-    	// Setting Dialog Message
-    	if(fb){
-    		alertDialogBuilder.setMessage("Account Created Successfully");
-    	}else
-    	alertDialogBuilder.setMessage("Account Created.Please check your mail to activate the account");
-
-    	// Setting Icon to Dialog
-    	alertDialogBuilder.setIcon(R.drawable.alert);
-    	
-    	alertDialogBuilder.setNeutralButton("OK", new OnClickListener() {
-			
-			@Override
-			public void onClick(DialogInterface arg0, int arg1) {
-				Intent intent = new Intent(context, HomeNDActivity.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); 
-				context.startActivity(intent);
+				
+				
+				try {
+					ByteArrayOutputStream stream = new ByteArrayOutputStream();
+					propic.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+					byte[] byteArray = stream.toByteArray();
+					contentValues.put("PICTURE",byteArray );
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 				
 			}
-		});
-    	
-    	AlertDialog alertDialog = alertDialogBuilder.create();
-    	alertDialog.show();
+			if(	sqLiteDatabase.insert("USER", null, contentValues)>=0){
+				editor.putBoolean("registered", true);
+				if(fb){
+					editor.putBoolean("active",true);
+					editor.putBoolean("fb", true);
+				}
+				
+				editor.commit();
+				
+				//PushService.subscribe(getApplicationContext(), pid, HomeNDActivity.class);
+				PushService.subscribe(getApplicationContext(),"user"+pid, HomeNDActivity.class,R.drawable.excel_logo);
+			//	Toast.makeText(context, "Acoount Created.Please check your mail to activate the account", Toast.LENGTH_LONG).show();
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LoginActivity.context);	                	// Setting Dialog Title
+			alertDialogBuilder.setTitle("Excel");
+			alertDialogBuilder.setCancelable(false);
+
+			// Setting Dialog Message
+			if(fb){
+				alertDialogBuilder.setMessage("Account Created Successfully");
+			}else{
+				alertDialogBuilder.setMessage("Account Created.Please check your mail to activate the account");
+			}
+			
+
+			// Setting Icon to Dialog
+			alertDialogBuilder.setIcon(R.drawable.alert);
+			
+			alertDialogBuilder.setNeutralButton("OK", new OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface arg0, int arg1) {
+					Intent intent = new Intent(LoginActivity.context, HomeNDActivity.class);
+					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); 
+					startActivity(intent);
+					
+				}
+			});
+			
+			AlertDialog alertDialog = alertDialogBuilder.create();
+			alertDialog.show();
+			
+			}
 		
+		} catch(Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		
 		
-		
-		
+		stopSelf();
 		
 			
 		
@@ -189,7 +228,6 @@ url= "http://excelmec.org/Login2014/signup.php?firstname="+fname+"&lastname="+ln
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			   progressDialog = ProgressDialog.show(context, "Excel", "Please Wait...");
 		}
 
 		@Override
@@ -209,18 +247,20 @@ url= "http://excelmec.org/Login2014/signup.php?firstname="+fname+"&lastname="+ln
 
 			}catch(JSONException e){
 				e.printStackTrace();
-				Toast.makeText(context, "No network connection", Toast.LENGTH_LONG).show();
+				stopSelf();
+				Toast.makeText(getApplicationContext(), "No network connection", Toast.LENGTH_LONG).show();
 			}catch (Exception e) {
-				Toast.makeText(context, "No network connection", Toast.LENGTH_LONG).show();			}
+				
+				Toast.makeText(getApplicationContext(), "No network connection", Toast.LENGTH_LONG).show();			}
 			if(success==2){
-				progressDialog.dismiss();
+				Toast.makeText(getApplicationContext(), "Registering...", Toast.LENGTH_LONG).show();
 				insert();
 			}else
 				if(success==1){
 					
-					progressDialog.dismiss();
-						alertshow("Email id  already registered with us :(");
 					
+						alertshow("Email id  already registered with us ");
+					stopSelf();
 			
 				
 				
@@ -232,7 +272,7 @@ url= "http://excelmec.org/Login2014/signup.php?firstname="+fname+"&lastname="+ln
 		
 	}
 	public void alertshow(String message){
-		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);	                	// Setting Dialog Title
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LoginActivity.context);	                	// Setting Dialog Title
     	alertDialogBuilder.setTitle("Excel");
 
     	// Setting Dialog Message
@@ -240,10 +280,15 @@ url= "http://excelmec.org/Login2014/signup.php?firstname="+fname+"&lastname="+ln
 
     	// Setting Icon to Dialog
     	alertDialogBuilder.setIcon(R.drawable.alert);
-    	
+    	alertDialogBuilder.setCancelable(false);
     	alertDialogBuilder.setNeutralButton("OK", null);
     	
     	AlertDialog alertDialog = alertDialogBuilder.create();
     	alertDialog.show();
+	}
+	@Override
+	public IBinder onBind(Intent arg0) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

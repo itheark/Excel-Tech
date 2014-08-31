@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech.OnInitListener;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -70,5 +71,9 @@ public void onCompletion(MediaPlayer mp) {
     finish();
 	
 }
+
+
+
+
 
      }

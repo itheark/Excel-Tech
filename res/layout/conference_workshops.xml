@@ -50,7 +50,7 @@
        android:fontFamily="sans-serif"
        android:layout_gravity="center_horizontal"
         android:textColor="#99ffffff"
-     android:text="GO LANG\n\nDo you envision yourself as a lord of the code?Add the Google's programming language, Go,  to your list of languages.Excel 2014 brings you the first ever Go workshop in kerala conducted by Actiotech.Hurry up and register yourself and be a part of the fast growing Go community.\n\nIMAGE PROCESSING\n\nHave you ever wondered how an autonomous robot would recognize its surroundings?Ever wanted to create security systems that detects people? Face recognition?If yes, the Image processing workshops at Excel 2014 is the place to be.Get yourself registered and gain headway into the world of image processing.\n\n"	/>	
+     android:text="GO LANG\n\nDo you envision yourself as a lord of the code?Add the Google's programming language, Go,  to your list of languages.Excel 2014 brings you the first ever Go workshop in kerala conducted by Actiotech.Hurry up and register yourself and be a part of the fast growing Go community.\n\nIMAGE PROCESSING\n\nHave you ever wondered how an autonomous robot would recognize its surroundings?Ever wanted to create security systems that detects people? If yes, the Image processing workshops at Excel 2014 is the place to be.Get yourself registered and gain headway into the world of image processing.\n\n"	/>	
  
     </ScrollView>
  

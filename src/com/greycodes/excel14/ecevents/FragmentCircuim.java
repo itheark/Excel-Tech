@@ -48,7 +48,7 @@ public class FragmentCircuim extends SherlockFragment implements OnClickListener
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("Do you find yourself enriched with the spirit of a true engineer? Does your mind ponder upon ways to solve real life problems with your technical cognizance? Circuimstance is here with right key to unlock your whim to explore the world of engineering !\nTricky tasks awaits your call.. Keep calm and slay them all!\nConfront the problem.Concoct the answer.Conquer the title.\nExpect the unexpected! Think complicated.\n\n" );
+			updateTextValue("Do you find yourself enriched with the spirit of a true engineer? Does your mind ponder upon ways to solve real life problems with your technical cognizance? Circuimstance is here with  the right key to unlock your whim to explore the world of engineering !\nTricky tasks await your call.. Keep calm and slay them all!\nConfront the problem.Concoct the answer.Conquer the title.\nThink Complicated.Expect the unexpected! Think complicated.\n\n" );
 			
 		}
 		if (v.equals(rules))

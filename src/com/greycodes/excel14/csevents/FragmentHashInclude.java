@@ -127,7 +127,7 @@ public void onClick(View v) {
 	
 	if(v.equals(intro))
 	{
-		updateTextValue("The lines have been drawn, sides have been taken. The war is to begin soon. If you are think you have what it takes to prove your C programming mettle, join the war and fight for glory. Battle with other coders and emerge as the champion of C. All it takes is perseverance and grit\n\n" );
+		updateTextValue("The lines have been drawn, sides have been taken. The war is to begin soon. If you think you have what it takes to prove your C programming mettle, join the war and fight for glory. Battle with other coders and emerge as the champion of C. All it takes is perseverance and grit.\n\n" );
 		
 	}
 	if (v.equals(rules))

@@ -39,6 +39,13 @@ public class GalleryListActivity extends SherlockListActivity  {
 
 
 
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		stopService(new Intent(GalleryListActivity.this, ParseLiveGallery.class));
+	}
+
 	LiveGalleryAdapter adapter;
 	String[] desc,author,columns;
 	byte[][] bs;
@@ -118,7 +125,7 @@ public class GalleryListActivity extends SherlockListActivity  {
 			bs[i] = stream.toByteArray();
 		}
 	}
-	startService(new Intent(GalleryListActivity.this, ParseLiveGallery.class));
+	//startService(new Intent(GalleryListActivity.this, ParseLiveGallery.class));
 
 		adapter = new LiveGalleryAdapter(this,desc,bs,author);
     	setListAdapter(adapter);
@@ -168,6 +175,7 @@ public class GalleryListActivity extends SherlockListActivity  {
 		switch ( item.getItemId()) {
 
 		case R.id.action_refresh: 
+			Toast.makeText(GalleryListActivity.this, "Please wait", Toast.LENGTH_LONG).show();
 		startService(new Intent(GalleryListActivity.this, ParseLiveGallery.class));
 	
 

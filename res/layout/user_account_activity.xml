@@ -42,6 +42,18 @@
         android:fontFamily="sans-serif"
         android:text="Participating Events"
         android:textSize="20dp" />
+      <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_below="@+id/textView2"
+       android:layout_marginTop="20dp"
+        android:layout_marginLeft="25dp"
+        android:layout_alignRight="@android:id/list"
+        android:textColor="#ffffff"
+        android:fontFamily="sans-serif"
+        android:text="Event ID"
+        android:textSize="20dp" />
 
     <ListView
         android:id="@android:id/list"

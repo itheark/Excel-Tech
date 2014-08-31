@@ -49,10 +49,10 @@ cursor.moveToFirst();
 count = cursor.getCount();
 if(count==0){
 subject = new String[]{"APP LAUNCH","ORGANIC FARMING","IBETO LAUNCH","EXCEL HISTORY "};
-message = new String[]{"Excel 2014 launched the first edition of its app on ---- 2014. From registartions to event results, stay tuned to the whole world of Excel 2014 on your mobile with this app."
-		,"On 15 Aug 2014, we gave something back to Mother Earth with the launch of our new social initiative Organic Farming. Conducted in association with the Rotary Club of Thrippunithura and Krishi Bhavan, this time Excel goes green heading for a greener tomorrow. "
-		,"Excel provides a platform for engineering students to showcase their technical skills through IBETO ( Innovations For a Better Tomorrow). The third edition of IBETO was launched on ----- 2014. The second edition of IBETO Jr, for school level students was launched also launched on the same day",
-		"MEC marks its silver jubilee with the launch of the 15th edition of its national level technical fest Excel. Revamped,  Rejuvenated and Revived, Excel 2014 is back with a bang "};
+message = new String[]{"Excel 2014 launched the first edition of its app on ---- 2014. From registartions to event results, stay tuned to the whole world of Excel 2014 ."
+		,"On 15 Aug 2014, we gave something back to Mother Earth with the launch of our new social initiative Organic Farming. "
+		,"Excel provides a platform for engineering students to showcase their technical skills through IBETO ( Innovations For a Better Tomorrow). ",
+		"MEC marks its silver jubilee with the launch of the 15th edition of its national level technical fest Excel."};
 pcode = new int[]{2,2,2,2};
 cat = new int[]{8,8,8,8};
 }else{

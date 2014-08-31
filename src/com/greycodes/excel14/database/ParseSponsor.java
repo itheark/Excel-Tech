@@ -167,7 +167,8 @@ String results=null;
 
 	@Override
 	public void onStart(Intent intent, int startId) {
-		new flagCheck().execute("http://excelapi.net84.net/flag.json");
+	//	new flagCheck().execute("http://excelapi.net84.net/flag.json");
+		stopSelf();
 			}
 
 	

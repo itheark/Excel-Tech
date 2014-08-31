@@ -15,8 +15,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.greycodes.excel14.database.ExcelDataBase;
+import com.greycodes.excel14.database.ParseActivate;
 import com.greycodes.excel14.login.AccountFragment;
 import com.greycodes.excel14.login.LoginActivity;
 
@@ -75,21 +77,34 @@ public class HomeFragment extends Fragment implements OnClickListener {
 		if(v.equals(login))
 		{
 			
-			if(excelDataBase.Isregistered()){
-				Fragment f;
-				FragmentManager fragmentManager ;
-				FragmentTransaction transaction;
-				fragmentManager = getActivity().getSupportFragmentManager();
-				 transaction=fragmentManager.beginTransaction();
-				 f = new AccountFragment();
-				 transaction.replace(R.id.home_content_frame,f);
-					// Add this transaction to the back stack
-	               transaction.addToBackStack("detail");
-	               transaction.commit();
+			if(sharedPreferences.getBoolean("registered",false)){
+				
+				if(sharedPreferences.getBoolean("active",false)){
+					Fragment f;
+					FragmentManager fragmentManager ;
+					FragmentTransaction transaction;
+					fragmentManager = getActivity().getSupportFragmentManager();
+					 transaction=fragmentManager.beginTransaction();
+					 f = new AccountFragment();
+					 transaction.replace(R.id.home_content_frame,f);
+						// Add this transaction to the back stack
+		               transaction.addToBackStack("detail");
+		               transaction.commit();
 				}else{
+					Toast.makeText(getActivity(), "Account not activated", Toast.LENGTH_LONG).show();
+					 getActivity().startService(new Intent(getActivity(),ParseActivate.class));
+				}
+
+			
+			
+			}else{
 				Intent intent = new Intent(getActivity(),LoginActivity.class);
 				startActivity(intent);
 			}
+			
+			
+			
+		
 			
 			
 		}

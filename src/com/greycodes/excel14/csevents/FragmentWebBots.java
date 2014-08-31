@@ -48,7 +48,7 @@ public void onClick(View v) {
 	
 	if(v.equals(intro))
 	{
-		updateTextValue("“We’ve all played the game ‘Snake’. Haven’t we? We were all addicted to “Snake” at some point of our lives. Guiding a snake to eat as much food it can without hitting the walls and the pther opponet was always exciting.\n\n" );
+		updateTextValue("“We’ve all played the game ‘Snake’. Haven’t we? We were all addicted to “Snake” at some point of our lives. Guiding the snake to eat as much food as it can without hitting the walls and the pther opponet was always exciting.\n\n" );
 		
 	}
 	if (v.equals(rules))

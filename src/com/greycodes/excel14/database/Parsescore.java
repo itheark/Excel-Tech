@@ -20,6 +20,8 @@ import com.greycodes.excel14.login.OnlineStatusFragment;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.support.v4.app.Fragment;
@@ -37,11 +39,26 @@ public class Parsescore extends Service {
 
 String results,hmrank,hmlevel,hmpoints,krank,klevel,hirank,hisub,hipoints,drank,dworth,dshares,wwins,wloses,wrank;
 int hack_flag,kryptos_flag,include_flag,dalal_flag,webbots_flag;
-
+String url;
 	@Override
 	public void onStart(Intent intent, int startId) {
 		// TODO Auto-generated method stub
-		new parsequickopen().execute("http://excelmec.org/Login2014/onlinescore.php");
+
+		String url;
+		try {
+			String[] columns = { "PID"};
+ExcelDataBase	excelDataBase = new ExcelDataBase(getApplicationContext());
+			SQLiteDatabase sqLiteDatabase = excelDataBase.getSQLiteDataBase();
+Cursor	 cursor = sqLiteDatabase.query("USER", columns, null,null, null, null, null);
+			cursor.moveToFirst();
+int	uid =	cursor.getInt(cursor.getColumnIndex("PID"));
+			url = "http://excelmec.org/Login2014/onlinescore.php?uid="+uid;
+			new parsequickopen().execute(url);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Override
@@ -63,7 +80,7 @@ int hack_flag,kryptos_flag,include_flag,dalal_flag,webbots_flag;
 			// TODO Auto-generated method stub
 			
 			DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-			HttpPost httppost = new HttpPost("http://excelmec.org/Login2014/onlinescore.php");
+			HttpPost httppost = new HttpPost(url);
 			httppost.setHeader("Content-type","application/json");
 			InputStream inputstream = null;
 			try{

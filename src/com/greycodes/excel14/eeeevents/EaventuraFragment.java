@@ -44,7 +44,7 @@ public class EaventuraFragment extends Fragment implements OnClickListener {
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("Are you ready for an adventure?\nTo unravel the mysterious clues.. To explore the hidden secrets…\nPolish your technical know-how and get ready to crack the concealed and unseen, for we bring you the ever challenging technical treasure hunt of excel 2014!\nTread forward by solving the puzzles leading you to the ultimate treasure!\nIt’s time to pool your knowledge, play your best and prove your excellence!\n\n" );
+			updateTextValue("'Are you ready for an adventure?\nTo unravel the mysterious clues.. To explore the hidden secrets'\nPolish your technical know-how and get ready to crack the concealed, for we bring you the ever challenging technical treasure hunt of excel 2014!\nTread forward by solving the puzzles leading you to the ultimate treasure!\nItï¿½s time to pool your knowledge, play your best and prove your excellence!\n\n" );
 			
 		}
 		if (v.equals(rules))
@@ -55,7 +55,7 @@ public class EaventuraFragment extends Fragment implements OnClickListener {
 		
 		if (v.equals(format))
 		{
-			updateTextValue("This Event Consist Of 2 levels\nLevel 1\n1.  This stage consists of a 30 minute MCQ test.\n2. Questions will test the participant’s knowledge in basic electrical and logical reasoning skills.\n3. Six teams selected from this round will proceed to the next stage.\nLevel 2\n1.The teams which cleared the first level move on to the second level which is a series of electrical and electronics tasks connected to each other by a set of clues. \nThis is a knockout level in which the number of teams are filtered on each of the tasks based on their completion speed .\nTwo teams avoiding knockout in these tasks will proceed onto the final round where they have to compete each other for the final treasure\n\n");
+			updateTextValue("This Event Consist Of 2 levels\nLevel 1\n1.  This stage consists of a 30 minute MCQ test.\n2. Questions will test the participantï¿½s knowledge in basic electrical and logical reasoning skills.\n3. Six teams selected from this round will proceed to the next stage.\nLevel 2\n1.The teams which cleared the first level move on to the second level which is a series of electrical and electronics tasks connected to each other by a set of clues. \nThis is a knockout level in which the number of teams are filtered on each of the tasks based on their completion speed .\nTwo teams avoiding knockout in these tasks will proceed onto the final round where they have to compete each other for the final treasure\n\n");
 			
 		}
 		

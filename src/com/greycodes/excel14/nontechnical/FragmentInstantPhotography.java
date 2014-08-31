@@ -43,7 +43,7 @@ public class FragmentInstantPhotography extends SherlockFragment implements OnCl
 		
 		if(v.equals(intro))
 		{
-			updateTextValue("Photography is something that cuts across all boundaries, it transcends the constraints of language and culture. Are you an artist with a camera who has his own story to tell? Then show us your the photographs, not pictures just taken, but works of art that are painstakingly fashioned. For all those shutterbugs who believe their favourite personal photograph is the one.....\n");
+			updateTextValue("Photography is something that cuts across all boundaries, it transcends the constraints of language and culture. Are you an artist with a camera who has his own story to tell? Then show us your photographs, not pictures just taken, but works of art that have been painstakingly fashioned. For all those shutterbugs who believe their personal photograph is the one.....\n");
 			
 		}
 		
