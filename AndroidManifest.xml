@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.greycodes.excel14"
-    android:versionCode="8"
-    android:versionName="2.3.3" >
+    android:versionCode="10"
+    android:versionName="2.3.4" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -26,6 +26,10 @@
     <uses-permission
         android:name="android.permission.INTERNET"
         android:required="false" />
+     <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:required="false" />
+     
     <uses-permission
         android:name="android.permission.ACCESS_NETWORK_STATE"
         android:required="false" />
@@ -38,7 +42,8 @@
     <uses-permission
         android:name="android.permission.RECEIVE_BOOT_COMPLETED"
         android:required="false" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" 
+         android:required="false"/>
     <uses-permission
         android:name="com.google.android.c2dm.permission.RECEIVE"
         android:required="false" />
@@ -85,7 +90,21 @@
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="false" />
+<uses-feature android:name="android.hardware.LOCATION"
+    android:required="false"/>
+<uses-feature android:name="android.hardware.screen.LANDSCAPE"
+    android:required="false"/>
+<uses-feature android:name="android.hardware.screen.PORTRAIT"
+    android:required="false"/>
+<uses-feature android:name="android.hardware.TELEPHONY"
+    android:required="false"/>
+<uses-feature android:name="android.hardware.TOUCHSCREEN"
+    android:required="false"/>
+<uses-feature android:name="android.hardware.location.GPS"
+    android:required="false"/>
 
+<uses-feature android:name="android.hardware.location.NETWORK"
+    android:required="false"/>
     <application
         android:name="com.greycodes.excel14.Excel14Application"
         android:allowBackup="true"
@@ -99,7 +118,8 @@
 
         <activity
             android:name="com.greycodes.excel14.HomeNDActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait" 
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
