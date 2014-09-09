@@ -73,7 +73,7 @@ url= "http://excelmec.org/Login2014/signup.php?firstname="+fname+"&lastname="+ln
 	@Override
 	public void onStart(Intent intent, int startId) {
 		// TODO Auto-generated method stub
-		Toast.makeText(getApplicationContext(), "Please wait for internet", Toast.LENGTH_LONG).show();
+		Toast.makeText(getApplicationContext(), "Please wait...", Toast.LENGTH_LONG).show();
 			//new SignupAsync().execute(url);
 		fname =intent.getStringExtra("fname");
 		lname=intent.getStringExtra("lname");
@@ -228,6 +228,8 @@ url= "http://excelmec.org/Login2014/signup.php?firstname="+fname+"&lastname="+ln
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
+			Toast.makeText(getApplicationContext(), "Registering...", Toast.LENGTH_LONG).show();
+
 		}
 
 		@Override
@@ -253,7 +255,6 @@ url= "http://excelmec.org/Login2014/signup.php?firstname="+fname+"&lastname="+ln
 				
 				Toast.makeText(getApplicationContext(), "No network connection", Toast.LENGTH_LONG).show();			}
 			if(success==2){
-				Toast.makeText(getApplicationContext(), "Registering...", Toast.LENGTH_LONG).show();
 				insert();
 			}else
 				if(success==1){

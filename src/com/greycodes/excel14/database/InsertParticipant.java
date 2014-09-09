@@ -101,37 +101,43 @@ stopSelf();
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			
-			try{
-				JSONObject jsonObject;
-				jsonObject = new JSONObject(results);
-				flag = jsonObject.getJSONObject("participate").getInt("success");
-				if(flag==1){
-					tid = jsonObject.getJSONObject("participate").getInt("id");	
-				}
-					 
-				
+			try {
+				try{
+					JSONObject jsonObject;
+					jsonObject = new JSONObject(results);
+					flag = jsonObject.getJSONObject("participate").getInt("success");
+					if(flag==1){
+						tid = jsonObject.getJSONObject("participate").getInt("id");	
+					}
+						 
+					
 
-			}catch(JSONException e){
+				}catch(JSONException e){
+					e.printStackTrace();
+					stopSelf();
+					Toast.makeText(getApplicationContext(), "No internet connectivity", Toast.LENGTH_LONG).show();
+				}
+				if(flag==1){
+					insert();
+				}else
+					if(flag==2)
+					Toast.makeText(CompetitionNDActivity.context, "Team id not found", Toast.LENGTH_LONG).show();
+					else
+						if(flag==3){
+							
+						if(team){
+							Toast.makeText(CompetitionNDActivity.context, "Teamis full", Toast.LENGTH_LONG).show();
+						}else{
+							Toast.makeText(CompetitionNDActivity.context, "Already registered", Toast.LENGTH_LONG).show();
+						}
+							
+							
+						}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
-				stopSelf();
-				Toast.makeText(getApplicationContext(), "No internet connectivity"+e, Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), "No internet connectivity", Toast.LENGTH_LONG).show();
 			}
-			if(flag==1){
-				insert();
-			}else
-				if(flag==2)
-				Toast.makeText(CompetitionNDActivity.context, "Team id not found", Toast.LENGTH_LONG).show();
-				else
-					if(flag==3){
-						
-					if(team){
-						Toast.makeText(CompetitionNDActivity.context, "Teamis full", Toast.LENGTH_LONG).show();
-					}else{
-						Toast.makeText(CompetitionNDActivity.context, "Already registered", Toast.LENGTH_LONG).show();
-					}
-						
-						
-					}
 		}
 
 		

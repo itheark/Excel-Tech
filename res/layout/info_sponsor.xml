@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/sponsor_swiperefreshlayout"
     android:layout_width="match_parent"
@@ -16,4 +16,4 @@
 
  
 
-</uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout>
+</LinearLayout>

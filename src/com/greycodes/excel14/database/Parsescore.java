@@ -44,7 +44,7 @@ String url;
 	public void onStart(Intent intent, int startId) {
 		// TODO Auto-generated method stub
 
-		String url;
+		 
 		try {
 			String[] columns = { "PID"};
 ExcelDataBase	excelDataBase = new ExcelDataBase(getApplicationContext());
