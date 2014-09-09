@@ -65,13 +65,7 @@ public class RBViewPager extends Fragment implements OnClickListener,OnLongClick
 			return rootView;
 			
 		}
-		@Override
-		public void onSaveInstanceState(Bundle outState) {
-	        super.onSaveInstanceState(outState);
-	        outState.putInt("num_pages", 2);
-	        final ViewPagerParallax pager = (ViewPagerParallax) rootView.findViewById(R.id.roboticspager);
-	        outState.putInt("current_page", pager.getCurrentItem());
-	    }
+	
 		
 		
 		@Override
